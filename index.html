@@ -27,7 +27,7 @@
     input, button, select, textarea { -webkit-tap-highlight-color: transparent; }
   </style>
 
-  <link rel="stylesheet" href="style.css?v=20260814_tpspace_tphub_25">
+  <link rel="stylesheet" href="style.css?v=20260814_tpspace_hero_layered_26">
 </head>
 <body data-theme="light">
   <!-- 背景方格纸网格、环境光与手绘几何浮动 Canvas (Graph Paper Grid & Interactive Ink Doodle Canvas) -->
@@ -51,16 +51,16 @@
     </div>
 
     <!-- ==========================================================================
-         Hero 巨幕陈述 (Statement Hero & Interactive Character - TP® makes things.)
+         Hero 巨幕陈述 (Statement Hero & Interactive Layered Characters - TP makes things.)
          ========================================================================== -->
     <section class="hero-statement-section" id="section-hero">
-      <div class="hero-statement-grid">
-        <!-- 左侧超大非对称标题与身份 -->
-        <div class="hero-statement-left">
-          <h1 class="hero-statement-title">
-            TP<span class="statement-reg">®</span><br>
-            makes<br>
-            things.
+      <div class="hero-statement-stage">
+        <!-- 1. 左侧大号粗体标题文字 (Typography Layer) -->
+        <div class="hero-typography-block">
+          <h1 class="hero-statement-title" aria-label="TP makes things.">
+            <span class="hero-title-line line-tp">TP</span>
+            <span class="hero-title-line line-makes">makes</span>
+            <span class="hero-title-line line-things">things.</span>
           </h1>
           <div class="hero-identity-line">
             <span class="hero-author-cn">唐 潘</span>
@@ -68,42 +68,83 @@
           </div>
         </div>
 
-        <!-- 右侧手绘角色与小怪兽 (AI 原画 + 4眼珠全屏视线追踪交互) -->
-        <div class="hero-character-wrapper">
-          <div class="hero-artwork-stage">
-            <img src="assets/illustrations/hero_monster_base.png" alt="Tyler & Cute Green Monster" class="hero-artwork-base-img">
-            <svg class="hero-artwork-eyes-overlay" viewBox="0 0 1448 1086" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-              <!-- 1. 小怪兽左眼珠 (Monster Left Eye) -->
-              <g id="monster-eye-group-left" class="interactive-eye-group">
-                <circle cx="291" cy="593" r="44" fill="#14181E" />
-                <circle cx="278" cy="580" r="14" fill="#FFFFFF" />
-                <circle cx="304" cy="606" r="7" fill="#FFFFFF" />
-              </g>
-
-              <!-- 2. 小怪兽右眼珠 (Monster Right Eye) -->
-              <g id="monster-eye-group-right" class="interactive-eye-group">
-                <circle cx="451" cy="591" r="44" fill="#14181E" />
-                <circle cx="438" cy="578" r="14" fill="#FFFFFF" />
-                <circle cx="464" cy="604" r="7" fill="#FFFFFF" />
-              </g>
-
-              <!-- 3. 唐潘左眼珠 (Tyler Left Eye) -->
-              <g id="tyler-eye-group-left" class="interactive-eye-group">
-                <ellipse cx="820" cy="335" rx="38" ry="46" fill="#1E1814" />
-                <ellipse cx="820" cy="335" rx="22" ry="26" fill="#0C0A08" />
-                <circle cx="808" cy="318" r="12" fill="#FFFFFF" />
-                <circle cx="832" cy="348" r="6" fill="#FFFFFF" />
-              </g>
-
-              <!-- 4. 唐潘右眼珠 (Tyler Right Eye) -->
-              <g id="tyler-eye-group-right" class="interactive-eye-group">
-                <ellipse cx="970" cy="295" rx="36" ry="44" fill="#1E1814" />
-                <ellipse cx="970" cy="295" rx="20" ry="24" fill="#0C0A08" />
-                <circle cx="958" cy="278" r="12" fill="#FFFFFF" />
-                <circle cx="982" cy="308" r="6" fill="#FFFFFF" />
-              </g>
-            </svg>
+        <!-- 2. 交互式分层角色场景 (Layered Characters: Human Leaning + Green Monster) -->
+        <div class="hero-character-scene" id="hero-character-scene">
+          
+          <!-- 男生角色 (Human Character - 固定身体 + 颈部Pivot头部 + SVG矢量瞳孔追踪) -->
+          <div class="hero-char-human" id="char-human">
+            <!-- 身体层 (靠在文字上，主体稳定) -->
+            <img src="assets/hero/human-body.png" alt="Tyler Body" class="char-layer char-human-body" aria-hidden="true">
+            
+            <!-- 头部层 (带颈部 pivot 与微妙视角位移) -->
+            <div class="char-head-wrapper" id="human-head-wrapper">
+              <img src="assets/hero/human-head-no-pupils.png" alt="Tyler Head" class="char-layer char-human-head" aria-hidden="true">
+              
+              <!-- 左右眼矢量 SVG 瞳孔 -->
+              <svg class="char-eyes-svg human-eyes-svg" viewBox="0 0 1024 1536" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <clipPath id="human-clip-left">
+                    <ellipse cx="433" cy="180" rx="17" ry="17" />
+                  </clipPath>
+                  <clipPath id="human-clip-right">
+                    <ellipse cx="504" cy="160" rx="17" ry="17" />
+                  </clipPath>
+                </defs>
+                <g clip-path="url(#human-clip-left)">
+                  <g id="human-pupil-left" class="interactive-pupil">
+                    <circle cx="433" cy="180" r="9.5" fill="#18181b" />
+                    <circle cx="430.5" cy="177.5" r="3" fill="#ffffff" />
+                    <circle cx="436" cy="183" r="1.2" fill="#ffffff" opacity="0.8" />
+                  </g>
+                </g>
+                <g clip-path="url(#human-clip-right)">
+                  <g id="human-pupil-right" class="interactive-pupil">
+                    <circle cx="504" cy="160" r="9.5" fill="#18181b" />
+                    <circle cx="501.5" cy="157.5" r="3" fill="#ffffff" />
+                    <circle cx="507" cy="163" r="1.2" fill="#ffffff" opacity="0.8" />
+                  </g>
+                </g>
+              </svg>
+            </div>
           </div>
+
+          <!-- 绿色蠢萌小怪物 (Monster Character - 果冻身躯 + 底部Pivot头部 + SVG矢量大眼珠) -->
+          <div class="hero-char-monster" id="char-monster">
+            <!-- 怪物身体 (底部躯干) -->
+            <img src="assets/hero/monster-body.png" alt="Green Monster Body" class="char-layer char-monster-body" aria-hidden="true">
+            
+            <!-- 怪物头部 (底部连接点 pivot 与果冻弹性) -->
+            <div class="char-head-wrapper" id="monster-head-wrapper">
+              <img src="assets/hero/monster-head-no-pupils.png" alt="Green Monster Head" class="char-layer char-monster-head" aria-hidden="true">
+              
+              <!-- 怪物大眼睛矢量 SVG 瞳孔 -->
+              <svg class="char-eyes-svg monster-eyes-svg" viewBox="0 0 1254 1254" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <clipPath id="monster-clip-left">
+                    <ellipse cx="470" cy="702" rx="98" ry="118" />
+                  </clipPath>
+                  <clipPath id="monster-clip-right">
+                    <ellipse cx="845" cy="686" rx="102" ry="122" />
+                  </clipPath>
+                </defs>
+                <g clip-path="url(#monster-clip-left)">
+                  <g id="monster-pupil-left" class="interactive-pupil">
+                    <circle cx="470" cy="702" r="56" fill="#111827" />
+                    <circle cx="452" cy="682" r="17" fill="#ffffff" />
+                    <circle cx="488" cy="722" r="7" fill="#ffffff" opacity="0.8" />
+                  </g>
+                </g>
+                <g clip-path="url(#monster-clip-right)">
+                  <g id="monster-pupil-right" class="interactive-pupil">
+                    <circle cx="845" cy="686" r="56" fill="#111827" />
+                    <circle cx="827" cy="666" r="17" fill="#ffffff" />
+                    <circle cx="863" cy="706" r="7" fill="#ffffff" opacity="0.8" />
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -237,7 +278,7 @@
             <p class="ref-desc-text">
               实时数据脉动看板：聚合服务器负载、博客访问热度与 GitHub 提交动态，赛博朋克大屏视觉呈现。
             </p>
-            <a href="https://cyberpulse.tpgofighting.top" target="_blank" rel="noopener" class="ref-action-link">
+            <a href="https://wx.tpgofighting.top" target="_blank" rel="noopener" class="ref-action-link">
               <span>查看大屏 →</span>
             </a>
           </div>

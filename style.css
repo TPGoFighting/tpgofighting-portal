@@ -249,46 +249,46 @@ input {
 }
 
 /* ==========================================================================
-   Hero 巨幕排版 (Reference Style: TP® makes things. & Giant Bold Tabs)
+   Hero 巨幕舞台与日式创意分层角色交互 (TP makes things. & Creative Character Scene)
    ========================================================================== */
 
 .hero-statement-section {
-  padding: 8px 0 0;
-  margin-bottom: 0;
   position: relative;
+  padding: 28px 0 16px 0;
+  margin-bottom: 24px;
 }
 
-.hero-statement-grid {
-  display: grid;
-  grid-template-columns: 1fr 340px;
-  gap: 24px;
+.hero-statement-stage {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: 18px;
+  min-height: 380px;
+  gap: 20px;
 }
 
-.hero-statement-left {
+.hero-typography-block {
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-}
-
-.hero-statement-title {
-  font-size: clamp(3.8rem, 8.5vw, 6.8rem);
-  font-weight: 900;
-  line-height: 0.92;
-  letter-spacing: -0.05em;
-  color: var(--text-title);
-  margin-bottom: 16px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  z-index: 2;
   user-select: none;
 }
 
-.statement-reg {
-  font-size: 0.32em;
-  vertical-align: super;
-  font-weight: 800;
-  color: var(--accent-yellow);
-  margin-left: 2px;
+.hero-statement-title {
+  font-size: clamp(3.4rem, 7.5vw, 6.2rem);
+  font-weight: 900;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  color: var(--text-title);
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-title-line {
+  display: block;
 }
 
 .hero-identity-line {
@@ -307,47 +307,79 @@ input {
 
 .hero-author-roles {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.1em;
   color: var(--text-muted);
   text-transform: uppercase;
 }
 
-/* 右侧手绘角色与小怪兽插画 (AI 级高精度原画 + 眼珠视线追踪) */
-.hero-character-wrapper {
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  width: 100%;
-  max-width: 380px;
-  margin: 0 auto;
-}
-
-.hero-artwork-stage {
+/* 交互式分层角色场景 (Human Leaning + Green Monster) */
+.hero-character-scene {
   position: relative;
-  width: 100%;
-  border-radius: 20px;
-  overflow: hidden;
-  background: #ffffff;
-  border: 2px solid var(--border-main);
-  box-shadow: 6px 6px 0px var(--border-main);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  width: 380px;
+  height: 420px;
+  flex-shrink: 0;
+  z-index: 3;
+  pointer-events: auto;
 }
 
-.hero-artwork-stage:hover {
-  transform: translateY(-4px);
-  box-shadow: 8px 8px 0px var(--border-main);
+/* 男生角色 (Human Character: 1024x1536, ratio 1:1.5) */
+.hero-char-human {
+  position: absolute;
+  right: 60px;
+  bottom: 0;
+  width: 250px;
+  height: 375px;
+  z-index: 4;
 }
 
-.hero-artwork-base-img {
+/* 绿色蠢萌小怪物 (Green Monster: 1254x1254, ratio 1:1) */
+.hero-char-monster {
+  position: absolute;
+  right: -10px;
+  bottom: 0;
+  width: 145px;
+  height: 145px;
+  z-index: 5;
+}
+
+/* 通用角色分层 */
+.char-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: contain;
   display: block;
-  object-fit: cover;
+  pointer-events: none;
 }
 
-.hero-artwork-eyes-overlay {
+/* 头部层容器 (独立 transform-origin 与 3D 视角变换) */
+.char-head-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+#human-head-wrapper {
+  /* 人物头部颈部连接点 (x=480, y=260 in 1024x1536) */
+  transform-origin: 46.8% 17%;
+}
+
+#monster-head-wrapper {
+  /* 怪物头部底部连接点 (x=627, y=1000 in 1254x1254) */
+  transform-origin: 50% 80%;
+}
+
+/* 矢量眼睛 SVG 覆盖层 */
+.char-eyes-svg {
   position: absolute;
   top: 0;
   left: 0;
@@ -356,9 +388,78 @@ input {
   pointer-events: none;
 }
 
-.interactive-eye-group {
-  transition: transform 0.04s ease-out;
+.interactive-pupil {
   will-change: transform;
+}
+
+/* 调试模式 HUD 悬浮面板 */
+.character-debug-hud {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  background: rgba(17, 24, 39, 0.92);
+  color: #34d399;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  border: 1px solid #059669;
+  z-index: 99999;
+  pointer-events: none;
+  line-height: 1.6;
+}
+
+/* 减少动态效果无障碍支持 */
+@media (prefers-reduced-motion: reduce) {
+  .char-head-wrapper,
+  .interactive-pupil {
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* 平板端适配 */
+@media (max-width: 1100px) {
+  .hero-character-scene {
+    width: 320px;
+    height: 360px;
+  }
+  .hero-char-human {
+    width: 215px;
+    height: 322px;
+    right: 40px;
+  }
+  .hero-char-monster {
+    width: 125px;
+    height: 125px;
+    right: -5px;
+  }
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .hero-statement-stage {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .hero-character-scene {
+    width: 100%;
+    max-width: 320px;
+    height: 320px;
+    margin: 0 auto;
+  }
+  .hero-char-human {
+    width: 190px;
+    height: 285px;
+    right: 35px;
+  }
+  .hero-char-monster {
+    width: 110px;
+    height: 110px;
+    right: 0;
+  }
 }
 
 /* ==========================================================================

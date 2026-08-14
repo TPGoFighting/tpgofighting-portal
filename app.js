@@ -1043,55 +1043,281 @@ function handleHashRoute() {
 window.handleHashRoute = handleHashRoute;
 
 // ==========================================================================
-// 5. 创作者与绿色小怪兽 4眼珠全屏视线追踪 (Tyler & Green Monster Eye Tracking)
+// 5. 日式创意分层角色交互系统 (Interactive Hero Characters & Eye Tracking System)
 // ==========================================================================
-function initHeroEyeTracking() {
-  const monsterLeft = document.getElementById("monster-eye-group-left");
-  const monsterRight = document.getElementById("monster-eye-group-right");
-  const tylerLeft = document.getElementById("tyler-eye-group-left");
-  const tylerRight = document.getElementById("tyler-eye-group-right");
 
-  if (!monsterLeft && !tylerLeft) return;
-
-  function trackEye(el, maxDist, damping) {
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    const cx = rect.left + rect.width / 2;
-    const cy = rect.top + rect.height / 2;
-    const dx = window._lastMouseX - cx;
-    const dy = window._lastMouseY - cy;
-    const angle = Math.atan2(dy, dx);
-    const dist = Math.min(maxDist, Math.hypot(dx, dy) / damping);
-
-    const tx = Math.cos(angle) * dist;
-    const ty = Math.sin(angle) * dist;
-
-    el.style.transform = `translate(${tx}px, ${ty}px)`;
+class TrackingEye {
+  constructor(pupilEl, svgEl, eyeCenterSvg, maxRadiusSvg, svgViewBoxWidth, svgViewBoxHeight) {
+    this.pupilEl = pupilEl;
+    this.svgEl = svgEl;
+    this.eyeCenterSvg = eyeCenterSvg; // { x, y }
+    this.maxRadiusSvg = maxRadiusSvg;
+    this.svgW = svgViewBoxWidth;
+    this.svgH = svgViewBoxHeight;
+    this.currentOffsetX = 0;
+    this.currentOffsetY = 0;
   }
 
-  window._lastMouseX = window.innerWidth / 2;
-  window._lastMouseY = window.innerHeight / 2;
+  update(pointerX, pointerY, easing = 0.15) {
+    if (!this.pupilEl || !this.svgEl) return;
+    const rect = this.svgEl.getBoundingClientRect();
+    if (rect.width === 0 || rect.height === 0) return;
 
-  let ticking = false;
-  window.addEventListener("mousemove", (e) => {
-    window._lastMouseX = e.clientX;
-    window._lastMouseY = e.clientY;
+    // 计算眼珠中心在屏幕上的真实像素坐标
+    const screenEyeX = rect.left + (this.eyeCenterSvg.x / this.svgW) * rect.width;
+    const screenEyeY = rect.top + (this.eyeCenterSvg.y / this.svgH) * rect.height;
 
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        // 绿色小怪兽大眼睛 (大行程灵动跟随)
-        trackEye(monsterLeft, 22, 30);
-        trackEye(monsterRight, 22, 30);
+    const dx = pointerX - screenEyeX;
+    const dy = pointerY - screenEyeY;
+    const angle = Math.atan2(dy, dx);
+    const distancePx = Math.hypot(dx, dy);
 
-        // 创作者唐潘极客眼镜内的眼睛 (细腻微距跟随)
-        trackEye(tylerLeft, 16, 38);
-        trackEye(tylerRight, 16, 38);
+    // 屏幕距离映射到 SVG 用户坐标位移
+    const scaleFactor = (this.svgW / rect.width);
+    const targetDistSvg = Math.min(distancePx * 0.035 * scaleFactor, this.maxRadiusSvg);
 
-        ticking = false;
-      });
-      ticking = true;
+    const targetOffsetX = Math.cos(angle) * targetDistSvg;
+    const targetOffsetY = Math.sin(angle) * targetDistSvg;
+
+    this.currentOffsetX += (targetOffsetX - this.currentOffsetX) * easing;
+    this.currentOffsetY += (targetOffsetY - this.currentOffsetY) * easing;
+
+    this.pupilEl.setAttribute(
+      "transform",
+      `translate(${this.currentOffsetX.toFixed(2)}, ${this.currentOffsetY.toFixed(2)})`
+    );
+  }
+
+  reset(easing = 0.08) {
+    if (!this.pupilEl) return;
+    this.currentOffsetX += (0 - this.currentOffsetX) * easing;
+    this.currentOffsetY += (0 - this.currentOffsetY) * easing;
+
+    this.pupilEl.setAttribute(
+      "transform",
+      `translate(${this.currentOffsetX.toFixed(2)}, ${this.currentOffsetY.toFixed(2)})`
+    );
+  }
+}
+
+class HumanCharacter {
+  constructor() {
+    this.headEl = document.getElementById("human-head-wrapper");
+    this.svgEl = document.querySelector(".human-eyes-svg");
+    const pupilLeft = document.getElementById("human-pupil-left");
+    const pupilRight = document.getElementById("human-pupil-right");
+
+    // 人物眼睛 SVG 坐标 (1024x1536 画布)
+    this.leftEye = pupilLeft ? new TrackingEye(pupilLeft, this.svgEl, { x: 433, y: 180 }, 8.0, 1024, 1536) : null;
+    this.rightEye = pupilRight ? new TrackingEye(pupilRight, this.svgEl, { x: 504, y: 160 }, 8.0, 1024, 1536) : null;
+
+    this.currentRotX = 0;
+    this.currentRotY = 0;
+    this.currentTransX = 0;
+    this.currentTransY = 0;
+  }
+
+  update(pointerX, pointerY, normX, normY, easing = 0.14) {
+    // 1. 眼睛视线跟随
+    if (this.leftEye) this.leftEye.update(pointerX, pointerY, easing);
+    if (this.rightEye) this.rightEye.update(pointerX, pointerY, easing);
+
+    // 2. 头部轻微 3D 视角跟随 (Human: rotateX ±2.2°, rotateY ±3.0°, translate ±2px)
+    if (this.headEl) {
+      const targetRotX = -normY * 2.2;
+      const targetRotY = normX * 3.0;
+      const targetTransX = normX * 2.2;
+      const targetTransY = normY * 1.8;
+
+      this.currentRotX += (targetRotX - this.currentRotX) * easing;
+      this.currentRotY += (targetRotY - this.currentRotY) * easing;
+      this.currentTransX += (targetTransX - this.currentTransX) * easing;
+      this.currentTransY += (targetTransY - this.currentTransY) * easing;
+
+      this.headEl.style.transform = `translate3d(${this.currentTransX.toFixed(2)}px, ${this.currentTransY.toFixed(2)}px, 0) rotateX(${this.currentRotX.toFixed(2)}deg) rotateY(${this.currentRotY.toFixed(2)}deg)`;
     }
-  }, { passive: true });
+  }
+
+  reset(easing = 0.08) {
+    if (this.leftEye) this.leftEye.reset(easing);
+    if (this.rightEye) this.rightEye.reset(easing);
+
+    if (this.headEl) {
+      this.currentRotX += (0 - this.currentRotX) * easing;
+      this.currentRotY += (0 - this.currentRotY) * easing;
+      this.currentTransX += (0 - this.currentTransX) * easing;
+      this.currentTransY += (0 - this.currentTransY) * easing;
+
+      this.headEl.style.transform = `translate3d(${this.currentTransX.toFixed(2)}px, ${this.currentTransY.toFixed(2)}px, 0) rotateX(${this.currentRotX.toFixed(2)}deg) rotateY(${this.currentRotY.toFixed(2)}deg)`;
+    }
+  }
+}
+
+class MonsterCharacter {
+  constructor() {
+    this.headEl = document.getElementById("monster-head-wrapper");
+    this.svgEl = document.querySelector(".monster-eyes-svg");
+    const pupilLeft = document.getElementById("monster-pupil-left");
+    const pupilRight = document.getElementById("monster-pupil-right");
+
+    // 绿色怪物大眼睛 SVG 坐标 (1254x1254 画布)
+    this.leftEye = pupilLeft ? new TrackingEye(pupilLeft, this.svgEl, { x: 470, y: 702 }, 45.0, 1254, 1254) : null;
+    this.rightEye = pupilRight ? new TrackingEye(pupilRight, this.svgEl, { x: 845, y: 686 }, 45.0, 1254, 1254) : null;
+
+    this.currentRot = 0;
+    this.currentTransX = 0;
+    this.currentTransY = 0;
+    this.currentScaleX = 1;
+    this.currentScaleY = 1;
+  }
+
+  update(pointerX, pointerY, normX, normY, easing = 0.14) {
+    // 1. 眼睛大行程跟随
+    if (this.leftEye) this.leftEye.update(pointerX, pointerY, easing);
+    if (this.rightEye) this.rightEye.update(pointerX, pointerY, easing);
+
+    // 2. 怪物头部软体/果冻感跟随 (Monster: rotate ±5.0°, translate ±4px, squash/stretch)
+    if (this.headEl) {
+      const targetRot = normX * 4.8;
+      const targetTransX = normX * 3.8;
+      const targetTransY = normY * 2.8;
+      const targetScaleX = 1 + normY * 0.025;
+      const targetScaleY = 1 - normY * 0.025;
+
+      this.currentRot += (targetRot - this.currentRot) * easing;
+      this.currentTransX += (targetTransX - this.currentTransX) * easing;
+      this.currentTransY += (targetTransY - this.currentTransY) * easing;
+      this.currentScaleX += (targetScaleX - this.currentScaleX) * easing;
+      this.currentScaleY += (targetScaleY - this.currentScaleY) * easing;
+
+      this.headEl.style.transform = `translate3d(${this.currentTransX.toFixed(2)}px, ${this.currentTransY.toFixed(2)}px, 0) rotate(${this.currentRot.toFixed(2)}deg) scale(${this.currentScaleX.toFixed(3)}, ${this.currentScaleY.toFixed(3)})`;
+    }
+  }
+
+  reset(easing = 0.08) {
+    if (this.leftEye) this.leftEye.reset(easing);
+    if (this.rightEye) this.rightEye.reset(easing);
+
+    if (this.headEl) {
+      this.currentRot += (0 - this.currentRot) * easing;
+      this.currentTransX += (0 - this.currentTransX) * easing;
+      this.currentTransY += (0 - this.currentTransY) * easing;
+      this.currentScaleX += (1 - this.currentScaleX) * easing;
+      this.currentScaleY += (1 - this.currentScaleY) * easing;
+
+      this.headEl.style.transform = `translate3d(${this.currentTransX.toFixed(2)}px, ${this.currentTransY.toFixed(2)}px, 0) rotate(${this.currentRot.toFixed(2)}deg) scale(${this.currentScaleX.toFixed(3)}, ${this.currentScaleY.toFixed(3)})`;
+    }
+  }
+}
+
+class InteractiveHeroScene {
+  constructor() {
+    this.human = new HumanCharacter();
+    this.monster = new MonsterCharacter();
+
+    this.pointerX = window.innerWidth * 0.5;
+    this.pointerY = window.innerHeight * 0.4;
+    this.targetPointerX = this.pointerX;
+    this.targetPointerY = this.pointerY;
+    this.isPointerInside = false;
+
+    this.rafId = null;
+    this.reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // 调试模式判断: URL 带有 ?characterDebug=true
+    this.debugMode = new URLSearchParams(window.location.search).get("characterDebug") === "true";
+    this.debugHudEl = null;
+
+    this.initEvents();
+    if (this.debugMode) {
+      this.initDebugMode();
+    }
+    this.startLoop();
+  }
+
+  initEvents() {
+    window.addEventListener("pointermove", (e) => {
+      this.targetPointerX = e.clientX;
+      this.targetPointerY = e.clientY;
+      this.isPointerInside = true;
+    }, { passive: true });
+
+    document.addEventListener("mouseleave", () => {
+      this.isPointerInside = false;
+      this.targetPointerX = window.innerWidth * 0.5;
+      this.targetPointerY = window.innerHeight * 0.4;
+    });
+
+    window.addEventListener("blur", () => {
+      this.isPointerInside = false;
+      this.targetPointerX = window.innerWidth * 0.5;
+      this.targetPointerY = window.innerHeight * 0.4;
+    });
+
+    window.matchMedia("(prefers-reduced-motion: reduce)").addEventListener("change", (e) => {
+      this.reducedMotion = e.matches;
+    });
+  }
+
+  initDebugMode() {
+    console.log("[Hero Scene] Character Debug Mode Activated 🎯");
+    this.debugHudEl = document.createElement("div");
+    this.debugHudEl.className = "character-debug-hud";
+    document.body.appendChild(this.debugHudEl);
+  }
+
+  updateDebugHud(normX, normY) {
+    if (!this.debugHudEl) return;
+    this.debugHudEl.innerHTML = `
+      <div><strong>🎯 HERO CHARACTER DEBUG</strong></div>
+      <div>Normalized: [${normX.toFixed(3)}, ${normY.toFixed(3)}]</div>
+      <div>Pointer: (${Math.round(this.pointerX)}, ${Math.round(this.pointerY)})</div>
+      <div>Human Head: Neck Pivot (46.8%, 17%)</div>
+      <div>Monster Head: Base Pivot (50%, 80%)</div>
+      <div>Active State: ${this.isPointerInside ? 'Tracking' : 'Resting'}</div>
+    `;
+  }
+
+  startLoop() {
+    const loop = () => {
+      if (this.reducedMotion) {
+        this.human.reset(0.2);
+        this.monster.reset(0.2);
+        this.rafId = requestAnimationFrame(loop);
+        return;
+      }
+
+      // Pointer 平滑插值 (Inertia & Smooth Tracking)
+      const easing = 0.14;
+      this.pointerX += (this.targetPointerX - this.pointerX) * easing;
+      this.pointerY += (this.targetPointerY - this.pointerY) * easing;
+
+      // 归一化指针坐标 (-1 ~ 1)
+      const normX = Math.max(-1, Math.min(1, ((this.pointerX / window.innerWidth) - 0.5) * 2));
+      const normY = Math.max(-1, Math.min(1, ((this.pointerY / window.innerHeight) - 0.5) * 2));
+
+      if (this.isPointerInside) {
+        this.human.update(this.pointerX, this.pointerY, normX, normY, easing);
+        this.monster.update(this.pointerX, this.pointerY, normX, normY, easing);
+      } else {
+        this.human.reset(0.06);
+        this.monster.reset(0.06);
+      }
+
+      if (this.debugMode) {
+        this.updateDebugHud(normX, normY);
+      }
+
+      this.rafId = requestAnimationFrame(loop);
+    };
+
+    this.rafId = requestAnimationFrame(loop);
+  }
+}
+
+function initHeroEyeTracking() {
+  const scene = new InteractiveHeroScene();
+  window._heroInteractiveScene = scene;
 }
 
 function initAnimations() {
