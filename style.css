@@ -454,29 +454,62 @@ input {
   text-transform: uppercase;
 }
 
-/* 右侧手绘卡通角色插画 */
+/* 右侧手绘角色插画卡片 */
 .hero-character-wrapper {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: flex-end;
   width: 100%;
-  max-width: 340px;
-  margin: 0 auto;
 }
 
-.hero-character-svg {
+.hero-illustration-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--bg-card);
+  border: 2.5px solid var(--border-main);
+  box-shadow: 6px 6px 0px var(--border-main);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  max-width: 320px;
+  width: 100%;
+}
+
+.hero-illustration-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 8px 8px 0px var(--border-main);
+}
+
+.hero-character-img {
   width: 100%;
   height: auto;
-  overflow: visible;
-  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.05));
+  display: block;
+  object-fit: cover;
 }
 
-#hero-pupil-left,
-#hero-pupil-right,
-#hero-dog-pupil-left,
-#hero-dog-pupil-right {
-  transition: transform 0.06s ease-out;
-  will-change: transform;
+.hero-card-badge {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border-subtle);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #1E293B;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-green);
 }
 
 /* ==========================================================================
