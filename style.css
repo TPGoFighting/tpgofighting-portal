@@ -188,15 +188,30 @@ input {
 }
 
 /* ==========================================================================
-   Page Container & Tightened Layout
+   Page Container & 60% Viewport Width Layout
    ========================================================================== */
 
 .page-container {
-  max-width: 1240px;
+  width: 60vw;
+  max-width: 980px;
+  min-width: 320px;
   margin: 0 auto;
-  padding: 24px 24px 80px;
+  padding: 28px 0 80px;
   position: relative;
   z-index: 1;
+}
+
+@media (max-width: 1200px) {
+  .page-container {
+    width: 72vw;
+  }
+}
+
+@media (max-width: 860px) {
+  .page-container {
+    width: 90vw;
+    padding: 20px 0 60px;
+  }
 }
 
 .section-block {
