@@ -1082,10 +1082,10 @@ class TrackingEye {
     this.currentOffsetX += (targetOffsetX - this.currentOffsetX) * easing;
     this.currentOffsetY += (targetOffsetY - this.currentOffsetY) * easing;
 
-    this.pupilEl.setAttribute(
-      "transform",
-      `translate(${this.currentOffsetX.toFixed(2)}, ${this.currentOffsetY.toFixed(2)})`
-    );
+    const tx = this.currentOffsetX.toFixed(2);
+    const ty = this.currentOffsetY.toFixed(2);
+    this.pupilEl.setAttribute("transform", `translate(${tx}, ${ty})`);
+    this.pupilEl.style.transform = `translate(${tx}px, ${ty}px)`;
   }
 
   reset(easing = 0.08) {
@@ -1093,10 +1093,10 @@ class TrackingEye {
     this.currentOffsetX += (0 - this.currentOffsetX) * easing;
     this.currentOffsetY += (0 - this.currentOffsetY) * easing;
 
-    this.pupilEl.setAttribute(
-      "transform",
-      `translate(${this.currentOffsetX.toFixed(2)}, ${this.currentOffsetY.toFixed(2)})`
-    );
+    const tx = this.currentOffsetX.toFixed(2);
+    const ty = this.currentOffsetY.toFixed(2);
+    this.pupilEl.setAttribute("transform", `translate(${tx}, ${ty})`);
+    this.pupilEl.style.transform = `translate(${tx}px, ${ty}px)`;
   }
 }
 
@@ -1219,7 +1219,7 @@ class InteractiveHeroScene {
     this.pointerY = window.innerHeight * 0.4;
     this.targetPointerX = this.pointerX;
     this.targetPointerY = this.pointerY;
-    this.isPointerInside = false;
+    this.isPointerInside = true;
 
     this.rafId = null;
     this.reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -1236,10 +1236,18 @@ class InteractiveHeroScene {
   }
 
   initEvents() {
-    window.addEventListener("pointermove", (e) => {
-      this.targetPointerX = e.clientX;
-      this.targetPointerY = e.clientY;
+    const onMove = (x, y) => {
+      this.targetPointerX = x;
+      this.targetPointerY = y;
       this.isPointerInside = true;
+    };
+
+    window.addEventListener("pointermove", (e) => onMove(e.clientX, e.clientY), { passive: true });
+    window.addEventListener("mousemove", (e) => onMove(e.clientX, e.clientY), { passive: true });
+    window.addEventListener("touchmove", (e) => {
+      if (e.touches && e.touches[0]) {
+        onMove(e.touches[0].clientX, e.touches[0].clientY);
+      }
     }, { passive: true });
 
     document.addEventListener("mouseleave", () => {
