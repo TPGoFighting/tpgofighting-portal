@@ -277,18 +277,23 @@ input {
 }
 
 .hero-statement-title {
-  font-size: clamp(3.6rem, 7.8vw, 6.4rem);
+  font-size: clamp(3.8rem, 8.2vw, 6.8rem);
   font-weight: 900;
-  line-height: 0.92;
+  line-height: 0.88;
   letter-spacing: -0.045em;
   color: var(--text-title);
-  margin-bottom: 20px;
+  margin-bottom: 22px;
   display: flex;
   flex-direction: column;
 }
 
 .hero-title-line {
   display: block;
+}
+
+.hero-title-line.typo-tp {
+  font-size: 1.12em;
+  letter-spacing: -0.03em;
 }
 
 .hero-identity-line {
@@ -318,11 +323,28 @@ input {
 .hero-character-scene {
   position: relative;
   width: 360px;
-  height: 430px;
+  height: 440px;
   flex-shrink: 0;
   z-index: 3;
-  margin-left: -55px; /* 让人物的手臂与手肘精准搭在 Typography 文字上 */
+  margin-left: -130px; /* 让人物的手臂与手肘精准搭在 makes / things. 实体文字上 */
   pointer-events: auto;
+}
+
+/* 角色地面接触微阴影 (Grounding Shadow) */
+.hero-ground-shadow {
+  position: absolute;
+  bottom: 0px;
+  left: 40px;
+  width: 295px;
+  height: 12px;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.05) 55%, transparent 75%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+[data-theme="dark"] .hero-ground-shadow {
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 55%, transparent 75%);
 }
 
 /* 男生角色 (Human Character: 1024x1536, ratio 1:1.5) */
