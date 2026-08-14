@@ -550,7 +550,7 @@ window.closeMobileDrawer = closeMobileDrawer;
 
 function updateDrawerThemeLabel() {
   if (elements.drawerThemeLabel) {
-    elements.drawerThemeLabel.textContent = state.theme === "light" ? "🌙 切换深色模式" : "☀️ 切换浅色模式";
+    elements.drawerThemeLabel.textContent = state.theme === "light" ? "切换深色模式" : "切换浅色模式";
   }
 }
 
