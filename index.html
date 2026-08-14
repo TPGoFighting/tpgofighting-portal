@@ -27,7 +27,7 @@
     input, button, select, textarea { -webkit-tap-highlight-color: transparent; }
   </style>
 
-  <link rel="stylesheet" href="style.css?v=20260814_tpspace_hero_art_16">
+  <link rel="stylesheet" href="style.css?v=20260814_tpspace_spidey_17">
 </head>
 <body data-theme="light">
   <!-- 背景方格纸网格、环境光与手绘几何浮动 Canvas (Graph Paper Grid & Interactive Ink Doodle Canvas) -->
@@ -148,15 +148,84 @@
           </div>
         </div>
 
-        <!-- 右侧手绘角色与宠物精美插画 (AI 原创手绘) -->
+        <!-- 右侧手绘角色与小蜘蛛侠 (鼠标眼珠视线追踪交互) -->
         <div class="hero-character-wrapper">
-          <div class="hero-illustration-card">
-            <img src="assets/illustrations/hero.jpg" alt="Tyler & Golden Retriever" class="hero-character-img">
-            <div class="hero-card-badge">
-              <span class="badge-dot"></span>
-              <span>Tyler & Golden Pup · 2026</span>
-            </div>
-          </div>
+          <svg class="hero-character-svg" viewBox="0 0 360 300" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <!-- 地面柔和椭圆软阴影 -->
+            <ellipse cx="180" cy="270" rx="145" ry="18" fill="#E2E8F0" class="character-shadow" />
+
+            <!-- 呆萌小蜘蛛侠 (Chibi Spider-Man on Left) -->
+            <g id="hero-spidey-group">
+              <!-- 吐出的蛛丝连接线 -->
+              <path d="M 100 135 C 90 80 60 40 40 10" fill="none" stroke="#94A3B8" stroke-width="1.8" stroke-dasharray="4,4" />
+              <!-- 小蜘蛛侠身体 (红蓝经典战衣) -->
+              <rect x="76" y="196" width="48" height="68" rx="20" fill="#1E3A8A" stroke="#1F242F" stroke-width="2.5" />
+              <!-- 胸前红色背心 -->
+              <path d="M 86 196 L 114 196 L 110 240 L 90 240 Z" fill="#EF4444" stroke="#1F242F" stroke-width="1.8" />
+              <!-- 胸前黑色蜘蛛标志 -->
+              <polygon points="100,212 96,218 100,224 104,218" fill="#1F242F" />
+              <path d="M 96 215 L 90 212 M 96 218 L 89 220 M 104 215 L 110 212 M 104 218 L 111 220" stroke="#1F242F" stroke-width="1.2" />
+              <!-- 小红靴 -->
+              <ellipse cx="88" cy="264" rx="7" ry="5" fill="#EF4444" stroke="#1F242F" stroke-width="2" />
+              <ellipse cx="112" cy="264" rx="7" ry="5" fill="#EF4444" stroke="#1F242F" stroke-width="2" />
+              <!-- 小手吐丝动作 -->
+              <circle cx="68" cy="225" r="7" fill="#EF4444" stroke="#1F242F" stroke-width="2" />
+              <circle cx="132" cy="225" r="7" fill="#EF4444" stroke="#1F242F" stroke-width="2" />
+
+              <!-- 蜘蛛侠头部 (正圆面罩) -->
+              <circle cx="100" cy="165" r="32" fill="#EF4444" stroke="#1F242F" stroke-width="2.8" />
+              <!-- 战衣蛛网纹理 -->
+              <line x1="100" y1="133" x2="100" y2="197" stroke="#1F242F" stroke-width="1.2" opacity="0.65" />
+              <line x1="68" y1="165" x2="132" y2="165" stroke="#1F242F" stroke-width="1.2" opacity="0.65" />
+              <circle cx="100" cy="165" r="14" fill="none" stroke="#1F242F" stroke-width="1.2" opacity="0.65" />
+              <circle cx="100" cy="165" r="24" fill="none" stroke="#1F242F" stroke-width="1.2" opacity="0.65" />
+
+              <!-- 经典三角面罩眼框 (黑框) -->
+              <!-- 左眼框 -->
+              <path d="M 78 155 Q 94 150 96 168 Q 88 178 78 170 Z" fill="#1F242F" />
+              <!-- 左眼内部白色动态透镜 (跟随鼠标视线) -->
+              <path id="spidey-eye-left" d="M 81 157 Q 92 153 94 167 Q 88 175 81 169 Z" fill="#FFF" />
+              <circle id="spidey-pupil-left" cx="87" cy="164" r="2.5" fill="#38BDF8" />
+
+              <!-- 右眼框 -->
+              <path d="M 122 155 Q 106 150 104 168 Q 112 178 122 170 Z" fill="#1F242F" />
+              <!-- 右眼内部白色动态透镜 (跟随鼠标视线) -->
+              <path id="spidey-eye-right" d="M 119 157 Q 108 153 106 167 Q 112 175 119 169 Z" fill="#FFF" />
+              <circle id="spidey-pupil-right" cx="113" cy="164" r="2.5" fill="#38BDF8" />
+            </g>
+
+            <!-- 主角创作者唐潘 (Tyler Tang on Right) -->
+            <g id="hero-tyler-group">
+              <!-- 身体 (深色极客连帽卫衣) -->
+              <rect x="195" y="138" width="80" height="125" rx="36" fill="#1E293B" stroke="#1F242F" stroke-width="3" />
+              <!-- 卫衣抽绳与黄色点缀 -->
+              <path d="M 225 142 L 223 175 M 245 142 L 247 175" stroke="#F59E0B" stroke-width="2.5" stroke-linecap="round" />
+              <!-- 头部 (暖肤色正圆) -->
+              <circle cx="235" cy="85" r="54" fill="#FDE68A" stroke="#1F242F" stroke-width="3" />
+              <!-- 齐刘海发型 (黑色块面) -->
+              <path d="M 181 80 C 181 24 289 24 289 80 C 265 58 245 52 235 52 C 225 52 205 58 181 80 Z" fill="#1E293B" stroke="#1F242F" stroke-width="2.5" />
+              
+              <!-- 极客黑框眼镜与大白眼眶 -->
+              <circle cx="214" cy="92" r="16" fill="#FFF" stroke="#1F242F" stroke-width="2.8" />
+              <circle cx="256" cy="92" r="16" fill="#FFF" stroke="#1F242F" stroke-width="2.8" />
+              <line x1="230" y1="92" x2="240" y2="92" stroke="#1F242F" stroke-width="3" stroke-linecap="round" />
+
+              <!-- 可交互视线追踪黑眼珠 -->
+              <circle id="tyler-pupil-left" cx="214" cy="92" r="4.8" fill="#1F242F" />
+              <circle id="tyler-pupil-right" cx="256" cy="92" r="4.8" fill="#1F242F" />
+
+              <!-- 嘴角微笑 -->
+              <path d="M 228 118 Q 235 124 242 118" fill="none" stroke="#1F242F" stroke-width="2.2" stroke-linecap="round" />
+
+              <!-- 手中微型笔记本电脑 (发光 TP 标志) -->
+              <g transform="translate(205, 210)">
+                <rect width="60" height="38" rx="4" fill="#334155" stroke="#1F242F" stroke-width="2" />
+                <rect x="4" y="4" width="52" height="30" rx="2" fill="#0F172A" />
+                <circle cx="30" cy="19" r="6" fill="#F59E0B" />
+                <text x="30" y="22" fill="#1E293B" font-family="'JetBrains Mono', monospace" font-size="6" font-weight="900" text-anchor="middle">TP</text>
+              </g>
+            </g>
+          </svg>
         </div>
       </div>
 
@@ -1129,6 +1198,6 @@
 
   <!-- GSAP 物理动画引擎 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="app.js?v=20260814_tpspace_statement_14"></script>
+  <script src="app.js?v=20260814_tpspace_spidey_17"></script>
 </body>
 </html>

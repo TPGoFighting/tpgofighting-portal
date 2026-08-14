@@ -454,62 +454,41 @@ input {
   text-transform: uppercase;
 }
 
-/* 右侧手绘角色插画卡片 */
+/* 右侧手绘角色与小蜘蛛侠插画 */
 .hero-character-wrapper {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
   width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
 }
 
-.hero-illustration-card {
-  position: relative;
-  border-radius: 20px;
-  overflow: hidden;
-  background: var(--bg-card);
-  border: 2.5px solid var(--border-main);
-  box-shadow: 6px 6px 0px var(--border-main);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  max-width: 320px;
-  width: 100%;
-}
-
-.hero-illustration-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 8px 8px 0px var(--border-main);
-}
-
-.hero-character-img {
+.hero-character-svg {
   width: 100%;
   height: auto;
-  display: block;
-  object-fit: cover;
+  overflow: visible;
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.06));
 }
 
-.hero-card-badge {
-  position: absolute;
-  bottom: 12px;
-  left: 12px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 10px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(8px);
-  border: 1px solid var(--border-subtle);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.72rem;
-  font-weight: 800;
-  color: #1E293B;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+#tyler-pupil-left,
+#tyler-pupil-right,
+#spidey-eye-left,
+#spidey-eye-right,
+#spidey-pupil-left,
+#spidey-pupil-right {
+  transition: transform 0.05s ease-out;
+  will-change: transform;
 }
 
-.badge-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent-green);
+#hero-spidey-group {
+  animation: spideyFloat 4s ease-in-out infinite;
+  transform-origin: 100px 165px;
+}
+
+@keyframes spideyFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
 }
 
 /* ==========================================================================

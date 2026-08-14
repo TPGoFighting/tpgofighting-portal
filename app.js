@@ -1029,39 +1029,58 @@ function handleHashRoute() {
 window.handleHashRoute = handleHashRoute;
 
 // ==========================================================================
-// 5. 极简卡通角色眼珠注视跟随 (Interactive Eye Tracking)
+// 5. 创作者与小蜘蛛侠视线追踪交互 (Tyler & Mini Spider-Man Eye Tracking)
 // ==========================================================================
 function initHeroEyeTracking() {
-  const eyeLeft = document.getElementById("hero-pupil-left");
-  const eyeRight = document.getElementById("hero-pupil-right");
-  const dogLeft = document.getElementById("hero-dog-pupil-left");
-  const dogRight = document.getElementById("hero-dog-pupil-right");
+  const tylerLeft = document.getElementById("tyler-pupil-left");
+  const tylerRight = document.getElementById("tyler-pupil-right");
+  const spideyLeft = document.getElementById("spidey-pupil-left");
+  const spideyRight = document.getElementById("spidey-pupil-right");
+  const spideyEyeLeft = document.getElementById("spidey-eye-left");
+  const spideyEyeRight = document.getElementById("spidey-eye-right");
 
-  if (!eyeLeft || !eyeRight) return;
+  if (!tylerLeft && !spideyLeft) return;
 
   window.addEventListener("mousemove", (e) => {
     const { clientX, clientY } = e;
-    const rect = eyeLeft.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
 
-    const deltaX = clientX - centerX;
-    const deltaY = clientY - centerY;
-    const angle = Math.atan2(deltaY, deltaX);
-    const distHuman = Math.min(4.5, Math.hypot(deltaX, deltaY) / 50);
-    const distDog = Math.min(3, Math.hypot(deltaX, deltaY) / 60);
+    // 1. 创作者唐潘 (Tyler) 黑眼珠追踪
+    if (tylerLeft && tylerRight) {
+      const rect = tylerLeft.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const deltaX = clientX - centerX;
+      const deltaY = clientY - centerY;
+      const angle = Math.atan2(deltaY, deltaX);
+      const dist = Math.min(5.5, Math.hypot(deltaX, deltaY) / 45);
 
-    const hX = Math.cos(angle) * distHuman;
-    const hY = Math.sin(angle) * distHuman;
+      const tX = Math.cos(angle) * dist;
+      const tY = Math.sin(angle) * dist;
 
-    eyeLeft.style.transform = `translate(${hX}px, ${hY}px)`;
-    eyeRight.style.transform = `translate(${hX}px, ${hY}px)`;
+      tylerLeft.style.transform = `translate(${tX}px, ${tY}px)`;
+      tylerRight.style.transform = `translate(${tX}px, ${tY}px)`;
+    }
 
-    if (dogLeft && dogRight) {
-      const dX = Math.cos(angle) * distDog;
-      const dY = Math.sin(angle) * distDog;
-      dogLeft.style.transform = `translate(${dX}px, ${dY}px)`;
-      dogRight.style.transform = `translate(${dX}px, ${dY}px)`;
+    // 2. 呆萌小蜘蛛侠 (Mini Spider-Man) 战衣面罩透镜与视线追踪
+    if (spideyLeft && spideyRight) {
+      const rect = spideyLeft.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const deltaX = clientX - centerX;
+      const deltaY = clientY - centerY;
+      const angle = Math.atan2(deltaY, deltaX);
+      const dist = Math.min(4.5, Math.hypot(deltaX, deltaY) / 50);
+
+      const sX = Math.cos(angle) * dist;
+      const sY = Math.sin(angle) * dist;
+
+      spideyLeft.style.transform = `translate(${sX}px, ${sY}px)`;
+      spideyRight.style.transform = `translate(${sX}px, ${sY}px)`;
+
+      if (spideyEyeLeft && spideyEyeRight) {
+        spideyEyeLeft.style.transform = `translate(${sX * 0.4}px, ${sY * 0.4}px)`;
+        spideyEyeRight.style.transform = `translate(${sX * 0.4}px, ${sY * 0.4}px)`;
+      }
     }
   }, { passive: true });
 }
