@@ -2104,6 +2104,45 @@ input {
   margin-bottom: 40px;
 }
 
+.subpage-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 36px;
+  align-items: center;
+}
+
+.subpage-hero-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.subpage-hero-illustration {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  border-radius: var(--radius-md);
+  box-shadow: 4px 4px 0px var(--border-main);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.subpage-hero-illustration:hover {
+  transform: translateY(-4px);
+  box-shadow: 6px 6px 0px var(--border-main);
+}
+
+@media (max-width: 860px) {
+  .subpage-hero-grid {
+    grid-template-columns: 1fr;
+  }
+  .subpage-hero-right {
+    margin-top: 16px;
+  }
+  .subpage-hero-illustration {
+    max-width: 100%;
+  }
+}
+
 .subpage-tag {
   display: inline-flex;
   align-items: center;
