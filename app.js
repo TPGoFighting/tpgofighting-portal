@@ -990,8 +990,12 @@ function switchRoute(routeId) {
     activeView.classList.add("active");
   }
 
-  // 2. 更新 Header 和 Mobile Drawer 高亮状态
+  // 2. 更新 Header、Giant Tabs 和 Mobile Drawer 高亮状态
   document.querySelectorAll(".nav-links .nav-item").forEach(item => {
+    item.classList.toggle("active", item.dataset.route === routeId);
+  });
+
+  document.querySelectorAll(".giant-tabs-bar .giant-tab-item").forEach(item => {
     item.classList.toggle("active", item.dataset.route === routeId);
   });
 
@@ -1024,11 +1028,50 @@ function handleHashRoute() {
 }
 window.handleHashRoute = handleHashRoute;
 
+// ==========================================================================
+// 5. 极简卡通角色眼珠注视跟随 (Interactive Eye Tracking)
+// ==========================================================================
+function initHeroEyeTracking() {
+  const eyeLeft = document.getElementById("hero-pupil-left");
+  const eyeRight = document.getElementById("hero-pupil-right");
+  const dogLeft = document.getElementById("hero-dog-pupil-left");
+  const dogRight = document.getElementById("hero-dog-pupil-right");
+
+  if (!eyeLeft || !eyeRight) return;
+
+  window.addEventListener("mousemove", (e) => {
+    const { clientX, clientY } = e;
+    const rect = eyeLeft.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    const deltaX = clientX - centerX;
+    const deltaY = clientY - centerY;
+    const angle = Math.atan2(deltaY, deltaX);
+    const distHuman = Math.min(4.5, Math.hypot(deltaX, deltaY) / 50);
+    const distDog = Math.min(3, Math.hypot(deltaX, deltaY) / 60);
+
+    const hX = Math.cos(angle) * distHuman;
+    const hY = Math.sin(angle) * distHuman;
+
+    eyeLeft.style.transform = `translate(${hX}px, ${hY}px)`;
+    eyeRight.style.transform = `translate(${hX}px, ${hY}px)`;
+
+    if (dogLeft && dogRight) {
+      const dX = Math.cos(angle) * distDog;
+      const dY = Math.sin(angle) * distDog;
+      dogLeft.style.transform = `translate(${dX}px, ${dY}px)`;
+      dogRight.style.transform = `translate(${dX}px, ${dY}px)`;
+    }
+  }, { passive: true });
+}
+
 function initAnimations() {
   initInkDoodleCanvas();
   initScrollTriggerAnimations();
   init3DCardTiltPhysics();
   initMagneticButtons();
+  initHeroEyeTracking();
 }
 
 // 可靠启动应用

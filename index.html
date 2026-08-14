@@ -27,7 +27,7 @@
     input, button, select, textarea { -webkit-tap-highlight-color: transparent; }
   </style>
 
-  <link rel="stylesheet" href="style.css?v=20260814_tpspace_illustrations_13">
+  <link rel="stylesheet" href="style.css?v=20260814_tpspace_statement_15">
 </head>
 <body data-theme="light">
   <!-- 背景方格纸网格、环境光与手绘几何浮动 Canvas (Graph Paper Grid & Interactive Ink Doodle Canvas) -->
@@ -129,44 +129,92 @@
 
   <!-- 主体内容流 -->
   <main class="page-container">
-    <div class="route-view active" id="view-products">
 
     <!-- ==========================================================================
-         Section 00 · Hero 巨幕与插画
+         Hero 巨幕陈述 (Statement Hero & Interactive Character - TP® makes things.)
          ========================================================================== -->
-    <section class="hero-section" id="section-hero">
-      <div class="hero-grid">
-        <!-- 左侧大字号标题与简介 -->
-        <div class="hero-content">
-          <div class="hero-identity-tag">
-            <span class="index-pill">00</span>
-            <span class="identity-name">唐潘 · Tyler Tang</span>
-            <span class="identity-sep">/</span>
-            <span class="identity-role">AI Engineer & Builder</span>
-          </div>
-
-          <h1 class="hero-huge-title">
-            TP Space<span class="brand-dot">.</span><br>
-            builds, creates,<br>
-            <span class="title-accent">and explores.</span>
+    <section class="hero-statement-section" id="section-hero">
+      <div class="hero-statement-grid">
+        <!-- 左侧超大非对称标题与身份 -->
+        <div class="hero-statement-left">
+          <h1 class="hero-statement-title">
+            TP<span class="statement-reg">®</span><br>
+            makes<br>
+            things.
           </h1>
-
-          <p class="hero-lead">
-            这里收录了我平时开发的 AI 工具、个人数据看板、独立产品原型与几篇生活记录。所有项目均部署在云端并保持实时运行，点击即可直达。
-          </p>
+          <div class="hero-identity-line">
+            <span class="hero-author-cn">唐 潘</span>
+            <span class="hero-author-roles">ENGINEER / AI BUILDER / CREATOR</span>
+          </div>
         </div>
 
-        <!-- 右侧手绘角色插画 (Hover 视差微动效) -->
-        <div class="hero-art-wrapper">
-          <div class="illustration-frame" id="hero-art-frame">
-            <img src="assets/illustrations/hero.jpg" alt="TP Space Creator with Dog" class="hero-illustration-img">
-            <div class="art-caption">
-              <span>Tyler & Golden Retriever · 2026</span>
-            </div>
-          </div>
+        <!-- 右侧手绘卡通插画 (带鼠标眼珠跟随动效) -->
+        <div class="hero-character-wrapper">
+          <svg class="hero-character-svg" viewBox="0 0 340 300" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <!-- 地面柔和椭圆软阴影 -->
+            <ellipse cx="200" cy="270" rx="120" ry="16" fill="#E2E8F0" class="character-shadow" />
+
+            <!-- 呆萌小金毛宠物 (坐立于角色左侧) -->
+            <g id="hero-dog-group">
+              <!-- 小狗身体与爪子 -->
+              <rect x="100" y="170" width="54" height="85" rx="26" fill="#FDE68A" />
+              <circle cx="112" cy="254" r="6" fill="#FDE68A" />
+              <circle cx="142" cy="254" r="6" fill="#FDE68A" />
+              <!-- 小狗耳朵 -->
+              <ellipse cx="98" cy="154" rx="8" ry="16" fill="#FCD34D" transform="rotate(-15 98 154)" />
+              <ellipse cx="156" cy="154" rx="8" ry="16" fill="#FCD34D" transform="rotate(15 156 154)" />
+              <!-- 小狗头部 -->
+              <circle cx="127" cy="160" r="28" fill="#FDE68A" />
+              <!-- 眼睛外圈与跟随眼珠 -->
+              <circle cx="117" cy="158" r="5.5" fill="#FFF" />
+              <circle id="hero-dog-pupil-left" cx="116" cy="158" r="3" fill="#1F242F" />
+              <circle cx="137" cy="158" r="5.5" fill="#FFF" />
+              <circle id="hero-dog-pupil-right" cx="136" cy="158" r="3" fill="#1F242F" />
+              <!-- 鼻子 -->
+              <circle cx="127" cy="168" r="3.5" fill="#1F242F" />
+            </g>
+
+            <!-- 主角唐潘极简卡通形象 (Tyler Tang) -->
+            <g id="hero-human-group">
+              <!-- 身体 (圆润胶囊形态) -->
+              <rect x="195" y="130" width="76" height="130" rx="38" fill="#FDE68A" />
+              <!-- 头部 (正圆) -->
+              <circle cx="233" cy="78" r="58" fill="#FDE68A" />
+              <!-- 齐刘海发型 (深黑色现代块面) -->
+              <path d="M 175 75 C 175 20 291 20 291 75 C 265 52 245 46 233 46 C 221 46 201 52 175 75 Z" fill="#241B18" />
+              <!-- 呆萌大眼睛与可交互视线追踪眼珠 -->
+              <circle cx="212" cy="85" r="10" fill="#FFF" />
+              <circle id="hero-pupil-left" cx="210" cy="85" r="4.2" fill="#1F242F" />
+              <circle cx="254" cy="85" r="10" fill="#FFF" />
+              <circle id="hero-pupil-right" cx="252" cy="85" r="4.2" fill="#1F242F" />
+            </g>
+          </svg>
         </div>
       </div>
+
+      <!-- 巨幅横向 Tab 导航栏 (带亮黄色厚高亮条) -->
+      <nav class="giant-tabs-bar" id="giant-tabs-nav">
+        <button class="giant-tab-item active" data-route="products" onclick="switchRoute('products')">
+          <span class="giant-tab-text">产品</span>
+          <span class="giant-tab-highlight"></span>
+        </button>
+        <button class="giant-tab-item" data-route="journey" onclick="switchRoute('journey')">
+          <span class="giant-tab-text">经历</span>
+          <span class="giant-tab-highlight"></span>
+        </button>
+        <button class="giant-tab-item" data-route="about" onclick="switchRoute('about')">
+          <span class="giant-tab-text">关于我</span>
+          <span class="giant-tab-highlight"></span>
+        </button>
+        <button class="giant-tab-item" data-route="future" onclick="switchRoute('future')">
+          <span class="giant-tab-text">未来</span>
+          <span class="giant-tab-highlight"></span>
+        </button>
+      </nav>
     </section>
+
+    <!-- 视图内容容器 (Views Container) -->
+    <div class="route-view active" id="view-products">
 
     <!-- ==========================================================================
          Section 01 · 核心作品精选 (Featured Products with Illustrations)
@@ -1113,6 +1161,6 @@
 
   <!-- GSAP 物理动画引擎 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="app.js?v=20260814_tpspace_routes_12"></script>
+  <script src="app.js?v=20260814_tpspace_statement_14"></script>
 </body>
 </html>
