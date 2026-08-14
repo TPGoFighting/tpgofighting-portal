@@ -322,11 +322,11 @@ input {
 /* 交互式分层角色场景 (紧密依附并搭在文字上) */
 .hero-character-scene {
   position: relative;
-  width: 360px;
-  height: 440px;
+  width: 350px;
+  height: 385px;
   flex-shrink: 0;
   z-index: 3;
-  margin-left: -130px; /* 让人物的手臂与手肘精准搭在 makes / things. 实体文字上 */
+  margin-left: -50px; /* 让人物的手臂与手肘精准搭在 makes / things. 实体文字上 */
   pointer-events: auto;
 }
 
@@ -334,8 +334,8 @@ input {
 .hero-ground-shadow {
   position: absolute;
   bottom: 0px;
-  left: 40px;
-  width: 295px;
+  left: 25px;
+  width: 285px;
   height: 12px;
   background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.05) 55%, transparent 75%);
   border-radius: 50%;
@@ -352,18 +352,18 @@ input {
   position: absolute;
   left: 0;
   bottom: 0;
-  width: 270px;
-  height: 405px;
+  width: 250px;
+  height: 375px;
   z-index: 4;
 }
 
 /* 绿色蠢萌小怪物 (Green Monster: 1254x1254, ratio 1:1) */
 .hero-char-monster {
   position: absolute;
-  left: 195px;
+  left: 180px;
   bottom: 0;
-  width: 145px;
-  height: 145px;
+  width: 135px;
+  height: 135px;
   z-index: 5;
 }
 
