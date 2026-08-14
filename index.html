@@ -27,7 +27,7 @@
     input, button, select, textarea { -webkit-tap-highlight-color: transparent; }
   </style>
 
-  <link rel="stylesheet" href="style.css?v=20260814_tpspace_60vw_22">
+  <link rel="stylesheet" href="style.css?v=20260814_tpspace_hero_artwork_23">
 </head>
 <body data-theme="light">
   <!-- 背景方格纸网格、环境光与手绘几何浮动 Canvas (Graph Paper Grid & Interactive Ink Doodle Canvas) -->
@@ -68,81 +68,42 @@
           </div>
         </div>
 
-        <!-- 右侧手绘角色与小蜘蛛侠 (鼠标眼珠视线追踪交互) -->
+        <!-- 右侧手绘角色与小怪兽 (AI 原画 + 4眼珠全屏视线追踪交互) -->
         <div class="hero-character-wrapper">
-          <svg class="hero-character-svg" viewBox="0 0 360 300" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-            <!-- 地面柔和椭圆软阴影 -->
-            <ellipse cx="180" cy="270" rx="145" ry="18" fill="#E2E8F0" class="character-shadow" />
-
-            <!-- 呆萌绿色小怪兽 (Cute Green Derpy Monster on Left) -->
-            <g id="hero-monster-group">
-              <!-- 头顶小天线与发光星星小球 -->
-              <path d="M 100 142 Q 100 115 108 112" fill="none" stroke="#1F242F" stroke-width="2.5" stroke-linecap="round" />
-              <circle cx="108" cy="112" r="6" fill="#FACC15" stroke="#1F242F" stroke-width="1.8" />
-
-              <!-- 小怪兽 Q 弹软萌身体 (清新活力绿) -->
-              <path d="M 60 210 C 55 160 80 140 100 140 C 120 140 145 160 140 210 C 140 250 130 268 100 268 C 70 268 60 250 60 210 Z" fill="#22C55E" stroke="#1F242F" stroke-width="2.8" />
-              
-              <!-- 肚皮浅绿色块 -->
-              <path d="M 76 220 C 76 200 88 190 100 190 C 112 190 124 200 124 220 C 124 246 116 258 100 258 C 84 258 76 246 76 220 Z" fill="#86EFAC" opacity="0.6" />
-
-              <!-- 小短腿与脚丫 -->
-              <ellipse cx="84" cy="268" rx="8" ry="5" fill="#16A34A" stroke="#1F242F" stroke-width="2" />
-              <ellipse cx="116" cy="268" rx="8" ry="5" fill="#16A34A" stroke="#1F242F" stroke-width="2" />
-
-              <!-- 呆萌挥手小肉爪 -->
-              <circle cx="54" cy="205" r="7" fill="#22C55E" stroke="#1F242F" stroke-width="2" />
-              <circle cx="146" cy="205" r="7" fill="#22C55E" stroke="#1F242F" stroke-width="2" />
-
-              <!-- 呆萌大白眼眶 -->
-              <circle cx="86" cy="172" r="14" fill="#FFFFFF" stroke="#1F242F" stroke-width="2.4" />
-              <circle cx="114" cy="172" r="14" fill="#FFFFFF" stroke="#1F242F" stroke-width="2.4" />
-
-              <!-- 可交互跟随鼠标视线的大黑眼珠 -->
-              <circle id="monster-pupil-left" cx="86" cy="172" r="5" fill="#1F242F" />
-              <circle id="monster-pupil-right" cx="114" cy="172" r="5" fill="#1F242F" />
-
-              <!-- 蠢萌小腮红 -->
-              <ellipse cx="72" cy="184" rx="4" ry="2.5" fill="#F472B6" opacity="0.75" />
-              <ellipse cx="128" cy="184" rx="4" ry="2.5" fill="#F472B6" opacity="0.75" />
-
-              <!-- 蠢萌张嘴笑与小虎牙 -->
-              <path d="M 90 196 Q 100 208 110 196" fill="#EF4444" stroke="#1F242F" stroke-width="2" />
-              <polygon points="98,197 102,197 100,202" fill="#FFFFFF" stroke="#1F242F" stroke-width="1" />
-            </g>
-
-            <!-- 主角创作者唐潘 (Tyler Tang on Right) -->
-            <g id="hero-tyler-group">
-              <!-- 身体 (深色极客连帽卫衣) -->
-              <rect x="195" y="138" width="80" height="125" rx="36" fill="#1E293B" stroke="#1F242F" stroke-width="3" />
-              <!-- 卫衣抽绳与黄色点缀 -->
-              <path d="M 225 142 L 223 175 M 245 142 L 247 175" stroke="#F59E0B" stroke-width="2.5" stroke-linecap="round" />
-              <!-- 头部 (暖肤色正圆) -->
-              <circle cx="235" cy="85" r="54" fill="#FDE68A" stroke="#1F242F" stroke-width="3" />
-              <!-- 齐刘海发型 (黑色块面) -->
-              <path d="M 181 80 C 181 24 289 24 289 80 C 265 58 245 52 235 52 C 225 52 205 58 181 80 Z" fill="#1E293B" stroke="#1F242F" stroke-width="2.5" />
-              
-              <!-- 极客黑框眼镜与大白眼眶 -->
-              <circle cx="214" cy="92" r="16" fill="#FFF" stroke="#1F242F" stroke-width="2.8" />
-              <circle cx="256" cy="92" r="16" fill="#FFF" stroke="#1F242F" stroke-width="2.8" />
-              <line x1="230" y1="92" x2="240" y2="92" stroke="#1F242F" stroke-width="3" stroke-linecap="round" />
-
-              <!-- 可交互视线追踪黑眼珠 -->
-              <circle id="tyler-pupil-left" cx="214" cy="92" r="4.8" fill="#1F242F" />
-              <circle id="tyler-pupil-right" cx="256" cy="92" r="4.8" fill="#1F242F" />
-
-              <!-- 嘴角微笑 -->
-              <path d="M 228 118 Q 235 124 242 118" fill="none" stroke="#1F242F" stroke-width="2.2" stroke-linecap="round" />
-
-              <!-- 手中微型笔记本电脑 (发光 TP 标志) -->
-              <g transform="translate(205, 210)">
-                <rect width="60" height="38" rx="4" fill="#334155" stroke="#1F242F" stroke-width="2" />
-                <rect x="4" y="4" width="52" height="30" rx="2" fill="#0F172A" />
-                <circle cx="30" cy="19" r="6" fill="#F59E0B" />
-                <text x="30" y="22" fill="#1E293B" font-family="'JetBrains Mono', monospace" font-size="6" font-weight="900" text-anchor="middle">TP</text>
+          <div class="hero-artwork-stage">
+            <img src="assets/illustrations/hero_monster_base.png" alt="Tyler & Cute Green Monster" class="hero-artwork-base-img">
+            <svg class="hero-artwork-eyes-overlay" viewBox="0 0 1448 1086" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+              <!-- 1. 小怪兽左眼珠 (Monster Left Eye) -->
+              <g id="monster-eye-group-left" class="interactive-eye-group">
+                <circle cx="291" cy="593" r="44" fill="#14181E" />
+                <circle cx="278" cy="580" r="14" fill="#FFFFFF" />
+                <circle cx="304" cy="606" r="7" fill="#FFFFFF" />
               </g>
-            </g>
-          </svg>
+
+              <!-- 2. 小怪兽右眼珠 (Monster Right Eye) -->
+              <g id="monster-eye-group-right" class="interactive-eye-group">
+                <circle cx="451" cy="591" r="44" fill="#14181E" />
+                <circle cx="438" cy="578" r="14" fill="#FFFFFF" />
+                <circle cx="464" cy="604" r="7" fill="#FFFFFF" />
+              </g>
+
+              <!-- 3. 唐潘左眼珠 (Tyler Left Eye) -->
+              <g id="tyler-eye-group-left" class="interactive-eye-group">
+                <ellipse cx="820" cy="335" rx="38" ry="46" fill="#1E1814" />
+                <ellipse cx="820" cy="335" rx="22" ry="26" fill="#0C0A08" />
+                <circle cx="808" cy="318" r="12" fill="#FFFFFF" />
+                <circle cx="832" cy="348" r="6" fill="#FFFFFF" />
+              </g>
+
+              <!-- 4. 唐潘右眼珠 (Tyler Right Eye) -->
+              <g id="tyler-eye-group-right" class="interactive-eye-group">
+                <ellipse cx="970" cy="295" rx="36" ry="44" fill="#1E1814" />
+                <ellipse cx="970" cy="295" rx="20" ry="24" fill="#0C0A08" />
+                <circle cx="958" cy="278" r="12" fill="#FFFFFF" />
+                <circle cx="982" cy="308" r="6" fill="#FFFFFF" />
+              </g>
+            </svg>
+          </div>
         </div>
       </div>
 

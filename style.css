@@ -314,39 +314,51 @@ input {
   text-transform: uppercase;
 }
 
-/* 右侧手绘角色与小蜘蛛侠插画 */
+/* 右侧手绘角色与小怪兽插画 (AI 级高精度原画 + 眼珠视线追踪) */
 .hero-character-wrapper {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
   width: 100%;
-  max-width: 340px;
+  max-width: 380px;
   margin: 0 auto;
 }
 
-.hero-character-svg {
+.hero-artwork-stage {
+  position: relative;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 2px solid var(--border-main);
+  box-shadow: 6px 6px 0px var(--border-main);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hero-artwork-stage:hover {
+  transform: translateY(-4px);
+  box-shadow: 8px 8px 0px var(--border-main);
+}
+
+.hero-artwork-base-img {
   width: 100%;
   height: auto;
-  overflow: visible;
-  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.06));
+  display: block;
+  object-fit: cover;
 }
 
-#tyler-pupil-left,
-#tyler-pupil-right,
-#monster-pupil-left,
-#monster-pupil-right {
-  transition: transform 0.05s ease-out;
+.hero-artwork-eyes-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.interactive-eye-group {
+  transition: transform 0.04s ease-out;
   will-change: transform;
-}
-
-#hero-monster-group {
-  animation: monsterBreathe 3.6s ease-in-out infinite;
-  transform-origin: 100px 210px;
-}
-
-@keyframes monsterBreathe {
-  0%, 100% { transform: scale(1) translateY(0px); }
-  50% { transform: scale(1.03, 0.97) translateY(-3px); }
 }
 
 /* ==========================================================================
