@@ -124,17 +124,31 @@ const SERVICES = [
   },
   {
     id: "tphub",
-    name: "TPvibe · AI 创造实操教程",
+    name: "TP-Hub · TaskSkillPilot 聚合中心",
+    subdomain: "tphub.tpgofighting.top",
+    url: "https://tphub.tpgofighting.top",
+    category: "ai-tools",
+    categoryName: "AI 工具与平台",
+    iconKey: "gear",
+    desc: "AI 技能与智能体代理聚合中心，汇集 OpenHands、Graphify、ECC 等开源 AI 工具深度解读与实战教程。",
+    tags: ["AI技能", "Agent编排", "开源工具", "自动化"],
+    tech: "HTML5 / CSS3 / Nginx",
+    port: "8085",
+    path: "/var/www/tphub"
+  },
+  {
+    id: "tpvibe",
+    name: "TPvibe · 沉浸式编程实操指南",
     subdomain: "tphub.tpgofighting.top/tpvibe/",
     url: "https://tphub.tpgofighting.top/tpvibe/",
     category: "ai-tools",
     categoryName: "AI 工具与平台",
     iconKey: "spark",
-    desc: "平时整理的 Vibe Coding 教程库和常用独立开发工具收集。",
-    tags: ["Vibe Coding", "开发教程", "工具箱"],
+    desc: "专为沉浸式编程（Vibe Coding）打造的实战教程库与工具箱，涵盖 AI 提示词工程与实操演练。",
+    tags: ["Vibe Coding", "开发教程", "工具箱", "沉浸编程"],
     tech: "Static Docs / Markdown",
-    port: "80 / Nginx",
-    path: "/var/www/tpvibe"
+    port: "8085 / Nginx",
+    path: "/var/www/tphub/tpvibe"
   },
   {
     id: "tpaper",
