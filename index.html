@@ -27,7 +27,7 @@
     input, button, select, textarea { -webkit-tap-highlight-color: transparent; }
   </style>
 
-  <link rel="stylesheet" href="style.css?v=20260814_tpspace_anim_08">
+  <link rel="stylesheet" href="style.css?v=20260814_tpspace_routes_12">
 </head>
 <body data-theme="light">
   <!-- 背景方格纸网格、环境光与手绘几何浮动 Canvas (Graph Paper Grid & Interactive Ink Doodle Canvas) -->
@@ -50,12 +50,12 @@
         </div>
       </a>
 
-      <!-- 快速导航与锚点 -->
+      <!-- 快速导航 -->
       <nav class="nav-links">
-        <a href="#section-products" class="nav-item"><span class="nav-num">01</span> 作品</a>
-        <a href="#section-matrix" class="nav-item"><span class="nav-num">02</span> 站点</a>
-        <a href="#section-posters" class="nav-item"><span class="nav-num">03</span> 胶卷</a>
-        <a href="#section-about" class="nav-item"><span class="nav-num">04</span> 关于</a>
+        <a href="#/products" class="nav-item active" data-route="products"><span class="nav-num">01</span> 产品</a>
+        <a href="#/journey" class="nav-item" data-route="journey"><span class="nav-num">02</span> 经历</a>
+        <a href="#/about" class="nav-item" data-route="about"><span class="nav-num">03</span> 关于我</a>
+        <a href="#/future" class="nav-item" data-route="future"><span class="nav-num">04</span> 未来</a>
       </nav>
 
       <!-- 状态与功能按钮 -->
@@ -94,24 +94,24 @@
       </div>
 
       <div class="drawer-links-list">
-        <a href="#section-products" class="drawer-nav-item" onclick="closeMobileDrawer()">
+        <a href="#/products" class="drawer-nav-item active" data-route="products" onclick="switchRoute('products'); closeMobileDrawer();">
           <span class="nav-num">01</span>
-          <span class="drawer-nav-text">核心作品与 AI 工具</span>
+          <span class="drawer-nav-text">产品与站点 (Products)</span>
           <svg class="svg-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"></path></svg>
         </a>
-        <a href="#section-matrix" class="drawer-nav-item" onclick="closeMobileDrawer()">
+        <a href="#/journey" class="drawer-nav-item" data-route="journey" onclick="switchRoute('journey'); closeMobileDrawer();">
           <span class="nav-num">02</span>
-          <span class="drawer-nav-text">全部站点矩阵 (21)</span>
+          <span class="drawer-nav-text">经历与轨迹 (Journey)</span>
           <svg class="svg-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"></path></svg>
         </a>
-        <a href="#section-posters" class="drawer-nav-item" onclick="closeMobileDrawer()">
+        <a href="#/about" class="drawer-nav-item" data-route="about" onclick="switchRoute('about'); closeMobileDrawer();">
           <span class="nav-num">03</span>
-          <span class="drawer-nav-text">喜欢的电影与音乐</span>
+          <span class="drawer-nav-text">关于我与哲学 (About)</span>
           <svg class="svg-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"></path></svg>
         </a>
-        <a href="#section-about" class="drawer-nav-item" onclick="closeMobileDrawer()">
+        <a href="#/future" class="drawer-nav-item" data-route="future" onclick="switchRoute('future'); closeMobileDrawer();">
           <span class="nav-num">04</span>
-          <span class="drawer-nav-text">关于创作者与联系方式</span>
+          <span class="drawer-nav-text">未来与路线图 (Future)</span>
           <svg class="svg-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"></path></svg>
         </a>
       </div>
@@ -129,6 +129,7 @@
 
   <!-- 主体内容流 -->
   <main class="page-container">
+    <div class="route-view active" id="view-products">
 
     <!-- ==========================================================================
          Section 00 · Hero 巨幕与插画
@@ -492,6 +493,534 @@
         </div>
       </div>
     </section>
+  </div><!-- End of #view-products -->
+
+  <!-- ==========================================================================
+       View 02 · 经历与成长轨迹 (Journey & Milestones)
+       ========================================================================== -->
+  <div class="route-view" id="view-journey">
+    <div class="subpage-hero">
+      <div class="subpage-tag">
+        <span class="tag-dot"></span>
+        <span>02 / JOURNEY & MILESTONES · 个人叙事</span>
+      </div>
+      <h1 class="subpage-title">
+        每一步，都是一次主动选择。
+      </h1>
+      <p class="subpage-lead">
+        从安徽郎溪小镇机房的第一行心形 C 语言程序，到南京微特喜网络技术实习、3D 隧道点云检测系统与 AI 独立开发。记录一个实干工程师的真实成长线。
+      </p>
+    </div>
+
+    <!-- 四大核心里程碑数据 -->
+    <div class="journey-metrics-row">
+      <div class="metric-stat-card">
+        <div class="metric-num-highlight">633 <span class="metric-unit">分</span></div>
+        <div class="metric-lbl-text">高考省排 9869 · 录取南邮软件工程 (ESI前1%)</div>
+      </div>
+      <div class="metric-stat-card">
+        <div class="metric-num-highlight">4,249<span class="metric-unit">+</span></div>
+        <div class="metric-lbl-text">抖音科技创作者 · 华为鸿蒙公开课同台嘉宾</div>
+      </div>
+      <div class="metric-stat-card">
+        <div class="metric-num-highlight">30<span class="metric-unit">+ 篇</span></div>
+        <div class="metric-lbl-text">深度技术文章与思考 · Vibe Coding 实战</div>
+      </div>
+      <div class="metric-stat-card">
+        <div class="metric-num-highlight">21<span class="metric-unit">+ 个</span></div>
+        <div class="metric-lbl-text">云端全时运行独立系统 · 全量自主研发部署</div>
+      </div>
+    </div>
+
+    <!-- 核心故事：95个窗口 -->
+    <div class="journey-story-banner">
+      <h3 class="story-quote-title">他用了九十五个聊天窗口连接了全世界</h3>
+      <p class="story-quote-body">
+        初中信息课，我在机房用 C 语言写了一个心形程序投射到全班屏幕上。那一刻我第一次感受到：<strong>代码是表达，技术是艺术，一个人可以是一个节点。</strong><br><br>
+        进入南邮后，从脉动治疗手环到 3D 隧道点云分割算法，再到利用大模型与 Agent 工作流自动化搭建了覆盖学术、工具、数据大屏与个人生活的 21 个子域名网络。技术不是冰冷的机器，而是拓展人类认知边界的琴键。
+      </p>
+    </div>
+
+    <!-- 时间线序列 -->
+    <div class="timeline-stream-wrap">
+
+      <div class="timeline-node-item">
+        <div class="timeline-node-dot"></div>
+        <div class="timeline-node-card">
+          <div class="timeline-node-top">
+            <span class="timeline-node-date">2026.05 – 至今</span>
+            <span class="timeline-tag-pill">核心 AI Agent</span>
+          </div>
+          <h4 class="timeline-node-title">UniEmail Agent · 高校学者智能采集与知识图谱系统</h4>
+          <p class="timeline-node-desc">
+            基于 FastAPI + Playwright + Vue 3 + ECharts 构建的全栈智能采集系统。自动化采集南大、南邮、南中医等多所高校教师学者数据，实现 77% 的邮箱高精度覆盖率，构建个人专属学术与学者连接网络。
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-node-item">
+        <div class="timeline-node-dot"></div>
+        <div class="timeline-node-card">
+          <div class="timeline-node-top">
+            <span class="timeline-node-date">2026</span>
+            <span class="timeline-tag-pill">求职 & 架构</span>
+          </div>
+          <h4 class="timeline-node-title">系统级前端与产品沉淀 · 腾讯产品与全栈技术突破</h4>
+          <p class="timeline-node-desc">
+            系统备战现代前端架构（React / Vue 3 / Three.js 3D / HTTP3 / TCP 性能优化）与产品战略，融合技术底层逻辑与独立产品经理视角，完成从校园开发者向工业级工程师的跃迁。
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-node-item">
+        <div class="timeline-node-dot"></div>
+        <div class="timeline-node-card">
+          <div class="timeline-node-top">
+            <span class="timeline-node-date">2025 – 2026</span>
+            <span class="timeline-tag-pill">科研主项目</span>
+          </div>
+          <h4 class="timeline-node-title">IntelligentRecognition · 3D 隧道管道点云语义分割系统</h4>
+          <p class="timeline-node-desc">
+            王磊老师重点科研项目。基于 PointNet++ 点云深度学习模型，使用 PyQt5 搭建工业级 GUI 交互界面，在 RTX 4060 上实现高精度管网裂缝与构件分割，负责全流程算法训练与系统工程交付。
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-node-item">
+        <div class="timeline-node-dot"></div>
+        <div class="timeline-node-card">
+          <div class="timeline-node-top">
+            <span class="timeline-node-date">2025</span>
+            <span class="timeline-tag-pill">企业实战</span>
+          </div>
+          <h4 class="timeline-node-title">南京微特喜网络技术 · 全栈开发实习</h4>
+          <p class="timeline-node-desc">
+            深入商业级实际工程环境，参与微服务接口设计、数据库优化与全栈系统重构，将课堂算法理论转化为高可用工业代码。
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-node-item">
+        <div class="timeline-node-dot"></div>
+        <div class="timeline-node-card">
+          <div class="timeline-node-top">
+            <span class="timeline-node-date">2025.07</span>
+            <span class="timeline-tag-pill">科技影响力</span>
+          </div>
+          <h4 class="timeline-node-title">华为鸿蒙 HarmonyOS 公开课 · 与影视飓风 Tim 同台</h4>
+          <p class="timeline-node-desc">
+            以科技创作者“加油T小P”身份受邀出席华为官方公开课，与头部博主影视飓风 Tim 同台交流科技创作与前端体验，相关视频获四川观察、豫视频等官方媒体二次传播。
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-node-item">
+        <div class="timeline-node-dot"></div>
+        <div class="timeline-node-card">
+          <div class="timeline-node-top">
+            <span class="timeline-node-date">2025.06</span>
+            <span class="timeline-tag-pill">语言能力</span>
+          </div>
+          <h4 class="timeline-node-title">大学英语六级 (CET-6) · 559 分高分通过</h4>
+          <p class="timeline-node-desc">
+            听力 194 · 阅读 210 · 写作翻译 155。熟练掌握英文学术论文阅读与全球开源技术社区协作交流能力。
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-node-item">
+        <div class="timeline-node-dot"></div>
+        <div class="timeline-node-card">
+          <div class="timeline-node-top">
+            <span class="timeline-node-date">2024.12</span>
+            <span class="timeline-tag-pill">校级双荣誉</span>
+          </div>
+          <h4 class="timeline-node-title">新柚杯特等奖 & 青柚杯二等奖</h4>
+          <p class="timeline-node-desc">
+            入学首学期连获两项校级竞赛大奖。分别在“公益创意赛道”（特等奖）与“智慧校园视觉设计”（二等奖）展现跨学科整合实力。
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-node-item">
+        <div class="timeline-node-dot"></div>
+        <div class="timeline-node-card">
+          <div class="timeline-node-top">
+            <span class="timeline-node-date">2024.11</span>
+            <span class="timeline-tag-pill">硬件与软工竞赛</span>
+          </div>
+          <h4 class="timeline-node-title">创新杯 · 脉动治疗手环 PULSEBAND</h4>
+          <p class="timeline-node-desc">
+            团队核心成员。完成胰岛素无针微注射兼智能把脉手环系统方案设计与原型开发，获院级三等奖。
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-node-item">
+        <div class="timeline-node-dot"></div>
+        <div class="timeline-node-card">
+          <div class="timeline-node-top">
+            <span class="timeline-node-date">2024.06</span>
+            <span class="timeline-tag-pill">求学起点</span>
+          </div>
+          <h4 class="timeline-node-title">高考 633 分 · 录取南京邮电大学软件工程</h4>
+          <p class="timeline-node-desc">
+            安徽省排 9869 名。系统对比南邮与杭电等高校后，坚定选择南邮软件工程国家级特色专业，正式开启计算机系统与软件工程探索之旅。
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- End of #view-journey -->
+
+  <!-- ==========================================================================
+       View 03 · 关于我与哲学 (About Me & Philosophy)
+       ========================================================================== -->
+  <div class="route-view" id="view-about">
+    <div class="subpage-hero">
+      <div class="subpage-tag">
+        <span class="tag-dot"></span>
+        <span>03 / ABOUT ME & PHILOSOPHY · 创作者画像</span>
+      </div>
+      <h1 class="subpage-title">
+        一个人，三个名字，一种纯粹的热爱。
+      </h1>
+      <p class="subpage-lead">
+        唐潘 (Tyler Tang) · 全栈开发 / AI 产品探索 / 独立开发者。在技术的严谨与艺术的浪漫之间，搭建解决真实问题的小而美产品。
+      </p>
+    </div>
+
+    <!-- 三重身份矩阵 -->
+    <div class="identities-trio-grid">
+      <div class="identity-card-box">
+        <div class="identity-index-badge">01 / Content Creator</div>
+        <h3 class="identity-role-title">加油T小P</h3>
+        <p class="identity-desc-txt">
+          抖音 4,249+ 粉丝。懂技术的科技创作者，关注前端体验与交互美学的实干派。曾与影视飓风 Tim 同台华为鸿蒙公开课，被四川观察、豫视频等官方媒体多次转发报道。
+        </p>
+      </div>
+
+      <div class="identity-card-box">
+        <div class="identity-index-badge">02 / Developer</div>
+        <h3 class="identity-role-title">TPGoFighting</h3>
+        <p class="identity-desc-txt">
+          GitHub 独立技术身份。深度钻研 3D 点云视觉、AI Agent 编排、分布式边缘部署与现代化全栈开发。南邮 ACM 论坛实名认证，全栈语言栈跨越 Python / TS / C++ / Java。
+        </p>
+      </div>
+
+      <div class="identity-card-box">
+        <div class="identity-index-badge">03 / Campus Connector</div>
+        <h3 class="identity-role-title">潘神</h3>
+        <p class="identity-desc-txt">
+          校园里的非官方代号。“考前拜唐潘，包过”——同学间流传的趣味技术节点。创办并长期维护“和T小P一起互帮互助”社群，连接南京仙林多所高校的技术与创业圈。
+        </p>
+      </div>
+    </div>
+
+    <!-- 研发哲学 -->
+    <div class="philosophy-quote-section">
+      <p class="philo-lead-quote">
+        “代码是表达，技术是艺术，<span class="hl-yellow">一个人可以是一个节点</span>。AI 不是替代思考的捷径，而是将人类创造力从繁琐劳动中解放出来的放大器。”
+      </p>
+      <div class="philo-sub-points">
+        <div class="philo-point-item">
+          <h4>🛠️ 解决真实问题</h4>
+          <p>不为了炫技而堆砌架构，每个工具都源自日常工作与生活的真实痛点。</p>
+        </div>
+        <div class="philo-point-item">
+          <h4>⚡ 追求极致交互</h4>
+          <p>拒绝呆板乏味的界面。毫秒级的响应、细腻的动效与有呼吸感的排版是基本素养。</p>
+        </div>
+        <div class="philo-point-item">
+          <h4>🌐 开放与连接</h4>
+          <p>把探索的过程写成文章、把可复用的代码开源，让技术的力量流动起来。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 全栈能力矩阵 -->
+    <div class="section-heading-row" style="margin-bottom: 24px;">
+      <div class="section-badge-group">
+        <span class="section-index">03-A</span>
+        <h3 class="section-main-title">全栈工程与 AI 能力矩阵</h3>
+      </div>
+    </div>
+
+    <div class="capabilities-four-grid">
+      <div class="capability-card-box">
+        <h4 class="capability-card-title">🤖 AI Agent & LLM</h4>
+        <div class="cap-tag-flow">
+          <span class="cap-tag-chip">Claude API</span>
+          <span class="cap-tag-chip">OpenAI</span>
+          <span class="cap-tag-chip">DeepSeek</span>
+          <span class="cap-tag-chip">LangChain</span>
+          <span class="cap-tag-chip">RAG 检索增强</span>
+          <span class="cap-tag-chip">Prompt Engineering</span>
+          <span class="cap-tag-chip">Agent Skills</span>
+          <span class="cap-tag-chip">Tool Calling</span>
+        </div>
+      </div>
+
+      <div class="capability-card-box">
+        <h4 class="capability-card-title">🎨 前端与可视化</h4>
+        <div class="cap-tag-flow">
+          <span class="cap-tag-chip">Vanilla JS</span>
+          <span class="cap-tag-chip">TypeScript</span>
+          <span class="cap-tag-chip">Vue 3 / Vite</span>
+          <span class="cap-tag-chip">React / Next.js</span>
+          <span class="cap-tag-chip">Three.js 3D</span>
+          <span class="cap-tag-chip">ECharts</span>
+          <span class="cap-tag-chip">TailwindCSS</span>
+          <span class="cap-tag-chip">GSAP 动效</span>
+        </div>
+      </div>
+
+      <div class="capability-card-box">
+        <h4 class="capability-card-title">⚙️ 后端与系统架构</h4>
+        <div class="cap-tag-flow">
+          <span class="cap-tag-chip">Python / FastAPI</span>
+          <span class="cap-tag-chip">Node.js / Express</span>
+          <span class="cap-tag-chip">Linux (Ubuntu 24)</span>
+          <span class="cap-tag-chip">Nginx 反代</span>
+          <span class="cap-tag-chip">Cloudflare Tunnels</span>
+          <span class="cap-tag-chip">PM2 进程管理</span>
+          <span class="cap-tag-chip">Docker</span>
+          <span class="cap-tag-chip">SQLite / MySQL</span>
+        </div>
+      </div>
+
+      <div class="capability-card-box">
+        <h4 class="capability-card-title">🔍 3D 视觉与科研</h4>
+        <div class="cap-tag-flow">
+          <span class="cap-tag-chip">PointNet++</span>
+          <span class="cap-tag-chip">点云语义分割</span>
+          <span class="cap-tag-chip">PyQt5 GUI</span>
+          <span class="cap-tag-chip">Open3D</span>
+          <span class="cap-tag-chip">Playwright 爬虫</span>
+          <span class="cap-tag-chip">RTX 4060 推理</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 摄影与生活侧面 -->
+    <div class="section-heading-row" style="margin-bottom: 24px;">
+      <div class="section-badge-group">
+        <span class="section-index">03-B</span>
+        <h3 class="section-main-title">生活切面与视觉碎片</h3>
+      </div>
+    </div>
+
+    <div class="visual-gallery-grid">
+      <div class="gallery-photo-frame">
+        <img src="assets/portrait/portrait-sun.jpg" alt="阳光下漫步" class="gallery-photo-img" loading="lazy">
+        <div class="gallery-photo-caption">Sunlight Walk · 2026</div>
+      </div>
+      <div class="gallery-photo-frame">
+        <img src="assets/gallery/guitar.jpg" alt="吉他与音符" class="gallery-photo-img" loading="lazy">
+        <div class="gallery-photo-caption">Acoustic Guitar & Chords</div>
+      </div>
+      <div class="gallery-photo-frame">
+        <img src="assets/gallery/black-myth.jpg" alt="黑神话悟空探索" class="gallery-photo-img" loading="lazy">
+        <div class="gallery-photo-caption">Black Myth · Wukong</div>
+      </div>
+      <div class="gallery-photo-frame">
+        <img src="assets/gallery/sci-fi.jpg" alt="科幻世界与小说" class="gallery-photo-img" loading="lazy">
+        <div class="gallery-photo-caption">Sci-Fi Universe & Worldbuilding</div>
+      </div>
+      <div class="gallery-photo-frame">
+        <img src="assets/portrait/portrait-cafe.jpg" alt="咖啡馆灵感" class="gallery-photo-img" loading="lazy">
+        <div class="gallery-photo-caption">Cafe & Vibe Coding Session</div>
+      </div>
+      <div class="gallery-photo-frame">
+        <img src="assets/gallery/filmmaking.jpg" alt="视频制作与镜头" class="gallery-photo-img" loading="lazy">
+        <div class="gallery-photo-caption">Filmmaking & Visual Storytelling</div>
+      </div>
+    </div>
+
+    <!-- 联系与社交矩阵 -->
+    <div class="section-heading-row" style="margin-bottom: 24px;">
+      <div class="section-badge-group">
+        <span class="section-index">03-C</span>
+        <h3 class="section-main-title">连接创作者 · 社交矩阵</h3>
+      </div>
+    </div>
+
+    <div class="about-grid" style="margin-bottom: 48px;">
+      <!-- 个人名片 -->
+      <div class="creator-bio-card">
+        <div class="bio-avatar-box">
+          <img src="assets/portrait/portrait-sun.jpg" alt="唐潘" class="bio-avatar-img">
+        </div>
+        <div class="bio-details">
+          <div class="bio-identity-header">
+            <h3 class="bio-name">唐潘 · Tyler Tang</h3>
+            <span class="bio-city-tag">南京 · NJUPT</span>
+          </div>
+          <p class="bio-intro-text">
+            全栈开发者 / AI 产品探索 / 独立创造者。代码是表达，技术是艺术，一个人可以是一个节点。
+          </p>
+          <div class="bio-social-links">
+            <a href="https://github.com/TPGoFighting" target="_blank" rel="noopener" class="bio-link-pill">
+              <svg class="svg-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              <span>GitHub</span>
+            </a>
+            <a href="mailto:tyler.tang@example.com" class="bio-link-pill">
+              <svg class="svg-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              <span>邮件联系</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 微信二维码卡片 -->
+      <div class="qr-code-card">
+        <div class="qr-card-header">
+          <span class="qr-platform-badge wechat">微信</span>
+          <span class="qr-card-title">添加个人微信</span>
+        </div>
+        <div class="qr-img-box">
+          <img src="assets/wechat-qr.jpg" alt="微信二维码" class="qr-scan-img">
+        </div>
+        <p class="qr-card-hint">微信扫一扫添加好友</p>
+      </div>
+
+      <!-- 抖音二维码卡片 -->
+      <div class="qr-code-card">
+        <div class="qr-card-header">
+          <span class="qr-platform-badge douyin">抖音</span>
+          <span class="qr-card-title">关注抖音主页</span>
+        </div>
+        <div class="qr-img-box">
+          <img src="assets/douyin-qr.png" alt="抖音二维码" class="qr-scan-img">
+        </div>
+        <p class="qr-card-hint">抖音扫一扫查看视频动态</p>
+      </div>
+    </div>
+  </div><!-- End of #view-about -->
+
+  <!-- ==========================================================================
+       View 04 · 未来与路线图 (Future & Roadmap)
+       ========================================================================== -->
+  <div class="route-view" id="view-future">
+    <div class="subpage-hero">
+      <div class="subpage-tag">
+        <span class="tag-dot"></span>
+        <span>04 / FUTURE & ROADMAP · 愿景与路线图</span>
+      </div>
+      <h1 class="subpage-title">
+        在人机共创时代，探索下一代自主系统的边界。
+      </h1>
+      <p class="subpage-lead">
+        从个人的第二大脑（Second Brain）到多 Agent 协作工作流，持续推进 AI 原生工具研发与开源实践。这是 2026-2027 年的重点探索方向。
+      </p>
+    </div>
+
+    <!-- 研发路线图 -->
+    <div class="roadmap-quarter-grid">
+      <div class="roadmap-quarter-card">
+        <span class="roadmap-badge-q">2026 Q1 · 正在进行</span>
+        <h3 class="roadmap-project-title">TP OS 2.0 · 终身个人上下文系统</h3>
+        <p class="roadmap-desc-txt">
+          从静态结构化时间线跨越至端侧嵌入式向量记忆库，具备多 Agent 主动联想、时序上下文图谱与自动生活反思能力。
+        </p>
+        <ul class="roadmap-feature-list">
+          <li>端侧轻量向量索引与时序记忆压缩</li>
+          <li>微信聊天记录与文档秒级上下文召回</li>
+          <li>主动型每日智能简报与决策支持 Agent</li>
+        </ul>
+      </div>
+
+      <div class="roadmap-quarter-card">
+        <span class="roadmap-badge-q">2026 Q2 · 规划中</span>
+        <h3 class="roadmap-project-title">Teach Player 2.0 · 多模态视频导学系统</h3>
+        <p class="roadmap-desc-txt">
+          将双语逐字稿与计算机视觉关键帧深度融合，打造非线性、可随时插话提问并自适应出题的 AI 专属导师。
+        </p>
+        <ul class="roadmap-feature-list">
+          <li>视频关键帧 OCR + 知识点时序锚定</li>
+          <li>语音交互即时打断与概念追问</li>
+          <li>一键生成配套在线交互试卷 (TPaper 联动)</li>
+        </ul>
+      </div>
+
+      <div class="roadmap-quarter-card">
+        <span class="roadmap-badge-q">2026 Q3 · 探索中</span>
+        <h3 class="roadmap-project-title">3D Spatial Web · 浏览器轻量点云引擎</h3>
+        <p class="roadmap-desc-txt">
+          将工业级点云语义分割成果轻量化移植至 WebGL / WebGPU 浏览器端，实现百万级三维管网模型在手机端的 60fps 丝滑交互。
+        </p>
+        <ul class="roadmap-feature-list">
+          <li>Octree 渐进式点云 LOD 加载算法</li>
+          <li>浏览器端即时着色器语义高亮</li>
+          <li>移动端触控 3D 测量与标注工具集</li>
+        </ul>
+      </div>
+
+      <div class="roadmap-quarter-card">
+        <span class="roadmap-badge-q">2026 Q4+ · 开源愿景</span>
+        <h3 class="roadmap-project-title">Open Agent Matrix · 个人超级 Portal 脚手架</h3>
+        <p class="roadmap-desc-txt">
+          将 TP Space 的全量 21 个子域名微服务编排、Cloudflare 边缘路由、Nginx 自动化配置与手绘设计系统完全开源。
+        </p>
+        <ul class="roadmap-feature-list">
+          <li>单命令快速生成多子域名个人数字空间</li>
+          <li>内置 GSAP 手绘物理粒子动效设计模版</li>
+          <li>模块化接入 GitHub、Bilibili、Notion 数据源</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 长期研究命题 -->
+    <div class="section-heading-row" style="margin-bottom: 24px;">
+      <div class="section-badge-group">
+        <span class="section-index">04-B</span>
+        <h3 class="section-main-title">三大长期核心研究命题</h3>
+      </div>
+    </div>
+
+    <div class="inquiry-triplet-grid">
+      <div class="inquiry-card-item">
+        <div class="inquiry-card-index">[RESEARCH 01]</div>
+        <h4 class="inquiry-card-title">边缘端微模型与云端超大模型的动态协作</h4>
+        <p class="inquiry-card-desc">
+          如何利用端侧轻量小模型完成高频、私密性感知与初筛，仅在复杂决策时调度云端超大模型，在兼顾极致隐私的同时降低 90% 的调用延迟与成本。
+        </p>
+      </div>
+
+      <div class="inquiry-card-item">
+        <div class="inquiry-card-index">[RESEARCH 02]</div>
+        <h4 class="inquiry-card-title">终身非结构化记忆的长周期压缩与图谱化</h4>
+        <p class="inquiry-card-desc">
+          人类每天产生大量杂乱无章的碎片信息。如何构建自动衰减、强化与反思算法，让 AI 在数年跨度内依然能精准捕捉用户的底层偏好与决策逻辑。
+        </p>
+      </div>
+
+      <div class="inquiry-card-item">
+        <div class="inquiry-card-index">[RESEARCH 03]</div>
+        <h4 class="inquiry-card-title">从固定 GUI 到自然语言即时生成界面 (Generative UI)</h4>
+        <p class="inquiry-card-desc">
+          未来的软件不应该被预设的按钮和表单所限制。探索 Agent 根据用户当下的意图，实时在前端运行时组装最适配的数据可视化控件与交互面板。
+        </p>
+      </div>
+    </div>
+
+    <!-- 开放连接 Callout -->
+    <div class="future-callout-box">
+      <h3 class="future-callout-title">一起共创未来的可能性</h3>
+      <p class="future-callout-desc">
+        无论你是想探讨 AI Agent 工作流、全栈工程架构、3D 视觉研究，还是寻求实习与项目合作，都非常欢迎与我交流。
+      </p>
+      <div class="future-callout-actions">
+        <button class="modal-btn-open magnetic-btn" onclick="switchRoute('about'); window.scrollTo({top: document.getElementById('view-about').scrollHeight, behavior: 'smooth'});">
+          <span>查看联系方式</span>
+          <svg class="svg-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+        </button>
+        <a href="https://github.com/TPGoFighting" target="_blank" rel="noopener" class="service-btn-mini magnetic-btn" style="padding: 10px 18px; font-size: 0.9rem;">
+          <span>GitHub: @TPGoFighting</span>
+        </a>
+      </div>
+    </div>
+  </div><!-- End of #view-future -->
 
   </main>
 
@@ -563,6 +1092,6 @@
 
   <!-- GSAP 物理动画引擎 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="app.js?v=20260814_tpspace_matrix_11"></script>
+  <script src="app.js?v=20260814_tpspace_routes_12"></script>
 </body>
 </html>

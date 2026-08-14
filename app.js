@@ -460,6 +460,20 @@ function bindEvents() {
     }
   });
 
+  // 路由链接点击监听
+  document.querySelectorAll(".nav-links .nav-item, .drawer-links-list .drawer-nav-item").forEach(link => {
+    link.addEventListener("click", (e) => {
+      const route = link.dataset.route;
+      if (route) {
+        e.preventDefault();
+        switchRoute(route);
+        if (typeof closeMobileDrawer === "function") closeMobileDrawer();
+      }
+    });
+  });
+
+  window.addEventListener("hashchange", handleHashRoute);
+
   // 主题切换
   elements.themeSwitchBtn.addEventListener("click", () => {
     applyTheme(state.theme === "light" ? "dark" : "light");
@@ -954,6 +968,62 @@ function initMagneticButtons() {
   });
 }
 
+// ==========================================================================
+// 4. 多路由 SPA 切换引擎 (Multi-Route SPA Routing Engine)
+// ==========================================================================
+const VALID_ROUTES = ["products", "journey", "about", "future"];
+
+function switchRoute(routeId) {
+  if (!VALID_ROUTES.includes(routeId)) {
+    routeId = "products";
+  }
+
+  state.currentRoute = routeId;
+
+  // 1. 切换视图容器显示
+  document.querySelectorAll(".route-view").forEach(view => {
+    view.classList.remove("active");
+  });
+
+  const activeView = document.getElementById(`view-${routeId}`);
+  if (activeView) {
+    activeView.classList.add("active");
+  }
+
+  // 2. 更新 Header 和 Mobile Drawer 高亮状态
+  document.querySelectorAll(".nav-links .nav-item").forEach(item => {
+    item.classList.toggle("active", item.dataset.route === routeId);
+  });
+
+  document.querySelectorAll(".drawer-links-list .drawer-nav-item").forEach(item => {
+    item.classList.toggle("active", item.dataset.route === routeId);
+  });
+
+  // 3. 更新 Hash 路由
+  if (location.hash !== `#/${routeId}`) {
+    history.pushState(null, "", `#/${routeId}`);
+  }
+
+  // 4. 滚动到页面顶部
+  window.scrollTo({ top: 0, behavior: "instant" });
+
+  // 5. 触发新视图微动效
+  if (window.innerWidth > 768) {
+    init3DCardTiltPhysics();
+  }
+}
+window.switchRoute = switchRoute;
+
+function handleHashRoute() {
+  const hash = location.hash.replace(/^#\/?/, "");
+  if (VALID_ROUTES.includes(hash)) {
+    switchRoute(hash);
+  } else {
+    switchRoute("products");
+  }
+}
+window.handleHashRoute = handleHashRoute;
+
 function initAnimations() {
   initInkDoodleCanvas();
   initScrollTriggerAnimations();
@@ -964,6 +1034,7 @@ function initAnimations() {
 // 可靠启动应用
 function startApp() {
   init();
+  handleHashRoute();
   initAnimations();
 }
 
