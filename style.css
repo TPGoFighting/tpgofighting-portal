@@ -318,22 +318,20 @@ input {
 
 #tyler-pupil-left,
 #tyler-pupil-right,
-#spidey-eye-left,
-#spidey-eye-right,
-#spidey-pupil-left,
-#spidey-pupil-right {
+#monster-pupil-left,
+#monster-pupil-right {
   transition: transform 0.05s ease-out;
   will-change: transform;
 }
 
-#hero-spidey-group {
-  animation: spideyFloat 4s ease-in-out infinite;
-  transform-origin: 100px 165px;
+#hero-monster-group {
+  animation: monsterBreathe 3.6s ease-in-out infinite;
+  transform-origin: 100px 210px;
 }
 
-@keyframes spideyFloat {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-4px); }
+@keyframes monsterBreathe {
+  0%, 100% { transform: scale(1) translateY(0px); }
+  50% { transform: scale(1.03, 0.97) translateY(-3px); }
 }
 
 /* ==========================================================================
@@ -644,22 +642,24 @@ input {
 
 .ref-visual-col {
   width: 100%;
-  border-radius: 16px;
+  aspect-ratio: 16 / 10;
+  max-height: 260px;
+  border-radius: 18px;
   overflow: hidden;
-  background: var(--bg-subtle);
+  background: #ffffff;
   border: 1.5px solid var(--border-subtle);
-  box-shadow: 3px 3px 0px var(--border-subtle);
+  box-shadow: 2px 2px 0px var(--border-subtle);
   display: flex;
   align-items: center;
   justify-content: center;
-  max-height: 240px;
+  padding: 6px;
 }
 
 .ref-visual-img {
   width: 100%;
   height: 100%;
-  max-height: 240px;
-  object-fit: cover;
+  object-fit: contain;
+  background: #ffffff;
   display: block;
 }
 
