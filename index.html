@@ -27,7 +27,7 @@
     input, button, select, textarea { -webkit-tap-highlight-color: transparent; }
   </style>
 
-  <link rel="stylesheet" href="style.css?v=20260814_tpspace_noghost_35">
+  <link rel="stylesheet" href="style.css?v=20260815_tpspace_s_perfect_36">
 </head>
 <body data-theme="light">
   <!-- 背景方格纸网格、环境光与手绘几何浮动 Canvas (Graph Paper Grid & Interactive Ink Doodle Canvas) -->
@@ -51,99 +51,101 @@
     </div>
 
     <!-- ==========================================================================
-         Hero 巨幕陈述 (Statement Hero & Interactive Layered Characters - TP makes things.)
+         Hero 巨幕陈述 (Statement Hero)
          ========================================================================== -->
     <section class="hero-statement-section" id="section-hero">
+      <!-- Hero 核心陈述舞台 (Statement Stage: 3行立体标题 + 依附角色 + 身份标签) -->
       <div class="hero-statement-stage">
-        <!-- 1. 左侧大号粗体标题文字 (Typography Layer) -->
-        <div class="hero-typography-block">
+        <div class="hero-main-composition">
+          <!-- 1. 纯黑加粗立体几何标题 (Typography Block) -->
           <h1 class="hero-statement-title" aria-label="TP makes things.">
-            <span class="hero-title-line line-tp">TP</span>
-            <span class="hero-title-line line-makes">makes</span>
-            <span class="hero-title-line line-things">things.</span>
+            <span class="hero-title-line typo-tp">TP</span>
+            <span class="hero-title-line typo-makes">makes</span>
+            <span class="hero-title-line typo-things">things.</span>
           </h1>
-          <div class="hero-identity-line">
-            <span class="hero-author-cn">唐 潘</span>
-            <span class="hero-author-roles">ENGINEER / AI BUILDER / CREATOR</span>
+
+          <!-- 2. 交互式分层角色场景 (Layered Characters: Human Leaning + Green Monster) -->
+          <div class="hero-character-scene" id="hero-character-scene">
+            <!-- 角色地面接触微阴影 (Grounding Shadow) -->
+            <div class="hero-ground-shadow" aria-hidden="true"></div>
+
+            <!-- 男生角色 (Human Character - 固定身体 + 颈部Pivot头部 + SVG矢量瞳孔追踪) -->
+            <div class="hero-char-human" id="char-human">
+              <!-- 身体层 (靠在文字上，主体稳定) -->
+              <img src="assets/hero/human-body.png" alt="Tyler Body" class="char-layer char-human-body" aria-hidden="true">
+              
+              <!-- 头部层 (带颈部 pivot 与微妙视角位移) -->
+              <div class="char-head-wrapper" id="human-head-wrapper">
+                <img src="assets/hero/human-head-no-pupils.png" alt="Tyler Head" class="char-layer char-human-head" aria-hidden="true">
+                
+                <!-- 左右眼矢量 SVG 瞳孔 -->
+                <svg class="char-eyes-svg human-eyes-svg" viewBox="0 0 1024 1536" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <clipPath id="human-clip-left">
+                      <ellipse cx="433" cy="180" rx="17" ry="17" />
+                    </clipPath>
+                    <clipPath id="human-clip-right">
+                      <ellipse cx="504" cy="160" rx="17" ry="17" />
+                    </clipPath>
+                  </defs>
+                  <g clip-path="url(#human-clip-left)">
+                    <g id="human-pupil-left" class="interactive-pupil">
+                      <circle cx="433" cy="180" r="9.5" fill="#18181b" />
+                      <circle cx="430.5" cy="177.5" r="3" fill="#ffffff" />
+                      <circle cx="436" cy="183" r="1.2" fill="#ffffff" opacity="0.8" />
+                    </g>
+                  </g>
+                  <g clip-path="url(#human-clip-right)">
+                    <g id="human-pupil-right" class="interactive-pupil">
+                      <circle cx="504" cy="160" r="9.5" fill="#18181b" />
+                      <circle cx="501.5" cy="157.5" r="3" fill="#ffffff" />
+                      <circle cx="507" cy="163" r="1.2" fill="#ffffff" opacity="0.8" />
+                    </g>
+                  </g>
+                </svg>
+              </div>
+            </div>
+
+            <!-- 绿色蠢萌小怪物 (Monster Character - 果冻弹性身躯 + SVG矢量大眼珠) -->
+            <div class="hero-char-monster" id="char-monster">
+              <!-- 怪物整体身躯 (果冻软体轻微跟随与缩放) -->
+              <div class="char-head-wrapper" id="monster-head-wrapper">
+                <img src="assets/hero/monster-head-no-pupils.png" alt="Green Monster" class="char-layer char-monster-head" aria-hidden="true">
+                
+                <!-- 怪物大眼睛矢量 SVG 瞳孔 -->
+                <svg class="char-eyes-svg monster-eyes-svg" viewBox="0 0 1254 1254" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <clipPath id="monster-clip-left">
+                      <ellipse cx="470" cy="702" rx="98" ry="118" />
+                    </clipPath>
+                    <clipPath id="monster-clip-right">
+                      <ellipse cx="845" cy="686" rx="102" ry="122" />
+                    </clipPath>
+                  </defs>
+                  <g clip-path="url(#monster-clip-left)">
+                    <g id="monster-pupil-left" class="interactive-pupil">
+                      <circle cx="470" cy="702" r="56" fill="#111827" />
+                      <circle cx="452" cy="682" r="17" fill="#ffffff" />
+                      <circle cx="488" cy="722" r="7" fill="#ffffff" opacity="0.8" />
+                    </g>
+                  </g>
+                  <g clip-path="url(#monster-clip-right)">
+                    <g id="monster-pupil-right" class="interactive-pupil">
+                      <circle cx="845" cy="686" r="58" fill="#111827" />
+                      <circle cx="826" cy="666" r="17" fill="#ffffff" />
+                      <circle cx="864" cy="706" r="7" fill="#ffffff" opacity="0.8" />
+                    </g>
+                  </g>
+                </svg>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- 2. 交互式分层角色场景 (Layered Characters: Human Leaning + Green Monster) -->
-        <div class="hero-character-scene" id="hero-character-scene">
-          
-          <!-- 男生角色 (Human Character - 固定身体 + 颈部Pivot头部 + SVG矢量瞳孔追踪) -->
-          <div class="hero-char-human" id="char-human">
-            <!-- 身体层 (靠在文字上，主体稳定) -->
-            <img src="assets/hero/human-body.png" alt="Tyler Body" class="char-layer char-human-body" aria-hidden="true">
-            
-            <!-- 头部层 (带颈部 pivot 与微妙视角位移) -->
-            <div class="char-head-wrapper" id="human-head-wrapper">
-              <img src="assets/hero/human-head-no-pupils.png" alt="Tyler Head" class="char-layer char-human-head" aria-hidden="true">
-              
-              <!-- 左右眼矢量 SVG 瞳孔 -->
-              <svg class="char-eyes-svg human-eyes-svg" viewBox="0 0 1024 1536" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <clipPath id="human-clip-left">
-                    <ellipse cx="433" cy="180" rx="17" ry="17" />
-                  </clipPath>
-                  <clipPath id="human-clip-right">
-                    <ellipse cx="504" cy="160" rx="17" ry="17" />
-                  </clipPath>
-                </defs>
-                <g clip-path="url(#human-clip-left)">
-                  <g id="human-pupil-left" class="interactive-pupil">
-                    <circle cx="433" cy="180" r="9.5" fill="#18181b" />
-                    <circle cx="430.5" cy="177.5" r="3" fill="#ffffff" />
-                    <circle cx="436" cy="183" r="1.2" fill="#ffffff" opacity="0.8" />
-                  </g>
-                </g>
-                <g clip-path="url(#human-clip-right)">
-                  <g id="human-pupil-right" class="interactive-pupil">
-                    <circle cx="504" cy="160" r="9.5" fill="#18181b" />
-                    <circle cx="501.5" cy="157.5" r="3" fill="#ffffff" />
-                    <circle cx="507" cy="163" r="1.2" fill="#ffffff" opacity="0.8" />
-                  </g>
-                </g>
-              </svg>
-            </div>
-          </div>
-
-          <!-- 绿色蠢萌小怪物 (Monster Character - 果冻弹性身躯 + SVG矢量大眼珠) -->
-          <div class="hero-char-monster" id="char-monster">
-            <!-- 怪物整体身躯 (果冻软体轻微跟随与缩放) -->
-            <div class="char-head-wrapper" id="monster-head-wrapper">
-              <img src="assets/hero/monster-head-no-pupils.png" alt="Green Monster" class="char-layer char-monster-head" aria-hidden="true">
-              
-              <!-- 怪物大眼睛矢量 SVG 瞳孔 -->
-              <svg class="char-eyes-svg monster-eyes-svg" viewBox="0 0 1254 1254" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <clipPath id="monster-clip-left">
-                    <ellipse cx="470" cy="702" rx="98" ry="118" />
-                  </clipPath>
-                  <clipPath id="monster-clip-right">
-                    <ellipse cx="845" cy="686" rx="102" ry="122" />
-                  </clipPath>
-                </defs>
-                <g clip-path="url(#monster-clip-left)">
-                  <g id="monster-pupil-left" class="interactive-pupil">
-                    <circle cx="470" cy="702" r="56" fill="#111827" />
-                    <circle cx="452" cy="682" r="17" fill="#ffffff" />
-                    <circle cx="488" cy="722" r="7" fill="#ffffff" opacity="0.8" />
-                  </g>
-                </g>
-                <g clip-path="url(#monster-clip-right)">
-                  <g id="monster-pupil-right" class="interactive-pupil">
-                    <circle cx="845" cy="686" r="56" fill="#111827" />
-                    <circle cx="827" cy="666" r="17" fill="#ffffff" />
-                    <circle cx="863" cy="706" r="7" fill="#ffffff" opacity="0.8" />
-                  </g>
-                </g>
-              </svg>
-            </div>
-          </div>
-
-          <!-- 角色地面接触微阴影 (Grounding Shadow) -->
-          <div class="hero-ground-shadow" aria-hidden="true"></div>
+        <!-- 身份署名行 (位于标题与场景下方) -->
+        <div class="hero-identity-line">
+          <span class="hero-author-cn">唐 潘</span>
+          <span class="hero-author-roles">ENGINEER / AI BUILDER / CREATOR</span>
         </div>
       </div>
 

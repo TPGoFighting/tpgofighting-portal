@@ -261,30 +261,30 @@ input {
 .hero-statement-stage {
   position: relative;
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-end;
+  flex-direction: column;
+  align-items: flex-start;
   min-height: 420px;
-  gap: 0px;
 }
 
-.hero-typography-block {
+.hero-main-composition {
+  position: relative;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  z-index: 1;
-  user-select: none;
-  flex-shrink: 0;
+  align-items: flex-end;
+  justify-content: flex-start;
+  margin-bottom: 24px;
 }
 
 .hero-statement-title {
-  font-size: clamp(4.0rem, 8.8vw, 7.0rem);
+  font-size: clamp(4.2rem, 9.5vw, 7.5rem);
   font-weight: 900;
-  line-height: 0.86;
+  line-height: 0.85;
   letter-spacing: -0.04em;
   color: var(--text-title);
-  margin-bottom: 22px;
+  margin-bottom: 0;
   display: flex;
   flex-direction: column;
+  user-select: none;
+  flex-shrink: 0;
 }
 
 .hero-title-line {
@@ -322,11 +322,11 @@ input {
 /* 交互式分层角色场景 (手臂手肘精准靠在 makes 的 's' 字母上) */
 .hero-character-scene {
   position: relative;
-  width: 340px;
-  height: 380px;
+  width: 330px;
+  height: 367px;
   flex-shrink: 0;
   z-index: 3;
-  margin-left: -90px; /* 让人物的手臂与手肘精准搭在 makes 的 S 字母上 */
+  margin-left: -115px; /* 让人物的手臂与手肘精准平搭在 makes 的 S 字母上 */
   pointer-events: auto;
 }
 
