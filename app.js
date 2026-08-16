@@ -588,6 +588,16 @@ function getFilteredServices() {
 function renderMatrixServices() {
   const list = getFilteredServices();
 
+  // 动态同步分类计数（数据驱动，防止硬编码漂移）
+  const counts = { all: SERVICES.length };
+  SERVICES.forEach(svc => { counts[svc.category] = (counts[svc.category] || 0) + 1; });
+  document.querySelectorAll("#category-filter-tabs .cat-tab-btn").forEach(btn => {
+    const cntEl = btn.querySelector(".tab-cnt");
+    if (cntEl && counts[btn.dataset.cat] !== undefined) {
+      cntEl.textContent = `(${counts[btn.dataset.cat]})`;
+    }
+  });
+
   if (list.length === 0) {
     elements.servicesGrid.innerHTML = "";
     elements.emptyState.style.display = "block";
@@ -647,9 +657,9 @@ function renderMatrixServices() {
 function renderPostersMarquee() {
   // 复制双份实现无限无缝滚动
   const doubled = [...POSTERS, ...POSTERS];
-  elements.postersRail.innerHTML = doubled.map(img => `
+  elements.postersRail.innerHTML = doubled.map((img, i) => `
     <div class="poster-cover-frame" title="电影 / 音乐海报">
-      <img src="assets/posters/${img}" alt="Poster" class="poster-cover-img">
+      <img src="assets/posters/${img}" alt="收藏的电影海报或音乐专辑封面 ${(i % POSTERS.length) + 1}" class="poster-cover-img" loading="lazy">
     </div>
   `).join("");
 }
@@ -885,12 +895,20 @@ function initScrollTriggerAnimations() {
   if (!window.gsap) return;
 
   // Hero 进场动画（首屏即时播放）
-  const heroTL = gsap.timeline({ defaults: { ease: "power3.out", duration: 0.8 } });
+  const heroTL = gsap.timeline({ defaults: { ease: "power3.out" } });
   heroTL
-    .fromTo(".hero-identity-tag", { y: -15, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 })
-    .fromTo(".hero-huge-title", { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, "-=0.4")
-    .fromTo(".hero-lead", { y: 15, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, "-=0.5")
-    .fromTo(".illustration-frame", { scale: 0.94, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.9, ease: "back.out(1.4)" }, "-=0.5");
+    .fromTo(".hero-statement-title .hero-title-line",
+      { y: 40, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.9, stagger: 0.12 }, 0)
+    .fromTo(".hero-character-scene",
+      { scale: 0.9, opacity: 0 },
+      { scale: 1, opacity: 1, duration: 0.9, ease: "back.out(1.2)" }, 0.25)
+    .fromTo(".hero-identity-line",
+      { y: 14, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.6 }, 0.6)
+    .fromTo(".giant-tabs-bar",
+      { y: 16, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.6 }, 0.7);
 }
 
 // ==========================================================================
@@ -900,15 +918,15 @@ function init3DCardTiltPhysics() {
   if (window.innerWidth <= 768) return; // 移动端避免陀螺仪冲突
 
   // Hero 插画 3D 悬浮视差
-  const heroWrapper = document.getElementById("hero-art-frame");
+  const heroWrapper = document.getElementById("hero-character-scene");
   if (heroWrapper && window.gsap) {
     heroWrapper.addEventListener("mousemove", (e) => {
       const rect = heroWrapper.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width - 0.5;
       const y = (e.clientY - rect.top) / rect.height - 0.5;
       gsap.to(heroWrapper, {
-        rotateY: x * 10,
-        rotateX: -y * 10,
+        rotateY: x * 8,
+        rotateX: -y * 6,
         transformPerspective: 900,
         duration: 0.3,
         ease: "power1.out"
@@ -926,18 +944,18 @@ function init3DCardTiltPhysics() {
   }
 
   // 核心作品卡片 3D 视差
-  document.querySelectorAll(".featured-card").forEach(card => {
+  document.querySelectorAll(".featured-ref-card").forEach(card => {
     card.addEventListener("mousemove", (e) => {
       const rect = card.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width - 0.5;
       const y = (e.clientY - rect.top) / rect.height - 0.5;
       if (window.gsap) {
         gsap.to(card, {
-          rotateY: x * 6,
-          rotateX: -y * 6,
-          y: -6,
+          rotateY: x * 5,
+          rotateX: -y * 5,
+          y: -5,
           transformPerspective: 1000,
-          boxShadow: `${-x * 12 + 6}px ${-y * 12 + 6}px 0px var(--border-main)`,
+          boxShadow: `${-x * 10 + 6}px ${-y * 10 + 6}px 0px var(--border-main)`,
           duration: 0.25,
           ease: "power1.out"
         });

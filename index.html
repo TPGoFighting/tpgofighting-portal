@@ -9,6 +9,27 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="format-detection" content="telephone=no, email=no, address=no">
+
+  <!-- Open Graph / 社交分享卡片 -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="TP Space">
+  <meta property="og:title" content="TP Space · 唐潘的作品与独立站点">
+  <meta property="og:description" content="唐潘 (Tyler Tang) 的个人站点：AI 工具开发、数据看板与创作记录。TP makes things.">
+  <meta property="og:url" content="https://tpgofighting.top/">
+  <meta property="og:image" content="https://tpgofighting.top/assets/og-cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="zh_CN">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TP Space · 唐潘的作品与独立站点">
+  <meta name="twitter:description" content="唐潘 (Tyler Tang) 的个人站点：AI 工具开发、数据看板与创作记录。TP makes things.">
+  <meta name="twitter:image" content="https://tpgofighting.top/assets/og-cover.jpg">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://tpgofighting.top/">
+
   <link rel="icon" href="assets/logo.jpg">
   <link rel="apple-touch-icon" href="assets/logo.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,16 +48,19 @@
     input, button, select, textarea { -webkit-tap-highlight-color: transparent; }
   </style>
 
-  <link rel="stylesheet" href="style.css?v=20260815_tpspace_s_perfect_36">
+  <link rel="stylesheet" href="style.css?v=20260816_tpspace_redesign_01">
 </head>
 <body data-theme="light">
+  <!-- 无障碍：跳过导航直达主内容 -->
+  <a class="skip-to-content" href="#main-content">跳到主要内容</a>
+
   <!-- 背景方格纸网格、环境光与手绘几何浮动 Canvas (Graph Paper Grid & Interactive Ink Doodle Canvas) -->
   <div class="grid-paper-bg"></div>
   <div class="warm-sun-aura"></div>
   <canvas id="ink-doodle-canvas" class="ink-doodle-canvas"></canvas>
 
   <!-- 主体内容流 -->
-  <main class="page-container">
+  <main class="page-container" id="main-content">
 
     <!-- 右上角极简功能按钮 (深浅主题 & GitHub) -->
     <div class="top-utility-corner">
@@ -323,9 +347,9 @@
       <!-- 分类标签过滤器 -->
       <div class="matrix-filter-bar">
         <div class="category-tabs" id="category-filter-tabs" role="tablist">
-          <button class="cat-tab-btn active" data-cat="all" role="tab">全部 <span class="tab-cnt">(21)</span></button>
+          <button class="cat-tab-btn active" data-cat="all" role="tab">全部 <span class="tab-cnt">(22)</span></button>
           <button class="cat-tab-btn" data-cat="personal" role="tab">个人与学术 <span class="tab-cnt">(5)</span></button>
-          <button class="cat-tab-btn" data-cat="ai-tools" role="tab">AI 工具与平台 <span class="tab-cnt">(6)</span></button>
+          <button class="cat-tab-btn" data-cat="ai-tools" role="tab">AI 工具与平台 <span class="tab-cnt">(7)</span></button>
           <button class="cat-tab-btn" data-cat="analytics" role="tab">数据洞察与大屏 <span class="tab-cnt">(4)</span></button>
           <button class="cat-tab-btn" data-cat="network" role="tab">人才网络与申请 <span class="tab-cnt">(2)</span></button>
           <button class="cat-tab-btn" data-cat="life" role="tab">校园特辑与生活 <span class="tab-cnt">(4)</span></button>
@@ -347,7 +371,7 @@
       </div>
 
       <!-- 空结果提示 -->
-      <div class="empty-matrix-state" id="empty-search-state" style="display:none;">
+      <div class="empty-matrix-state" id="empty-search-state">
         <div class="empty-emoji-box">
           <svg class="svg-icon" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         </div>
@@ -694,7 +718,7 @@
     </div>
 
     <!-- 全栈能力矩阵 -->
-    <div class="section-heading-row" style="margin-bottom: 24px;">
+    <div class="section-heading-row">
       <div class="section-badge-group">
         <span class="section-index">03-A</span>
         <h3 class="section-main-title">全栈工程与 AI 能力矩阵</h3>
@@ -758,7 +782,7 @@
     </div>
 
     <!-- 摄影与生活侧面 -->
-    <div class="section-heading-row" style="margin-bottom: 24px;">
+    <div class="section-heading-row">
       <div class="section-badge-group">
         <span class="section-index">03-B</span>
         <h3 class="section-main-title">生活切面与视觉碎片</h3>
@@ -874,7 +898,7 @@
     </div>
 
     <!-- 长期研究命题 -->
-    <div class="section-heading-row" style="margin-bottom: 24px;">
+    <div class="section-heading-row">
       <div class="section-badge-group">
         <span class="section-index">04-B</span>
         <h3 class="section-main-title">三大长期核心研究命题</h3>
@@ -918,7 +942,7 @@
           <span>查看联系方式</span>
           <svg class="svg-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
         </button>
-        <a href="https://github.com/TPGoFighting" target="_blank" rel="noopener" class="service-btn-mini magnetic-btn" style="padding: 10px 18px; font-size: 0.9rem;">
+        <a href="https://github.com/TPGoFighting" target="_blank" rel="noopener" class="service-btn-mini service-btn-mini--lg magnetic-btn">
           <span>GitHub: @TPGoFighting</span>
         </a>
       </div>
@@ -930,7 +954,7 @@
   <!-- ==========================================================================
        站点详情弹窗 (Project Detail Modal)
        ========================================================================== -->
-  <div class="tpspace-modal-backdrop" id="detail-modal" style="display: none;">
+  <div class="tpspace-modal-backdrop" id="detail-modal">
     <div class="tpspace-modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-site-title">
       <div class="modal-drag-bar"></div>
       <button class="modal-close-x" id="modal-close-btn" aria-label="关闭">
@@ -941,7 +965,7 @@
         <div class="modal-icon-badge" id="modal-icon-badge"></div>
         <div class="modal-title-group">
           <h3 class="modal-site-name" id="modal-site-title">站点标题</h3>
-          <a href="#" id="modal-subdomain-link" class="modal-subdomain-url" target="_blank" rel="noopener">
+          <a href="https://tpgofighting.top" id="modal-subdomain-link" class="modal-subdomain-url" target="_blank" rel="noopener">
             <span>subdomain.tpgofighting.top</span>
             <svg class="svg-icon" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
           </a>
@@ -970,7 +994,7 @@
           <svg class="svg-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
           <span>复制链接</span>
         </button>
-        <a href="#" class="modal-btn-open magnetic-btn" id="modal-open-site-btn" target="_blank" rel="noopener">
+        <a href="https://tpgofighting.top" class="modal-btn-open magnetic-btn" id="modal-open-site-btn" target="_blank" rel="noopener">
           <span>立即前往</span>
           <svg class="svg-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
         </a>
@@ -990,11 +1014,79 @@
         <div class="footer-brand"><strong>TP SPACE<span class="brand-reg">®</span></strong> · 唐潘个人站点</div>
         <p class="footer-copy">© 2026 Tyler Tang (唐潘) · tpgofighting.top · 保留所有权利</p>
       </div>
+
+      <div class="footer-right">
+        <div class="footer-stack-info">
+          <span class="sys-dot"></span>
+          <span>全站 22 个服务 · Cloudflare Tunnels · Nginx</span>
+        </div>
+        <div class="footer-sub-links">
+          <a href="https://github.com/TPGoFighting" target="_blank" rel="noopener">GitHub</a>
+          <span class="dot-sep">·</span>
+          <a href="https://tpself.tpgofighting.top" target="_blank" rel="noopener">个人主页</a>
+          <span class="dot-sep">·</span>
+          <a href="https://ai.tpgofighting.top" target="_blank" rel="noopener">学术主页</a>
+          <span class="dot-sep">·</span>
+          <a href="#" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;" aria-label="回到顶部">返回顶部 ↑</a>
+        </div>
+      </div>
     </div>
   </footer>
 
+  <!-- ==========================================================================
+       移动端悬浮菜单按钮 & 抽屉导航 (Mobile FAB & Drawer Navigation)
+       ========================================================================== -->
+  <button id="mobile-floating-menu-btn" class="mobile-floating-fab" aria-label="打开菜单">
+    <span class="fab-brand">TP</span>
+    <span>菜单</span>
+  </button>
+
+  <div class="mobile-drawer-backdrop" id="mobile-nav-drawer">
+    <div class="mobile-drawer-sheet" role="dialog" aria-modal="true" aria-label="导航菜单">
+      <div class="drawer-header">
+        <div class="drawer-brand">
+          <img src="assets/logo.jpg" alt="" class="brand-logo-img drawer-brand-logo">
+          <strong>TP SPACE</strong>
+        </div>
+        <button id="drawer-close-btn" class="drawer-close-x" aria-label="关闭菜单">×</button>
+      </div>
+
+      <div class="drawer-links-list">
+        <a href="#/products" class="drawer-nav-item active" data-route="products">
+          <span class="nav-num">01</span>
+          <span class="drawer-nav-text">产品</span>
+          <svg class="svg-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"></path></svg>
+        </a>
+        <a href="#/journey" class="drawer-nav-item" data-route="journey">
+          <span class="nav-num">02</span>
+          <span class="drawer-nav-text">经历</span>
+          <svg class="svg-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"></path></svg>
+        </a>
+        <a href="#/about" class="drawer-nav-item" data-route="about">
+          <span class="nav-num">03</span>
+          <span class="drawer-nav-text">关于我</span>
+          <svg class="svg-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"></path></svg>
+        </a>
+        <a href="#/future" class="drawer-nav-item" data-route="future">
+          <span class="nav-num">04</span>
+          <span class="drawer-nav-text">未来</span>
+          <svg class="svg-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"></path></svg>
+        </a>
+      </div>
+
+      <div class="drawer-bottom-actions">
+        <button id="drawer-theme-toggle-btn" class="drawer-theme-btn" type="button">
+          <span id="drawer-theme-label">切换深色模式</span>
+        </button>
+        <button class="drawer-top-btn" type="button" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+          回到顶部 ↑
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- GSAP 物理动画引擎 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="app.js?v=20260814_tpspace_hero_layered_27"></script>
+  <script src="app.js?v=20260816_tpspace_redesign_01"></script>
 </body>
 </html>
