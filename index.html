@@ -48,7 +48,7 @@
     input, button, select, textarea { -webkit-tap-highlight-color: transparent; }
   </style>
 
-  <link rel="stylesheet" href="style.css?v=20260816_tpspace_mobfix_01">
+  <link rel="stylesheet" href="style.css?v=20260816_tpspace_shadowfix_01">
 </head>
 <body data-theme="light">
   <!-- 无障碍：跳过导航直达主内容 -->
@@ -91,7 +91,7 @@
           <!-- 2. 交互式分层角色场景 (Layered Characters: Human Leaning + Green Monster) -->
           <div class="hero-character-scene" id="hero-character-scene">
             <!-- 角色地面接触微阴影 (Grounding Shadow) -->
-            <div class="hero-ground-shadow" aria-hidden="true"></div>
+            <div class="hero-ground-shadow" id="hero-ground-shadow" aria-hidden="true"></div>
 
             <!-- 男生角色 (Human Character - 固定身体 + 颈部Pivot头部 + SVG矢量瞳孔追踪) -->
             <div class="hero-char-human" id="char-human">
@@ -1087,6 +1087,6 @@
 
   <!-- GSAP 物理动画引擎 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="app.js?v=20260816_tpspace_mobfix_01"></script>
+  <script src="app.js?v=20260816_tpspace_shadowfix_01"></script>
 </body>
 </html>

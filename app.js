@@ -921,32 +921,6 @@ function init3DCardTiltPhysics() {
   // 拖动调试模式跳过 3D tilt，避免干扰拖拽
   if (new URLSearchParams(window.location.search).get("dragHero") === "true") return;
 
-  // Hero 插画 3D 悬浮视差
-  const heroWrapper = document.getElementById("hero-character-scene");
-  if (heroWrapper && window.gsap) {
-    heroWrapper.addEventListener("mousemove", (e) => {
-      const rect = heroWrapper.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-      gsap.to(heroWrapper, {
-        rotateY: x * 8,
-        rotateX: -y * 6,
-        transformPerspective: 900,
-        duration: 0.3,
-        ease: "power1.out"
-      });
-    });
-
-    heroWrapper.addEventListener("mouseleave", () => {
-      gsap.to(heroWrapper, {
-        rotateY: 0,
-        rotateX: 0,
-        duration: 0.6,
-        ease: "elastic.out(1, 0.4)"
-      });
-    });
-  }
-
   // 核心作品卡片 3D 视差
   document.querySelectorAll(".featured-ref-card").forEach(card => {
     card.addEventListener("mousemove", (e) => {
@@ -1359,6 +1333,7 @@ function initHeroDragMode() {
 
   const human = document.getElementById("char-human");
   const monster = document.getElementById("char-monster");
+  const shadow = document.getElementById("hero-ground-shadow");
   if (!human || !monster) return;
 
   // 显示拖拽提示 HUD
@@ -1383,6 +1358,14 @@ function initHeroDragMode() {
     el.style.userSelect = "none";
     el.style.touchAction = "none";
     el.style.zIndex = "20"; // 拖拽时置顶
+    el.style.pointerEvents = "auto"; // 阴影默认 pointer-events:none，拖拽模式下可点
+
+    // 阴影元素拖拽模式临时高亮，方便看到和抓取
+    if (el.id === "hero-ground-shadow") {
+      el.style.outline = "2px dashed rgba(255, 100, 100, 0.7)";
+      el.style.outlineOffset = "2px";
+      el.style.height = "18px";
+    }
 
     el.addEventListener("pointerdown", (e) => {
       dragging = true;
@@ -1421,11 +1404,19 @@ function initHeroDragMode() {
     const humanBottom = Math.round(parseFloat(getComputedStyle(human).bottom) || 0);
     const monsterLeft = Math.round(parseFloat(getComputedStyle(monster).left) || 0);
     const monsterBottom = Math.round(parseFloat(getComputedStyle(monster).bottom) || 0);
-    hud.textContent = `🎯 拖拽调试模式\n\n人物和小怪物可分开拖动\n拖拽方向 = 鼠标方向\n\n👤 人物：\nleft: ${humanLeft}px\nbottom: ${humanBottom}px\n\n👾 小怪物：\nleft: ${monsterLeft}px\nbottom: ${monsterBottom}px\n\n拖好后把这 4 个数字告诉小鱼`;
+    const shadowLeft = shadow ? Math.round(parseFloat(getComputedStyle(shadow).left) || 0) : null;
+    const shadowBottom = shadow ? Math.round(parseFloat(getComputedStyle(shadow).bottom) || 0) : null;
+    let text = `🎯 拖拽调试模式\n\n人物 / 小怪物 / 地面阴影可分开拖动\n拖拽方向 = 鼠标方向\n\n👤 人物：\nleft: ${humanLeft}px\nbottom: ${humanBottom}px\n\n👾 小怪物：\nleft: ${monsterLeft}px\nbottom: ${monsterBottom}px`;
+    if (shadow) {
+      text += `\n\n🌑 地面阴影：\nleft: ${shadowLeft}px\nbottom: ${shadowBottom}px`;
+    }
+    text += `\n\n拖好后把这 6 个数字告诉小鱼`;
+    hud.textContent = text;
   }
 
   makeDraggable(human, "人物");
   makeDraggable(monster, "小怪物");
+  if (shadow) makeDraggable(shadow, "地面阴影");
 
   updateHud();
   console.log("[Hero Drag Mode] 激活：人物/怪物可单独拖拽，拖好后把 left/bottom 数值告诉小鱼");

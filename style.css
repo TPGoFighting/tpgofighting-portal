@@ -389,24 +389,24 @@ input {
 /* 角色地面接触微阴影 (Grounding Shadow) */
 .hero-ground-shadow {
   position: absolute;
-  bottom: 0px;
-  left: 20px;
+  bottom: -71px;
+  left: 104px;
   width: 275px;
-  height: 12px;
-  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.05) 55%, transparent 75%);
+  height: 14px;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.24) 0%, rgba(0, 0, 0, 0.08) 55%, transparent 78%);
   border-radius: 50%;
   pointer-events: none;
   z-index: 1;
 }
 
 [data-theme="dark"] .hero-ground-shadow {
-  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 55%, transparent 75%);
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.05) 55%, transparent 78%);
 }
 
 /* 男生角色 (Human Character: 1024x1536, ratio 1:1.5) */
 .hero-char-human {
   position: absolute;
-  left: 41px;
+  left: 31px;
   bottom: -78px;
   width: 245px;
   height: 367px;
@@ -517,6 +517,10 @@ input {
     left: 165px;
     bottom: 0;
   }
+  .hero-ground-shadow {
+    bottom: 0;
+    left: 20px;
+  }
 }
 
 /* 移动端适配 */
@@ -553,6 +557,10 @@ input {
     height: 88px;
     left: 168px;
     bottom: 12px;
+  }
+  .hero-ground-shadow {
+    bottom: 0;
+    left: 12px;
   }
 }
 
