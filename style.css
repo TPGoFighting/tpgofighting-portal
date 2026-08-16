@@ -375,7 +375,7 @@ input {
   height: 367px;
   flex-shrink: 0;
   z-index: 3;
-  margin-left: -115px; /* 让人物的手臂与手肘精准平搭在 makes 的 S 字母上 */
+  margin-left: -125px; /* 让人物的手臂与手肘精准平搭在 makes 的 S 字母上 */
   pointer-events: auto;
 }
 
@@ -399,8 +399,8 @@ input {
 /* 男生角色 (Human Character: 1024x1536, ratio 1:1.5) */
 .hero-char-human {
   position: absolute;
-  left: 0;
-  bottom: 0;
+  left: 41px;
+  bottom: -78px;
   width: 245px;
   height: 367px;
   z-index: 4;
@@ -409,8 +409,8 @@ input {
 /* 绿色蠢萌小怪物 (Green Monster: 1254x1254, ratio 1:1) */
 .hero-char-monster {
   position: absolute;
-  left: 175px;
-  bottom: 0;
+  left: 225px;
+  bottom: -75px;
   width: 130px;
   height: 130px;
   z-index: 5;
@@ -496,7 +496,7 @@ input {
   .hero-character-scene {
     width: 310px;
     height: 370px;
-    margin-left: -40px;
+    margin-left: -50px;
   }
   .hero-char-human {
     width: 230px;

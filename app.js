@@ -893,6 +893,8 @@ function initInkDoodleCanvas() {
 // ==========================================================================
 function initScrollTriggerAnimations() {
   if (!window.gsap) return;
+  // 拖动调试模式跳过进场动画，避免 transform 干扰拖拽
+  if (new URLSearchParams(window.location.search).get("dragHero") === "true") return;
 
   // Hero 进场动画（首屏即时播放）
   const heroTL = gsap.timeline({ defaults: { ease: "power3.out" } });
@@ -916,6 +918,8 @@ function initScrollTriggerAnimations() {
 // ==========================================================================
 function init3DCardTiltPhysics() {
   if (window.innerWidth <= 768) return; // 移动端避免陀螺仪冲突
+  // 拖动调试模式跳过 3D tilt，避免干扰拖拽
+  if (new URLSearchParams(window.location.search).get("dragHero") === "true") return;
 
   // Hero 插画 3D 悬浮视差
   const heroWrapper = document.getElementById("hero-character-scene");
@@ -1346,12 +1350,94 @@ function initHeroEyeTracking() {
   window._heroInteractiveScene = scene;
 }
 
+// ==========================================================================
+// 6. Hero 拖动调试模式 (?dragHero=true)：人/怪物各自拖拽定位
+// ==========================================================================
+function initHeroDragMode() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("dragHero") !== "true") return;
+
+  const human = document.getElementById("char-human");
+  const monster = document.getElementById("char-monster");
+  if (!human || !monster) return;
+
+  // 显示拖拽提示 HUD
+  const hud = document.createElement("div");
+  hud.className = "character-debug-hud";
+  hud.style.left = "16px";
+  hud.style.right = "auto";
+  hud.style.bottom = "16px";
+  hud.style.zIndex = "10000";
+  hud.style.width = "340px";
+  hud.style.whiteSpace = "pre-line";
+  hud.style.pointerEvents = "none";
+  document.body.appendChild(hud);
+
+  // 拖拽状态管理（每个角色独立）
+  function makeDraggable(el, label) {
+    let dragging = false;
+    let startX = 0, startY = 0;
+    let origLeft = 0, origBottom = 0;
+
+    el.style.cursor = "grab";
+    el.style.userSelect = "none";
+    el.style.touchAction = "none";
+    el.style.zIndex = "20"; // 拖拽时置顶
+
+    el.addEventListener("pointerdown", (e) => {
+      dragging = true;
+      startX = e.clientX;
+      startY = e.clientY;
+      const cs = getComputedStyle(el);
+      origLeft = parseFloat(cs.left) || 0;
+      origBottom = parseFloat(cs.bottom) || 0;
+      el.style.cursor = "grabbing";
+      el.setPointerCapture(e.pointerId);
+      e.preventDefault();
+      e.stopPropagation();
+    });
+
+    el.addEventListener("pointermove", (e) => {
+      if (!dragging) return;
+      const dx = e.clientX - startX;
+      const dy = e.clientY - startY;
+      // 方向与鼠标一致：右移 → left 增大；下移 → bottom 减小
+      el.style.left = `${Math.round(origLeft + dx)}px`;
+      el.style.bottom = `${Math.round(origBottom - dy)}px`;
+      updateHud();
+    });
+
+    const stop = (e) => {
+      if (!dragging) return;
+      dragging = false;
+      el.style.cursor = "grab";
+    };
+    el.addEventListener("pointerup", stop);
+    el.addEventListener("pointercancel", stop);
+  }
+
+  function updateHud() {
+    const humanLeft = Math.round(parseFloat(getComputedStyle(human).left) || 0);
+    const humanBottom = Math.round(parseFloat(getComputedStyle(human).bottom) || 0);
+    const monsterLeft = Math.round(parseFloat(getComputedStyle(monster).left) || 0);
+    const monsterBottom = Math.round(parseFloat(getComputedStyle(monster).bottom) || 0);
+    hud.textContent = `🎯 拖拽调试模式\n\n人物和小怪物可分开拖动\n拖拽方向 = 鼠标方向\n\n👤 人物：\nleft: ${humanLeft}px\nbottom: ${humanBottom}px\n\n👾 小怪物：\nleft: ${monsterLeft}px\nbottom: ${monsterBottom}px\n\n拖好后把这 4 个数字告诉小鱼`;
+  }
+
+  makeDraggable(human, "人物");
+  makeDraggable(monster, "小怪物");
+
+  updateHud();
+  console.log("[Hero Drag Mode] 激活：人物/怪物可单独拖拽，拖好后把 left/bottom 数值告诉小鱼");
+}
+
 function initAnimations() {
   initInkDoodleCanvas();
   initScrollTriggerAnimations();
   init3DCardTiltPhysics();
   initMagneticButtons();
   initHeroEyeTracking();
+  initHeroDragMode();
 }
 
 // 可靠启动应用
