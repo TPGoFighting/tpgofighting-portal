@@ -918,6 +918,9 @@ function initScrollTriggerAnimations() {
 // ==========================================================================
 function init3DCardTiltPhysics() {
   if (window.innerWidth <= 768) return; // 移动端避免陀螺仪冲突
+  // 防重复绑定：只允许初始化一次，避免路由切换等场景重复 addEventListener
+  if (document.body.dataset.tiltBound === "1") return;
+  document.body.dataset.tiltBound = "1";
   // 拖动调试模式跳过 3D tilt，避免干扰拖拽
   if (new URLSearchParams(window.location.search).get("dragHero") === "true") return;
 
@@ -1013,18 +1016,14 @@ function switchRoute(routeId) {
     item.classList.toggle("active", item.dataset.route === routeId);
   });
 
-  // 3. 更新 Hash 路由
-  if (location.hash !== `#/${routeId}`) {
-    history.pushState(null, "", `#/${routeId}`);
+  // 3. 更新 Hash 路由（replaceState 避免历史记录堆积，后退不会逐条回退 Tab）
+  const targetHash = `#/${routeId}`;
+  if (location.hash !== targetHash) {
+    history.replaceState(null, "", targetHash);
   }
 
   // 4. 滚动到页面顶部
   window.scrollTo({ top: 0, behavior: "instant" });
-
-  // 5. 触发新视图微动效
-  if (window.innerWidth > 768) {
-    init3DCardTiltPhysics();
-  }
 }
 window.switchRoute = switchRoute;
 

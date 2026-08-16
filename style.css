@@ -568,6 +568,15 @@ input {
    巨幅横向 Tab 导航栏 (Giant Bold Tabs with Yellow Highlight Bar)
    ========================================================================== */
 
+/* 多路由 SPA 视图容器：默认隐藏，仅 active 路由显示 */
+.route-view {
+  display: none;
+}
+
+.route-view.active {
+  display: block;
+}
+
 .giant-tabs-bar {
   display: flex;
   align-items: center;
