@@ -37,18 +37,18 @@ const ICONS = {
 const SERVICES = [
   // 1. 个人与学术 (5)
   {
-    id: "tpos",
-    name: "TP OS · 个人上下文系统",
-    subdomain: "tpos.tpgofighting.top",
-    url: "https://tpos.tpgofighting.top",
-    category: "personal",
-    categoryName: "个人与学术",
-    iconKey: "brain",
-    desc: "按时间线汇总个人生活与工作数据，为个人 AI 提供长期的背景上下文记忆。",
-    tags: ["AI上下文", "时间线", "个人数据"],
-    tech: "HTML5 / CSS3 / Nginx",
+    id: "tprompts",
+    name: "TPrompts · 提示词模板库",
+    subdomain: "prompts.tpgofighting.top",
+    url: "https://prompts.tpgofighting.top/",
+    category: "ai-tools",
+    categoryName: "AI 工具与平台",
+    iconKey: "spark",
+    desc: "精选 AI 提示词与 Prompt 模板库，涵盖角色设定、工作流自动化、代码生成与创意写作。",
+    tags: ["提示词", "Prompt工程", "模板库", "AI工具"],
+    tech: "HTML5 / CSS3 / JavaScript",
     port: "80 / 443",
-    path: "/var/www/tpos"
+    path: "/var/www/tprompts"
   },
   {
     id: "tpself",
