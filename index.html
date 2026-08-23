@@ -4,7 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
   <title>TP Space · 唐潘的作品与独立站点</title>
-  <meta name="description" content="TP Space - 唐潘 (Tyler Tang) 的个人站点、AI 工具开发、数据看板与创作记录。">
+  <meta name="description" content="TP Space 是唐潘（Tyler Tang）的个人作品集与独立开发者门户，汇集 AI 工具、Prompt 工程、视频学习、数据可视化、学术研究与开源项目。">
+  <meta name="author" content="唐潘（Tyler Tang）">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <meta name="Baiduspider" content="index,follow">
+  <meta name="Bingbot" content="index,follow">
   <meta name="theme-color" content="#fbfaf6" id="theme-color-meta">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -14,7 +19,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="TP Space">
   <meta property="og:title" content="TP Space · 唐潘的作品与独立站点">
-  <meta property="og:description" content="唐潘 (Tyler Tang) 的个人站点：AI 工具开发、数据看板与创作记录。TP makes things.">
+  <meta property="og:description" content="唐潘 (Tyler Tang) 的个人作品集与独立开发者门户：AI 工具、Prompt 工程、视频学习、数据可视化、学术研究与开源项目。">
   <meta property="og:url" content="https://tpgofighting.top/">
   <meta property="og:image" content="https://tpgofighting.top/assets/og-cover.jpg">
   <meta property="og:image:width" content="1200">
@@ -24,11 +29,64 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="TP Space · 唐潘的作品与独立站点">
-  <meta name="twitter:description" content="唐潘 (Tyler Tang) 的个人站点：AI 工具开发、数据看板与创作记录。TP makes things.">
+  <meta name="twitter:description" content="唐潘 (Tyler Tang) 的个人作品集与独立开发者门户：AI 工具、Prompt 工程、视频学习、数据可视化、学术研究与开源项目。">
   <meta name="twitter:image" content="https://tpgofighting.top/assets/og-cover.jpg">
 
   <!-- Canonical -->
   <link rel="canonical" href="https://tpgofighting.top/">
+  <link rel="alternate" hreflang="zh-CN" href="https://tpgofighting.top/">
+  <link rel="alternate" hreflang="x-default" href="https://tpgofighting.top/">
+  <link rel="alternate" type="text/plain" title="LLM-friendly site summary" href="https://tpgofighting.top/llms.txt">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://tpgofighting.top/sitemap.xml">
+
+  <!-- 机器可读实体信息：供搜索引擎与 AI 搜索建立站点、作者与项目之间的关系。 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://tpgofighting.top/#website",
+        "url": "https://tpgofighting.top/",
+        "name": "TP Space",
+        "description": "唐潘（Tyler Tang）的个人作品集与独立开发者门户。",
+        "inLanguage": "zh-CN",
+        "publisher": {"@id": "https://tpgofighting.top/#person"}
+      },
+      {
+        "@type": "Person",
+        "@id": "https://tpgofighting.top/#person",
+        "name": "唐潘",
+        "alternateName": "Tyler Tang",
+        "url": "https://tpgofighting.top/",
+        "image": "https://tpgofighting.top/assets/avatar.jpg",
+        "jobTitle": "全栈开发者、AI 产品探索者、独立开发者",
+        "sameAs": [
+          "https://github.com/TPGoFighting",
+          "https://tpself.tpgofighting.top",
+          "https://ai.tpgofighting.top",
+          "https://prompts.tpgofighting.top/"
+        ],
+        "knowsAbout": ["AI Agent", "Prompt Engineering", "数据可视化", "全栈开发", "个人知识系统"]
+      },
+      {
+        "@type": "ItemList",
+        "@id": "https://tpgofighting.top/#featured-projects",
+        "name": "TP Space 核心作品与 AI 工具",
+        "itemListOrder": "https://schema.org/ItemListOrderAscending",
+        "numberOfItems": 6,
+        "itemListElement": [
+          {"@type":"ListItem","position":1,"item":{"@type":"WebApplication","name":"TPrompts · AI 提示词模板库","url":"https://prompts.tpgofighting.top/","description":"精选 AI 提示词与 Prompt 模板，覆盖角色设定、工作流自动化、代码生成与创意写作。"}},
+          {"@type":"ListItem","position":2,"item":{"@type":"WebApplication","name":"Teach Player · 视频双语精读","url":"https://teachplayer.tpgofighting.top","description":"输入视频链接，提取对齐双语字幕并生成分段结构化笔记与答疑。"}},
+          {"@type":"ListItem","position":3,"item":{"@type":"WebApplication","name":"TPaper · AI 试卷转换","url":"https://tpaper.tpgofighting.top","description":"把 PDF 或 Word 试卷转换为可在线作答与即时评分的交互题库。"}},
+          {"@type":"ListItem","position":4,"item":{"@type":"WebApplication","name":"TPbili · B站画像与舆情分析","url":"https://tpbili.tpgofighting.top","description":"基于 B 站 UID 或 BV 号生成像素画像并分析高频讨论词与情感趋势。"}},
+          {"@type":"ListItem","position":5,"item":{"@type":"WebApplication","name":"CyberPulse · 实时数据脉动看板","url":"https://wx.tpgofighting.top","description":"聚合服务器负载、访问热度与 GitHub 提交动态的数据可视化看板。"}},
+          {"@type":"ListItem","position":6,"item":{"@type":"WebSite","name":"TPVibe · 沉浸式编程实操指南","url":"https://tphub.tpgofighting.top/tpvibe/","description":"面向 Vibe Coding 的 AI 编程教程、工具箱与实操内容。"}}
+        ]
+      }
+    ]
+  }
+  </script>
 
   <link rel="icon" href="assets/logo.jpg">
   <link rel="apple-touch-icon" href="assets/logo.jpg">
@@ -45,6 +103,10 @@
     .brand-logo-img { width: 34px !important; height: 34px !important; object-fit: cover !important; border-radius: 8px; }
     .featured-visual-box { background: #ffffff !important; }
     .featured-ill-img { background: #ffffff !important; width: 100% !important; height: 250px !important; object-fit: contain !important; }
+    .seo-summary { max-width: 860px; margin: 0 auto 48px; padding: 22px 24px; border: 1px solid rgba(20, 22, 27, .14); border-left: 4px solid #d9ef7f; border-radius: 16px; background: rgba(255,255,255,.58); }
+    .seo-summary h2 { margin: 0 0 8px; font-size: clamp(20px, 2.4vw, 28px); letter-spacing: -.03em; }
+    .seo-summary p { margin: 0; color: #4f535b; line-height: 1.8; }
+    .seo-summary a { color: inherit; font-weight: 700; text-decoration-thickness: 2px; text-underline-offset: 3px; }
     input, button, select, textarea { -webkit-tap-highlight-color: transparent; }
     .route-view { display: none; }
     .route-view.active { display: block; }
@@ -198,6 +260,11 @@
 
     <!-- 视图内容容器 (Views Container) -->
     <div class="route-view active" id="view-products">
+
+    <section class="seo-summary" id="site-summary" aria-labelledby="site-summary-title">
+      <h2 id="site-summary-title">TP Space：唐潘的 AI 工具与独立开发作品集</h2>
+      <p>TP Space 是唐潘（Tyler Tang）的个人作品集与项目门户，集中展示 AI Agent、Prompt 工程、视频学习、数据可视化、学术研究和开源实践。你可以从这里进入 <a href="https://prompts.tpgofighting.top/">TPrompts 提示词模板库</a>、<a href="https://teachplayer.tpgofighting.top">Teach Player 视频双语精读</a>、<a href="https://tpaper.tpgofighting.top">TPaper AI 试卷转换</a> 与其他公开项目。</p>
+    </section>
 
     <!-- ==========================================================================
          Section 01 · 核心作品精选 (Featured Products with Illustrations)

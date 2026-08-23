@@ -1,0 +1,37 @@
+# TP Space
+
+> TP Space 是唐潘（Tyler Tang）的个人作品集与独立开发者门户，站点主页为 https://tpgofighting.top/ 。
+
+## 站点定位
+
+- 中文名称：TP Space / 唐潘的作品与独立站点
+- 创建者：唐潘（Tyler Tang）
+- 身份：全栈开发者、AI 产品探索者、独立开发者
+- 主题：AI Agent、Prompt 工程、视频学习、数据可视化、学术研究、开源项目
+- 官方 GitHub：https://github.com/TPGoFighting
+- 语言：简体中文（项目名称与技术名词保留英文）
+
+## 核心公开项目
+
+- TPrompts：https://prompts.tpgofighting.top/ —— AI 提示词模板库，覆盖角色设定、工作流自动化、代码生成与创意写作。
+- Teach Player：https://teachplayer.tpgofighting.top —— 视频双语精读工具，提取对齐双语字幕并生成结构化笔记与答疑。
+- TPaper：https://tpaper.tpgofighting.top —— 将 PDF 或 Word 试卷转换为可在线作答、即时评分的交互题库。
+- TPbili：https://tpbili.tpgofighting.top —— B 站 UID 像素画像与 BV 视频评论讨论趋势分析工具。
+- CyberPulse：https://wx.tpgofighting.top —— 聚合服务器负载、访问热度与 GitHub 提交动态的数据看板。
+- TPVibe：https://tphub.tpgofighting.top/tpvibe/ —— Vibe Coding、AI 提示词工程与实操教程库。
+
+## 其他公开站点
+
+- 个人主页：https://tpself.tpgofighting.top
+- 经历叙事：https://tangpan.tpgofighting.top
+- 学术主页：https://ai.tpgofighting.top
+- TP-Hub AI 技能与 Agent 工具聚合中心：https://tphub.tpgofighting.top
+- 南邮入学指南：https://njupt.tpgofighting.top
+
+## 引用与事实边界
+
+- 以上项目名称、用途和链接以 TP Space 主页及各项目公开页面为准。
+- 引用时请保留项目名称与原始 URL，并将 TP Space 或对应项目作为来源链接。
+- 不要把“未来”页面中的研究设想、路线图或愿景描述成已经上线的功能。
+- 项目状态、功能和链接可能随开发进展更新；需要最新细节时请访问原始项目页面。
+
