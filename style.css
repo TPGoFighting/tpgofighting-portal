@@ -693,6 +693,7 @@ input {
 }
 
 .ref-visual-col {
+  position: relative;
   width: 100%;
   aspect-ratio: 16 / 10;
   max-height: 260px;
@@ -713,6 +714,158 @@ input {
   object-fit: contain;
   background: #ffffff;
   display: block;
+}
+
+/* TPrompts Pilot：让插画内部的输入关系承担主动画，卡片倾斜只做轻反馈 */
+.motion-pilot-card {
+  --pilot-progress: 0;
+  --pilot-flow-opacity: 0;
+  --pilot-focus-system-opacity: 0;
+  --pilot-focus-user-opacity: 0;
+  --pilot-focus-output-opacity: 0;
+  --pilot-cursor-opacity: 0;
+  --pilot-spark-opacity: 0;
+  --pilot-flow-offset: 1;
+  --pilot-drift-x: 0px;
+  --pilot-drift-y: 0px;
+  --pilot-scale: 1;
+}
+
+.motion-pilot-stage {
+  isolation: isolate;
+  touch-action: manipulation;
+}
+
+.motion-pilot-stage .ref-visual-img {
+  transform: translate3d(var(--pilot-drift-x), var(--pilot-drift-y), 0) scale(var(--pilot-scale));
+  transform-origin: center;
+  transition: filter 0.35s ease;
+  will-change: transform;
+}
+
+.motion-pilot-stage[data-motion-state="linking"] .ref-visual-img,
+.motion-pilot-stage[data-motion-state="prompt-ready"] .ref-visual-img {
+  filter: saturate(1.04) contrast(1.01);
+}
+
+.tprompts-motion-overlay {
+  position: absolute;
+  inset: 6px;
+  z-index: 2;
+  width: calc(100% - 12px);
+  height: calc(100% - 12px);
+  overflow: visible;
+  pointer-events: none;
+}
+
+.tprompts-motion-overlay path,
+.tprompts-motion-overlay rect,
+.tprompts-motion-overlay circle {
+  vector-effect: non-scaling-stroke;
+}
+
+.tprompts-flow-path,
+.tprompts-flow-arrow,
+.tprompts-focus,
+.tprompts-cursor-dot,
+.tprompts-output-spark {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.tprompts-flow-path {
+  stroke: var(--accent-blue);
+  stroke-width: 4;
+  stroke-dasharray: 0.055 0.035;
+  stroke-dashoffset: var(--pilot-flow-offset);
+  opacity: var(--pilot-flow-opacity);
+}
+
+.tprompts-flow-arrow {
+  stroke: var(--accent-blue);
+  stroke-width: 4;
+  opacity: var(--pilot-flow-opacity);
+}
+
+.tprompts-focus {
+  stroke-width: 3;
+  stroke-dasharray: 7 7;
+  stroke-dashoffset: calc(var(--pilot-progress) * -24px);
+}
+
+.tprompts-focus-system {
+  stroke: var(--accent-yellow);
+  fill: rgba(245, 158, 11, 0.08);
+  opacity: var(--pilot-focus-system-opacity);
+}
+
+.tprompts-focus-user {
+  stroke: var(--accent-blue);
+  fill: rgba(37, 99, 235, 0.07);
+  opacity: var(--pilot-focus-user-opacity);
+}
+
+.tprompts-focus-output {
+  stroke: var(--accent-green);
+  fill: rgba(16, 185, 129, 0.07);
+  opacity: var(--pilot-focus-output-opacity);
+}
+
+.tprompts-cursor-dot {
+  fill: var(--accent-blue);
+  stroke: var(--bg-card);
+  stroke-width: 5;
+  opacity: var(--pilot-cursor-opacity);
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(calc(0.75 + var(--pilot-cursor-opacity) * 0.35));
+}
+
+.tprompts-output-spark {
+  stroke: var(--accent-yellow);
+  stroke-width: 4;
+  stroke-dasharray: 0.12 0.88;
+  stroke-dashoffset: calc(1 - var(--pilot-progress));
+  opacity: var(--pilot-spark-opacity);
+}
+
+.motion-pilot-trigger {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  z-index: 3;
+  padding: 5px 9px;
+  border: 1.5px solid var(--border-main);
+  border-radius: 999px;
+  background: var(--bg-card);
+  color: var(--text-title);
+  box-shadow: 2px 2px 0 var(--border-main);
+  font: inherit;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: opacity 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.motion-pilot-stage:hover .motion-pilot-trigger,
+.motion-pilot-stage:focus-within .motion-pilot-trigger,
+.motion-pilot-stage[data-motion-state="prompt-ready"] .motion-pilot-trigger {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.motion-pilot-trigger:hover,
+.motion-pilot-trigger:focus-visible {
+  background: var(--accent-yellow-light);
+}
+
+.motion-pilot-trigger:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
 }
 
 .ref-info-col {
@@ -797,6 +950,11 @@ input {
   }
   .ref-card-watermark {
     display: none;
+  }
+
+  .motion-pilot-trigger {
+    opacity: 1;
+    transform: none;
   }
 }
 
@@ -2766,4 +2924,3 @@ input {
   gap: 16px;
   flex-wrap: wrap;
 }
-

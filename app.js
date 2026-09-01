@@ -916,6 +916,162 @@ function initScrollTriggerAnimations() {
 // ==========================================================================
 // 3. 卡片与插画 3D 鼠标悬停视差倾斜 (3D Cursor Tilt Parallax)
 // ==========================================================================
+// ============================================================================
+// TPrompts Pilot：分段播放的输入关系演示
+// 时间和状态只来自 build/timeline.json；这里负责输入、反向和 SVG 层渲染
+// ============================================================================
+function initTpromptsMotionPilot() {
+  const stage = document.querySelector('[data-motion-stage="tprompts"]');
+  const trigger = stage?.querySelector(".motion-pilot-trigger");
+  if (!stage || !trigger) return;
+
+  const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let timeline = null;
+  let progress = 0;
+  let targetProgress = 0;
+  let pointerX = 0;
+  let pointerY = 0;
+  let rafId = 0;
+  let lastTime = 0;
+  let dirty = true;
+  let pinned = false;
+
+  const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+
+  const validateTimeline = (candidate) => {
+    if (!candidate || !Array.isArray(candidate.states) || !Array.isArray(candidate.segments)) {
+      throw new Error("TPrompts timeline 缺少 states 或 segments");
+    }
+    if (candidate.states.length !== candidate.segments.length + 1) {
+      throw new Error("TPrompts timeline states 与 segments 数量不匹配");
+    }
+    const ids = candidate.states.map((state) => state.id);
+    if (!ids.length || new Set(ids).size !== ids.length || ids.some((id) => !id)) {
+      throw new Error("TPrompts timeline state id 必须唯一且非空");
+    }
+    candidate.segments.forEach((segment, index) => {
+      if (!(segment.start <= segment.hold && segment.hold < segment.endExclusive)) {
+        throw new Error(`TPrompts timeline segment ${index} 时间边界无效`);
+      }
+      if (segment.from !== ids[index] || segment.to !== ids[index + 1]) {
+        throw new Error(`TPrompts timeline segment ${index} 状态顺序无效`);
+      }
+    });
+    return candidate;
+  };
+
+  const setProgressStyles = () => {
+    if (!timeline) return;
+    const p = clamp(progress, 0, 1);
+    const flowOpacity = clamp((p - 0.04) / 0.28, 0, 1);
+    const systemOpacity = clamp((p - 0.02) / 0.18, 0, 1) * (1 - clamp((p - 0.58) / 0.28, 0, 1));
+    const userOpacity = clamp((p - 0.18) / 0.26, 0, 1) * (1 - clamp((p - 0.78) / 0.18, 0, 1));
+    const outputOpacity = clamp((p - 0.56) / 0.3, 0, 1);
+    const cursorOpacity = clamp((p - 0.67) / 0.18, 0, 1);
+    const sparkOpacity = clamp((p - 0.84) / 0.1, 0, 1) * (1 - clamp((p - 0.96) / 0.04, 0, 1));
+    const stateTime = p * timeline.states[timeline.states.length - 1].hold;
+    let stateIndex = 0;
+    timeline.states.forEach((state, index) => {
+      if (stateTime >= state.hold) stateIndex = index;
+    });
+    const activeState = timeline.states[stateIndex].id;
+    const driftScale = reducedMotionQuery.matches ? 0 : 1;
+
+    stage.dataset.motionState = activeState;
+    stage.style.setProperty("--pilot-progress", p.toFixed(4));
+    stage.style.setProperty("--pilot-flow-opacity", flowOpacity.toFixed(3));
+    stage.style.setProperty("--pilot-focus-system-opacity", systemOpacity.toFixed(3));
+    stage.style.setProperty("--pilot-focus-user-opacity", userOpacity.toFixed(3));
+    stage.style.setProperty("--pilot-focus-output-opacity", outputOpacity.toFixed(3));
+    stage.style.setProperty("--pilot-cursor-opacity", cursorOpacity.toFixed(3));
+    stage.style.setProperty("--pilot-spark-opacity", sparkOpacity.toFixed(3));
+    stage.style.setProperty("--pilot-flow-offset", (1 - p).toFixed(4));
+    stage.style.setProperty("--pilot-drift-x", `${(pointerX * 4 * driftScale).toFixed(2)}px`);
+    stage.style.setProperty("--pilot-drift-y", `${(pointerY * 3 * driftScale).toFixed(2)}px`);
+    stage.style.setProperty("--pilot-scale", (1 + p * 0.008 * driftScale).toFixed(4));
+    trigger.setAttribute("aria-pressed", p > 0.5 ? "true" : "false");
+  };
+
+  const renderLoop = (now) => {
+    rafId = 0;
+    if (!timeline) return;
+    const delta = lastTime ? Math.min((now - lastTime) / 1000, 1 / 30) : 1 / 60;
+    lastTime = now;
+    const totalDuration = timeline.states[timeline.states.length - 1].hold;
+    if (!reducedMotionQuery.matches && Math.abs(targetProgress - progress) > 0.0001) {
+      const direction = targetProgress > progress ? 1 : -1;
+      progress = clamp(progress + direction * delta / Math.max(0.001, totalDuration), 0, 1);
+      if ((direction > 0 && progress >= targetProgress) || (direction < 0 && progress <= targetProgress)) {
+        progress = targetProgress;
+      }
+      dirty = true;
+    }
+    if (dirty || reducedMotionQuery.matches) {
+      setProgressStyles();
+      dirty = false;
+    }
+    if (Math.abs(targetProgress - progress) > 0.0001 || dirty) {
+      rafId = requestAnimationFrame(renderLoop);
+    }
+  };
+
+  const schedule = () => {
+    if (!rafId) rafId = requestAnimationFrame(renderLoop);
+  };
+
+  const setActive = (active) => {
+    targetProgress = active && !reducedMotionQuery.matches ? 1 : 0;
+    if (reducedMotionQuery.matches) progress = 0;
+    dirty = true;
+    schedule();
+  };
+
+  const syncHoverState = () => {
+    if (!pinned && !stage.matches(":hover") && document.activeElement !== trigger) setActive(false);
+  };
+
+  stage.addEventListener("pointerenter", () => setActive(true));
+  stage.addEventListener("pointerleave", syncHoverState);
+  stage.addEventListener("pointermove", (event) => {
+    const rect = stage.getBoundingClientRect();
+    pointerX = clamp((event.clientX - rect.left) / rect.width - 0.5, -0.5, 0.5);
+    pointerY = clamp((event.clientY - rect.top) / rect.height - 0.5, -0.5, 0.5);
+    dirty = true;
+    schedule();
+  });
+  stage.addEventListener("focusin", () => setActive(true));
+  stage.addEventListener("focusout", (event) => {
+    if (!stage.contains(event.relatedTarget)) syncHoverState();
+  });
+  trigger.addEventListener("click", () => {
+    pinned = !pinned;
+    setActive(pinned);
+  });
+  reducedMotionQuery.addEventListener("change", () => {
+    progress = 0;
+    targetProgress = 0;
+    dirty = true;
+    schedule();
+  });
+
+  fetch("build/timeline.json", { credentials: "same-origin" })
+    .then((response) => {
+      if (!response.ok) throw new Error(`timeline HTTP ${response.status}`);
+      return response.json();
+    })
+    .then((loadedTimeline) => {
+      timeline = validateTimeline(loadedTimeline);
+      stage.dataset.motionReady = "true";
+      setProgressStyles();
+      schedule();
+    })
+    .catch((error) => {
+      trigger.disabled = true;
+      stage.dataset.motionReady = "false";
+      console.warn("[TPrompts Pilot] timeline 加载失败，保持静态降级：", error);
+    });
+}
+
 function init3DCardTiltPhysics() {
   if (window.innerWidth <= 768) return; // 移动端避免陀螺仪冲突
   // 防重复绑定：只允许初始化一次，避免路由切换等场景重复 addEventListener
@@ -926,15 +1082,16 @@ function init3DCardTiltPhysics() {
 
   // 核心作品卡片 3D 视差
   document.querySelectorAll(".featured-ref-card").forEach(card => {
+    const isMotionPilot = card.classList.contains("motion-pilot-card");
     card.addEventListener("mousemove", (e) => {
       const rect = card.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width - 0.5;
       const y = (e.clientY - rect.top) / rect.height - 0.5;
       if (window.gsap) {
         gsap.to(card, {
-          rotateY: x * 5,
-          rotateX: -y * 5,
-          y: -5,
+          rotateY: x * (isMotionPilot ? 3 : 5),
+          rotateX: -y * (isMotionPilot ? 3 : 5),
+          y: isMotionPilot ? -2 : -5,
           transformPerspective: 1000,
           boxShadow: `${-x * 10 + 6}px ${-y * 10 + 6}px 0px var(--border-main)`,
           duration: 0.25,
@@ -1424,6 +1581,7 @@ function initHeroDragMode() {
 function initAnimations() {
   initInkDoodleCanvas();
   initScrollTriggerAnimations();
+  initTpromptsMotionPilot();
   init3DCardTiltPhysics();
   initMagneticButtons();
   initHeroEyeTracking();

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "fps": 60,
+  "frameDuration": 0.016666666666666666,
+  "initialState": "idle",
+  "states": [
+    {
+      "id": "idle",
+      "hold": 0
+    },
+    {
+      "id": "linking",
+      "hold": 0.4
+    },
+    {
+      "id": "prompt-ready",
+      "hold": 0.8
+    }
+  ],
+  "segments": [
+    {
+      "id": "tprompts-link",
+      "from": "idle",
+      "to": "linking",
+      "start": 0,
+      "hold": 0.4,
+      "endExclusive": 0.4166666666666667,
+      "curve": {
+        "type": "constant",
+        "rate": 1
+      }
+    },
+    {
+      "id": "tprompts-confirm",
+      "from": "linking",
+      "to": "prompt-ready",
+      "start": 0.4,
+      "hold": 0.8,
+      "endExclusive": 0.8166666666666667,
+      "curve": {
+        "type": "constant",
+        "rate": 1
+      }
+    }
+  ]
+}

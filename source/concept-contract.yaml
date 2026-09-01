@@ -1,0 +1,17 @@
+subject_count: 1
+subjects:
+  - identity: "TPrompts 模板库插画：浏览器窗口、System Prompt、User Input、AI Role、Output Format 模块"
+style: "现有手绘黑线稿、白底、蓝黄粉点缀"
+motion_intent: "展示 Prompt 模块从输入连接到输出格式的关系，并让用户感知卡片可交互"
+background_owner: page
+scene: "页面卡片中的白色插画框，保留原始 TPrompts JPG 作为静态底图"
+driver: pointer
+input_semantics: event
+time_control: segment-play
+navigation: none
+clip_continuity: independent
+continuity:
+  - "浏览器窗口构图、模块数量、线稿风格和主色不变"
+  - "原始卡片标题、描述和进入模板库链接不变"
+  - "动画结束停在 prompt-ready，离开时从当前画面反向收回"
+destination: "首页核心作品卡片；插画框约 420x260 CSS px；桌面与触屏均可操作"

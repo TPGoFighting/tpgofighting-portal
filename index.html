@@ -275,9 +275,22 @@
       <div class="featured-products-list">
 
         <!-- 01 · TPrompts · AI 提示词模板库 -->
-        <article class="featured-ref-card">
-          <div class="ref-visual-col">
+        <article class="featured-ref-card motion-pilot-card" data-motion-card="tprompts">
+          <div class="ref-visual-col motion-pilot-stage" data-motion-stage="tprompts">
             <img src="assets/illustrations/tprompts.jpg" alt="TPrompts" class="ref-visual-img">
+            <svg class="tprompts-motion-overlay" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+              <path class="tprompts-flow-path" d="M 476 382 C 500 334, 516 334, 540 382 S 585 470, 620 566" pathLength="1"></path>
+              <path class="tprompts-flow-arrow tprompts-flow-arrow-user" d="M 524 369 L 540 382 L 527 397" pathLength="1"></path>
+              <path class="tprompts-flow-arrow tprompts-flow-arrow-output" d="M 606 550 L 620 566 L 598 566" pathLength="1"></path>
+              <rect class="tprompts-focus tprompts-focus-system" x="150" y="215" width="326" height="324" rx="22"></rect>
+              <rect class="tprompts-focus tprompts-focus-user" x="516" y="215" width="330" height="324" rx="22"></rect>
+              <rect class="tprompts-focus tprompts-focus-output" x="407" y="578" width="439" height="300" rx="22"></rect>
+              <circle class="tprompts-cursor-dot" cx="620" cy="566" r="13"></circle>
+              <path class="tprompts-output-spark" d="M 620 566 l 18 -18 M 620 566 l 24 2 M 620 566 l 2 24" pathLength="1"></path>
+            </svg>
+            <button class="motion-pilot-trigger" type="button" aria-label="播放 TPrompts 模块连接动画" aria-pressed="false">
+              <span aria-hidden="true">试试动画</span>
+            </button>
           </div>
           <div class="ref-info-col">
             <div class="ref-header-row">
@@ -1156,6 +1169,6 @@
 
   <!-- GSAP 物理动画引擎 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="app.js?v=20260817_tpspace_routefix_02"></script>
+  <script src="app.js?v=20260901_tprompts_pilot_01"></script>
 </body>
 </html>
