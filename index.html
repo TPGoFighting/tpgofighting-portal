@@ -277,7 +277,7 @@
         <!-- 01 · TPrompts · AI 提示词模板库 -->
         <article class="featured-ref-card motion-pilot-card" data-motion-card="tprompts">
           <div class="ref-visual-col motion-pilot-stage" data-motion-stage="tprompts">
-            <img src="assets/illustrations/tprompts.jpg" alt="TPrompts" class="ref-visual-img">
+            <img src="assets/illustrations/tprompts.jpg?v=20260901_motion_02" alt="TPrompts" class="ref-visual-img">
             <svg class="tprompts-motion-overlay" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true" focusable="false">
               <path class="tprompts-flow-path" d="M 476 382 C 500 334, 516 334, 540 382 S 585 470, 620 566" pathLength="1"></path>
               <path class="tprompts-flow-arrow tprompts-flow-arrow-user" d="M 524 369 L 540 382 L 527 397" pathLength="1"></path>
@@ -288,9 +288,6 @@
               <circle class="tprompts-cursor-dot" cx="620" cy="566" r="13"></circle>
               <path class="tprompts-output-spark" d="M 620 566 l 18 -18 M 620 566 l 24 2 M 620 566 l 2 24" pathLength="1"></path>
             </svg>
-            <button class="motion-pilot-trigger" type="button" aria-label="播放 TPrompts 模块连接动画" aria-pressed="false">
-              <span aria-hidden="true">试试动画</span>
-            </button>
           </div>
           <div class="ref-info-col">
             <div class="ref-header-row">
@@ -308,8 +305,8 @@
         </article>
 
         <!-- 02 · Teach Player · 视频双语精读 (反向布局) -->
-        <article class="featured-ref-card layout-reverse">
-          <div class="ref-visual-col">
+        <article class="featured-ref-card layout-reverse motion-pilot-card" data-motion-card="teachplayer">
+          <div class="ref-visual-col motion-pilot-stage">
             <img src="assets/illustrations/teachplayer.jpg" alt="Teach Player" class="ref-visual-img">
           </div>
           <div class="ref-info-col">
@@ -328,8 +325,8 @@
         </article>
 
         <!-- 03 · TPaper · AI 试卷转换 -->
-        <article class="featured-ref-card">
-          <div class="ref-visual-col">
+        <article class="featured-ref-card motion-pilot-card" data-motion-card="tpaper">
+          <div class="ref-visual-col motion-pilot-stage">
             <img src="assets/illustrations/tpaper.jpg" alt="TPaper" class="ref-visual-img">
           </div>
           <div class="ref-info-col">
@@ -348,8 +345,8 @@
         </article>
 
         <!-- 04 · TPbili · B站画像与舆情分析 (反向布局) -->
-        <article class="featured-ref-card layout-reverse">
-          <div class="ref-visual-col">
+        <article class="featured-ref-card layout-reverse motion-pilot-card" data-motion-card="tpbili">
+          <div class="ref-visual-col motion-pilot-stage">
             <img src="assets/illustrations/tpbili.jpg" alt="TPbili" class="ref-visual-img">
           </div>
           <div class="ref-info-col">
@@ -368,8 +365,8 @@
         </article>
 
         <!-- 05 · CyberPulse · 赛博脉动 -->
-        <article class="featured-ref-card">
-          <div class="ref-visual-col">
+        <article class="featured-ref-card motion-pilot-card" data-motion-card="cyberpulse">
+          <div class="ref-visual-col motion-pilot-stage">
             <img src="assets/illustrations/cyberpulse.jpg" alt="CyberPulse" class="ref-visual-img">
           </div>
           <div class="ref-info-col">
@@ -388,8 +385,8 @@
         </article>
 
         <!-- 06 · TPVibe · 沉浸式编程与实操指南 (反向布局) -->
-        <article class="featured-ref-card layout-reverse">
-          <div class="ref-visual-col">
+        <article class="featured-ref-card layout-reverse motion-pilot-card" data-motion-card="vibe">
+          <div class="ref-visual-col motion-pilot-stage">
             <img src="assets/illustrations/vibe.jpg" alt="TPVibe" class="ref-visual-img">
           </div>
           <div class="ref-info-col">
@@ -1169,6 +1166,11 @@
 
   <!-- GSAP 物理动画引擎 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="app.js?v=20260901_tprompts_pilot_01"></script>
+  <script src="pilot/motions/teachplayer.js"></script>
+  <script src="pilot/motions/tpaper.js"></script>
+  <script src="pilot/motions/tpbili.js"></script>
+  <script src="pilot/motions/cyberpulse.js"></script>
+  <script src="pilot/motions/vibe.js"></script>
+  <script src="app.js?v=20260901_cards_motion_02"></script>
 </body>
 </html>

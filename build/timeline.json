@@ -42,5 +42,237 @@
         "rate": 1
       }
     }
-  ]
+  ],
+  "cards": {
+    "teachplayer": {
+      "schemaVersion": 1,
+      "fps": 60,
+      "frameDuration": 0.016666666666666666,
+      "initialState": "idle",
+      "states": [
+        {
+          "id": "idle",
+          "hold": 0
+        },
+        {
+          "id": "playing",
+          "hold": 0.4
+        },
+        {
+          "id": "understood",
+          "hold": 0.8
+        }
+      ],
+      "segments": [
+        {
+          "id": "teachplayer-1",
+          "from": "idle",
+          "to": "playing",
+          "start": 0,
+          "hold": 0.4,
+          "endExclusive": 0.4166666666666667,
+          "curve": {
+            "type": "constant",
+            "rate": 1
+          }
+        },
+        {
+          "id": "teachplayer-2",
+          "from": "playing",
+          "to": "understood",
+          "start": 0.4,
+          "hold": 0.8,
+          "endExclusive": 0.8166666666666667,
+          "curve": {
+            "type": "constant",
+            "rate": 1
+          }
+        }
+      ]
+    },
+    "tpaper": {
+      "schemaVersion": 1,
+      "fps": 60,
+      "frameDuration": 0.016666666666666666,
+      "initialState": "idle",
+      "states": [
+        {
+          "id": "idle",
+          "hold": 0
+        },
+        {
+          "id": "scanning",
+          "hold": 0.4
+        },
+        {
+          "id": "quiz-ready",
+          "hold": 0.8
+        }
+      ],
+      "segments": [
+        {
+          "id": "tpaper-1",
+          "from": "idle",
+          "to": "scanning",
+          "start": 0,
+          "hold": 0.4,
+          "endExclusive": 0.4166666666666667,
+          "curve": {
+            "type": "constant",
+            "rate": 1
+          }
+        },
+        {
+          "id": "tpaper-2",
+          "from": "scanning",
+          "to": "quiz-ready",
+          "start": 0.4,
+          "hold": 0.8,
+          "endExclusive": 0.8166666666666667,
+          "curve": {
+            "type": "constant",
+            "rate": 1
+          }
+        }
+      ]
+    },
+    "tpbili": {
+      "schemaVersion": 1,
+      "fps": 60,
+      "frameDuration": 0.016666666666666666,
+      "initialState": "idle",
+      "states": [
+        {
+          "id": "idle",
+          "hold": 0
+        },
+        {
+          "id": "pixel-scan",
+          "hold": 0.4
+        },
+        {
+          "id": "live-profile",
+          "hold": 0.8
+        }
+      ],
+      "segments": [
+        {
+          "id": "tpbili-1",
+          "from": "idle",
+          "to": "pixel-scan",
+          "start": 0,
+          "hold": 0.4,
+          "endExclusive": 0.4166666666666667,
+          "curve": {
+            "type": "constant",
+            "rate": 1
+          }
+        },
+        {
+          "id": "tpbili-2",
+          "from": "pixel-scan",
+          "to": "live-profile",
+          "start": 0.4,
+          "hold": 0.8,
+          "endExclusive": 0.8166666666666667,
+          "curve": {
+            "type": "constant",
+            "rate": 1
+          }
+        }
+      ]
+    },
+    "cyberpulse": {
+      "schemaVersion": 1,
+      "fps": 60,
+      "frameDuration": 0.016666666666666666,
+      "initialState": "idle",
+      "states": [
+        {
+          "id": "idle",
+          "hold": 0
+        },
+        {
+          "id": "routing",
+          "hold": 0.4
+        },
+        {
+          "id": "pulse-ready",
+          "hold": 0.8
+        }
+      ],
+      "segments": [
+        {
+          "id": "cyberpulse-1",
+          "from": "idle",
+          "to": "routing",
+          "start": 0,
+          "hold": 0.4,
+          "endExclusive": 0.4166666666666667,
+          "curve": {
+            "type": "constant",
+            "rate": 1
+          }
+        },
+        {
+          "id": "cyberpulse-2",
+          "from": "routing",
+          "to": "pulse-ready",
+          "start": 0.4,
+          "hold": 0.8,
+          "endExclusive": 0.8166666666666667,
+          "curve": {
+            "type": "constant",
+            "rate": 1
+          }
+        }
+      ]
+    },
+    "vibe": {
+      "schemaVersion": 1,
+      "fps": 60,
+      "frameDuration": 0.016666666666666666,
+      "initialState": "idle",
+      "states": [
+        {
+          "id": "idle",
+          "hold": 0
+        },
+        {
+          "id": "ideation",
+          "hold": 0.4
+        },
+        {
+          "id": "build-ready",
+          "hold": 0.8
+        }
+      ],
+      "segments": [
+        {
+          "id": "vibe-1",
+          "from": "idle",
+          "to": "ideation",
+          "start": 0,
+          "hold": 0.4,
+          "endExclusive": 0.4166666666666667,
+          "curve": {
+            "type": "constant",
+            "rate": 1
+          }
+        },
+        {
+          "id": "vibe-2",
+          "from": "ideation",
+          "to": "build-ready",
+          "start": 0.4,
+          "hold": 0.8,
+          "endExclusive": 0.8166666666666667,
+          "curve": {
+            "type": "constant",
+            "rate": 1
+          }
+        }
+      ]
+    }
+  }
 }

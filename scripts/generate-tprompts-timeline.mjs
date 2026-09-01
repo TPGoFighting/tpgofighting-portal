@@ -3,6 +3,33 @@ import { mkdir, writeFile } from "node:fs/promises";
 const fps = 60;
 const frameDuration = 1 / fps;
 const segmentFrames = [24, 24];
+
+const buildCardTimeline = (id, stateIds) => {
+  const states = stateIds.map((stateId, index) => ({
+    id: stateId,
+    holdFrame: index * segmentFrames[0],
+  }));
+  return {
+    schemaVersion: 1,
+    fps,
+    frameDuration,
+    initialState: stateIds[0],
+    states: states.map((state) => ({
+      id: state.id,
+      hold: state.holdFrame * frameDuration,
+    })),
+    segments: states.slice(1).map((state, index) => ({
+      id: `${id}-${index + 1}`,
+      from: states[index].id,
+      to: state.id,
+      start: states[index].holdFrame * frameDuration,
+      hold: state.holdFrame * frameDuration,
+      endExclusive: (state.holdFrame + 1) * frameDuration,
+      curve: { type: "constant", rate: 1 },
+    })),
+  };
+};
+
 const states = [
   { id: "idle", holdFrame: 0 },
   { id: "linking", holdFrame: segmentFrames[0] },
@@ -33,6 +60,13 @@ const timeline = {
     hold: state.holdFrame * frameDuration,
   })),
   segments,
+  cards: {
+    teachplayer: buildCardTimeline("teachplayer", ["idle", "playing", "understood"]),
+    tpaper: buildCardTimeline("tpaper", ["idle", "scanning", "quiz-ready"]),
+    tpbili: buildCardTimeline("tpbili", ["idle", "pixel-scan", "live-profile"]),
+    cyberpulse: buildCardTimeline("cyberpulse", ["idle", "routing", "pulse-ready"]),
+    vibe: buildCardTimeline("vibe", ["idle", "ideation", "build-ready"]),
+  },
 };
 
 await mkdir("build", { recursive: true });

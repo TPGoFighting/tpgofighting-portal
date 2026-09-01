@@ -20,16 +20,16 @@
       + '.tpvibe-motion-overlay{overflow:visible;pointer-events:none;--vibe-progress:0;--vibe-idea-opacity:0;--vibe-build-opacity:0;--vibe-ready-opacity:0;--vibe-confirm-opacity:0;--vibe-trace-opacity:0;--vibe-trace-offset:150;--vibe-idea-scale:.88;--vibe-build-scale:.88;--vibe-ready-scale:.88;--vibe-tick-offset:1;--vibe-pointer-x:0px;--vibe-pointer-y:0px}'
       + '.tpvibe-motion-overlay path,.tpvibe-motion-overlay rect,.tpvibe-motion-overlay circle,.tpvibe-motion-overlay line{vector-effect:non-scaling-stroke}'
       + '.vibe-trace{fill:none;stroke:#3aa8df;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:10 18;stroke-dashoffset:var(--vibe-trace-offset);opacity:var(--vibe-trace-opacity)}'
-      + '.vibe-node-ring{fill:none;stroke:#191919;stroke-width:4;opacity:0;transform-box:fill-box;transform-origin:center}'
+      + '.vibe-node-ring{fill:none;stroke:#f4c654;stroke-width:3;opacity:0;transform-box:fill-box;transform-origin:center}'
       + '.vibe-node-ring.idea{opacity:var(--vibe-idea-opacity);transform:scale(var(--vibe-idea-scale))}'
       + '.vibe-node-ring.build{opacity:var(--vibe-build-opacity);transform:scale(var(--vibe-build-scale))}'
       + '.vibe-node-ring.ready{opacity:var(--vibe-ready-opacity);transform:scale(var(--vibe-ready-scale))}'
-      + '.vibe-node-core{fill:#f4c654;stroke:#191919;stroke-width:4;opacity:0}'
+      + '.vibe-node-core{fill:#f4c654;stroke:#ffffff;stroke-width:2;opacity:0}'
       + '.vibe-node-core.idea{opacity:var(--vibe-idea-opacity)}'
       + '.vibe-node-core.build{fill:#9ed6f3;opacity:var(--vibe-build-opacity)}'
       + '.vibe-node-core.ready{fill:#f49aa3;opacity:var(--vibe-ready-opacity)}'
-      + '.vibe-confirm-halo{fill:none;stroke:#f4c654;stroke-width:6;stroke-dasharray:7 12;stroke-linecap:round;opacity:var(--vibe-confirm-opacity)}'
-      + '.vibe-confirm-tick{fill:none;stroke:#191919;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:var(--vibe-tick-offset);opacity:var(--vibe-confirm-opacity)}'
+      + '.vibe-confirm-halo{fill:none;stroke:#f4c654;stroke-width:4;stroke-dasharray:7 12;stroke-linecap:round;opacity:var(--vibe-confirm-opacity)}'
+      + '.vibe-confirm-tick{fill:none;stroke:#3aa8df;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:var(--vibe-tick-offset);opacity:var(--vibe-confirm-opacity)}'
       + '.vibe-gesture-glint{transform:translate(var(--vibe-pointer-x),var(--vibe-pointer-y));opacity:var(--vibe-idea-opacity)}'
       + '.vibe-rocket-trail{fill:none;stroke:#f4c654;stroke-width:5;stroke-linecap:round;stroke-dasharray:4 15;opacity:var(--vibe-build-opacity)}'
       + '.vibe-rocket-marker{opacity:var(--vibe-build-opacity)}'
@@ -40,8 +40,8 @@
       + '<path class="vibe-trace" d="M 786 620 C 761 649, 742 678, 726 704"></path>'
       + '</g>'
       + '<g class="vibe-gesture-glint">'
-      + '<path d="M 519 286 h 28 M 533 272 v 28" fill="none" stroke="#191919" stroke-width="4" stroke-linecap="round"></path>'
-      + '<circle cx="533" cy="286" r="7" fill="#f4c654" stroke="#191919" stroke-width="3"></circle>'
+      + '<path d="M 519 286 h 28 M 533 272 v 28" fill="none" stroke="#3aa8df" stroke-width="3" stroke-linecap="round"></path>'
+      + '<circle cx="533" cy="286" r="6" fill="#f4c654" stroke="#ffffff" stroke-width="2"></circle>'
       + '</g>'
       + '<g class="vibe-idea-node">'
       + '<circle class="vibe-node-ring idea" cx="535" cy="270" r="28"></circle>'
@@ -84,11 +84,11 @@
       setVar(stage, "--vibe-pointer-x", `${pointerXValue.toFixed(2)}px`);
       setVar(stage, "--vibe-pointer-y", `${pointerYValue.toFixed(2)}px`);
       setVar(overlay, "--vibe-progress", p.toFixed(4));
-      setVar(overlay, "--vibe-idea-opacity", idea.toFixed(3));
-      setVar(overlay, "--vibe-build-opacity", build.toFixed(3));
-      setVar(overlay, "--vibe-ready-opacity", ready.toFixed(3));
-      setVar(overlay, "--vibe-confirm-opacity", confirm.toFixed(3));
-      setVar(overlay, "--vibe-trace-opacity", trace.toFixed(3));
+      setVar(overlay, "--vibe-idea-opacity", (idea * 0.72).toFixed(3));
+      setVar(overlay, "--vibe-build-opacity", (build * 0.72).toFixed(3));
+      setVar(overlay, "--vibe-ready-opacity", (ready * 0.72).toFixed(3));
+      setVar(overlay, "--vibe-confirm-opacity", (confirm * 0.68).toFixed(3));
+      setVar(overlay, "--vibe-trace-opacity", (trace * 0.78).toFixed(3));
       setVar(overlay, "--vibe-trace-offset", ((1 - p) * 150).toFixed(2));
       setVar(overlay, "--vibe-idea-scale", (0.88 + idea * 0.12).toFixed(3));
       setVar(overlay, "--vibe-build-scale", (0.88 + build * 0.12).toFixed(3));
