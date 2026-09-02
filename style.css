@@ -3844,3 +3844,703 @@ input {
   gap: 16px;
   flex-wrap: wrap;
 }
+
+/* ==========================================================================
+   Matrix Mini Motion Scenes · 产品02矩阵 13 个专属迷你场景
+   复用 --motion-progress 滚动 runtime（app.js initProductScrollMotion）
+   ========================================================================== */
+.matrix-motion-stage {
+  --mm-ink: #172033;
+  --mm-paper: #fffdf7;
+  --mm-signal: #2563eb;
+  --mm-hot: #f59e0b;
+  min-height: 128px;
+  margin-bottom: 14px;
+  border: 1.5px solid rgba(23,32,51,.5);
+}
+
+.matrix-motion--timeline { --mm-signal: #0f766e; --mm-hot: #f59e0b; }
+.matrix-motion--academic { --mm-signal: #7c3aed; --mm-hot: #f59e0b; }
+.matrix-motion--chat { --mm-signal: #e85d75; --mm-hot: #f97316; }
+.matrix-motion--skillver { --mm-signal: #2563eb; --mm-hot: #10b981; }
+.matrix-motion--dash { --mm-signal: #8b5cf6; --mm-hot: #22d3ee; background: #10172b; --mm-ink: #f5f3ff; --mm-paper: #10172b; }
+.matrix-motion--reader { --mm-signal: #0ea5e9; --mm-hot: #f59e0b; }
+.matrix-motion--apply { --mm-signal: #2563eb; --mm-hot: #10b981; }
+.matrix-motion--admin { --mm-signal: #475569; --mm-hot: #10b981; }
+.matrix-motion--campus { --mm-signal: #e11d48; --mm-hot: #f59e0b; }
+.matrix-motion--redwood { --mm-signal: #9a3412; --mm-hot: #ea580c; }
+.matrix-motion--pixel { --mm-signal: #16a34a; --mm-hot: #facc15; }
+.matrix-motion--home { --mm-signal: #2563eb; --mm-hot: #f59e0b; }
+
+.mm-grid {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: .7;
+  background-image: linear-gradient(rgba(23,32,51,.065) 1px, transparent 1px), linear-gradient(90deg, rgba(23,32,51,.065) 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+.matrix-motion--dash .mm-grid { opacity: .18; background-image: linear-gradient(rgba(196,181,253,.32) 1px, transparent 1px), linear-gradient(90deg, rgba(196,181,253,.32) 1px, transparent 1px); }
+
+.mm-kicker {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  z-index: 4;
+  color: var(--mm-ink);
+  font: 800 9px/1 "JetBrains Mono", monospace;
+  letter-spacing: .09em;
+  opacity: clamp(0, calc(var(--motion-progress) * 2), 1);
+  transform: translateY(calc((1 - var(--motion-progress)) * -8px));
+}
+
+.mm-spark {
+  position: absolute;
+  z-index: 4;
+  color: var(--mm-hot);
+  font: 900 22px/1 sans-serif;
+  opacity: clamp(0, calc(var(--motion-progress) * 2.2 - 1), 1);
+}
+.matrix-motion-stage .mm-spark { right: 10%; top: 12%; transform: rotate(calc((1 - var(--motion-progress)) * -25deg)) scale(calc(.55 + var(--motion-progress) * .45)); }
+
+/* --- 01 tpself · 个人主页窗口 --- */
+.matrix-motion--home .mm-window {
+  position: absolute;
+  width: 72%;
+  height: 66%;
+  left: 12%;
+  top: 22%;
+  border: 2px solid var(--mm-ink);
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(255,255,255,.94);
+  box-shadow: 4px 4px 0 rgba(23,32,51,.14);
+  transform: translateY(calc((1 - var(--motion-progress)) * 26px)) scale(calc(.92 + var(--motion-progress) * .08));
+  opacity: clamp(0, calc(var(--motion-progress) * 2.2 - .15), 1);
+}
+.matrix-motion--home .mm-win-bar { height: 20px; padding: 6px 7px; background: #e8eefc; border-bottom: 2px solid var(--mm-ink); display: flex; gap: 3px; align-items: center; }
+.matrix-motion--home .mm-win-bar i { width: 5px; height: 5px; background: var(--mm-ink); border-radius: 50%; }
+.matrix-motion--home .mm-win-bar b { margin-left: 5px; font: 700 7px/1 "JetBrains Mono", monospace; opacity: .65; }
+.matrix-motion--home .mm-body { padding: 11px 10px; }
+.matrix-motion--home .mm-line { display: block; height: 5px; margin-bottom: 7px; width: 82%; background: var(--mm-ink); opacity: .18; border-radius: 4px; transform-origin: left; transform: scaleX(var(--motion-progress)); }
+.matrix-motion--home .mm-line--short { width: 46%; background: var(--mm-signal); opacity: .5; }
+.matrix-motion--home .mm-badge {
+  position: absolute;
+  right: 7%;
+  bottom: 9%;
+  padding: 4px 7px;
+  color: #fff;
+  background: var(--mm-signal);
+  border-radius: 5px;
+  font: 900 10px/1 "JetBrains Mono", monospace;
+  transform: translateY(calc((1 - var(--motion-progress)) * 14px));
+  opacity: clamp(0, calc(var(--motion-progress) * 2.6 - 1.1), 1);
+}
+
+/* --- 02 tangpan · 时间线路径 --- */
+.matrix-motion--timeline .mm-rail { position: absolute; left: 12%; right: 12%; top: 50%; height: 20px; }
+.matrix-motion--timeline .mm-rail-line { position: absolute; left: 0; right: 0; top: 9px; height: 2px; background: var(--mm-ink); opacity: .3; }
+.matrix-motion--timeline .mm-rail-line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: calc(var(--motion-progress) * 100%);
+  background: var(--mm-signal);
+}
+.matrix-motion--timeline .mm-node {
+  position: absolute;
+  top: 5px;
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--mm-ink);
+  border-radius: 50%;
+  background: #fff;
+  transform: scale(clamp(0, calc(var(--motion-progress) * 4 - var(--i) ), 1));
+}
+.matrix-motion--timeline .mm-node:nth-child(2) { left: 4%; --i: 0.2; }
+.matrix-motion--timeline .mm-node:nth-child(3) { left: 33%; --i: 1.2; }
+.matrix-motion--timeline .mm-node:nth-child(4) { left: 62%; --i: 2.2; }
+.matrix-motion--timeline .mm-node:nth-child(5) { left: 88%; --i: 3.2; background: var(--mm-hot); }
+.matrix-motion--timeline .mm-card-stack { position: absolute; left: 14%; bottom: 12%; display: flex; gap: 5px; }
+.matrix-motion--timeline .mm-card-stack i { width: 22px; height: 16px; border: 2px solid var(--mm-ink); background: #fff; border-radius: 3px; opacity: clamp(0, calc(var(--motion-progress) * 2.6 - var(--i2, 0.8) ), 1); transform: translateY(calc((1 - var(--motion-progress)) * 16px)); }
+.matrix-motion--timeline .mm-card-stack i:nth-child(1) { --i2: .5; }
+.matrix-motion--timeline .mm-card-stack i:nth-child(2) { --i2: .9; background: var(--mm-hot); }
+.matrix-motion--timeline .mm-card-stack i:nth-child(3) { --i2: 1.3; }
+
+/* --- 03 ai · 学术论文页 --- */
+.matrix-motion--academic .mm-paper {
+  position: absolute;
+  width: 58%;
+  height: 64%;
+  left: 14%;
+  top: 22%;
+  padding: 10px;
+  border: 2px solid var(--mm-ink);
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 4px 4px 0 rgba(23,32,51,.14);
+  transform: translateY(calc((1 - var(--motion-progress)) * 22px)) rotate(calc((1 - var(--motion-progress)) * -3deg));
+  opacity: clamp(0, calc(var(--motion-progress) * 2.1 - .1), 1);
+}
+.matrix-motion--academic .mm-paper b { font: 900 9px/1 "JetBrains Mono", monospace; color: var(--mm-signal); }
+.matrix-motion--academic .mm-paper i { display: block; height: 4px; margin-top: 7px; background: var(--mm-ink); opacity: .18; transform-origin: left; transform: scaleX(var(--motion-progress)); }
+.matrix-motion--academic .mm-paper i:nth-child(3) { width: 70%; }
+.matrix-motion--academic .mm-paper em { position: absolute; bottom: 8px; color: var(--mm-hot); font: 700 8px/1 "JetBrains Mono", monospace; }
+.matrix-motion--academic .mm-paper em:nth-of-type(1) { right: 12px; }
+.matrix-motion--academic .mm-paper em:nth-of-type(2) { right: 40px; opacity: clamp(0, calc(var(--motion-progress) * 2 - .8), 1); }
+.matrix-motion--academic .mm-quote-mark {
+  position: absolute;
+  right: 10%;
+  top: 14%;
+  color: var(--mm-signal);
+  font: 900 44px/1 serif;
+  opacity: clamp(0, calc(var(--motion-progress) * 2.4 - 1), 1);
+  transform: scale(calc(.6 + var(--motion-progress) * .4));
+}
+
+/* --- 04 chat · 沟通气泡 --- */
+.matrix-motion--chat .mm-chat { position: absolute; inset: 20% 10% 14%; display: flex; flex-direction: column; gap: 8px; justify-content: center; }
+.matrix-motion--chat .mm-bubble {
+  width: fit-content;
+  max-width: 80%;
+  padding: 6px 9px;
+  border: 2px solid var(--mm-ink);
+  border-radius: 10px 10px 10px 2px;
+  background: #fff;
+  font: 700 9px/1.2 "Noto Sans SC", sans-serif;
+  transform: translateX(calc((1 - var(--motion-progress)) * -30px));
+  opacity: clamp(0, calc(var(--motion-progress) * 2.3 - .1), 1);
+}
+.matrix-motion--chat .mm-bubble--r { align-self: flex-end; border-radius: 10px 10px 2px 10px; background: var(--mm-hot); transform: translateX(calc((1 - var(--motion-progress)) * 30px)); opacity: clamp(0, calc(var(--motion-progress) * 2.4 - .6), 1); }
+.matrix-motion--chat .mm-bubble--accent { background: #fff; color: var(--mm-signal); border-color: var(--mm-signal); opacity: clamp(0, calc(var(--motion-progress) * 2.5 - 1.2), 1); }
+
+/* --- 05 skillver · 版本标签 --- */
+.matrix-motion--skillver .mm-version { position: absolute; left: 12%; top: 24%; }
+.matrix-motion--skillver .mm-version b { font: 900 22px/1 "JetBrains Mono", monospace; color: var(--mm-signal); }
+.matrix-motion--skillver .mm-tag-row { display: flex; gap: 5px; margin-top: 8px; }
+.matrix-motion--skillver .mm-tag { padding: 3px 6px; border: 1.5px solid var(--mm-ink); border-radius: 999px; font: 700 8px/1 "JetBrains Mono", monospace; font-style: normal; background: #fff; opacity: clamp(0, calc(var(--motion-progress) * 2.6 - var(--i3, 0.6) ), 1); transform: translateY(calc((1 - var(--motion-progress)) * 12px)); }
+.matrix-motion--skillver .mm-tag--a { --i3: .4; }
+.matrix-motion--skillver .mm-tag--b { --i3: .9; background: #eef6ff; }
+.matrix-motion--skillver .mm-tag--c { --i3: 1.4; background: var(--mm-hot); }
+.matrix-motion--skillver .mm-graph { position: absolute; right: 10%; bottom: 12%; display: flex; align-items: flex-end; gap: 4px; height: 34%; }
+.matrix-motion--skillver .mm-graph i { width: 7px; height: calc(var(--h2) * var(--motion-progress)); min-height: 4px; background: var(--mm-signal); }
+.matrix-motion--skillver .mm-graph i:nth-child(1) { --h2: 30%; }
+.matrix-motion--skillver .mm-graph i:nth-child(2) { --h2: 55%; }
+.matrix-motion--skillver .mm-graph i:nth-child(3) { --h2: 78%; }
+.matrix-motion--skillver .mm-graph i:nth-child(4) { --h2: 100%; background: var(--mm-hot); }
+
+/* --- 06 shiyou · 数据大屏 --- */
+.matrix-motion--dash .mm-panel {
+  position: absolute;
+  width: 74%;
+  height: 68%;
+  left: 13%;
+  top: 20%;
+  padding: 12px;
+  border: 2px solid #d8ccff;
+  border-radius: 8px;
+  color: #f7f4ff;
+  background: rgba(21,27,53,.92);
+  box-shadow: 5px 5px 0 rgba(139,92,246,.45);
+  transform: scale(calc(.9 + var(--motion-progress) * .1));
+  opacity: clamp(0, calc(var(--motion-progress) * 2 - .05), 1);
+}
+.matrix-motion--dash .mm-panel-val { font: 900 24px/.85 "JetBrains Mono", monospace; color: var(--mm-hot); transform: translateY(calc((1 - var(--motion-progress)) * 10px)); }
+.matrix-motion--dash .mm-panel-val span { font-size: 11px; }
+.matrix-motion--dash .mm-trend-line { height: 34%; margin-top: 8px; overflow: hidden; }
+.matrix-motion--dash .mm-trend-line svg { width: 100%; height: 100%; }
+.matrix-motion--dash .mm-trend-line path { fill: none; stroke: var(--mm-hot); stroke-width: 3; stroke-dasharray: 160; stroke-dashoffset: calc(160 - var(--motion-progress) * 160); }
+.matrix-motion--dash .mm-bars { position: absolute; left: 12px; right: 12px; bottom: 10px; display: flex; align-items: flex-end; height: 22%; gap: 5px; }
+.matrix-motion--dash .mm-bars i { flex: 1; height: calc(var(--bar) * var(--motion-progress)); min-height: 3px; background: #a78bfa; }
+.matrix-motion--dash .mm-bars i:nth-child(1) { --bar: 30%; }
+.matrix-motion--dash .mm-bars i:nth-child(2) { --bar: 64%; }
+.matrix-motion--dash .mm-bars i:nth-child(3) { --bar: 42%; }
+.matrix-motion--dash .mm-bars i:nth-child(4) { --bar: 82%; }
+.matrix-motion--dash .mm-bars i:nth-child(5) { --bar: 96%; background: var(--mm-hot); }
+.mm-node { position: absolute; width: 8px; height: 8px; border-radius: 50%; background: var(--mm-hot, #f59e0b); box-shadow: 0 0 0 4px rgba(34,211,238,.14); opacity: clamp(0, calc(var(--motion-progress) * 2.2 - 1.2), 1); }
+.mm-node--a { left: 6%; top: 22%; }
+.mm-node--b { right: 5%; top: 16%; }
+
+/* --- 07 wearticle · 每日阅读器 --- */
+.matrix-motion--reader .mm-reader {
+  position: absolute;
+  width: 72%;
+  height: 70%;
+  left: 12%;
+  top: 18%;
+  border: 2px solid var(--mm-ink);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 4px 4px 0 rgba(23,32,51,.14);
+  transform: translateX(calc((1 - var(--motion-progress)) * 28px));
+  opacity: clamp(0, calc(var(--motion-progress) * 2.1 - .08), 1);
+}
+.matrix-motion--reader .mm-reader-bar { height: 18px; padding: 5px 7px; background: #e0f2fe; border-bottom: 2px solid var(--mm-ink); display: flex; gap: 3px; align-items: center; }
+.matrix-motion--reader .mm-reader-bar i { width: 5px; height: 5px; background: var(--mm-ink); border-radius: 50%; }
+.matrix-motion--reader .mm-reader-bar b { margin-left: 5px; font: 700 7px/1 "JetBrains Mono", monospace; opacity: .65; }
+.matrix-motion--reader .mm-article { position: relative; margin: 8px; padding: 8px; border: 1.5px solid var(--mm-ink); border-radius: 5px; }
+.matrix-motion--reader .mm-article b { display: block; height: 7px; width: 60%; margin-bottom: 5px; background: var(--mm-signal); opacity: .7; border-radius: 3px; transform-origin: left; transform: scaleX(var(--motion-progress)); }
+.matrix-motion--reader .mm-article i { display: block; height: 4px; margin-top: 4px; background: var(--mm-ink); opacity: .16; transform-origin: left; transform: scaleX(clamp(0, calc(var(--motion-progress) * 1.4 - .2), 1)); }
+.matrix-motion--reader .mm-article--next { opacity: clamp(0, calc(var(--motion-progress) * 2.4 - 1), 1); transform: translateY(calc((1 - var(--motion-progress)) * 14px)); }
+.matrix-motion--reader .mm-ai-dot {
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+  padding: 2px 5px;
+  color: #fff;
+  background: var(--mm-hot);
+  border-radius: 4px;
+  font: 900 8px/1 "JetBrains Mono", monospace;
+  opacity: clamp(0, calc(var(--motion-progress) * 3 - 1.6), 1);
+}
+
+/* --- 08 yatn · 申请表单 --- */
+.matrix-motion--apply .mm-form {
+  position: absolute;
+  width: 64%;
+  height: 66%;
+  left: 14%;
+  top: 20%;
+  padding: 12px;
+  border: 2px solid var(--mm-ink);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 4px 4px 0 rgba(23,32,51,.14);
+  transform: translateY(calc((1 - var(--motion-progress)) * 24px));
+  opacity: clamp(0, calc(var(--motion-progress) * 2.1 - .1), 1);
+}
+.matrix-motion--apply .mm-form-title { display: block; font: 800 9px/1 "Noto Sans SC", sans-serif; margin-bottom: 9px; }
+.matrix-motion--apply .mm-field { display: block; height: 14px; margin-bottom: 7px; border: 1.5px solid var(--mm-ink); border-radius: 4px; opacity: clamp(0, calc(var(--motion-progress) * 2.6 - var(--i4, 0.5) ), 1); transform: translateX(calc((1 - var(--motion-progress)) * 14px)); }
+.matrix-motion--apply .mm-field i { display: block; width: 50%; height: 100%; background: linear-gradient(90deg, var(--mm-signal) calc(var(--motion-progress) * 76%), transparent 0); }
+.matrix-motion--apply .mm-field--half { width: 56%; }
+.matrix-motion--apply .mm-check {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  color: #fff;
+  background: var(--mm-hot);
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 12px;
+  transform: scale(clamp(0, calc(var(--motion-progress) * 3 - 1.8), 1));
+  opacity: clamp(0, calc(var(--motion-progress) * 3 - 1.8), 1);
+}
+
+/* --- 09 caipu · 管理表格 --- */
+.matrix-motion--admin .mm-admin-table {
+  position: absolute;
+  width: 72%;
+  height: 68%;
+  left: 13%;
+  top: 20%;
+  border: 2px solid var(--mm-ink);
+  border-radius: 6px;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 4px 4px 0 rgba(23,32,51,.14);
+  transform: translateY(calc((1 - var(--motion-progress)) * 22px));
+  opacity: clamp(0, calc(var(--motion-progress) * 2.1 - .1), 1);
+}
+.matrix-motion--admin .mm-th { display: flex; gap: 8px; padding: 7px 9px; background: #e2e8f0; border-bottom: 2px solid var(--mm-ink); }
+.matrix-motion--admin .mm-th i, .matrix-motion--admin .mm-tr i { border-radius: 2px; }
+.matrix-motion--admin .mm-th i { height: 5px; flex: 1; background: var(--mm-ink); opacity: .4; }
+.matrix-motion--admin .mm-tr { display: flex; align-items: center; gap: 8px; padding: 8px 9px; border-bottom: 1px solid rgba(23,32,51,.14); opacity: clamp(0, calc(var(--motion-progress) * 2.4 - var(--i5, 0.55) ), 1); transform: translateX(calc((1 - var(--motion-progress)) * 16px)); }
+.matrix-motion--admin .mm-tr:nth-child(3) { --i5: .55; }
+.matrix-motion--admin .mm-tr:nth-child(4) { --i5: 1.05; }
+.matrix-motion--admin .mm-tr:nth-child(5) { --i5: 1.55; }
+.matrix-motion--admin .mm-tr i { height: 5px; flex: 1; background: var(--mm-ink); opacity: .2; transform-origin: left; transform: scaleX(clamp(0, calc(var(--motion-progress) * 1.3 - var(--i6, 0) ), 1)); }
+.matrix-motion--admin .mm-tr:nth-child(4) i { --i6: .15; }
+.matrix-motion--admin .mm-tr:nth-child(5) i { --i6: .3; }
+.matrix-motion--admin .mm-status { font-style: normal; font-size: 9px; }
+.matrix-motion--admin .mm-status--ok { color: #10b981; }
+.matrix-motion--admin .mm-status--wait { color: var(--mm-hot); opacity: clamp(0, calc(var(--motion-progress) * 2 - .6), 1); }
+
+/* --- 10 njupt · 校园黑板 --- */
+.matrix-motion--campus .mm-campus { position: absolute; inset: 0; }
+.matrix-motion--campus .mm-blackboard {
+  position: absolute;
+  width: 62%;
+  height: 52%;
+  left: 19%;
+  top: 20%;
+  padding: 9px;
+  border: 3px solid #b91c1c;
+  border-radius: 4px;
+  background: #1c5f3a;
+  transform: translateY(calc((1 - var(--motion-progress)) * 24px));
+  opacity: clamp(0, calc(var(--motion-progress) * 2.1 - .1), 1);
+}
+.matrix-motion--campus .mm-blackboard b { display: block; color: #fef3c7; font: 800 11px/1.3 "Noto Sans SC", sans-serif; }
+.matrix-motion--campus .mm-blackboard i { display: block; height: 4px; margin-top: 6px; background: #fef3c7; opacity: .5; transform-origin: left; transform: scaleX(var(--motion-progress)); }
+.matrix-motion--campus .mm-teacher-desk { position: absolute; left: 8%; bottom: 16%; width: 24%; height: 14%; border: 2px solid var(--mm-ink); background: #d9a066; border-radius: 3px; opacity: clamp(0, calc(var(--motion-progress) * 2.4 - .9), 1); transform: translateX(calc((1 - var(--motion-progress)) * -18px)); }
+.matrix-motion--campus .mm-teacher-desk i { position: absolute; top: -7px; width: 4px; height: 7px; background: var(--mm-ink); }
+.matrix-motion--campus .mm-teacher-desk i:nth-child(1) { left: 20%; }
+.matrix-motion--campus .mm-teacher-desk i:nth-child(2) { right: 20%; }
+.matrix-motion--campus .mm-flag-pole { position: absolute; right: 12%; bottom: 16%; width: 2px; height: 30%; background: var(--mm-ink); opacity: clamp(0, calc(var(--motion-progress) * 2.6 - 1.2), 1); }
+.matrix-motion--campus .mm-flag-pole::after { content: ""; position: absolute; top: 0; left: 2px; width: 14px; height: 9px; background: var(--mm-hot); clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 30% 50%); }
+
+/* --- 11 redwood · 3D 立方体 --- */
+.matrix-motion--redwood .mm-3d-cube { position: absolute; left: 50%; top: 44%; width: 54px; height: 54px; transform: translate(-50%, -50%) rotateX(-22deg) rotateY(calc(36deg + (1 - var(--motion-progress)) * 44deg)) scale(calc(.8 + var(--motion-progress) * .2)); transform-style: preserve-3d; opacity: clamp(0, calc(var(--motion-progress) * 2.2 - .2), 1); }
+.matrix-motion--redwood .mm-face { position: absolute; inset: 0; border: 2px solid #7c2d12; background: linear-gradient(135deg, #c8814f, #9a3412); }
+.matrix-motion--redwood .mm-face--top { transform: rotateX(90deg) translateZ(27px); background: linear-gradient(135deg, #e8b684, #c8814f); }
+.matrix-motion--redwood .mm-face--left { transform: rotateY(-90deg) translateZ(27px); }
+.matrix-motion--redwood .mm-face--right { transform: rotateY(0deg) translateZ(27px); }
+.matrix-motion--redwood .mm-3d-glow { position: absolute; inset: -14px; border-radius: 50%; background: radial-gradient(circle, rgba(234,88,12,.3), transparent 70%); }
+.matrix-motion--redwood .mm-plinth { position: absolute; left: 50%; bottom: 14%; transform: translateX(-50%); display: flex; gap: 3px; }
+.matrix-motion--redwood .mm-plinth i { width: 44px; height: 5px; border-radius: 2px; background: var(--mm-signal); opacity: clamp(0, calc(var(--motion-progress) * 2.4 - 1), 1); }
+.matrix-motion--redwood .mm-plinth i:nth-child(2) { width: 30px; background: var(--mm-hot); opacity: clamp(0, calc(var(--motion-progress) * 2.8 - 1.6), 1); }
+
+/* --- 12 wtjneslzdj · 8bit 像素小人 --- */
+.matrix-motion--pixel .mm-pixel-scene { position: absolute; inset: 0; }
+.matrix-motion--pixel .mm-pixel-hero {
+  position: absolute;
+  left: 34%;
+  bottom: 26%;
+  width: 18px;
+  height: 24px;
+  background: #16a34a;
+  box-shadow: 4px -4px 0 #16a34a, -4px -4px 0 #16a34a, 8px 0 0 #16a34a, -8px 0 0 #16a34a, 4px 8px 0 #166534, -4px 8px 0 #166534;
+  transform: translateY(calc((1 - var(--motion-progress)) * 18px)) ;
+  opacity: clamp(0, calc(var(--motion-progress) * 2.2 - .1), 1);
+}
+.matrix-motion--pixel .mm-pixel-ground { position: absolute; left: 0; right: 0; bottom: 20%; height: 5px; display: flex; }
+.matrix-motion--pixel .mm-pixel-ground i { flex: 1; background: var(--mm-signal); opacity: clamp(0, calc(var(--motion-progress) * 3 - var(--i7, 0.3) ), 1); }
+.matrix-motion--pixel .mm-pixel-ground i:nth-child(odd) { opacity: clamp(0, calc(var(--motion-progress) * 3 - calc(var(--i7, .3) + .35)), 1); background: #15803d; }
+.matrix-motion--pixel .mm-pixel-ground i:nth-child(1) { --i7: 0; }
+.matrix-motion--pixel .mm-pixel-ground i:nth-child(2) { --i7: .25; }
+.matrix-motion--pixel .mm-pixel-ground i:nth-child(3) { --i7: .5; }
+.matrix-motion--pixel .mm-pixel-ground i:nth-child(4) { --i7: .75; }
+.matrix-motion--pixel .mm-pixel-ground i:nth-child(5) { --i7: 1; }
+.matrix-motion--pixel .mm-pixel-ground i:nth-child(6) { --i7: 1.25; }
+.matrix-motion--pixel .mm-pixel-ground i:nth-child(7) { --i7: 1.5; }
+.matrix-motion--pixel .mm-pixel-ground i:nth-child(8) { --i7: 1.75; }
+.matrix-motion--pixel .mm-pixel-flag { position: absolute; right: 16%; bottom: 26%; opacity: clamp(0, calc(var(--motion-progress) * 2.6 - 1.4), 1); transform: translateY(calc((1 - var(--motion-progress)) * 12px)); }
+.matrix-motion--pixel .mm-pixel-flag i { position: absolute; }
+.matrix-motion--pixel .mm-pixel-flag i:nth-child(1) { left: -2px; bottom: 0; width: 3px; height: 26px; background: var(--mm-ink); }
+.matrix-motion--pixel .mm-pixel-flag i:nth-child(2) { left: 1px; bottom: 18px; width: 16px; height: 10px; background: var(--mm-hot); clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 35% 50%); }
+
+/* --- 13 lanbo · 档案时间戳 --- */
+.matrix-motion--archive .mm-archive {
+  position: absolute;
+  width: 68%;
+  height: 64%;
+  left: 14%;
+  top: 20%;
+  padding: 10px;
+  border: 2px solid var(--mm-ink);
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 4px 4px 0 rgba(23,32,51,.14);
+  transform: translateY(calc((1 - var(--motion-progress)) * 22px));
+  opacity: clamp(0, calc(var(--motion-progress) * 2.1 - .1), 1);
+}
+.matrix-motion--archive .mm-log-row { display: flex; align-items: center; gap: 8px; margin-bottom: 9px; opacity: clamp(0, calc(var(--motion-progress) * 2.4 - var(--i8, 0.55) ), 1); transform: translateX(calc((1 - var(--motion-progress)) * 16px)); }
+.matrix-motion--archive .mm-log-row:nth-child(2) { --i8: .55; }
+.matrix-motion--archive .mm-log-row:nth-child(3) { --i8: 1.05; }
+.matrix-motion--archive .mm-log-row:nth-child(4) { --i8: 1.55; }
+.matrix-motion--archive .mm-log-row b { font: 800 9px/1 "JetBrains Mono", monospace; color: var(--mm-signal); }
+.matrix-motion--archive .mm-log-row i { flex: 1; height: 4px; background: var(--mm-ink); opacity: .18; transform-origin: left; transform: scaleX(clamp(0, calc(var(--motion-progress) * 1.3 - var(--i9, 0) ), 1)); }
+.matrix-motion--archive .mm-log-row:nth-child(3) i { --i9: .1; }
+.matrix-motion--archive .mm-log-row:nth-child(4) i { --i9: .2; }
+.matrix-motion--archive .mm-stamp {
+  position: absolute;
+  right: 8%;
+  bottom: 8%;
+  padding: 3px 6px;
+  border: 1.5px solid #10b981;
+  color: #10b981;
+  font: 900 7px/1 "JetBrains Mono", monospace;
+  transform: rotate(-7deg) scale(calc(.7 + var(--motion-progress) * .3));
+  opacity: clamp(0, calc(var(--motion-progress) * 2.6 - 1.3), 1);
+}
+
+@media (max-width: 860px) {
+  .matrix-motion-stage { min-height: 108px; }
+  .mm-spark { display: none; }
+}
+
+/* ==========================================================================
+   Journey 经历页 · 滚动驱动动画（--motion-progress 通用机制）
+   ========================================================================== */
+/* 1. Subpage Hero 逐元素进场 */
+.subpage-hero .subpage-tag,
+.subpage-hero .subpage-title,
+.subpage-hero .subpage-lead,
+.subpage-hero .subpage-hero-illustration {
+  transition: none;
+}
+.subpage-hero .subpage-tag {
+  opacity: clamp(0, calc(var(--sp-reveal, 1) * 3 - .2), 1);
+  transform: translateY(calc((1 - var(--sp-reveal, 1)) * 18px));
+}
+.subpage-hero .subpage-title {
+  opacity: clamp(0, calc(var(--sp-reveal, 1) * 2.6 - .4), 1);
+  transform: translateY(calc((1 - var(--sp-reveal, 1)) * 26px));
+}
+.subpage-hero .subpage-lead {
+  opacity: clamp(0, calc(var(--sp-reveal, 1) * 2.4 - .8), 1);
+  transform: translateY(calc((1 - var(--sp-reveal, 1)) * 22px));
+}
+.subpage-hero .subpage-hero-illustration {
+  opacity: clamp(0, calc(var(--sp-reveal, 1) * 2.2 - .6), 1);
+  transform: translateX(calc((1 - var(--sp-reveal, 1)) * 34px)) scale(calc(.94 + var(--sp-reveal, 1) * .06));
+}
+
+/* 2. 指标卡数字生长 + 底部高亮条扫入 */
+.metric-stat-card {
+  --metric-p: 0;
+}
+.metric-stat-card .metric-num-highlight {
+  opacity: clamp(0, calc(var(--metric-p) * 2.4 - .1), 1);
+  transform: translateY(calc((1 - var(--metric-p)) * 18px)) scale(calc(.9 + var(--metric-p) * .1));
+}
+.metric-stat-card .metric-lbl-text {
+  opacity: clamp(0, calc(var(--metric-p) * 2.4 - .9), 1);
+  transform: translateY(calc((1 - var(--metric-p)) * 12px));
+}
+.metric-stat-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-yellow, #d9ef7f), var(--accent-ink, #14161b));
+  transform: scaleX(var(--metric-p));
+  transform-origin: left;
+}
+
+/* 3. 故事横幅：引言打字机式扫入 + 高亮词弹跳 */
+.journey-story-banner {
+  --story-p: 0;
+}
+.journey-story-banner .story-quote-title {
+  opacity: clamp(0, calc(var(--story-p) * 2.2 - .1), 1);
+  transform: translateY(calc((1 - var(--story-p)) * 20px));
+}
+.journey-story-banner .story-quote-body {
+  opacity: clamp(0, calc(var(--story-p) * 2.2 - .7), 1);
+  transform: translateY(calc((1 - var(--story-p)) * 24px));
+}
+.journey-story-banner .story-quote-body strong {
+  display: inline-block;
+  background: linear-gradient(transparent 62%, rgba(217,239,127,.85) 62%);
+  transform: scale(calc(.96 + var(--story-p) * .04));
+}
+
+/* 4. 时间线：轨道随滚动生长 + 节点弹出 + 卡片滑入 */
+.timeline-stream-wrap {
+  --tl-p: 0;
+  position: relative;
+}
+.timeline-stream-wrap::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(20,22,27,.16);
+}
+.timeline-stream-wrap::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 0;
+  width: 2px;
+  height: calc(var(--tl-p) * 100%);
+  background: linear-gradient(180deg, #d9ef7f, #14161b);
+}
+.timeline-node-item {
+  --node-p: 0;
+}
+.timeline-node-dot {
+  transform: scale(clamp(0, calc(var(--node-p) * 2.6 - .3), 1));
+  transition: transform .3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.timeline-node-card {
+  opacity: clamp(0, calc(var(--node-p) * 2.2 - .1), 1);
+  transform: translateX(calc((1 - var(--node-p)) * 36px));
+}
+
+/* 5. subpage 内 section-heading-row 编号徽章微弹入 */
+#view-journey .section-heading-row .section-index,
+#view-about .section-heading-row .section-index,
+#view-future .section-heading-row .section-index {
+  opacity: 0;
+  transform: translateY(10px);
+}
+#view-journey .section-heading-row.in-view .section-index,
+#view-about .section-heading-row.in-view .section-index,
+#view-future .section-heading-row.in-view .section-index {
+  animation: tp-badge-pop .55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+@keyframes tp-badge-pop {
+  from { opacity: 0; transform: translateY(10px) scale(.8); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ==========================================================================
+   About 关于我页 · 滚动驱动动画
+   ========================================================================== */
+/* 1. 三重身份卡：错落滑入 + 序号章弹出 */
+.identity-card-box {
+  --id-p: 0;
+}
+.identity-card-box .identity-index-badge {
+  opacity: clamp(0, calc(var(--id-p) * 2.6 - .2), 1);
+  transform: translateY(calc((1 - var(--id-p)) * 14px));
+}
+.identity-card-box .identity-role-title {
+  opacity: clamp(0, calc(var(--id-p) * 2.4 - .5), 1);
+  transform: translateY(calc((1 - var(--id-p)) * 20px));
+}
+.identity-card-box .identity-desc-txt {
+  opacity: clamp(0, calc(var(--id-p) * 2.4 - .95), 1);
+  transform: translateY(calc((1 - var(--id-p)) * 18px));
+}
+
+/* 2. 哲学引言：大字扫入 + 黄色高亮笔画生长 */
+.philosophy-quote-section {
+  --philo-p: 0;
+}
+.philosophy-quote-section .philo-lead-quote {
+  opacity: clamp(0, calc(var(--philo-p) * 2.2 - .1), 1);
+  transform: translateY(calc((1 - var(--philo-p)) * 26px));
+}
+.philosophy-quote-section .hl-yellow {
+  background: linear-gradient(transparent 60%, rgba(217,239,127,.9) 60%);
+  background-size: 100% 100%;
+  clip-path: inset(0 calc(100% - var(--philo-p) * 100%) 0 0);
+  transition: none;
+}
+.philosophy-quote-section .philo-point-item {
+  --pp-p: 0;
+  opacity: clamp(0, calc(var(--pp-p) * 2.4 - .1), 1);
+  transform: translateY(calc((1 - var(--pp-p)) * 22px));
+}
+
+/* 3. 能力矩阵卡：卡片升起 + 技能 chip 逐个点亮 */
+.capability-card-box {
+  --cap-p: 0;
+}
+.capability-card-box .capability-card-title {
+  opacity: clamp(0, calc(var(--cap-p) * 2.4 - .1), 1);
+  transform: translateY(calc((1 - var(--cap-p)) * 14px));
+}
+.capability-card-box .cap-tag-chip {
+  opacity: clamp(0, calc(var(--cap-p) * 3 - var(--chip-i, 0) * .28 - .25), 1);
+  transform: translateY(calc((1 - clamp(0, calc(var(--cap-p) * 3 - var(--chip-i, 0) * .28 - .25), 1)) * 10px));
+}
+/* chip 的 --chip-i 由 JS 初始化时按索引写入（见 app.js initSectionReveals） */
+
+/* 4. 照片墙：错落放大进场 + hover 变焦 */
+.gallery-photo-frame {
+  --gal-p: 0;
+}
+.gallery-photo-frame .gallery-photo-img {
+  transform: scale(calc(.88 + var(--gal-p) * .12));
+}
+.gallery-photo-frame .gallery-photo-caption {
+  opacity: clamp(0, calc(var(--gal-p) * 2.4 - .8), 1);
+  transform: translateY(calc((1 - var(--gal-p)) * 10px));
+}
+
+/* 5. 能力矩阵整卡滑入 */
+.capability-card-box {
+  opacity: clamp(0, calc(var(--cap-p) * 2.2 - .1), 1);
+  transform: translateY(calc((1 - var(--cap-p)) * 24px));
+}
+
+/* 6. SEO 摘要盒呼吸上浮 */
+#view-about .seo-summary {
+  --seo-p: 0;
+  opacity: clamp(0, calc(var(--seo-p) * 2.2 - .1), 1);
+  transform: translateY(calc((1 - var(--seo-p)) * 22px));
+}
+
+/* ==========================================================================
+   Future 未来页 · 滚动驱动动画
+   ========================================================================== */
+/* 1. 路线图卡片：错落升入 + 季度徽章弹出 + 特性列表逐条点亮 */
+.roadmap-quarter-card {
+  --rd-p: 0;
+  opacity: clamp(0, calc(var(--rd-p) * 2.2 - .1), 1);
+  transform: translateY(calc((1 - var(--rd-p)) * 30px));
+}
+.roadmap-quarter-card .roadmap-badge-q {
+  transform: scale(clamp(0, calc(var(--rd-p) * 2.8 - .4), 1));
+  transition: transform .35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.roadmap-quarter-card .roadmap-feature-list li {
+  opacity: clamp(0, calc(var(--rd-p) * 3 - var(--li-i, 0) * .5 - .4), 1);
+  transform: translateX(calc((1 - clamp(0, calc(var(--rd-p) * 3 - var(--li-i, 0) * .5 - .4), 1)) * 18px));
+}
+
+/* 2. 研究命题卡：滑入 + 编号擦除显现 */
+.inquiry-card-item {
+  --inq-p: 0;
+  opacity: clamp(0, calc(var(--inq-p) * 2.2 - .1), 1);
+  transform: translateY(calc((1 - var(--inq-p)) * 28px));
+}
+.inquiry-card-item .inquiry-card-index {
+  opacity: clamp(0, calc(var(--inq-p) * 3 - 1.4), 1);
+  letter-spacing: calc(.02em + (1 - var(--inq-p)) * .3em);
+}
+
+/* 3. 未来 Callout：升入 + 按钮轻微浮动循环 */
+.future-callout-box {
+  --fc-p: 0;
+  opacity: clamp(0, calc(var(--fc-p) * 2.2 - .1), 1);
+  transform: translateY(calc((1 - var(--fc-p)) * 26px));
+}
+.future-callout-box.in-view .modal-btn-open:not(:hover) {
+  animation: tp-float-y 3.2s ease-in-out .8s infinite;
+}
+@keyframes tp-float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* 4. roadmap 特性 li 的 --li-i 由 JS 写入；标题打字机效果 */
+.roadmap-quarter-card .roadmap-project-title {
+  opacity: clamp(0, calc(var(--rd-p) * 2.6 - .3), 1);
+  transform: translateX(calc((1 - var(--rd-p)) * -14px));
+}
+
+/* li 的 --li-i 由 JS 初始化写入（initSectionReveals） */
+
+/* 5. subpage-hero 插图悬浮循环（journey/about/future 三页共享） */
+.subpage-hero-illustration.in-view {
+  animation: tp-hero-float 5s ease-in-out 1.2s infinite;
+}
+@keyframes tp-hero-float {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -7px; }
+}
+
+/* ==========================================================================
+   Shared Contact 共享联系板块入场（所有视图底部）
+   ========================================================================== */
+.tp-contact-section {
+  --contact-p: 0;
+}
+.tp-contact-section .tp-contact-heading-label {
+  opacity: clamp(0, calc(var(--contact-p) * 2.6 - .2), 1);
+  transform: translateX(calc((1 - var(--contact-p)) * -26px));
+}
+.tp-contact-section .tp-contact-ghost {
+  opacity: calc(var(--contact-p) * .14);
+  transform: scale(calc(.9 + var(--contact-p) * .1));
+}
+.tp-contact-section .tp-contact-row {
+  opacity: clamp(0, calc(var(--contact-p) * 2.4 - var(--row-i, 0) * .3 - .15), 1);
+  transform: translateY(calc((1 - clamp(0, calc(var(--contact-p) * 2.4 - var(--row-i, 0) * .3 - .15), 1)) * 18px));
+}
+/* row 的 --row-i 由 JS 写入 */

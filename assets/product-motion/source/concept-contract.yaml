@@ -1,0 +1,32 @@
+subject_count: 15
+subjects:
+  - identity: TPrompts prompt-template interface
+  - identity: Teach Player video learning interface
+  - identity: TPaper scan-to-practice interface
+  - identity: TPVibe coding workspace interface
+  - identity: AI development radar interface
+  - identity: TP-Hub TaskSkillPilot aggregation interface
+  - identity: TP Security Classroom interface
+  - identity: Kebiao semester schedule interface
+  - identity: T小P mail archive interface
+  - identity: TP Rednote inspiration notebook interface
+  - identity: TokenPool AI gateway interface
+  - identity: TP OS personal operating system interface
+  - identity: Xuezhang campus Q&A interface
+  - identity: TPbili audience-analysis interface (tail position)
+  - identity: CyberPulse live data interface (tail position)
+style: Existing graph-paper product-page illustration language
+motion_intent: Each product interface unfolds from a sparse outline into its complete working state as its card moves through the viewport.
+background_owner: page
+scene: Page-owned graph-paper background with scalable procedural vector interface layers.
+driver: scroll
+input_semantics: continuous
+time_control: scrub
+navigation: continuous
+clip_continuity: chain
+continuity:
+  - Keep all fifteen featured product cards, text, links, order, and color-system anchors.
+  - Keep every scene legible at the large desktop visual-column size.
+  - Use a lower-complexity rendering on mobile.
+  - Render a completed static scene when reduced motion is requested.
+destination: Product card visual columns; desktop up to 460x288 CSS px and mobile up to 320x200 CSS px.

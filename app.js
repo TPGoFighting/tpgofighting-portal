@@ -707,6 +707,62 @@ function getFilteredServices() {
 function renderMatrixServices() {
   const list = getFilteredServices();
 
+  // 迷你 motion 场景：每个产品一个专属矢量小剧场（复用 --motion-progress 滚动 runtime）
+  const MATRIX_MOTION_SCENES = {
+    tpself: {
+      cls: "matrix-motion--home",
+      html: '<div class="mm-grid"></div><span class="mm-kicker">HOME / 01</span><div class="mm-window"><div class="mm-win-bar"><i></i><i></i><i></i><b>tp://self</b></div><div class="mm-body"><span class="mm-line"></span><span class="mm-line"></span><span class="mm-line mm-line--short"></span></div><div class="mm-badge">TP</div></div><span class="mm-spark">✦</span>'
+    },
+    tangpan: {
+      cls: "matrix-motion--timeline",
+      html: '<div class="mm-grid"></div><span class="mm-kicker">PATH / 02</span><div class="mm-rail"><i class="mm-rail-line"></i><span class="mm-node"></span><span class="mm-node"></span><span class="mm-node"></span><span class="mm-node"></span></div><div class="mm-card-stack"><i></i><i></i><i></i></div><span class="mm-spark">+</span>'
+    },
+    ai: {
+      cls: "matrix-motion--academic",
+      html: '<div class="mm-grid"></div><span class="mm-kicker">PAPER / 03</span><div class="mm-paper"><b>ABSTRACT</b><i></i><i></i><i></i><em>[1]</em><em>[2]</em></div><div class="mm-quote-mark">"</div><span class="mm-spark">✦</span>'
+    },
+    chat: {
+      cls: "matrix-motion--chat",
+      html: '<div class="mm-grid"></div><span class="mm-kicker">TALK / 04</span><div class="mm-chat"><span class="mm-bubble mm-bubble--l">你好呀</span><span class="mm-bubble mm-bubble--r">先倾听，再表达</span><span class="mm-bubble mm-bubble--l mm-bubble--accent">场景练习 →</span></div><span class="mm-spark">💬</span>'
+    },
+    skillver: {
+      cls: "matrix-motion--skillver",
+      html: '<div class="mm-grid"></div><span class="mm-kicker">SKILL / 05</span><div class="mm-version"><b>v2.4</b><span class="mm-tag-row"><i class="mm-tag mm-tag--a">agent</i><i class="mm-tag mm-tag--b">v1.9</i><i class="mm-tag mm-tag--c">v2.1</i></span></div><div class="mm-graph"><i></i><i></i><i></i><i></i></div><span class="mm-spark">✦</span>'
+    },
+    shiyou: {
+      cls: "matrix-motion--dash",
+      html: '<div class="mm-grid"></div><span class="mm-kicker">PULSE / 06</span><div class="mm-panel"><div class="mm-panel-val">94<span>%</span></div><div class="mm-bars"><i></i><i></i><i></i><i></i><i></i></div><div class="mm-trend-line"><svg viewBox="0 0 120 24" preserveAspectRatio="none"><path d="M0,18 C12,18 14,7 26,10 S44,16 56,5 S76,15 90,8 S110,4 120,3"/></svg></div></div><span class="mm-node mm-node--a"></span><span class="mm-node mm-node--b"></span>'
+    },
+    wearticle: {
+      cls: "matrix-motion--reader",
+      html: '<div class="mm-grid"></div><span class="mm-kicker">READ / 07</span><div class="mm-reader"><div class="mm-reader-bar"><i></i><i></i><i></i><b>daily://digest</b></div><div class="mm-article"><b></b><i></i><i></i><i></i><strong class="mm-ai-dot">AI</strong></div><div class="mm-article mm-article--next"><b></b><i></i><i></i></div></div><span class="mm-spark">✦</span>'
+    },
+    yatn: {
+      cls: "matrix-motion--apply",
+      html: '<div class="mm-grid"></div><span class="mm-kicker">APPLY / 08</span><div class="mm-form"><b class="mm-form-title">YATN 申请</b><span class="mm-field"><i></i></span><span class="mm-field"><i></i></span><span class="mm-field mm-field--half"></span><em class="mm-check">✓</em></div><span class="mm-spark">+</span>'
+    },
+    caipu: {
+      cls: "matrix-motion--admin",
+      html: '<div class="mm-grid"></div><span class="mm-kicker">ADMIN / 09</span><div class="mm-admin-table"><div class="mm-th"><i></i><i></i><i></i></div><div class="mm-tr"><i></i><i></i><em class="mm-status mm-status--ok">●</em></div><div class="mm-tr"><i></i><i></i><em class="mm-status mm-status--ok">●</em></div><div class="mm-tr"><i></i><i></i><em class="mm-status mm-status--wait">●</em></div></div>'
+    },
+    njupt: {
+      cls: "matrix-motion--campus",
+      html: '<div class="mm-grid"></div><span class="mm-kicker">CAMPUS / 10</span><div class="mm-campus"><div class="mm-teacher-desk"><i></i><i></i></div><div class="mm-blackboard"><b>南邮指南</b><i></i><i></i></div><span class="mm-flag-pole"></span></div><span class="mm-spark">✿</span>'
+    },
+    redwood: {
+      cls: "matrix-motion--redwood",
+      html: '<div class="mm-grid"></div><span class="mm-kicker">3D / 11</span><div class="mm-3d-cube"><i class="mm-face mm-face--top"></i><i class="mm-face mm-face--left"></i><i class="mm-face mm-face--right"></i><span class="mm-3d-glow"></span></div><div class="mm-plinth"><i></i><i></i></div><span class="mm-spark">✦</span>'
+    },
+    wtjneslzdj: {
+      cls: "matrix-motion--pixel",
+      html: '<div class="mm-grid"></div><span class="mm-kicker">8BIT / 12</span><div class="mm-pixel-scene"><div class="mm-pixel-hero"></div><div class="mm-pixel-ground"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="mm-pixel-flag"><i></i><i></i></div></div><span class="mm-spark">♥</span>'
+    },
+    lanbo: {
+      cls: "matrix-motion--archive",
+      html: '<div class="mm-grid"></div><span class="mm-kicker">LOG / 13</span><div class="mm-archive"><div class="mm-log-row"><b>08:14</b><i></i></div><div class="mm-log-row"><b>08:15</b><i></i></div><div class="mm-log-row"><b>08:17</b><i></i></div><em class="mm-stamp">FACT-CHECKED</em></div>'
+    }
+  };
+
   // 动态同步分类计数（数据驱动，防止硬编码漂移）
   const matrixServices = SERVICES.filter(svc => !FEATURED_SERVICE_IDS.has(svc.id));
   const counts = { all: matrixServices.length };
@@ -732,6 +788,7 @@ function renderMatrixServices() {
 
     return `
       <article class="service-matrix-card" data-id="${svc.id}" onclick="openDetailModal('${svc.id}')">
+        ${(MATRIX_MOTION_SCENES[svc.id]) ? `<div class="product-motion matrix-motion-stage ${MATRIX_MOTION_SCENES[svc.id].cls}" data-motion-scene="${svc.id}" role="img" aria-label="${svc.name} 产品示意动画">${MATRIX_MOTION_SCENES[svc.id].html}</div>` : ""}
         <div class="service-card-top">
           <div class="service-icon-box">
             ${iconSvg}
@@ -1180,6 +1237,103 @@ function initProductScrollMotion() {
 
   if (reducedMotion.matches) renderStatic();
   else schedule();
+}
+
+// ==========================================================================
+// 3.5 板块级滚动动画（journey / about / future / 共享联系板块）
+// 与产品 motion 同一模式：rAF 写入 --xx-p 进度变量，CSS 负责呈现。
+// ==========================================================================
+function initSectionReveals() {
+  if (document.body.dataset.sectionRevealBound === "1") return;
+  document.body.dataset.sectionRevealBound = "1";
+
+  // 子元素序号变量（chips / li / rows），只写一次
+  document.querySelectorAll(".capability-card-box").forEach(box => {
+    box.querySelectorAll(".cap-tag-chip").forEach((chip, i) => chip.style.setProperty("--chip-i", i));
+  });
+  document.querySelectorAll(".roadmap-quarter-card").forEach(card => {
+    card.querySelectorAll(".roadmap-feature-list li").forEach((li, i) => li.style.setProperty("--li-i", i));
+  });
+  document.querySelectorAll(".tp-contact-row").forEach((row, i) => row.style.setProperty("--row-i", i));
+
+  // 容器 → 进度变量名 映射
+  const TRACKED = [
+    ["#view-journey .subpage-hero, #view-about .subpage-hero, #view-future .subpage-hero", "--sp-reveal", "self"],
+    ["#view-journey .metric-stat-card", "--metric-p", "self"],
+    ["#view-journey .journey-story-banner", "--story-p", "self"],
+    ["#view-journey .timeline-stream-wrap", "--tl-p", "wrap"],
+    ["#view-journey .timeline-node-item", "--node-p", "self"],
+    ["#view-about .identity-card-box", "--id-p", "self"],
+    ["#view-about .philosophy-quote-section", "--philo-p", "self"],
+    ["#view-about .philo-point-item", "--pp-p", "self"],
+    ["#view-about .capability-card-box", "--cap-p", "self"],
+    ["#view-about .gallery-photo-frame", "--gal-p", "self"],
+    ["#view-about .seo-summary", "--seo-p", "self"],
+    ["#view-future .roadmap-quarter-card", "--rd-p", "self"],
+    ["#view-future .inquiry-card-item", "--inq-p", "self"],
+    ["#view-future .future-callout-box", "--fc-p", "self"],
+    [".tp-contact-section", "--contact-p", "self"]
+  ];
+
+  const bindings = []; // { el, prop, mode }
+  TRACKED.forEach(([sel, prop, mode]) => {
+    document.querySelectorAll(sel).forEach(el => bindings.push({ el, prop, mode }));
+  });
+
+  // in-view 类（CSS keyframe 入场用）：section-heading-row / hero 插图 / callout
+  const inViewTargets = document.querySelectorAll(
+    "#view-journey .section-heading-row, #view-about .section-heading-row, #view-future .section-heading-row, .subpage-hero-illustration, .future-callout-box"
+  );
+  const inViewObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("in-view");
+        inViewObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  const trackedEls = new Set();
+  inViewTargets.forEach(el => { inViewObserver.observe(el); trackedEls.add(el); });
+  // 联系板块动态 rows 已在静态 HTML，无需 MutationObserver
+
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let rafId = 0;
+
+  const renderAll = () => {
+    rafId = 0;
+    if (document.hidden) return;
+    const vh = window.innerHeight || 1;
+    bindings.forEach(({ el, prop, mode }) => {
+      // 隐藏的路由视图跳过（display:none 时 rect 为 0）
+      const rect = el.getBoundingClientRect();
+      if (rect.height === 0 && rect.width === 0) return;
+      let p;
+      if (mode === "wrap") {
+        // 时间线容器：0 → 1 对应「容器顶进入视口底」到「容器底到达视口中下」
+        const total = rect.height + vh;
+        p = Math.max(0, Math.min(1, (vh - rect.top) / total));
+      } else {
+        p = Math.max(0, Math.min(1, (vh - rect.top) / (vh * 0.72)));
+      }
+      el.style.setProperty(prop, p.toFixed(3));
+    });
+  };
+
+  const schedule = () => {
+    if (!rafId && !reducedMotion.matches && !document.hidden) rafId = requestAnimationFrame(renderAll);
+  };
+
+  window.addEventListener("scroll", schedule, { passive: true });
+  window.addEventListener("resize", schedule, { passive: true });
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) schedule(); });
+
+  if (reducedMotion.matches) {
+    // 无障碍：所有进度直接置 1
+    bindings.forEach(({ el, prop }) => el.style.setProperty(prop, "1"));
+  } else {
+    schedule();
+  }
 }
 
 function init3DCardTiltPhysics() {
@@ -1715,6 +1869,7 @@ function initAnimations() {
   initInkDoodleCanvas();
   initScrollTriggerAnimations();
   initProductScrollMotion();
+  initSectionReveals();
   init3DCardTiltPhysics();
   initMagneticButtons();
   initHeroEyeTracking();

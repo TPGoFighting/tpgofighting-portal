@@ -121,7 +121,7 @@
     .route-view.active { display: block; }
   </style>
 
-  <link rel="stylesheet" href="style.css?v=20260902_motion_02">
+  <link rel="stylesheet" href="style.css?v=20260902_motion_03">
 </head>
 <body data-theme="light">
   <!-- 无障碍：跳过导航直达主内容 -->
@@ -599,38 +599,6 @@
       </div>
     </section>
 
-    <!-- ==========================================================================
-         Section 04 · 关于创作者与联系方式 (04 About & Connect)
-         ========================================================================== -->
-    <section class="section-block" id="section-about">
-      <div class="tp-contact-section" id="contact-links">
-        <div class="tp-contact-heading">
-          <div class="tp-contact-heading-label"><span class="tp-contact-rule"></span><span>联系</span><span class="tp-contact-slash">/</span><span>ELSEWHERE</span></div>
-          <span class="tp-contact-ghost" aria-hidden="true">TP</span>
-        </div>
-
-        <div class="tp-contact-list" aria-label="联系方式">
-          <button class="tp-contact-row" type="button" data-contact-title="GitHub" data-contact-detail="@TPGoFighting" data-contact-url="https://github.com/TPGoFighting">
-            <span class="tp-contact-icon"><img src="assets/contact-icons/github.svg" alt=""></span><span class="tp-contact-number">01</span><strong class="tp-contact-name">GitHub</strong><span class="tp-contact-detail">@TPGoFighting</span><span class="tp-contact-arrow" aria-hidden="true">↗</span><span class="tp-contact-spotlight" aria-hidden="true"></span>
-          </button>
-          <button class="tp-contact-row" type="button" data-contact-title="X" data-contact-detail="@TPPPGo" data-contact-url="https://x.com/TPPPGo">
-            <span class="tp-contact-icon"><img src="assets/contact-icons/x.svg" alt=""></span><span class="tp-contact-number">02</span><strong class="tp-contact-name">X</strong><span class="tp-contact-detail">@TPPPGo</span><span class="tp-contact-arrow" aria-hidden="true">↗</span><span class="tp-contact-spotlight" aria-hidden="true"></span>
-          </button>
-          <button class="tp-contact-row" type="button" data-contact-title="Email" data-contact-detail="a2897378856@gmail.com" data-contact-url="mailto:a2897378856@gmail.com">
-            <span class="tp-contact-icon"><img src="assets/contact-icons/email.svg" alt=""></span><span class="tp-contact-number">03</span><strong class="tp-contact-name">Email</strong><span class="tp-contact-detail">a2897378856@gmail.com</span><span class="tp-contact-arrow" aria-hidden="true">↗</span><span class="tp-contact-spotlight" aria-hidden="true"></span>
-          </button>
-          <button class="tp-contact-row" type="button" data-contact-title="哔哩哔哩" data-contact-detail="TP 的视频与 AI 实践" data-contact-url="https://b23.tv/RicO7Hi">
-            <span class="tp-contact-icon"><img src="assets/contact-icons/bilibili.svg" alt=""></span><span class="tp-contact-number">04</span><strong class="tp-contact-name">哔哩哔哩</strong><span class="tp-contact-detail">TP 的视频与 AI 实践</span><span class="tp-contact-arrow" aria-hidden="true">↗</span><span class="tp-contact-spotlight" aria-hidden="true"></span>
-          </button>
-          <button class="tp-contact-row" type="button" data-contact-brand="xiaohongshu" data-contact-title="小红书" data-contact-detail="TP 的小红书主页" data-contact-url="https://xhslink.cn/m/4DFCodSfhRs">
-            <span class="tp-contact-icon"><img src="assets/icons/小红书.svg" alt=""></span><span class="tp-contact-number">05</span><strong class="tp-contact-name">小红书</strong><span class="tp-contact-detail">TP 的小红书主页</span><span class="tp-contact-arrow" aria-hidden="true">↗</span><span class="tp-contact-spotlight" aria-hidden="true"></span>
-          </button>
-          <button class="tp-contact-row" type="button" data-contact-title="抖音" data-contact-detail="TP 的抖音主页" data-contact-url="https://v.douyin.com/XHbWYQortSM/">
-            <span class="tp-contact-icon"><img src="assets/contact-icons/douyin.svg" alt=""></span><span class="tp-contact-number">06</span><strong class="tp-contact-name">抖音</strong><span class="tp-contact-detail">TP 的抖音主页</span><span class="tp-contact-arrow" aria-hidden="true">↗</span><span class="tp-contact-spotlight" aria-hidden="true"></span>
-          </button>
-        </div>
-      </div>
-    </section>
   </div><!-- End of #view-products -->
 
   <!-- ==========================================================================
@@ -1104,7 +1072,7 @@
         无论你是想探讨 AI Agent 工作流、全栈工程架构、3D 视觉研究，还是寻求实习与项目合作，都非常欢迎与我交流。
       </p>
       <div class="future-callout-actions">
-        <button class="modal-btn-open magnetic-btn" onclick="switchRoute('about'); window.scrollTo({top: document.getElementById('view-about').scrollHeight, behavior: 'smooth'});">
+        <button class="modal-btn-open magnetic-btn" onclick="document.getElementById('contact-links').scrollIntoView({ behavior: 'smooth' });">
           <span>查看联系方式</span>
           <svg class="svg-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
         </button>
@@ -1114,6 +1082,39 @@
       </div>
     </div>
   </div><!-- End of #view-future -->
+
+  <!-- ==========================================================================
+       共享联系板块 (Shared Contact Section · 四个视图底部常驻)
+       ========================================================================== -->
+  <section class="section-block" id="section-about">
+    <div class="tp-contact-section" id="contact-links">
+      <div class="tp-contact-heading">
+        <div class="tp-contact-heading-label"><span class="tp-contact-rule"></span><span>联系</span><span class="tp-contact-slash">/</span><span>ELSEWHERE</span></div>
+        <span class="tp-contact-ghost" aria-hidden="true">TP</span>
+      </div>
+
+      <div class="tp-contact-list" aria-label="联系方式">
+        <button class="tp-contact-row" type="button" data-contact-title="GitHub" data-contact-detail="@TPGoFighting" data-contact-url="https://github.com/TPGoFighting">
+          <span class="tp-contact-icon"><img src="assets/contact-icons/github.svg" alt=""></span><span class="tp-contact-number">01</span><strong class="tp-contact-name">GitHub</strong><span class="tp-contact-detail">@TPGoFighting</span><span class="tp-contact-arrow" aria-hidden="true">↗</span><span class="tp-contact-spotlight" aria-hidden="true"></span>
+        </button>
+        <button class="tp-contact-row" type="button" data-contact-title="X" data-contact-detail="@TPPPGo" data-contact-url="https://x.com/TPPPGo">
+          <span class="tp-contact-icon"><img src="assets/contact-icons/x.svg" alt=""></span><span class="tp-contact-number">02</span><strong class="tp-contact-name">X</strong><span class="tp-contact-detail">@TPPPGo</span><span class="tp-contact-arrow" aria-hidden="true">↗</span><span class="tp-contact-spotlight" aria-hidden="true"></span>
+        </button>
+        <button class="tp-contact-row" type="button" data-contact-title="Email" data-contact-detail="a2897378856@gmail.com" data-contact-url="mailto:a2897378856@gmail.com">
+          <span class="tp-contact-icon"><img src="assets/contact-icons/email.svg" alt=""></span><span class="tp-contact-number">03</span><strong class="tp-contact-name">Email</strong><span class="tp-contact-detail">a2897378856@gmail.com</span><span class="tp-contact-arrow" aria-hidden="true">↗</span><span class="tp-contact-spotlight" aria-hidden="true"></span>
+        </button>
+        <button class="tp-contact-row" type="button" data-contact-title="哔哩哔哩" data-contact-detail="TP 的视频与 AI 实践" data-contact-url="https://b23.tv/RicO7Hi">
+          <span class="tp-contact-icon"><img src="assets/contact-icons/bilibili.svg" alt=""></span><span class="tp-contact-number">04</span><strong class="tp-contact-name">哔哩哔哩</strong><span class="tp-contact-detail">TP 的视频与 AI 实践</span><span class="tp-contact-arrow" aria-hidden="true">↗</span><span class="tp-contact-spotlight" aria-hidden="true"></span>
+        </button>
+        <button class="tp-contact-row" type="button" data-contact-brand="xiaohongshu" data-contact-title="小红书" data-contact-detail="TP 的小红书主页" data-contact-url="https://xhslink.cn/m/4DFCodSfhRs">
+          <span class="tp-contact-icon"><img src="assets/icons/小红书.svg" alt=""></span><span class="tp-contact-number">05</span><strong class="tp-contact-name">小红书</strong><span class="tp-contact-detail">TP 的小红书主页</span><span class="tp-contact-arrow" aria-hidden="true">↗</span><span class="tp-contact-spotlight" aria-hidden="true"></span>
+        </button>
+        <button class="tp-contact-row" type="button" data-contact-title="抖音" data-contact-detail="TP 的抖音主页" data-contact-url="https://v.douyin.com/XHbWYQortSM/">
+          <span class="tp-contact-icon"><img src="assets/contact-icons/douyin.svg" alt=""></span><span class="tp-contact-number">06</span><strong class="tp-contact-name">抖音</strong><span class="tp-contact-detail">TP 的抖音主页</span><span class="tp-contact-arrow" aria-hidden="true">↗</span><span class="tp-contact-spotlight" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </section>
 
   </main>
 
@@ -1271,6 +1272,6 @@
 
   <!-- GSAP 物理动画引擎 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="app.js?v=20260902_matrix_02"></script>
+  <script src="app.js?v=20260902_matrix_03"></script>
 </body>
 </html>

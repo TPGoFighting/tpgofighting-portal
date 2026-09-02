@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Oil Motion Study · TP Space</title>
+  <meta name="description" content="A standalone motion study inspired by the recorded Oil portfolio interactions.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="site-loader" id="site-loader" role="status" aria-label="正在准备动效样片">
+    <div class="loader-mark">OIL<span>®</span></div>
+    <div class="loader-track"><i></i></div>
+  </div>
+
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow--one" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow--two" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true"><i id="scroll-progress-bar"></i><span id="scroll-progress-value">00</span></div>
+
+  <div class="page-shell">
+    <header class="topbar rev">
+      <span><b class="status-dot"></b>TP SPACE / MOTION STUDY</span>
+      <span class="topbar-meta">SCROLL / HOVER / TAP</span>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <h1 id="hero-title">
+          <span class="line-mask"><span>TP</span></span>
+          <span class="line-mask"><span>makes</span></span>
+          <span class="line-mask"><span>things.</span></span>
+          <span class="hero-mascot" aria-hidden="true">
+            <span class="mascot-shadow"></span>
+            <img src="../../assets/hero/human-full.png" alt="">
+            <span class="mascot-orb"></span>
+          </span>
+        </h1>
+        <div class="hero-sub rev d1"><span class="hero-cn">唐 潘</span><span>ENGINEER / AI BUILDER / CREATOR</span></div>
+        <div class="hero-type-line rev d2"><span>&gt; </span><span class="type-text">recreate_the_motion</span><b></b></div>
+        <div class="hero-arrow rev d3">↓ 往下滑</div>
+      </section>
+
+      <section class="works" id="works" aria-labelledby="works-title">
+        <div class="section-intro rev">
+          <span class="eyebrow">01 / INTERACTION SAMPLES</span>
+          <h2 id="works-title">动效不是装饰，是页面的呼吸。</h2>
+          <p>这是一套与现有 TP Space 并行的动效实验页：滚动让内容进入，悬停让控件回应，点击让状态变化。</p>
+        </div>
+
+        <div class="tabs rev d1" role="tablist" aria-label="内容分类">
+          <button class="tab active" id="tab-products" type="button" role="tab" aria-selected="true" aria-controls="panel-products" data-panel="products">产品</button>
+          <button class="tab" id="tab-skills" type="button" role="tab" aria-selected="false" aria-controls="panel-skills" data-panel="skills">Skills</button>
+          <button class="tab" id="tab-articles" type="button" role="tab" aria-selected="false" aria-controls="panel-articles" data-panel="articles">文章</button>
+          <button class="tab" id="tab-me" type="button" role="tab" aria-selected="false" aria-controls="panel-me" data-panel="me">关于我</button>
+          <button class="tab" id="tab-contact" type="button" role="tab" aria-selected="false" aria-controls="panel-contact" data-panel="contact">交流</button>
+        </div>
+
+        <div class="panel active" id="panel-products" role="tabpanel" aria-labelledby="tab-products">
+          <div class="motion-grid">
+            <article class="motion-card rev stagger-card">
+              <div class="card-index">01</div>
+              <div class="stage stage--roles" aria-label="角色说话气泡和悬停分散效果">
+                <span class="stage-moon"></span><i class="stage-star star-one"></i><i class="stage-star star-two"></i>
+                <div class="role role--one"><b>AI</b></div><div class="role role--two"><b>TP</b></div><div class="role role--three"><b>YOU</b></div>
+                <span class="speech speech--one">我来回答</span><span class="speech speech--two">轮到你了</span><span class="speech speech--three">继续探索</span>
+                <span class="stage-hint">HOVER THE SCENE</span>
+              </div>
+              <div class="card-copy"><span class="card-kicker">SCATTER / SPEAK</span><h3>错峰入场 + 弹幕流</h3><p>角色有自己的节奏，鼠标靠近时整体轻轻散开，气泡出现时带一点回弹。</p></div>
+            </article>
+
+            <article class="motion-card rev stagger-card d1">
+              <div class="card-index">02</div>
+              <div class="stage stage--textwell" aria-label="文本替换和修正提示效果">
+                <div class="paper-sheet"><p>AI tools <span class="edit-token"><span class="old-word">has</span><span class="new-word">have</span></span> changed how we write,</p><p>and <span class="edit-token"><span class="old-word">its</span><span class="new-word">it’s</span></span> now easier to polish.</p><span class="correction-badge">✓ 已修正 2 处</span></div>
+              </div>
+              <div class="card-copy"><span class="card-kicker">TYPE / REPLACE</span><h3>打字机 + 文本修正</h3><p>文字先出现，再被标记、划掉、替换，最后用一个微小的确认徽章收住。</p></div>
+            </article>
+
+            <article class="motion-card rev stagger-card d2">
+              <div class="card-index">03</div>
+              <div class="stage stage--vibe" aria-label="悬停、弹性和毛玻璃三种交互效果">
+                <div class="vibe-viewport"><div class="vibe-track" id="vibe-track">
+                  <section class="vibe-slide active"><div class="vibe-card"><span class="vibe-number">N° 01</span><strong>悬停</strong><small>Hover</small><p>鼠标放上去，按钮会变色并浮起。</p><div class="hover-demo"><span class="hover-card">悬停我<small>浮起 + 变色</small></span><button type="button">悬停变色</button><span class="hover-card hover-card--dead">对照组<small>我不响应</small></span></div></div></section>
+                  <section class="vibe-slide"><div class="vibe-card"><span class="vibe-number">N° 02</span><strong>弹性</strong><small>Spring</small><p>先越过目标值，再回弹到目标点。</p><div class="spring-demo"><div class="spring-track" id="spring-track" role="button" tabindex="0" aria-label="重播弹性动画"><i class="spring-target"></i><i class="spring-ball"></i></div><button class="replay-button" type="button" id="replay-spring">重播</button></div></div></section>
+                  <section class="vibe-slide"><div class="vibe-card"><span class="vibe-number">N° 03</span><strong>毛玻璃</strong><small>Backdrop Blur</small><p>半透明表面让背景在滚动时有一层柔软的距离感。</p><div class="glass-demo"><div class="glass-backdrop"><span>山居民宿 · 云顶</span></div><button type="button" id="toggle-glass" aria-pressed="true">blur: on</button></div></div></section>
+                </div></div>
+                <div class="vibe-nav"><button type="button" id="vibe-prev" aria-label="上一个术语">‹</button><div class="vibe-dots" role="tablist" aria-label="交互示例"><button class="active" type="button" data-vibe-index="0" aria-label="切换到悬停"></button><button type="button" data-vibe-index="1" aria-label="切换到弹性"></button><button type="button" data-vibe-index="2" aria-label="切换到毛玻璃"></button></div><button type="button" id="vibe-next" aria-label="下一个术语">›</button><span id="vibe-index">01 / 03</span></div>
+              </div>
+              <div class="card-copy"><span class="card-kicker">HOVER / SPRING / GLASS</span><h3>三个能被感知的状态</h3><p>把悬停、弹性回弹和 backdrop blur 做成可直接体验的小型组件。</p></div>
+            </article>
+
+            <article class="motion-card motion-card--wide rev stagger-card d3">
+              <div class="card-index">04</div>
+              <div class="stage stage--dashboard" aria-label="滚动进入的雷达波、柱状图和数字计数效果">
+                <div class="dashboard-head"><span>LIVE SIGNAL</span><strong><span id="counter-value">86</span>%</strong></div>
+                <div class="radar"><i></i><i></i><i></i><b></b></div>
+                <div class="bars"><i style="--bar:35%"></i><i style="--bar:58%"></i><i style="--bar:44%"></i><i style="--bar:82%"></i><i style="--bar:66%"></i><i style="--bar:94%"></i></div>
+                <div class="ticker"><span>NEW INPUT</span><span>●</span><span>SCROLL TO REVEAL</span><span>●</span><span>NEW INPUT</span></div>
+              </div>
+              <div class="card-copy"><span class="card-kicker">SCROLL / COUNT / PULSE</span><h3>滚动入场 + 数据脉动</h3><p>卡片进入视口后，指标、雷达波和柱状图错开出现；离开视口时暂停，减少无意义的计算。</p></div>
+            </article>
+          </div>
+        </div>
+
+        <div class="panel" id="panel-skills" role="tabpanel" aria-labelledby="tab-skills" hidden><div class="empty-panel rev"><span class="eyebrow">02 / SKILLS</span><h3>Skills 是可以被调用的工作方式。</h3><p>切换面板本身也保留淡入、上移和黄色高亮条的过渡。</p></div></div>
+        <div class="panel" id="panel-articles" role="tabpanel" aria-labelledby="tab-articles" hidden><div class="empty-panel rev"><span class="eyebrow">03 / ARTICLES</span><h3>把一次动效拆成可复用的语言。</h3><p>从“看起来会动”回到“为什么要这样动”。</p></div></div>
+        <div class="panel" id="panel-me" role="tabpanel" aria-labelledby="tab-me" hidden><div class="empty-panel rev"><span class="eyebrow">04 / ABOUT</span><h3>TP Space / Motion Study</h3><p>这是独立变体，不会改变根目录的现有站点与交互。</p></div></div>
+        <div class="panel" id="panel-contact" role="tabpanel" aria-labelledby="tab-contact" hidden>
+          <section class="contact-section" aria-labelledby="contact-title">
+            <header class="contact-section-head rev"><h2 id="contact-title">联系方式 / CONNECT</h2><span>专业 · 成长 · 分享</span></header>
+            <div class="contact-list">
+              <article class="contact-card rev stagger-card" data-contact-title="专业讨论咨询" data-contact-summary="把 AI 用进开发、设计、运营和产品工作。" data-contact-meta="一对一语音会议 · 有需要可开视频">
+                <span class="card-spotlight" aria-hidden="true"></span><span class="contact-number">01</span>
+                <div class="contact-copy"><span class="eyebrow">PROFESSIONAL / 专业讨论</span><strong class="contact-title">咨询</strong><span class="contact-summary">把 AI 用进开发、设计、运营和产品工作。</span><span class="contact-meta">一对一语音会议 · 有需要可开视频</span></div>
+                <div class="contact-art contact-art--voice" aria-hidden="true"><i></i><i></i><i></i><i></i><b>VOICE</b></div><button class="contact-open" type="button" aria-label="查看专业讨论咨询">↗</button>
+              </article>
+              <article class="contact-card rev stagger-card d1" data-contact-title="交流答疑群" data-contact-summary="带着问题来，一起聊 AI、产品、自媒体和求职。" data-contact-meta="付费微信群 · ¥99 · 持续答疑">
+                <span class="card-spotlight" aria-hidden="true"></span><span class="contact-number">02</span>
+                <div class="contact-copy"><span class="eyebrow">Q&amp;A COMMUNITY / 交流答疑</span><strong class="contact-title">交流答疑群</strong><span class="contact-summary">带着问题来，一起聊 AI、产品、自媒体和求职。</span><span class="contact-meta">付费微信群 · ¥99 · 持续答疑</span></div>
+                <div class="contact-art contact-art--chat" aria-hidden="true"><span>?</span><span>AI / 产品</span><span>一起聊</span></div><button class="contact-open" type="button" aria-label="查看交流答疑群">↗</button>
+              </article>
+              <article class="contact-card rev stagger-card d2" data-contact-title="超级欧友社群" data-contact-summary="和独立开发者、大厂开发、设计师和产品经理深度交流。" data-contact-meta="高质量付费社群 · 长期交流 · 可私聊">
+                <span class="card-spotlight" aria-hidden="true"></span><span class="contact-number">03</span>
+                <div class="contact-copy"><span class="eyebrow">SUPER OIL FRIENDS / 深度交流</span><strong class="contact-title">超级欧友社群</strong><span class="contact-summary">和独立开发者、大厂开发、设计师和产品经理深度交流。</span><span class="contact-meta">高质量付费社群 · 长期交流 · 可私聊</span></div>
+                <div class="contact-art contact-art--orbit" aria-hidden="true"><i></i><i></i><i></i><b>TP</b></div><button class="contact-open" type="button" aria-label="查看超级欧友社群">↗</button>
+              </article>
+              <article class="contact-card rev stagger-card d3" data-contact-title="直播 / 线下分享" data-contact-summary="一起把产品、AI 和内容创作聊清楚。" data-contact-meta="直播连麦 · 线下活动 · 邮件联系">
+                <span class="card-spotlight" aria-hidden="true"></span><span class="contact-number">04</span>
+                <div class="contact-copy"><span class="eyebrow">SHARING / 直播与线下</span><strong class="contact-title">直播 / 线下分享</strong><span class="contact-summary">一起把产品、AI 和内容创作聊清楚。</span><span class="contact-meta">直播连麦 · 线下活动 · 邮件联系</span></div>
+                <div class="contact-art contact-art--broadcast" aria-hidden="true"><b>LIVE</b><i></i><i></i><i></i></div><button class="contact-open" type="button" aria-label="查看直播 / 线下分享">↗</button>
+              </article>
+              <article class="contact-card rev stagger-card" data-contact-title="作品投稿" data-contact-summary="分享你认真完成的作品，遇到好的作品会制作视频分享。" data-contact-meta="免费投稿 · 审核后展示">
+                <span class="card-spotlight" aria-hidden="true"></span><span class="contact-number">05</span>
+                <div class="contact-copy"><span class="eyebrow">VIBE CODING / 作品投稿</span><strong class="contact-title">作品投稿</strong><span class="contact-summary">分享你认真完成的作品，遇到好的作品会制作视频分享。</span><span class="contact-meta">免费投稿 · 审核后展示</span></div>
+                <div class="contact-art contact-art--submit" aria-hidden="true"><span>&lt;/&gt;</span><b>SUBMIT</b><i></i></div><button class="contact-open" type="button" aria-label="查看作品投稿">↗</button>
+              </article>
+            </div>
+          </section>
+        </div>
+      </section>
+  </main>
+
+  <div class="contact-modal-backdrop" id="contact-modal" hidden>
+    <div class="contact-dialog" role="dialog" aria-modal="true" aria-labelledby="contact-dialog-title">
+      <header class="contact-dialog-header"><span>CONTACT / DETAILS</span><button type="button" id="close-contact-modal" aria-label="关闭">×</button></header>
+      <div class="contact-dialog-body"><div class="contact-dialog-copy"><span class="eyebrow">CONTACT LINE</span><h2 id="contact-dialog-title">联系方式</h2><p id="contact-dialog-summary"></p><div class="contact-dialog-line"><span>当前入口</span><strong id="contact-dialog-meta"></strong></div></div><div class="dialog-orbit" aria-hidden="true"><i></i><i></i><b>TP</b></div></div>
+      <footer class="contact-dialog-footer"><button type="button" id="contact-dialog-cancel">先看看</button><a href="#works" id="contact-dialog-action">记住这个入口 ↗</a></footer>
+    </div>
+  </div>
+
+  <footer class="footer rev"><span>STANDALONE VARIANT / OIL MOTION STUDY</span><a href="#works">回到动效 ↑</a></footer>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

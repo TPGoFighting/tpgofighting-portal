@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "fps": 60,
+  "frameDuration": 0.016666667,
+  "initialState": "outline",
+  "states": [
+    { "id": "outline", "hold": 0 },
+    { "id": "surface", "hold": 0.42 },
+    { "id": "details", "hold": 0.72 },
+    { "id": "complete", "hold": 1 }
+  ],
+  "segments": [
+    { "id": "outline-to-surface", "from": "outline", "to": "surface", "start": 0, "hold": 0.42, "endExclusive": 0.43, "curve": { "type": "constant", "rate": 1 } },
+    { "id": "surface-to-details", "from": "surface", "to": "details", "start": 0.43, "hold": 0.72, "endExclusive": 0.73, "curve": { "type": "constant", "rate": 1 } },
+    { "id": "details-to-complete", "from": "details", "to": "complete", "start": 0.73, "hold": 1, "endExclusive": 1.016666667, "curve": { "type": "constant", "rate": 1 } }
+  ],
+  "runtime": "Procedural vector scene; scroll progress is written once per animation frame to --motion-progress."
+}
