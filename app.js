@@ -92,21 +92,6 @@ const SERVICES = [
     port: "8083",
     path: "/var/www/ai"
   },
-  {
-    id: "knowledge",
-    name: "唐潘 · 像素档案",
-    subdomain: "knowledge.tpgofighting.top",
-    url: "https://knowledge.tpgofighting.top",
-    category: "personal",
-    categoryName: "个人与学术",
-    iconKey: "pixel",
-    desc: "复古 8-Bit 像素风的技能面板，记录平时点亮的技能和做过的项目。",
-    tags: ["像素风", "8-Bit", "技能树"],
-    tech: "Pixel Art / Retro Canvas",
-    port: "8088",
-    path: "/var/www/knowledge"
-  },
-
   // 2. AI 工具与学习 (10)
   {
     id: "teachplayer",
@@ -471,8 +456,9 @@ const state = {
 
 // 这些核心入口已上移到 Section 01，矩阵只展示其余站点与服务。
 const FEATURED_SERVICE_IDS = new Set([
-  "tprompts", "tphub", "notes", "claudesafety", "kebiao",
-  "mails", "rednote", "tokenpool", "tpos", "xuezhang"
+  "tprompts", "teachplayer", "tpaper", "tpvibe", "notes", "tphub",
+  "claudesafety", "kebiao", "mails", "rednote", "tokenpool", "tpos",
+  "xuezhang", "tpbili", "wx"
 ]);
 
 // DOM 元素缓存
