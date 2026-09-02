@@ -1013,6 +1013,9 @@ function initInkDoodleCanvas() {
 
   let width = (canvas.width = window.innerWidth);
   let height = (canvas.height = window.innerHeight);
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let animationFrame = null;
+  let running = false;
 
   const mouse = { x: -1000, y: -1000, active: false };
 
@@ -1021,11 +1024,11 @@ function initInkDoodleCanvas() {
     height = canvas.height = window.innerHeight;
   });
 
-  window.addEventListener("mousemove", (e) => {
+  window.addEventListener("pointermove", (e) => {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
     mouse.active = true;
-  });
+  }, { passive: true });
 
   document.addEventListener("mouseleave", () => {
     mouse.active = false;
@@ -1108,7 +1111,8 @@ function initInkDoodleCanvas() {
     ctx.restore();
   }
 
-  function loop() {
+  function renderFrame() {
+    if (!running) return;
     ctx.clearRect(0, 0, width, height);
 
     doodles.forEach(d => {
@@ -1137,10 +1141,29 @@ function initInkDoodleCanvas() {
       drawDoodle(d);
     });
 
-    requestAnimationFrame(loop);
+    animationFrame = requestAnimationFrame(renderFrame);
   }
 
-  loop();
+  function stopLoop() {
+    running = false;
+    if (animationFrame !== null) cancelAnimationFrame(animationFrame);
+    animationFrame = null;
+  }
+
+  function startLoop() {
+    if (running || document.hidden || reducedMotion.matches) return;
+    running = true;
+    renderFrame();
+  }
+
+  function updateMotionState() {
+    if (document.hidden || reducedMotion.matches) stopLoop();
+    else startLoop();
+  }
+
+  document.addEventListener("visibilitychange", updateMotionState);
+  reducedMotion.addEventListener("change", updateMotionState);
+  updateMotionState();
 }
 
 // ==========================================================================
@@ -1459,6 +1482,7 @@ function switchRoute(routeId) {
   // 4. 滚动到页面顶部
   window.scrollTo({ top: 0, behavior: "instant" });
   if (window.__tpScheduleSectionReveal) window.__tpScheduleSectionReveal();
+  if (window._heroInteractiveScene) window._heroInteractiveScene.updateLoopState();
 }
 window.switchRoute = switchRoute;
 
@@ -1668,6 +1692,8 @@ class InteractiveHeroScene {
   constructor() {
     this.human = new HumanCharacter();
     this.monster = new MonsterCharacter();
+    this.sceneEl = document.querySelector(".hero-character-scene");
+    this.sceneInView = false;
 
     this.pointerX = window.innerWidth * 0.5;
     this.pointerY = window.innerHeight * 0.4;
@@ -1676,6 +1702,7 @@ class InteractiveHeroScene {
     this.isPointerInside = true;
 
     this.rafId = null;
+    this.loopRunning = false;
     this.reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     // 调试模式判断: URL 带有 ?characterDebug=true
@@ -1683,6 +1710,7 @@ class InteractiveHeroScene {
     this.debugHudEl = null;
 
     this.initEvents();
+    this.initVisibility();
     if (this.debugMode) {
       this.initDebugMode();
     }
@@ -1696,13 +1724,8 @@ class InteractiveHeroScene {
       this.isPointerInside = true;
     };
 
+    // Pointer Events 已覆盖鼠标、触控笔和触摸，避免同一输入重复触发三条链路。
     window.addEventListener("pointermove", (e) => onMove(e.clientX, e.clientY), { passive: true });
-    window.addEventListener("mousemove", (e) => onMove(e.clientX, e.clientY), { passive: true });
-    window.addEventListener("touchmove", (e) => {
-      if (e.touches && e.touches[0]) {
-        onMove(e.touches[0].clientX, e.touches[0].clientY);
-      }
-    }, { passive: true });
 
     document.addEventListener("mouseleave", () => {
       this.isPointerInside = false;
@@ -1718,7 +1741,50 @@ class InteractiveHeroScene {
 
     window.matchMedia("(prefers-reduced-motion: reduce)").addEventListener("change", (e) => {
       this.reducedMotion = e.matches;
+      if (e.matches) {
+        this.human.reset(1);
+        this.monster.reset(1);
+      }
+      this.updateLoopState();
     });
+  }
+
+  initVisibility() {
+    if (!this.sceneEl || !("IntersectionObserver" in window)) {
+      this.sceneInView = true;
+      this.updateLoopState();
+      return;
+    }
+
+    this.visibilityObserver = new IntersectionObserver((entries) => {
+      this.sceneInView = Boolean(entries[0]?.isIntersecting);
+      this.updateLoopState();
+    }, { rootMargin: "100px 0px" });
+    this.visibilityObserver.observe(this.sceneEl);
+
+    document.addEventListener("visibilitychange", () => this.updateLoopState());
+    window.addEventListener("resize", () => this.updateLoopState(), { passive: true });
+  }
+
+  shouldRun() {
+    return Boolean(
+      this.sceneEl &&
+      this.sceneInView &&
+      !document.hidden &&
+      !this.reducedMotion &&
+      state.currentRoute === "products"
+    );
+  }
+
+  updateLoopState() {
+    if (this.shouldRun()) this.startLoop();
+    else this.stopLoop();
+  }
+
+  stopLoop() {
+    this.loopRunning = false;
+    if (this.rafId !== null) cancelAnimationFrame(this.rafId);
+    this.rafId = null;
   }
 
   initDebugMode() {
@@ -1741,11 +1807,12 @@ class InteractiveHeroScene {
   }
 
   startLoop() {
+    if (this.loopRunning || !this.shouldRun()) return;
+    this.loopRunning = true;
     const loop = () => {
-      if (this.reducedMotion) {
-        this.human.reset(0.2);
-        this.monster.reset(0.2);
-        this.rafId = requestAnimationFrame(loop);
+      this.rafId = null;
+      if (!this.shouldRun()) {
+        this.loopRunning = false;
         return;
       }
 
