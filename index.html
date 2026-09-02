@@ -74,14 +74,23 @@
         "@id": "https://tpgofighting.top/#featured-projects",
         "name": "TP Space 核心作品与 AI 工具",
         "itemListOrder": "https://schema.org/ItemListOrderAscending",
-        "numberOfItems": 6,
+        "numberOfItems": 15,
         "itemListElement": [
           {"@type":"ListItem","position":1,"item":{"@type":"WebApplication","name":"TPrompts · AI 提示词模板库","url":"https://prompts.tpgofighting.top/","description":"精选 AI 提示词与 Prompt 模板，覆盖角色设定、工作流自动化、代码生成与创意写作。"}},
           {"@type":"ListItem","position":2,"item":{"@type":"WebApplication","name":"Teach Player · 视频双语精读","url":"https://teachplayer.tpgofighting.top","description":"输入视频链接，提取对齐双语字幕并生成分段结构化笔记与答疑。"}},
           {"@type":"ListItem","position":3,"item":{"@type":"WebApplication","name":"TPaper · AI 试卷转换","url":"https://tpaper.tpgofighting.top","description":"把 PDF 或 Word 试卷转换为可在线作答与即时评分的交互题库。"}},
-          {"@type":"ListItem","position":4,"item":{"@type":"WebApplication","name":"TPbili · B站画像与舆情分析","url":"https://tpbili.tpgofighting.top","description":"基于 B 站 UID 或 BV 号生成像素画像并分析高频讨论词与情感趋势。"}},
-          {"@type":"ListItem","position":5,"item":{"@type":"WebApplication","name":"CyberPulse · 实时数据脉动看板","url":"https://wx.tpgofighting.top","description":"聚合服务器负载、访问热度与 GitHub 提交动态的数据可视化看板。"}},
-          {"@type":"ListItem","position":6,"item":{"@type":"WebSite","name":"TPVibe · 沉浸式编程实操指南","url":"https://tphub.tpgofighting.top/tpvibe/","description":"面向 Vibe Coding 的 AI 编程教程、工具箱与实操内容。"}}
+          {"@type":"ListItem","position":4,"item":{"@type":"WebSite","name":"TPVibe · 沉浸式编程实操指南","url":"https://tphub.tpgofighting.top/tpvibe/","description":"面向 Vibe Coding 的 AI 编程教程、工具箱与实操内容。"}},
+          {"@type":"ListItem","position":5,"item":{"@type":"WebApplication","name":"AI 开发风向标","url":"https://notes.tpgofighting.top","description":"追踪 AI 新模型、论文和开发笔记的动态速记。"}},
+          {"@type":"ListItem","position":6,"item":{"@type":"WebApplication","name":"TP-Hub · TaskSkillPilot 聚合中心","url":"https://tphub.tpgofighting.top","description":"AI 技能与智能体代理聚合中心，提供开源工具解读与实战教程。"}},
+          {"@type":"ListItem","position":7,"item":{"@type":"WebSite","name":"TP 安全课堂 · Web 权限攻防","url":"https://claudesafety.tpgofighting.top","description":"基于真实案例拆解 Web 权限错位、攻击面与防御方法。"}},
+          {"@type":"ListItem","position":8,"item":{"@type":"WebApplication","name":"唐潘课表 · 学期时间表","url":"https://kebiao.tpgofighting.top","description":"轻量展示学期课程、教室与时间的个人课表。"}},
+          {"@type":"ListItem","position":9,"item":{"@type":"WebSite","name":"T小P的邮件档案","url":"https://mails.tpgofighting.top","description":"沉淀阅读邮件与长期资料的个人档案。"}},
+          {"@type":"ListItem","position":10,"item":{"@type":"WebSite","name":"TP的小红书 · AI 好帖","url":"https://rednote.tpgofighting.top","description":"精选 AI 好帖与视觉灵感的个人探索手札。"}},
+          {"@type":"ListItem","position":11,"item":{"@type":"WebApplication","name":"TokenPool · AI API Gateway","url":"https://token.tpgofighting.top","description":"统一管理 AI API 通道、令牌池与工作台入口。"}},
+          {"@type":"ListItem","position":12,"item":{"@type":"WebApplication","name":"TP OS · 个人操作系统","url":"https://tpos.tpgofighting.top","description":"面向个人上下文、任务与工具的操作系统式入口。"}},
+          {"@type":"ListItem","position":13,"item":{"@type":"WebSite","name":"学长我有一个问题","url":"https://xuezhang.tpgofighting.top","description":"用问答式叙事整理校园经验与成长问题。"}},
+          {"@type":"ListItem","position":14,"item":{"@type":"WebApplication","name":"TPbili · B站画像与舆情分析","url":"https://bili.tpgofighting.top","description":"基于 B 站 UID 或 BV 号生成像素画像并分析高频讨论词与情感趋势。"}},
+          {"@type":"ListItem","position":15,"item":{"@type":"WebApplication","name":"CyberPulse · 实时数据脉动看板","url":"https://wx.tpgofighting.top","description":"聚合服务器负载、访问热度与 GitHub 提交动态的数据可视化看板。"}}
         ]
       }
     ]
@@ -176,6 +185,9 @@
                       <ellipse cx="504" cy="160" rx="17" ry="17" />
                     </clipPath>
                   </defs>
+                  <!-- 底图含有静态瞳孔；先用眼白遮罩清除，再叠加可追踪瞳孔。 -->
+                  <ellipse class="static-pupil-mask" cx="433" cy="180" rx="16" ry="16" fill="#ffffff" />
+                  <ellipse class="static-pupil-mask" cx="504" cy="160" rx="16" ry="16" fill="#ffffff" />
                   <g clip-path="url(#human-clip-left)">
                     <g id="human-pupil-left" class="interactive-pupil">
                       <circle cx="433" cy="180" r="9.5" fill="#18181b" />
@@ -275,19 +287,19 @@
       <div class="featured-products-list">
 
         <!-- 01 · TPrompts · AI 提示词模板库 -->
-        <article class="featured-ref-card motion-pilot-card" data-motion-card="tprompts">
-          <div class="ref-visual-col motion-pilot-stage" data-motion-stage="tprompts">
-            <img src="assets/illustrations/tprompts.jpg?v=20260901_motion_02" alt="TPrompts" class="ref-visual-img">
-            <svg class="tprompts-motion-overlay" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-              <path class="tprompts-flow-path" d="M 476 382 C 500 334, 516 334, 540 382 S 585 470, 620 566" pathLength="1"></path>
-              <path class="tprompts-flow-arrow tprompts-flow-arrow-user" d="M 524 369 L 540 382 L 527 397" pathLength="1"></path>
-              <path class="tprompts-flow-arrow tprompts-flow-arrow-output" d="M 606 550 L 620 566 L 598 566" pathLength="1"></path>
-              <rect class="tprompts-focus tprompts-focus-system" x="150" y="215" width="326" height="324" rx="22"></rect>
-              <rect class="tprompts-focus tprompts-focus-user" x="516" y="215" width="330" height="324" rx="22"></rect>
-              <rect class="tprompts-focus tprompts-focus-output" x="407" y="578" width="439" height="300" rx="22"></rect>
-              <circle class="tprompts-cursor-dot" cx="620" cy="566" r="13"></circle>
-              <path class="tprompts-output-spark" d="M 620 566 l 18 -18 M 620 566 l 24 2 M 620 566 l 2 24" pathLength="1"></path>
-            </svg>
+        <article class="featured-ref-card">
+          <div class="ref-visual-col">
+            <div class="product-motion product-motion--prompts" data-motion-scene="prompt-library" role="img" aria-label="提示词模块按滚动逐步排列成模板库界面">
+              <div class="motion-grid" aria-hidden="true"></div>
+              <span class="motion-kicker">PROMPT / 01</span>
+              <div class="motion-window motion-window--prompt" aria-hidden="true">
+                <div class="motion-window-bar"><i></i><i></i><i></i><b>template://library</b></div>
+                <div class="prompt-rail"><span></span><span></span><span></span></div>
+                <div class="prompt-cards"><div><b>角色设定</b><i></i><i></i></div><div><b>代码审查</b><i></i><i></i></div><div><b>内容策划</b><i></i><i></i></div></div>
+                <div class="motion-cursor">↗</div>
+              </div>
+              <span class="motion-spark motion-spark--one" aria-hidden="true">✦</span><span class="motion-spark motion-spark--two" aria-hidden="true">+</span>
+            </div>
           </div>
           <div class="ref-info-col">
             <div class="ref-header-row">
@@ -305,9 +317,18 @@
         </article>
 
         <!-- 02 · Teach Player · 视频双语精读 (反向布局) -->
-        <article class="featured-ref-card layout-reverse motion-pilot-card" data-motion-card="teachplayer">
-          <div class="ref-visual-col motion-pilot-stage">
-            <img src="assets/illustrations/teachplayer.jpg" alt="Teach Player" class="ref-visual-img">
+        <article class="featured-ref-card layout-reverse">
+          <div class="ref-visual-col">
+            <div class="product-motion product-motion--player" data-motion-scene="learning-player" role="img" aria-label="视频播放器、字幕和笔记卡片随滚动依次展开">
+              <div class="motion-grid" aria-hidden="true"></div>
+              <span class="motion-kicker">LEARN / 02</span>
+              <div class="motion-window motion-window--player" aria-hidden="true">
+                <div class="player-video"><span class="player-play">▶</span><i class="player-sun"></i><i class="player-hill"></i></div>
+                <div class="player-track"><i></i><b></b></div>
+                <div class="subtitle subtitle--a">Every idea starts with a question.</div><div class="subtitle subtitle--b">每一个想法，都从一个问题开始。</div>
+              </div>
+              <div class="note-stack" aria-hidden="true"><span>01</span><i></i><i></i><i></i></div>
+            </div>
           </div>
           <div class="ref-info-col">
             <div class="ref-header-row">
@@ -325,9 +346,16 @@
         </article>
 
         <!-- 03 · TPaper · AI 试卷转换 -->
-        <article class="featured-ref-card motion-pilot-card" data-motion-card="tpaper">
-          <div class="ref-visual-col motion-pilot-stage">
-            <img src="assets/illustrations/tpaper.jpg" alt="TPaper" class="ref-visual-img">
+        <article class="featured-ref-card">
+          <div class="ref-visual-col">
+            <div class="product-motion product-motion--paper" data-motion-scene="paper-converter" role="img" aria-label="试卷页面被扫描、识别并展开为可作答题库">
+              <div class="motion-grid" aria-hidden="true"></div>
+              <span class="motion-kicker">PAPER / 03</span>
+              <div class="paper-source" aria-hidden="true"><b>EXAM</b><i></i><i></i><i></i><em>?</em></div>
+              <div class="scan-beam" aria-hidden="true"></div>
+              <div class="paper-result" aria-hidden="true"><div><b>03</b><i></i></div><span></span><span></span><span></span><strong>✓</strong></div>
+              <div class="paper-pixel paper-pixel--one" aria-hidden="true"></div><div class="paper-pixel paper-pixel--two" aria-hidden="true"></div>
+            </div>
           </div>
           <div class="ref-info-col">
             <div class="ref-header-row">
@@ -344,10 +372,16 @@
           <div class="ref-card-watermark">03</div>
         </article>
 
-        <!-- 04 · TPbili · B站画像与舆情分析 (反向布局) -->
-        <article class="featured-ref-card layout-reverse motion-pilot-card" data-motion-card="tpbili">
-          <div class="ref-visual-col motion-pilot-stage">
-            <img src="assets/illustrations/tpbili.jpg" alt="TPbili" class="ref-visual-img">
+        <!-- 14 · TPbili · B站画像与舆情分析 (反向布局，末位) -->
+        <article class="featured-ref-card layout-reverse featured-ref-card--tail">
+          <div class="ref-visual-col">
+            <div class="product-motion product-motion--bili" data-motion-scene="audience-analysis" role="img" aria-label="B站像素画像和舆情数据图表随滚动建立">
+              <div class="motion-grid" aria-hidden="true"></div>
+              <span class="motion-kicker">PULSE / 14</span>
+              <div class="pixel-face" aria-hidden="true"><i class="face-ear face-ear--l"></i><i class="face-ear face-ear--r"></i><b></b><b></b><em></em></div>
+              <div class="bili-chart" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><i></i></div>
+              <div class="bili-tags" aria-hidden="true"><b>热度</b><b>弹幕</b><b>评论</b></div>
+            </div>
           </div>
           <div class="ref-info-col">
             <div class="ref-header-row">
@@ -357,17 +391,22 @@
             <p class="ref-desc-text">
               B站画像与舆情分析：输入 UID 生成专属 8-Bit 像素人物画像，输入 BV 号分析高频讨论词与情感趋势。
             </p>
-            <a href="https://tpbili.tpgofighting.top" target="_blank" rel="noopener" class="ref-action-link">
+            <a href="https://bili.tpgofighting.top" target="_blank" rel="noopener" class="ref-action-link">
               <span>生成画像 →</span>
             </a>
           </div>
-          <div class="ref-card-watermark">04</div>
+          <div class="ref-card-watermark">14</div>
         </article>
 
-        <!-- 05 · CyberPulse · 赛博脉动 -->
-        <article class="featured-ref-card motion-pilot-card" data-motion-card="cyberpulse">
-          <div class="ref-visual-col motion-pilot-stage">
-            <img src="assets/illustrations/cyberpulse.jpg" alt="CyberPulse" class="ref-visual-img">
+        <!-- 15 · CyberPulse · 赛博脉动 (末位) -->
+        <article class="featured-ref-card featured-ref-card--tail">
+          <div class="ref-visual-col">
+            <div class="product-motion product-motion--cyber" data-motion-scene="data-pulse" role="img" aria-label="数据节点连接成实时脉动看板">
+              <div class="motion-grid" aria-hidden="true"></div>
+              <span class="motion-kicker">SIGNAL / 15</span>
+              <div class="cyber-panel" aria-hidden="true"><div class="cyber-value">86<span>%</span></div><div class="cyber-line"><svg viewBox="0 0 280 76" preserveAspectRatio="none"><path d="M0,60 C20,60 22,35 42,41 S70,50 84,22 S116,65 136,45 S163,13 184,35 S216,60 230,29 S260,24 280,6"/></svg></div><div class="cyber-bars"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+              <span class="cyber-node cyber-node--a" aria-hidden="true"></span><span class="cyber-node cyber-node--b" aria-hidden="true"></span><span class="cyber-node cyber-node--c" aria-hidden="true"></span>
+            </div>
           </div>
           <div class="ref-info-col">
             <div class="ref-header-row">
@@ -381,13 +420,19 @@
               <span>查看大屏 →</span>
             </a>
           </div>
-          <div class="ref-card-watermark">05</div>
+          <div class="ref-card-watermark">15</div>
         </article>
 
-        <!-- 06 · TPVibe · 沉浸式编程与实操指南 (反向布局) -->
-        <article class="featured-ref-card layout-reverse motion-pilot-card" data-motion-card="vibe">
-          <div class="ref-visual-col motion-pilot-stage">
-            <img src="assets/illustrations/vibe.jpg" alt="TPVibe" class="ref-visual-img">
+        <!-- 04 · TPVibe · 沉浸式编程与实操指南 (反向布局) -->
+        <article class="featured-ref-card layout-reverse">
+          <div class="ref-visual-col">
+            <div class="product-motion product-motion--vibe" data-motion-scene="vibe-workspace" role="img" aria-label="编程工作台、代码和 AI 提示面板随滚动展开">
+              <div class="motion-grid" aria-hidden="true"></div>
+              <span class="motion-kicker">BUILD / 04</span>
+              <div class="code-editor" aria-hidden="true"><div class="editor-tabs"><b>app.ts</b><span>+</span></div><div class="code-lines"><i></i><i></i><i></i><i></i><i></i></div><div class="editor-caret"></div></div>
+              <div class="ai-prompt" aria-hidden="true"><span>AI</span><b>Build it with me.</b><i></i><i></i></div>
+              <span class="motion-spark motion-spark--one" aria-hidden="true">✦</span>
+            </div>
           </div>
           <div class="ref-info-col">
             <div class="ref-header-row">
@@ -401,7 +446,86 @@
               <span>探索教程 →</span>
             </a>
           </div>
+          <div class="ref-card-watermark">04</div>
+        </article>
+
+        <!-- 05 · AI 开发风向标 · 动态速记与趋势追踪 -->
+        <article class="featured-ref-card">
+          <div class="ref-visual-col">
+            <div class="product-motion product-motion--cyber" data-motion-scene="ai-radar" role="img" aria-label="AI 开发动态和趋势图随滚动建立">
+              <div class="motion-grid" aria-hidden="true"></div>
+              <span class="motion-kicker">RADAR / 05</span>
+              <div class="cyber-panel" aria-hidden="true"><div class="cyber-value">AI<span>+</span></div><div class="cyber-line"><svg viewBox="0 0 280 76" preserveAspectRatio="none"><path d="M0,60 C20,60 22,35 42,41 S70,50 84,22 S116,65 136,45 S163,13 184,35 S216,60 230,29 S260,24 280,6"/></svg></div><div class="cyber-bars"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+              <span class="cyber-node cyber-node--a" aria-hidden="true"></span><span class="cyber-node cyber-node--b" aria-hidden="true"></span><span class="cyber-node cyber-node--c" aria-hidden="true"></span>
+            </div>
+          </div>
+          <div class="ref-info-col">
+            <div class="ref-header-row"><span class="ref-icon-badge"><svg class="svg-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912L12 3Z"></path></svg></span><h3 class="ref-title-text">AI 开发风向标</h3></div>
+            <p class="ref-desc-text">追踪 AI 新模型、论文和开发笔记，把每天值得跟进的技术信号整理成可快速阅读的动态速记。</p>
+            <a href="https://notes.tpgofighting.top" target="_blank" rel="noopener" class="ref-action-link"><span>查看风向标 →</span></a>
+          </div>
+          <div class="ref-card-watermark">05</div>
+        </article>
+
+        <!-- 06 · TP-Hub · TaskSkillPilot 聚合中心 -->
+        <article class="featured-ref-card layout-reverse">
+          <div class="ref-visual-col">
+            <div class="product-motion product-motion--vibe" data-motion-scene="taskskillpilot-hub" role="img" aria-label="TaskSkillPilot 技能节点和智能体工作流随滚动连接">
+              <div class="motion-grid" aria-hidden="true"></div>
+              <span class="motion-kicker">HUB / 06</span>
+              <div class="code-editor" aria-hidden="true"><div class="editor-tabs"><b>skills.md</b><span>+</span></div><div class="code-lines"><i></i><i></i><i></i><i></i><i></i></div></div>
+              <div class="ai-prompt" aria-hidden="true"><span>TP</span><b>Route the next skill.</b><i></i><i></i></div>
+              <span class="motion-spark motion-spark--one" aria-hidden="true">✦</span>
+            </div>
+          </div>
+          <div class="ref-info-col">
+            <div class="ref-header-row"><span class="ref-icon-badge"><svg class="svg-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06"></path><path d="M4.6 9a1.65 1.65 0 0 0-.33-1.82"></path><path d="M12 2v3"></path><path d="M12 19v3"></path></svg></span><h3 class="ref-title-text">TP-Hub</h3></div>
+            <p class="ref-desc-text">AI 技能与智能体代理聚合中心，汇集开源 AI 工具的深度解读、实战教程与可复用的工作流。</p>
+            <a href="https://tphub.tpgofighting.top" target="_blank" rel="noopener" class="ref-action-link"><span>进入聚合中心 →</span></a>
+          </div>
           <div class="ref-card-watermark">06</div>
+        </article>
+
+        <!-- 07 · TP 安全课堂 -->
+        <article class="featured-ref-card">
+          <div class="ref-visual-col"><div class="product-motion product-motion--security" data-motion-scene="security-classroom" role="img" aria-label="Web 安全权限关系图随滚动展开"><div class="motion-grid" aria-hidden="true"></div><span class="motion-kicker">SECURITY / 07</span><div class="security-shield" aria-hidden="true"><b>✓</b></div><div class="security-lines" aria-hidden="true"><i></i><i></i><i></i></div><div class="security-alert" aria-hidden="true">ACCESS / SAFE</div></div></div>
+          <div class="ref-info-col"><div class="ref-header-row"><span class="ref-icon-badge"><svg class="svg-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path><path d="m9 12 2 2 4-4"></path></svg></span><h3 class="ref-title-text">TP 安全课堂</h3></div><p class="ref-desc-text">基于真实案例拆解现代 Web 架构中的权限错位、攻击面与防御方法。</p><a href="https://claudesafety.tpgofighting.top" target="_blank" rel="noopener" class="ref-action-link"><span>进入安全课堂 →</span></a></div><div class="ref-card-watermark">07</div>
+        </article>
+
+        <!-- 08 · 唐潘课表 -->
+        <article class="featured-ref-card">
+          <div class="ref-visual-col"><div class="product-motion product-motion--schedule" data-motion-scene="semester-schedule" role="img" aria-label="课程表的周次和课程块随滚动排布"><div class="motion-grid" aria-hidden="true"></div><span class="motion-kicker">WEEK / 08</span><div class="schedule-board" aria-hidden="true"><div class="schedule-head"><b>MON</b><b>TUE</b><b>WED</b><b>THU</b></div><div class="schedule-row"><i></i><i></i><i></i><i></i></div><div class="schedule-row"><i></i><i></i><i></i><i></i></div><div class="schedule-row"><i></i><i></i><i></i><i></i></div></div></div></div>
+          <div class="ref-info-col"><div class="ref-header-row"><span class="ref-icon-badge"><svg class="svg-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="17" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg></span><h3 class="ref-title-text">唐潘课表</h3></div><p class="ref-desc-text">将学期课程、教室与时间整理为一张轻量、易查看的个人课表。</p><a href="https://kebiao.tpgofighting.top" target="_blank" rel="noopener" class="ref-action-link"><span>查看课表 →</span></a></div><div class="ref-card-watermark">10</div>
+        </article>
+
+        <!-- 09 · T小P的邮件档案 -->
+        <article class="featured-ref-card layout-reverse">
+          <div class="ref-visual-col"><div class="product-motion product-motion--mail" data-motion-scene="mail-archive" role="img" aria-label="邮件档案卡片随滚动进入收件箱"><div class="motion-grid" aria-hidden="true"></div><span class="motion-kicker">MAIL / 09</span><div class="mail-inbox" aria-hidden="true"><div class="mail-toolbar"><b>INBOX</b><i></i><i></i></div><div class="mail-row"><strong></strong><span></span><em></em></div><div class="mail-row"><strong></strong><span></span><em></em></div><div class="mail-row"><strong></strong><span></span><em></em></div></div><div class="mail-stamp" aria-hidden="true">ARCHIVED</div></div></div>
+          <div class="ref-info-col"><div class="ref-header-row"><span class="ref-icon-badge"><svg class="svg-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 7 12 13 21 7"></path><path d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"></path></svg></span><h3 class="ref-title-text">T小P的邮件档案</h3></div><p class="ref-desc-text">将阅读邮件与长期资料沉淀为一套可回顾的个人档案。</p><a href="https://mails.tpgofighting.top" target="_blank" rel="noopener" class="ref-action-link"><span>浏览邮件档案 →</span></a></div><div class="ref-card-watermark">11</div>
+        </article>
+
+        <!-- 10 · TP 的小红书 -->
+        <article class="featured-ref-card">
+          <div class="ref-visual-col"><div class="product-motion product-motion--rednote" data-motion-scene="rednote-notebook" role="img" aria-label="小红书灵感卡片随滚动滑入手机画面"><div class="motion-grid" aria-hidden="true"></div><span class="motion-kicker">NOTES / 10</span><div class="rednote-phone" aria-hidden="true"><div class="rednote-top"><b>TP NOTE</b><i></i></div><div class="rednote-post"><strong></strong><span></span><i></i></div><div class="rednote-post"><strong></strong><span></span><i></i></div></div><span class="motion-spark motion-spark--one" aria-hidden="true">✦</span></div></div>
+          <div class="ref-info-col"><div class="ref-header-row"><span class="ref-icon-badge"><svg class="svg-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 12a8 8 0 1 1-3.3-6.5"></path><path d="m20 4-8 8-3-3"></path></svg></span><h3 class="ref-title-text">TP 的小红书</h3></div><p class="ref-desc-text">精选 AI 好帖与视觉灵感，整理成一份可轻松浏览的个人探索手札。</p><a href="https://rednote.tpgofighting.top" target="_blank" rel="noopener" class="ref-action-link"><span>打开灵感手札 →</span></a></div><div class="ref-card-watermark">12</div>
+        </article>
+
+        <!-- 11 · TokenPool -->
+        <article class="featured-ref-card layout-reverse">
+          <div class="ref-visual-col"><div class="product-motion product-motion--token" data-motion-scene="token-gateway" role="img" aria-label="TokenPool 网关指标随滚动组成控制台"><div class="motion-grid" aria-hidden="true"></div><span class="motion-kicker">GATEWAY / 11</span><div class="cyber-panel" aria-hidden="true"><div class="cyber-value">12<span>K</span></div><div class="cyber-line"><svg viewBox="0 0 280 76" preserveAspectRatio="none"><path d="M0,60 C20,60 22,35 42,41 S70,50 84,22 S116,65 136,45 S163,13 184,35 S216,60 230,29 S260,24 280,6"/></svg></div><div class="cyber-bars"><i></i><i></i><i></i><i></i><i></i><i></i></div></div><span class="cyber-node cyber-node--a" aria-hidden="true"></span><span class="cyber-node cyber-node--b" aria-hidden="true"></span></div></div>
+          <div class="ref-info-col"><div class="ref-header-row"><span class="ref-icon-badge"><svg class="svg-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06M4.6 9a1.65 1.65 0 0 0-.33-1.82L4.2 7.1M12 2v3M12 19v3"></path></svg></span><h3 class="ref-title-text">TokenPool</h3></div><p class="ref-desc-text">统一管理 AI API 通道、令牌池与工作台入口，为智能体工具提供调用基础。</p><a href="https://token.tpgofighting.top" target="_blank" rel="noopener" class="ref-action-link"><span>进入 TokenPool →</span></a></div><div class="ref-card-watermark">13</div>
+        </article>
+
+        <!-- 12 · TP OS -->
+        <article class="featured-ref-card">
+          <div class="ref-visual-col"><div class="product-motion product-motion--os" data-motion-scene="personal-os" role="img" aria-label="TP OS 工作台和上下文面板随滚动展开"><div class="motion-grid" aria-hidden="true"></div><span class="motion-kicker">SYSTEM / 12</span><div class="code-editor" aria-hidden="true"><div class="editor-tabs"><b>context.os</b><span>+</span></div><div class="code-lines"><i></i><i></i><i></i><i></i><i></i></div></div><div class="ai-prompt" aria-hidden="true"><span>TP</span><b>Remember the why.</b><i></i><i></i></div></div></div>
+          <div class="ref-info-col"><div class="ref-header-row"><span class="ref-icon-badge"><svg class="svg-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M8 8h8M8 12h5M8 16h8"></path></svg></span><h3 class="ref-title-text">TP OS</h3></div><p class="ref-desc-text">面向个人上下文、任务与工具的操作系统式入口，连接日常工作与长期记忆。</p><a href="https://tpos.tpgofighting.top" target="_blank" rel="noopener" class="ref-action-link"><span>进入个人 OS →</span></a></div><div class="ref-card-watermark">14</div>
+        </article>
+
+        <!-- 13 · 学长我有一个问题 -->
+        <article class="featured-ref-card layout-reverse">
+          <div class="ref-visual-col"><div class="product-motion product-motion--question" data-motion-scene="campus-answers" role="img" aria-label="校园问答对话气泡随滚动出现"><div class="motion-grid" aria-hidden="true"></div><span class="motion-kicker">ASK / 13</span><div class="qa-chat" aria-hidden="true"><div class="qa-bubble qa-bubble--q">学长，我有一个问题…</div><div class="qa-bubble qa-bubble--a">先把问题拆开。</div><div class="qa-bubble qa-bubble--c">→ 然后一步步解决</div></div><span class="motion-spark motion-spark--one" aria-hidden="true">?</span></div></div>
+          <div class="ref-info-col"><div class="ref-header-row"><span class="ref-icon-badge"><svg class="svg-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 11.5a8.5 8.5 0 0 1-9 8.5 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7A8.5 8.5 0 1 1 21 11.5Z"></path><path d="M12 8v4M12 16h.01"></path></svg></span><h3 class="ref-title-text">学长我有一个问题</h3></div><p class="ref-desc-text">用问答式叙事整理校园经验与成长问题，给后来者一份可读的参考。</p><a href="https://xuezhang.tpgofighting.top" target="_blank" rel="noopener" class="ref-action-link"><span>查看问答手册 →</span></a></div><div class="ref-card-watermark">13</div>
         </article>
 
       </div>
@@ -421,9 +545,9 @@
       <!-- 分类标签过滤器 -->
       <div class="matrix-filter-bar">
         <div class="category-tabs" id="category-filter-tabs" role="tablist">
-          <button class="cat-tab-btn active" data-cat="all" role="tab">全部 <span class="tab-cnt">(22)</span></button>
-          <button class="cat-tab-btn" data-cat="personal" role="tab">个人与学术 <span class="tab-cnt">(5)</span></button>
-          <button class="cat-tab-btn" data-cat="ai-tools" role="tab">AI 工具与平台 <span class="tab-cnt">(7)</span></button>
+          <button class="cat-tab-btn active" data-cat="all" role="tab">全部 <span class="tab-cnt">(19)</span></button>
+          <button class="cat-tab-btn" data-cat="personal" role="tab">个人与学术 <span class="tab-cnt">(4)</span></button>
+          <button class="cat-tab-btn" data-cat="ai-tools" role="tab">AI 工具与平台 <span class="tab-cnt">(5)</span></button>
           <button class="cat-tab-btn" data-cat="analytics" role="tab">数据洞察与大屏 <span class="tab-cnt">(4)</span></button>
           <button class="cat-tab-btn" data-cat="network" role="tab">人才网络与申请 <span class="tab-cnt">(2)</span></button>
           <button class="cat-tab-btn" data-cat="life" role="tab">校园特辑与生活 <span class="tab-cnt">(4)</span></button>
@@ -439,9 +563,9 @@
         </div>
       </div>
 
-      <!-- 21 个站点卡片网格容器 -->
+      <!-- 19 个站点卡片网格容器（核心入口已上移至 Section 01） -->
       <div class="services-matrix-grid grid-mode" id="services-grid">
-        <!-- 由 JS 动态渲染全部 21 个站点卡片 -->
+        <!-- 由 JS 动态渲染矩阵中的站点卡片 -->
       </div>
 
       <!-- 空结果提示 -->
@@ -479,68 +603,31 @@
          Section 04 · 关于创作者与联系方式 (04 About & Connect)
          ========================================================================== -->
     <section class="section-block" id="section-about">
-      <div class="section-heading-row">
-        <div class="section-badge-group">
-          <span class="section-index">04</span>
-          <h2 class="section-main-title">关于与联系方式</h2>
-        </div>
-      </div>
-
-      <div class="about-connect-grid">
-        <!-- 创作者简介卡片 -->
-        <div class="creator-bio-card">
-          <div class="creator-bio-header">
-            <div class="creator-avatar-frame">
-              <img src="assets/avatar.jpg" alt="唐潘 Tyler Tang" class="creator-avatar-img">
-              <span class="creator-status-dot" title="在线"></span>
-            </div>
-            <div class="creator-bio-meta">
-              <h3 class="creator-name">唐潘 (Tyler Tang)</h3>
-              <p class="creator-bio-subtitle">全栈开发 / AI 产品探索 / 独立开发者</p>
-            </div>
-          </div>
-          <p class="creator-bio-text">
-            热爱折腾新技术、搭建有趣且实用的小产品。目前主要精力放在 AI Agent 工作流、个人知识上下文系统与数据可视化看板上。欢迎交流合作。
-          </p>
-
-          <div class="creator-social-links">
-            <a href="https://github.com/TPGoFighting" target="_blank" rel="noopener" class="social-link-item">
-              <svg class="svg-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-              <span>GitHub: @TPGoFighting</span>
-            </a>
-            <a href="https://tpself.tpgofighting.top" target="_blank" rel="noopener" class="social-link-item">
-              <svg class="svg-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-              <span>个人主页: tpself.tpgofighting.top</span>
-            </a>
-            <a href="https://ai.tpgofighting.top" target="_blank" rel="noopener" class="social-link-item">
-              <svg class="svg-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
-              <span>学术与论文: ai.tpgofighting.top</span>
-            </a>
-          </div>
+      <div class="tp-contact-section" id="contact-links">
+        <div class="tp-contact-heading">
+          <div class="tp-contact-heading-label"><span class="tp-contact-rule"></span><span>联系</span><span class="tp-contact-slash">/</span><span>ELSEWHERE</span></div>
+          <span class="tp-contact-ghost" aria-hidden="true">TP</span>
         </div>
 
-        <!-- 微信二维码卡片 -->
-        <div class="qr-code-card">
-          <div class="qr-card-header">
-            <span class="qr-platform-badge wechat">微信</span>
-            <span class="qr-card-title">添加个人微信</span>
-          </div>
-          <div class="qr-img-box">
-            <img src="assets/wechat-qr.jpg" alt="微信二维码" class="qr-scan-img">
-          </div>
-          <p class="qr-card-hint">微信扫一扫添加好友</p>
-        </div>
-
-        <!-- 抖音二维码卡片 -->
-        <div class="qr-code-card">
-          <div class="qr-card-header">
-            <span class="qr-platform-badge douyin">抖音</span>
-            <span class="qr-card-title">关注抖音主页</span>
-          </div>
-          <div class="qr-img-box">
-            <img src="assets/douyin-qr.png" alt="抖音二维码" class="qr-scan-img">
-          </div>
-          <p class="qr-card-hint">抖音扫一扫查看视频动态</p>
+        <div class="tp-contact-list" aria-label="联系方式">
+          <button class="tp-contact-row" type="button" data-contact-title="GitHub" data-contact-detail="@TPGoFighting" data-contact-url="https://github.com/TPGoFighting">
+            <span class="tp-contact-icon"><img src="assets/contact-icons/github.svg" alt=""></span><span class="tp-contact-number">01</span><strong class="tp-contact-name">GitHub</strong><span class="tp-contact-detail">@TPGoFighting</span><span class="tp-contact-arrow" aria-hidden="true">↗</span><span class="tp-contact-spotlight" aria-hidden="true"></span>
+          </button>
+          <button class="tp-contact-row" type="button" data-contact-title="X" data-contact-detail="@TPPPGo" data-contact-url="https://x.com/TPPPGo">
+            <span class="tp-contact-icon"><img src="assets/contact-icons/x.svg" alt=""></span><span class="tp-contact-number">02</span><strong class="tp-contact-name">X</strong><span class="tp-contact-detail">@TPPPGo</span><span class="tp-contact-arrow" aria-hidden="true">↗</span><span class="tp-contact-spotlight" aria-hidden="true"></span>
+          </button>
+          <button class="tp-contact-row" type="button" data-contact-title="Email" data-contact-detail="a2897378856@gmail.com" data-contact-url="mailto:a2897378856@gmail.com">
+            <span class="tp-contact-icon"><img src="assets/contact-icons/email.svg" alt=""></span><span class="tp-contact-number">03</span><strong class="tp-contact-name">Email</strong><span class="tp-contact-detail">a2897378856@gmail.com</span><span class="tp-contact-arrow" aria-hidden="true">↗</span><span class="tp-contact-spotlight" aria-hidden="true"></span>
+          </button>
+          <button class="tp-contact-row" type="button" data-contact-title="哔哩哔哩" data-contact-detail="TP 的视频与 AI 实践" data-contact-url="https://b23.tv/RicO7Hi">
+            <span class="tp-contact-icon"><img src="assets/contact-icons/bilibili.svg" alt=""></span><span class="tp-contact-number">04</span><strong class="tp-contact-name">哔哩哔哩</strong><span class="tp-contact-detail">TP 的视频与 AI 实践</span><span class="tp-contact-arrow" aria-hidden="true">↗</span><span class="tp-contact-spotlight" aria-hidden="true"></span>
+          </button>
+          <button class="tp-contact-row" type="button" data-contact-brand="xiaohongshu" data-contact-title="小红书" data-contact-detail="TP 的小红书主页" data-contact-url="https://xhslink.cn/m/4DFCodSfhRs">
+            <span class="tp-contact-icon"><img src="assets/icons/小红书.svg" alt=""></span><span class="tp-contact-number">05</span><strong class="tp-contact-name">小红书</strong><span class="tp-contact-detail">TP 的小红书主页</span><span class="tp-contact-arrow" aria-hidden="true">↗</span><span class="tp-contact-spotlight" aria-hidden="true"></span>
+          </button>
+          <button class="tp-contact-row" type="button" data-contact-title="抖音" data-contact-detail="TP 的抖音主页" data-contact-url="https://v.douyin.com/XHbWYQortSM/">
+            <span class="tp-contact-icon"><img src="assets/contact-icons/douyin.svg" alt=""></span><span class="tp-contact-number">06</span><strong class="tp-contact-name">抖音</strong><span class="tp-contact-detail">TP 的抖音主页</span><span class="tp-contact-arrow" aria-hidden="true">↗</span><span class="tp-contact-spotlight" aria-hidden="true"></span>
+          </button>
         </div>
       </div>
     </section>
@@ -1081,6 +1168,24 @@
     </div>
   </div>
 
+  <!-- 联系方式弹窗 (Contact Elsewhere Modal) -->
+  <div class="tp-contact-modal-backdrop" id="contact-modal" aria-hidden="true">
+    <div class="tp-contact-modal-box" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
+      <span class="tp-contact-modal-orbit" aria-hidden="true"><i></i><i></i><b>TP</b></span>
+      <button class="tp-contact-modal-close" id="contact-modal-close" type="button" aria-label="关闭联系方式弹窗">
+        <svg class="svg-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+      <div class="tp-contact-modal-kicker">CONTACT / ELSEWHERE</div>
+      <div class="tp-contact-modal-icon" id="contact-modal-icon"></div>
+      <h3 id="contact-modal-title">联系方式</h3>
+      <p id="contact-modal-detail"></p>
+      <div class="tp-contact-modal-actions">
+        <button type="button" id="contact-modal-cancel">先看看</button>
+        <a href="#" id="contact-modal-action" target="_blank" rel="noopener">前往入口 ↗</a>
+      </div>
+    </div>
+  </div>
+
   <!-- 轻量 Toast 提示 -->
   <div class="tpspace-toast" id="global-toast">已复制链接</div>
 
@@ -1166,11 +1271,6 @@
 
   <!-- GSAP 物理动画引擎 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="pilot/motions/teachplayer.js"></script>
-  <script src="pilot/motions/tpaper.js"></script>
-  <script src="pilot/motions/tpbili.js"></script>
-  <script src="pilot/motions/cyberpulse.js"></script>
-  <script src="pilot/motions/vibe.js"></script>
-  <script src="app.js?v=20260901_cards_motion_02"></script>
+  <script src="app.js?v=20260902_product_motion_01"></script>
 </body>
 </html>

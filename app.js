@@ -33,9 +33,9 @@ const ICONS = {
   doc: `<svg class="svg-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>`
 };
 
-// 21 个站点数据 (遵循 humanizer-zh 朴实真实的叙事风格)
+// 29 个站点数据 (遵循 humanizer-zh 朴实真实的叙事风格)
 const SERVICES = [
-  // 1. 个人与学术 (5)
+  // 1. 个人与学术 (6)
   {
     id: "tprompts",
     name: "TPrompts · 提示词模板库",
@@ -107,7 +107,7 @@ const SERVICES = [
     path: "/var/www/knowledge"
   },
 
-  // 2. AI 工具与学习 (6)
+  // 2. AI 工具与学习 (10)
   {
     id: "teachplayer",
     name: "Teach Player · 视频双语精读",
@@ -211,8 +211,8 @@ const SERVICES = [
   {
     id: "tpbili",
     name: "TPbili · B站画像与分析",
-    subdomain: "tpbili.tpgofighting.top",
-    url: "https://tpbili.tpgofighting.top",
+    subdomain: "bili.tpgofighting.top",
+    url: "https://bili.tpgofighting.top",
     category: "analytics",
     categoryName: "数据洞察与大屏",
     iconKey: "tv",
@@ -295,7 +295,7 @@ const SERVICES = [
     path: "/var/www/caipu"
   },
 
-  // 5. 校园特辑与生活 (4)
+  // 5. 校园特辑与生活 (7)
   {
     id: "njupt",
     name: "南邮入学指南 · T小P版",
@@ -351,6 +351,104 @@ const SERVICES = [
     tech: "Timeline Document",
     port: "8095",
     path: "/var/www/lanbo"
+  },
+  {
+    id: "claudesafety",
+    name: "TP 安全课堂 · Web 权限攻防",
+    subdomain: "claudesafety.tpgofighting.top",
+    url: "https://claudesafety.tpgofighting.top",
+    category: "ai-tools",
+    categoryName: "AI 工具与平台",
+    iconKey: "gear",
+    desc: "基于真实案例拆解现代 Web 架构中的权限错位、攻击面与防御方法。",
+    tags: ["Web安全", "权限攻防", "实战复盘"],
+    tech: "HTML5 / JavaScript / Security Notes",
+    port: "80",
+    path: "/var/www/claudesafety"
+  },
+  {
+    id: "kebiao",
+    name: "唐潘课表 · 学期时间表",
+    subdomain: "kebiao.tpgofighting.top",
+    url: "https://kebiao.tpgofighting.top",
+    category: "life",
+    categoryName: "校园特辑与生活",
+    iconKey: "school",
+    desc: "将学期课程、教室与时间整理为一张轻量、易查看的个人课表。",
+    tags: ["课程表", "校园生活", "时间管理"],
+    tech: "HTML5 / CSS3 / JavaScript",
+    port: "80",
+    path: "/var/www/kebiao"
+  },
+  {
+    id: "mails",
+    name: "T小P的邮件档案",
+    subdomain: "mails.tpgofighting.top",
+    url: "https://mails.tpgofighting.top",
+    category: "personal",
+    categoryName: "个人与学术",
+    iconKey: "doc",
+    desc: "将阅读邮件与长期资料沉淀为一套可回顾的个人档案。",
+    tags: ["邮件档案", "阅读记录", "个人知识"],
+    tech: "HTML5 / CSS3 / JavaScript",
+    port: "8097",
+    path: "/var/www/mails"
+  },
+  {
+    id: "rednote",
+    name: "TP的小红书 · AI 好帖",
+    subdomain: "rednote.tpgofighting.top",
+    url: "https://rednote.tpgofighting.top",
+    category: "life",
+    categoryName: "校园特辑与生活",
+    iconKey: "spark",
+    desc: "精选 AI 好帖与视觉灵感，整理成一份可轻松浏览的个人探索手札。",
+    tags: ["小红书", "AI阅读", "视觉灵感"],
+    tech: "HTML5 / CSS3 / JavaScript",
+    port: "80",
+    path: "/var/www/rednote"
+  },
+  {
+    id: "tokenpool",
+    name: "TokenPool · AI API Gateway",
+    subdomain: "token.tpgofighting.top",
+    url: "https://token.tpgofighting.top",
+    category: "ai-tools",
+    categoryName: "AI 工具与平台",
+    iconKey: "gear",
+    desc: "统一管理 AI API 通道、令牌池与工作台入口，为多个智能体工具提供调用基础。",
+    tags: ["API Gateway", "Token池", "Agent基础设施"],
+    tech: "Node.js / OmniCrawler / Redis",
+    port: "80 / 8095 / 8098",
+    path: "/var/www/tokenpool"
+  },
+  {
+    id: "tpos",
+    name: "TP OS · 个人操作系统",
+    subdomain: "tpos.tpgofighting.top",
+    url: "https://tpos.tpgofighting.top",
+    category: "personal",
+    categoryName: "个人与学术",
+    iconKey: "code",
+    desc: "面向个人上下文、任务与工具的操作系统式入口，连接日常工作与长期记忆。",
+    tags: ["个人OS", "上下文系统", "AI Agent"],
+    tech: "HTML5 / JavaScript / Node.js API",
+    port: "80 / 8092",
+    path: "/var/www/tpos"
+  },
+  {
+    id: "xuezhang",
+    name: "学长我有一个问题",
+    subdomain: "xuezhang.tpgofighting.top",
+    url: "https://xuezhang.tpgofighting.top",
+    category: "life",
+    categoryName: "校园特辑与生活",
+    iconKey: "academic",
+    desc: "用问答式叙事整理校园经验与成长问题，给后来者一份可读的参考。",
+    tags: ["校园问答", "经验分享", "成长记录"],
+    tech: "Tailwind CSS / HTML5",
+    port: "80",
+    path: "/var/www/xuezhang"
   }
 ];
 
@@ -370,6 +468,12 @@ const state = {
   viewMode: localStorage.getItem("tpspace_view") || "grid",
   theme: localStorage.getItem("tpspace_theme") || "light"
 };
+
+// 这些核心入口已上移到 Section 01，矩阵只展示其余站点与服务。
+const FEATURED_SERVICE_IDS = new Set([
+  "tprompts", "tphub", "notes", "claudesafety", "kebiao",
+  "mails", "rednote", "tokenpool", "tpos", "xuezhang"
+]);
 
 // DOM 元素缓存
 let elements = {};
@@ -400,6 +504,15 @@ function init() {
     modalCopyLinkBtn: document.getElementById("modal-copy-link-btn"),
     modalOpenSiteBtn: document.getElementById("modal-open-site-btn"),
 
+    // Contact Elsewhere Modal
+    contactModal: document.getElementById("contact-modal"),
+    contactModalClose: document.getElementById("contact-modal-close"),
+    contactModalCancel: document.getElementById("contact-modal-cancel"),
+    contactModalIcon: document.getElementById("contact-modal-icon"),
+    contactModalTitle: document.getElementById("contact-modal-title"),
+    contactModalDetail: document.getElementById("contact-modal-detail"),
+    contactModalAction: document.getElementById("contact-modal-action"),
+
     // Mobile Navigation & Floating Button
     siteHeader: document.getElementById("site-header"),
     mobileFloatingBtn: document.getElementById("mobile-floating-menu-btn"),
@@ -417,6 +530,7 @@ function init() {
   // 渲染矩阵与海报
   renderMatrixServices();
   renderPostersMarquee();
+  initFeaturedProductInteractions();
 
   // 事件绑定
   bindEvents();
@@ -470,6 +584,7 @@ function bindEvents() {
     }
     if (e.key === "Escape") {
       closeDetailModal();
+      closeContactModal();
       closeMobileDrawer();
     }
   });
@@ -525,6 +640,23 @@ function bindEvents() {
   elements.detailModal.addEventListener("click", (e) => {
     if (e.target === elements.detailModal) closeDetailModal();
   });
+
+  // 联系方式行：鼠标跟随荧光聚光 + 点击打开联系方式弹窗
+  document.querySelectorAll(".tp-contact-row").forEach(row => {
+    row.addEventListener("pointermove", (e) => {
+      const rect = row.getBoundingClientRect();
+      row.style.setProperty("--contact-spot-x", `${e.clientX - rect.left}px`);
+      row.style.setProperty("--contact-spot-y", `${e.clientY - rect.top}px`);
+    }, { passive: true });
+    row.addEventListener("click", () => openContactModal(row));
+  });
+
+  elements.contactModalClose?.addEventListener("click", closeContactModal);
+  elements.contactModalCancel?.addEventListener("click", closeContactModal);
+  elements.contactModalAction?.addEventListener("click", closeContactModal);
+  elements.contactModal?.addEventListener("click", (e) => {
+    if (e.target === elements.contactModal) closeContactModal();
+  });
 }
 
 function initMobileScrollNavigation() {
@@ -570,6 +702,7 @@ function updateDrawerThemeLabel() {
 
 function getFilteredServices() {
   return SERVICES.filter(svc => {
+    if (FEATURED_SERVICE_IDS.has(svc.id)) return false;
     const matchCat = state.activeCategory === "all" || svc.category === state.activeCategory;
     if (!matchCat) return false;
 
@@ -589,8 +722,9 @@ function renderMatrixServices() {
   const list = getFilteredServices();
 
   // 动态同步分类计数（数据驱动，防止硬编码漂移）
-  const counts = { all: SERVICES.length };
-  SERVICES.forEach(svc => { counts[svc.category] = (counts[svc.category] || 0) + 1; });
+  const matrixServices = SERVICES.filter(svc => !FEATURED_SERVICE_IDS.has(svc.id));
+  const counts = { all: matrixServices.length };
+  matrixServices.forEach(svc => { counts[svc.category] = (counts[svc.category] || 0) + 1; });
   document.querySelectorAll("#category-filter-tabs .cat-tab-btn").forEach(btn => {
     const cntEl = btn.querySelector(".tab-cnt");
     if (cntEl && counts[btn.dataset.cat] !== undefined) {
@@ -650,6 +784,14 @@ function renderMatrixServices() {
       </article>
     `;
   }).join("");
+
+  elements.servicesGrid.querySelectorAll(".service-matrix-card").forEach(card => {
+    card.addEventListener("pointermove", (event) => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty("--matrix-spot-x", `${event.clientX - rect.left}px`);
+      card.style.setProperty("--matrix-spot-y", `${event.clientY - rect.top}px`);
+    }, { passive: true });
+  });
 
   initMagneticButtons();
 }
@@ -746,6 +888,76 @@ function closeDetailModal() {
   elements.detailModal.style.display = "none";
 }
 window.closeDetailModal = closeDetailModal;
+
+function initFeaturedProductInteractions() {
+  document.querySelectorAll(".featured-ref-card").forEach(card => {
+    const titleEl = card.querySelector(".ref-title-text");
+    if (!titleEl) return;
+
+    const title = titleEl.textContent.trim();
+    const normalizedTitle = title.replace(/\s+/g, "").toLowerCase();
+    const svc = SERVICES.find(item => {
+      const normalizedName = item.name.replace(/\s+/g, "").toLowerCase();
+      return normalizedName === normalizedTitle || normalizedName.startsWith(normalizedTitle) || normalizedTitle.startsWith(normalizedName);
+    });
+    if (!svc) return;
+
+    card.addEventListener("pointermove", (event) => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty("--product-spot-x", `${event.clientX - rect.left}px`);
+      card.style.setProperty("--product-spot-y", `${event.clientY - rect.top}px`);
+    }, { passive: true });
+
+    titleEl.setAttribute("role", "button");
+    titleEl.setAttribute("tabindex", "0");
+    titleEl.setAttribute("aria-label", `查看${title}详情`);
+    titleEl.addEventListener("pointermove", (event) => {
+      const rect = titleEl.getBoundingClientRect();
+      card.style.setProperty("--product-spot-x", `${event.clientX - card.getBoundingClientRect().left}px`);
+      card.style.setProperty("--product-spot-y", `${event.clientY - card.getBoundingClientRect().top}px`);
+      titleEl.style.setProperty("--title-spot-x", `${event.clientX - rect.left}px`);
+    }, { passive: true });
+    titleEl.addEventListener("click", () => openDetailModal(svc.id));
+    titleEl.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openDetailModal(svc.id);
+      }
+    });
+  });
+}
+
+function openContactModal(row) {
+  if (!elements.contactModal || !row) return;
+
+  const icon = row.querySelector(".tp-contact-icon img");
+  if (elements.contactModalIcon) {
+    elements.contactModalIcon.innerHTML = icon ? `<img src="${icon.getAttribute("src")}" alt="">` : "";
+    elements.contactModalIcon.classList.toggle("is-xiaohongshu", row.dataset.contactBrand === "xiaohongshu");
+  }
+  if (elements.contactModalTitle) elements.contactModalTitle.textContent = row.dataset.contactTitle || "联系方式";
+  if (elements.contactModalDetail) elements.contactModalDetail.textContent = row.dataset.contactDetail || "";
+  if (elements.contactModalAction) elements.contactModalAction.href = row.dataset.contactUrl || "#";
+
+  elements.contactModal.style.display = "flex";
+  elements.contactModal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("contact-modal-is-open");
+
+  if (window.gsap) {
+    gsap.fromTo(".tp-contact-modal-box",
+      { scale: 0.86, opacity: 0, y: 22, rotate: -1.5 },
+      { scale: 1, opacity: 1, y: 0, rotate: 0, duration: 0.48, ease: "back.out(1.6)" }
+    );
+  }
+  elements.contactModalClose?.focus();
+}
+
+function closeContactModal() {
+  if (!elements.contactModal) return;
+  elements.contactModal.style.display = "none";
+  elements.contactModal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("contact-modal-is-open");
+}
 
 // ==========================================================================
 // 1. 手绘几何涂鸦与交互粒子 Canvas 动画 (Ink Doodle & Particle Canvas)
@@ -914,340 +1126,74 @@ function initScrollTriggerAnimations() {
 }
 
 // ==========================================================================
-// 3. 卡片与插画 3D 鼠标悬停视差倾斜 (3D Cursor Tilt Parallax)
+// 3. 产品插图滚动展开 (Product Scroll Motion)
 // ==========================================================================
-// ============================================================================
-// TPrompts Pilot：分段播放的输入关系演示
-// 时间和状态只来自 build/timeline.json；这里负责输入、反向和 SVG 层渲染
-// ============================================================================
-function initTpromptsMotionPilot() {
-  const stage = document.querySelector('[data-motion-stage="tprompts"]');
-  if (!stage) return;
-  stage.tabIndex = 0;
-  stage.setAttribute("role", "button");
-  stage.setAttribute("aria-label", "播放 TPrompts 模块连接动画");
-  stage.setAttribute("aria-pressed", "false");
+// 产品插图滚动展开：一次 rAF 写入，观察器负责离屏停算。
+function initProductScrollMotion() {
+  if (document.body.dataset.productMotionBound === "1") return;
 
-  const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-  let timeline = null;
-  let progress = 0;
-  let targetProgress = 0;
-  let pointerX = 0;
-  let pointerY = 0;
+  const scenes = Array.from(document.querySelectorAll(".product-motion"));
+  if (!scenes.length) return;
+
+  document.body.dataset.productMotionBound = "1";
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const activeScenes = new Set();
+  const observedScenes = new Set(scenes);
   let rafId = 0;
-  let lastTime = 0;
-  let dirty = true;
-  let pinned = false;
 
-  const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
-
-  const validateTimeline = (candidate) => {
-    if (!candidate || !Array.isArray(candidate.states) || !Array.isArray(candidate.segments)) {
-      throw new Error("TPrompts timeline 缺少 states 或 segments");
-    }
-    if (candidate.states.length !== candidate.segments.length + 1) {
-      throw new Error("TPrompts timeline states 与 segments 数量不匹配");
-    }
-    const ids = candidate.states.map((state) => state.id);
-    if (!ids.length || new Set(ids).size !== ids.length || ids.some((id) => !id)) {
-      throw new Error("TPrompts timeline state id 必须唯一且非空");
-    }
-    candidate.segments.forEach((segment, index) => {
-      if (!(segment.start <= segment.hold && segment.hold < segment.endExclusive)) {
-        throw new Error(`TPrompts timeline segment ${index} 时间边界无效`);
-      }
-      if (segment.from !== ids[index] || segment.to !== ids[index + 1]) {
-        throw new Error(`TPrompts timeline segment ${index} 状态顺序无效`);
-      }
-    });
-    return candidate;
+  const renderStatic = () => {
+    scenes.forEach((scene) => scene.style.setProperty("--motion-progress", "1"));
   };
 
-  const setProgressStyles = () => {
-    if (!timeline) return;
-    const p = clamp(progress, 0, 1);
-    const flowOpacity = clamp((p - 0.04) / 0.28, 0, 1);
-    const systemOpacity = clamp((p - 0.02) / 0.18, 0, 1) * (1 - clamp((p - 0.58) / 0.28, 0, 1));
-    const userOpacity = clamp((p - 0.18) / 0.26, 0, 1) * (1 - clamp((p - 0.78) / 0.18, 0, 1));
-    const outputOpacity = clamp((p - 0.56) / 0.3, 0, 1);
-    const cursorOpacity = clamp((p - 0.67) / 0.18, 0, 1);
-    const sparkOpacity = clamp((p - 0.84) / 0.1, 0, 1) * (1 - clamp((p - 0.96) / 0.04, 0, 1));
-    const totalHold = timeline.states[timeline.states.length - 1].hold;
-    let stateIndex = 0;
-    timeline.states.forEach((state, index) => {
-      if (p + 0.0001 >= state.hold / Math.max(0.001, totalHold)) stateIndex = index;
-    });
-    const activeState = timeline.states[stateIndex].id;
-    const driftScale = reducedMotionQuery.matches ? 0 : 1;
-
-    stage.dataset.motionState = activeState;
-    stage.style.setProperty("--pilot-progress", p.toFixed(4));
-    stage.style.setProperty("--pilot-flow-opacity", flowOpacity.toFixed(3));
-    stage.style.setProperty("--pilot-focus-system-opacity", systemOpacity.toFixed(3));
-    stage.style.setProperty("--pilot-focus-user-opacity", userOpacity.toFixed(3));
-    stage.style.setProperty("--pilot-focus-output-opacity", outputOpacity.toFixed(3));
-    stage.style.setProperty("--pilot-cursor-opacity", cursorOpacity.toFixed(3));
-    stage.style.setProperty("--pilot-spark-opacity", sparkOpacity.toFixed(3));
-    stage.style.setProperty("--pilot-flow-offset", (1 - p).toFixed(4));
-    stage.style.setProperty("--pilot-drift-x", `${(pointerX * 4 * driftScale).toFixed(2)}px`);
-    stage.style.setProperty("--pilot-drift-y", `${(pointerY * 3 * driftScale).toFixed(2)}px`);
-    stage.style.setProperty("--pilot-scale", (1 + p * 0.008 * driftScale).toFixed(4));
-    stage.setAttribute("aria-pressed", p > 0.5 ? "true" : "false");
-  };
-
-  const renderLoop = (now) => {
+  const render = () => {
     rafId = 0;
-    if (!timeline) return;
-    const delta = lastTime ? Math.min((now - lastTime) / 1000, 1 / 30) : 1 / 60;
-    lastTime = now;
-    const totalDuration = timeline.states[timeline.states.length - 1].hold;
-    if (!reducedMotionQuery.matches && Math.abs(targetProgress - progress) > 0.0001) {
-      const direction = targetProgress > progress ? 1 : -1;
-      progress = clamp(progress + direction * delta / Math.max(0.001, totalDuration), 0, 1);
-      if ((direction > 0 && progress >= targetProgress) || (direction < 0 && progress <= targetProgress)) {
-        progress = targetProgress;
-      }
-      dirty = true;
-    }
-    if (dirty || reducedMotionQuery.matches) {
-      setProgressStyles();
-      dirty = false;
-    }
-    if (Math.abs(targetProgress - progress) > 0.0001 || dirty) {
-      rafId = requestAnimationFrame(renderLoop);
-    }
+    if (reducedMotion.matches || document.hidden) return;
+
+    const viewportHeight = window.innerHeight || 1;
+    activeScenes.forEach((scene) => {
+      const rect = scene.getBoundingClientRect();
+      const progress = Math.max(0, Math.min(1, (viewportHeight - rect.top) / (viewportHeight + rect.height * 0.15)));
+      scene.style.setProperty("--motion-progress", progress.toFixed(3));
+    });
   };
 
   const schedule = () => {
-    if (!rafId) rafId = requestAnimationFrame(renderLoop);
+    if (!rafId && !reducedMotion.matches && !document.hidden) rafId = requestAnimationFrame(render);
   };
 
-  const setActive = (active) => {
-    targetProgress = active && !reducedMotionQuery.matches ? 1 : 0;
-    if (reducedMotionQuery.matches) progress = 0;
-    dirty = true;
-    schedule();
-  };
-
-  const syncHoverState = () => {
-    if (!pinned && !stage.matches(":hover") && document.activeElement !== stage) setActive(false);
-  };
-
-  stage.addEventListener("pointerenter", () => setActive(true));
-  stage.addEventListener("pointerleave", syncHoverState);
-  stage.addEventListener("pointermove", (event) => {
-    const rect = stage.getBoundingClientRect();
-    pointerX = clamp((event.clientX - rect.left) / rect.width - 0.5, -0.5, 0.5);
-    pointerY = clamp((event.clientY - rect.top) / rect.height - 0.5, -0.5, 0.5);
-    dirty = true;
-    schedule();
-  });
-  stage.addEventListener("focusin", () => setActive(true));
-  stage.addEventListener("focusout", (event) => {
-    if (!stage.contains(event.relatedTarget)) syncHoverState();
-  });
-  stage.addEventListener("click", () => {
-    pinned = !pinned;
-    setActive(pinned);
-  });
-  stage.addEventListener("keydown", (event) => {
-    if (event.key !== "Enter" && event.key !== " ") return;
-    event.preventDefault();
-    pinned = !pinned;
-    setActive(pinned);
-  });
-  reducedMotionQuery.addEventListener("change", () => {
-    progress = 0;
-    targetProgress = 0;
-    dirty = true;
-    schedule();
-  });
-
-  fetch("build/timeline.json", { credentials: "same-origin" })
-    .then((response) => {
-      if (!response.ok) throw new Error(`timeline HTTP ${response.status}`);
-      return response.json();
-    })
-    .then((loadedTimeline) => {
-      timeline = validateTimeline(loadedTimeline);
-      stage.dataset.motionReady = "true";
-      setProgressStyles();
-      schedule();
-    })
-    .catch((error) => {
-      stage.dataset.motionReady = "false";
-      console.warn("[TPrompts Pilot] timeline 加载失败，保持静态降级：", error);
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) activeScenes.add(entry.target);
+      else activeScenes.delete(entry.target);
     });
-}
+    schedule();
+  }, { rootMargin: "22% 0px 22% 0px" });
 
-// 其他核心作品卡：统一采用同一套分段播放、反向收回和 reduced-motion 运行时。
-function initConfiguredMotionCards() {
-  const cards = [...document.querySelectorAll(".featured-ref-card[data-motion-card]")]
-    .filter((card) => card.dataset.motionCard !== "tprompts");
-  const configs = window.TPCardMotionConfigs || {};
-  if (!cards.length) return;
-
-  const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
-  const validateTimeline = (candidate, id, config) => {
-    if (!candidate || !Array.isArray(candidate.states) || !Array.isArray(candidate.segments)) {
-      throw new Error(`${id} timeline 缺少 states 或 segments`);
-    }
-    if (candidate.states.length !== candidate.segments.length + 1) {
-      throw new Error(`${id} timeline states 与 segments 数量不匹配`);
-    }
-    const ids = candidate.states.map((state) => state.id);
-    const configIds = (config.states || []).map((state) => state.id);
-    if (ids.join("|") !== configIds.join("|")) {
-      throw new Error(`${id} timeline 与 motion config 状态不一致`);
-    }
-    candidate.segments.forEach((segment, index) => {
-      if (!(segment.start <= segment.hold && segment.hold < segment.endExclusive)) {
-        throw new Error(`${id} timeline segment ${index} 时间边界无效`);
-      }
-      if (segment.from !== ids[index] || segment.to !== ids[index + 1]) {
-        throw new Error(`${id} timeline segment ${index} 状态顺序无效`);
-      }
-    });
-    return candidate;
-  };
-
-  const mountCard = (card, timeline) => {
-    const id = card.dataset.motionCard;
-    const config = configs[id];
-    const stage = card.querySelector(".ref-visual-col");
-    if (!config || !stage || stage.dataset.motionMounted === "true") return;
-
-    const template = document.createElement("template");
-    template.innerHTML = String(config.overlayMarkup || "").trim();
-    const overlay = template.content.firstElementChild;
-    if (!overlay) throw new Error(`${id} motion config 缺少 SVG overlay`);
-
-    stage.classList.add("motion-pilot-card", "motion-pilot-stage");
-    stage.dataset.motionStage = id;
-    overlay.classList.add("motion-card-overlay");
-    overlay.setAttribute("preserveAspectRatio", config.overlayViewBox === "0 0 1000 1000" ? "xMidYMid meet" : "none");
-    stage.appendChild(overlay);
-
-    stage.tabIndex = 0;
-    stage.setAttribute("role", "button");
-    stage.setAttribute("aria-label", `播放 ${id} 动画`);
-    stage.setAttribute("aria-pressed", "false");
-
-    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    let progress = 0;
-    let targetProgress = 0;
-    let pointerX = 0;
-    let pointerY = 0;
-    let rafId = 0;
-    let lastTime = 0;
-    let dirty = true;
-    let pinned = false;
-
-    const setActive = (active) => {
-      targetProgress = active && !reducedMotionQuery.matches ? 1 : 0;
-      if (reducedMotionQuery.matches) progress = 0;
-      dirty = true;
-      schedule();
-    };
-
-    const renderCurrent = () => {
-      const p = clamp(progress, 0, 1);
-      const totalHold = timeline.states[timeline.states.length - 1].hold;
-      let stateIndex = 0;
-      timeline.states.forEach((state, index) => {
-        if (p + 0.0001 >= state.hold / Math.max(0.001, totalHold)) stateIndex = index;
+  scenes.forEach((scene) => observer.observe(scene));
+  const servicesGrid = document.getElementById("services-grid");
+  if (servicesGrid) {
+    const dynamicSceneObserver = new MutationObserver(() => {
+      servicesGrid.querySelectorAll(".product-motion").forEach((scene) => {
+        if (observedScenes.has(scene)) return;
+        observedScenes.add(scene);
+        observer.observe(scene);
       });
-      stage.dataset.motionState = timeline.states[stateIndex].id;
-      stage.style.setProperty("--pilot-progress", p.toFixed(4));
-      stage.setAttribute("aria-pressed", p > 0.5 ? "true" : "false");
-      config.render(stage, overlay, p, pointerX, pointerY, reducedMotionQuery.matches);
-    };
-
-    const renderLoop = (now) => {
-      rafId = 0;
-      const delta = lastTime ? Math.min((now - lastTime) / 1000, 1 / 30) : 1 / 60;
-      lastTime = now;
-      const totalDuration = timeline.states[timeline.states.length - 1].hold;
-      if (!reducedMotionQuery.matches && Math.abs(targetProgress - progress) > 0.0001) {
-        const direction = targetProgress > progress ? 1 : -1;
-        progress = clamp(progress + direction * delta / Math.max(0.001, totalDuration), 0, 1);
-        if ((direction > 0 && progress >= targetProgress) || (direction < 0 && progress <= targetProgress)) {
-          progress = targetProgress;
-        }
-        dirty = true;
-      }
-      if (dirty || reducedMotionQuery.matches) {
-        renderCurrent();
-        dirty = false;
-      }
-      if (Math.abs(targetProgress - progress) > 0.0001) rafId = requestAnimationFrame(renderLoop);
-    };
-
-    function schedule() {
-      if (!rafId) rafId = requestAnimationFrame(renderLoop);
-    }
-
-    const syncHoverState = () => {
-      if (!pinned && !stage.matches(":hover") && document.activeElement !== trigger) setActive(false);
-    };
-
-    stage.addEventListener("pointerenter", () => setActive(true));
-    stage.addEventListener("pointerleave", syncHoverState);
-    stage.addEventListener("pointermove", (event) => {
-      const rect = stage.getBoundingClientRect();
-      pointerX = clamp((event.clientX - rect.left) / rect.width - 0.5, -0.5, 0.5);
-      pointerY = clamp((event.clientY - rect.top) / rect.height - 0.5, -0.5, 0.5);
-      dirty = true;
       schedule();
     });
-    stage.addEventListener("focusin", () => setActive(true));
-    stage.addEventListener("focusout", (event) => {
-      if (!stage.contains(event.relatedTarget)) syncHoverState();
-    });
-    stage.addEventListener("click", () => {
-      pinned = !pinned;
-      setActive(pinned);
-    });
-    stage.addEventListener("keydown", (event) => {
-      if (event.key !== "Enter" && event.key !== " ") return;
-      event.preventDefault();
-      pinned = !pinned;
-      setActive(pinned);
-    });
-    reducedMotionQuery.addEventListener("change", () => {
-      progress = 0;
-      targetProgress = 0;
-      dirty = true;
-      schedule();
-    });
+    dynamicSceneObserver.observe(servicesGrid, { childList: true, subtree: true });
+  }
+  window.addEventListener("scroll", schedule, { passive: true });
+  window.addEventListener("resize", schedule, { passive: true });
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) schedule();
+  });
+  reducedMotion.addEventListener("change", (event) => {
+    if (event.matches) renderStatic();
+    else schedule();
+  });
 
-    stage.dataset.motionMounted = "true";
-    stage.dataset.motionReady = "true";
-    renderCurrent();
-    schedule();
-  };
-
-  fetch("build/timeline.json", { credentials: "same-origin" })
-    .then((response) => {
-      if (!response.ok) throw new Error(`timeline HTTP ${response.status}`);
-      return response.json();
-    })
-    .then((timeline) => {
-      cards.forEach((card) => {
-        const id = card.dataset.motionCard;
-        const config = configs[id];
-        if (!config || typeof config.render !== "function") throw new Error(`${id} motion config 缺失`);
-        const cardTimeline = timeline.cards?.[id];
-        if (!cardTimeline) throw new Error(`${id} timeline 缺失 cards.${id}`);
-        mountCard(card, validateTimeline(cardTimeline, id, config));
-      });
-    })
-    .catch((error) => {
-      cards.forEach((card) => {
-        card.querySelector(".ref-visual-col")?.setAttribute("data-motion-ready", "false");
-      });
-      console.warn("[Featured Motion] timeline 加载失败，保持静态降级：", error);
-    });
+  if (reducedMotion.matches) renderStatic();
+  else schedule();
 }
 
 function init3DCardTiltPhysics() {
@@ -1260,16 +1206,15 @@ function init3DCardTiltPhysics() {
 
   // 核心作品卡片 3D 视差
   document.querySelectorAll(".featured-ref-card").forEach(card => {
-    const isMotionPilot = card.classList.contains("motion-pilot-card");
     card.addEventListener("mousemove", (e) => {
       const rect = card.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width - 0.5;
       const y = (e.clientY - rect.top) / rect.height - 0.5;
       if (window.gsap) {
         gsap.to(card, {
-          rotateY: x * (isMotionPilot ? 3 : 5),
-          rotateX: -y * (isMotionPilot ? 3 : 5),
-          y: isMotionPilot ? -2 : -5,
+          rotateY: x * 5,
+          rotateX: -y * 5,
+          y: -5,
           transformPerspective: 1000,
           boxShadow: `${-x * 10 + 6}px ${-y * 10 + 6}px 0px var(--border-main)`,
           duration: 0.25,
@@ -1377,15 +1322,18 @@ window.handleHashRoute = handleHashRoute;
 // ==========================================================================
 
 class TrackingEye {
-  constructor(pupilEl, svgEl, eyeCenterSvg, maxRadiusSvg, svgViewBoxWidth, svgViewBoxHeight) {
+  constructor(pupilEl, svgEl, eyeCenterSvg, maxRadiusSvg, svgViewBoxWidth, svgViewBoxHeight, depth = 1) {
     this.pupilEl = pupilEl;
     this.svgEl = svgEl;
     this.eyeCenterSvg = eyeCenterSvg; // { x, y }
     this.maxRadiusSvg = maxRadiusSvg;
     this.svgW = svgViewBoxWidth;
     this.svgH = svgViewBoxHeight;
+    this.depth = depth;
     this.currentOffsetX = 0;
     this.currentOffsetY = 0;
+    this.velocityX = 0;
+    this.velocityY = 0;
   }
 
   update(pointerX, pointerY, easing = 0.15) {
@@ -1402,15 +1350,23 @@ class TrackingEye {
     const angle = Math.atan2(dy, dx);
     const distancePx = Math.hypot(dx, dy);
 
-    // 屏幕距离映射到 SVG 用户坐标位移
-    const scaleFactor = (this.svgW / rect.width);
-    const targetDistSvg = Math.min(distancePx * 0.035 * scaleFactor, this.maxRadiusSvg);
+    // 非线性映射让近距离移动更细腻、远距离仍保持明确的视线方向。
+    const normalizedDistance = Math.min(distancePx / 220, 1);
+    const targetDistSvg = Math.min(
+      Math.pow(normalizedDistance, 0.82) * this.maxRadiusSvg * this.depth,
+      this.maxRadiusSvg
+    );
 
     const targetOffsetX = Math.cos(angle) * targetDistSvg;
     const targetOffsetY = Math.sin(angle) * targetDistSvg;
 
-    this.currentOffsetX += (targetOffsetX - this.currentOffsetX) * easing;
-    this.currentOffsetY += (targetOffsetY - this.currentOffsetY) * easing;
+    const spring = Math.min(0.28, easing * 1.55);
+    this.velocityX += (targetOffsetX - this.currentOffsetX) * spring;
+    this.velocityY += (targetOffsetY - this.currentOffsetY) * spring;
+    this.velocityX *= 0.72;
+    this.velocityY *= 0.72;
+    this.currentOffsetX += this.velocityX;
+    this.currentOffsetY += this.velocityY;
 
     const tx = this.currentOffsetX.toFixed(2);
     const ty = this.currentOffsetY.toFixed(2);
@@ -1420,8 +1376,12 @@ class TrackingEye {
 
   reset(easing = 0.08) {
     if (!this.pupilEl) return;
-    this.currentOffsetX += (0 - this.currentOffsetX) * easing;
-    this.currentOffsetY += (0 - this.currentOffsetY) * easing;
+    this.velocityX += (0 - this.currentOffsetX) * easing;
+    this.velocityY += (0 - this.currentOffsetY) * easing;
+    this.velocityX *= 0.68;
+    this.velocityY *= 0.68;
+    this.currentOffsetX += this.velocityX;
+    this.currentOffsetY += this.velocityY;
 
     const tx = this.currentOffsetX.toFixed(2);
     const ty = this.currentOffsetY.toFixed(2);
@@ -1438,11 +1398,12 @@ class HumanCharacter {
     const pupilRight = document.getElementById("human-pupil-right");
 
     // 人物眼睛 SVG 坐标 (1024x1536 画布)
-    this.leftEye = pupilLeft ? new TrackingEye(pupilLeft, this.svgEl, { x: 433, y: 180 }, 8.0, 1024, 1536) : null;
-    this.rightEye = pupilRight ? new TrackingEye(pupilRight, this.svgEl, { x: 504, y: 160 }, 8.0, 1024, 1536) : null;
+    this.leftEye = pupilLeft ? new TrackingEye(pupilLeft, this.svgEl, { x: 433, y: 180 }, 12.5, 1024, 1536, 0.92) : null;
+    this.rightEye = pupilRight ? new TrackingEye(pupilRight, this.svgEl, { x: 504, y: 160 }, 13.5, 1024, 1536, 1.0) : null;
 
     this.currentRotX = 0;
     this.currentRotY = 0;
+    this.currentRotZ = 0;
     this.currentTransX = 0;
     this.currentTransY = 0;
   }
@@ -1452,19 +1413,23 @@ class HumanCharacter {
     if (this.leftEye) this.leftEye.update(pointerX, pointerY, easing);
     if (this.rightEye) this.rightEye.update(pointerX, pointerY, easing);
 
-    // 2. 头部轻微 3D 视角跟随 (Human: rotateX ±2.2°, rotateY ±3.0°, translate ±2px)
+    // 2. 头部 3D 视角跟随：眼睛先响应，头部带轻微回弹与待机呼吸。
     if (this.headEl) {
-      const targetRotX = -normY * 2.2;
-      const targetRotY = normX * 3.0;
-      const targetTransX = normX * 2.2;
-      const targetTransY = normY * 1.8;
+      const idleMix = 1 - Math.min(1, Math.hypot(normX, normY));
+      const idleWave = performance.now() * 0.00135;
+      const targetRotX = -normY * 3.6 + Math.sin(idleWave) * 0.22 * idleMix;
+      const targetRotY = normX * 5.2;
+      const targetRotZ = normX * 0.8 + Math.sin(idleWave * 0.76) * 0.28 * idleMix;
+      const targetTransX = normX * 3.4;
+      const targetTransY = normY * 2.6 + Math.sin(idleWave * 0.9) * 0.65 * idleMix;
 
       this.currentRotX += (targetRotX - this.currentRotX) * easing;
       this.currentRotY += (targetRotY - this.currentRotY) * easing;
+      this.currentRotZ += (targetRotZ - this.currentRotZ) * easing;
       this.currentTransX += (targetTransX - this.currentTransX) * easing;
       this.currentTransY += (targetTransY - this.currentTransY) * easing;
 
-      this.headEl.style.transform = `translate3d(${this.currentTransX.toFixed(2)}px, ${this.currentTransY.toFixed(2)}px, 0) rotateX(${this.currentRotX.toFixed(2)}deg) rotateY(${this.currentRotY.toFixed(2)}deg)`;
+      this.headEl.style.transform = `translate3d(${this.currentTransX.toFixed(2)}px, ${this.currentTransY.toFixed(2)}px, 0) rotateX(${this.currentRotX.toFixed(2)}deg) rotateY(${this.currentRotY.toFixed(2)}deg) rotateZ(${this.currentRotZ.toFixed(2)}deg)`;
     }
   }
 
@@ -1475,10 +1440,11 @@ class HumanCharacter {
     if (this.headEl) {
       this.currentRotX += (0 - this.currentRotX) * easing;
       this.currentRotY += (0 - this.currentRotY) * easing;
+      this.currentRotZ += (0 - this.currentRotZ) * easing;
       this.currentTransX += (0 - this.currentTransX) * easing;
       this.currentTransY += (0 - this.currentTransY) * easing;
 
-      this.headEl.style.transform = `translate3d(${this.currentTransX.toFixed(2)}px, ${this.currentTransY.toFixed(2)}px, 0) rotateX(${this.currentRotX.toFixed(2)}deg) rotateY(${this.currentRotY.toFixed(2)}deg)`;
+      this.headEl.style.transform = `translate3d(${this.currentTransX.toFixed(2)}px, ${this.currentTransY.toFixed(2)}px, 0) rotateX(${this.currentRotX.toFixed(2)}deg) rotateY(${this.currentRotY.toFixed(2)}deg) rotateZ(${this.currentRotZ.toFixed(2)}deg)`;
     }
   }
 }
@@ -1491,8 +1457,8 @@ class MonsterCharacter {
     const pupilRight = document.getElementById("monster-pupil-right");
 
     // 绿色怪物大眼睛 SVG 坐标 (1254x1254 画布)
-    this.leftEye = pupilLeft ? new TrackingEye(pupilLeft, this.svgEl, { x: 470, y: 702 }, 45.0, 1254, 1254) : null;
-    this.rightEye = pupilRight ? new TrackingEye(pupilRight, this.svgEl, { x: 845, y: 686 }, 45.0, 1254, 1254) : null;
+    this.leftEye = pupilLeft ? new TrackingEye(pupilLeft, this.svgEl, { x: 470, y: 702 }, 58.0, 1254, 1254, 0.94) : null;
+    this.rightEye = pupilRight ? new TrackingEye(pupilRight, this.svgEl, { x: 845, y: 686 }, 62.0, 1254, 1254, 1.0) : null;
 
     this.currentRot = 0;
     this.currentTransX = 0;
@@ -1506,13 +1472,16 @@ class MonsterCharacter {
     if (this.leftEye) this.leftEye.update(pointerX, pointerY, easing);
     if (this.rightEye) this.rightEye.update(pointerX, pointerY, easing);
 
-    // 2. 怪物头部软体/果冻感跟随 (Monster: rotate ±5.0°, translate ±4px, squash/stretch)
+    // 2. 怪物头部软体/果冻感跟随：转头、位移和 squash/stretch 分层响应。
     if (this.headEl) {
-      const targetRot = normX * 4.8;
-      const targetTransX = normX * 3.8;
-      const targetTransY = normY * 2.8;
-      const targetScaleX = 1 + normY * 0.025;
-      const targetScaleY = 1 - normY * 0.025;
+      const idleMix = 1 - Math.min(1, Math.hypot(normX, normY));
+      const idleWave = performance.now() * 0.0011 + 0.8;
+      const targetRot = normX * 6.4 + Math.sin(idleWave) * 0.5 * idleMix;
+      const targetTransX = normX * 5.2;
+      const targetTransY = normY * 3.6 + Math.sin(idleWave * 0.9) * 1.15 * idleMix;
+      const squash = Math.sin(idleWave * 1.7) * 0.012 * idleMix;
+      const targetScaleX = 1 + normY * 0.045 + squash;
+      const targetScaleY = 1 - normY * 0.045 - squash;
 
       this.currentRot += (targetRot - this.currentRot) * easing;
       this.currentTransX += (targetTransX - this.currentTransX) * easing;
@@ -1759,8 +1728,7 @@ function initHeroDragMode() {
 function initAnimations() {
   initInkDoodleCanvas();
   initScrollTriggerAnimations();
-  initTpromptsMotionPilot();
-  initConfiguredMotionCards();
+  initProductScrollMotion();
   init3DCardTiltPhysics();
   initMagneticButtons();
   initHeroEyeTracking();
