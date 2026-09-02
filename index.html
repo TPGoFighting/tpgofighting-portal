@@ -99,6 +99,10 @@
 
   <link rel="icon" href="assets/logo.jpg">
   <link rel="apple-touch-icon" href="assets/logo.jpg">
+  <!-- 首屏角色图预加载：与 picture 的 WebP source 对齐。 -->
+  <link rel="preload" as="image" href="assets/hero/human-body.webp" type="image/webp" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/hero/human-head-no-pupils.webp" type="image/webp" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/hero/monster-head-no-pupils.webp" type="image/webp" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
@@ -121,7 +125,7 @@
     .route-view.active { display: block; }
   </style>
 
-  <link rel="stylesheet" href="style.css?v=20260902_motion_03">
+  <link rel="stylesheet" href="style.css?v=20260902_motion_05">
 </head>
 <body data-theme="light">
   <!-- 无障碍：跳过导航直达主内容 -->
@@ -169,11 +173,11 @@
             <!-- 男生角色 (Human Character - 固定身体 + 颈部Pivot头部 + SVG矢量瞳孔追踪) -->
             <div class="hero-char-human" id="char-human">
               <!-- 身体层 (靠在文字上，主体稳定) -->
-              <img src="assets/hero/human-body.png" alt="Tyler Body" class="char-layer char-human-body" aria-hidden="true">
+              <picture><source srcset="assets/hero/human-body.webp" type="image/webp"><img src="assets/hero/human-body.png" alt="Tyler Body" class="char-layer char-human-body" aria-hidden="true" loading="eager" fetchpriority="high" decoding="async"></picture>
               
               <!-- 头部层 (带颈部 pivot 与微妙视角位移) -->
               <div class="char-head-wrapper" id="human-head-wrapper">
-                <img src="assets/hero/human-head-no-pupils.png" alt="Tyler Head" class="char-layer char-human-head" aria-hidden="true">
+                <picture><source srcset="assets/hero/human-head-no-pupils.webp" type="image/webp"><img src="assets/hero/human-head-no-pupils.png" alt="Tyler Head" class="char-layer char-human-head" aria-hidden="true" loading="eager" fetchpriority="high" decoding="async"></picture>
                 
                 <!-- 左右眼矢量 SVG 瞳孔 -->
                 <svg class="char-eyes-svg human-eyes-svg" viewBox="0 0 1024 1536" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
@@ -210,7 +214,7 @@
             <div class="hero-char-monster" id="char-monster">
               <!-- 怪物整体身躯 (果冻软体轻微跟随与缩放) -->
               <div class="char-head-wrapper" id="monster-head-wrapper">
-                <img src="assets/hero/monster-head-no-pupils.png" alt="Green Monster" class="char-layer char-monster-head" aria-hidden="true">
+                <picture><source srcset="assets/hero/monster-head-no-pupils.webp" type="image/webp"><img src="assets/hero/monster-head-no-pupils.png" alt="Green Monster" class="char-layer char-monster-head" aria-hidden="true" loading="eager" fetchpriority="high" decoding="async"></picture>
                 
                 <!-- 怪物大眼睛矢量 SVG 瞳孔 -->
                 <svg class="char-eyes-svg monster-eyes-svg" viewBox="0 0 1254 1254" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
@@ -920,27 +924,27 @@
 
     <div class="visual-gallery-grid">
       <div class="gallery-photo-frame">
-        <img src="assets/portrait/portrait-sun.jpg" alt="阳光下漫步" class="gallery-photo-img" loading="lazy">
+        <picture><source srcset="assets/portrait/portrait-sun.webp" type="image/webp"><img src="assets/portrait/portrait-sun.jpg" alt="阳光下漫步" class="gallery-photo-img" loading="lazy" decoding="async"></picture>
         <div class="gallery-photo-caption">Sunlight Walk · 2026</div>
       </div>
       <div class="gallery-photo-frame">
-        <img src="assets/gallery/guitar.jpg" alt="吉他与音符" class="gallery-photo-img" loading="lazy">
+        <picture><source srcset="assets/gallery/guitar.webp" type="image/webp"><img src="assets/gallery/guitar.jpg" alt="吉他与音符" class="gallery-photo-img" loading="lazy" decoding="async"></picture>
         <div class="gallery-photo-caption">Acoustic Guitar & Chords</div>
       </div>
       <div class="gallery-photo-frame">
-        <img src="assets/gallery/black-myth.jpg" alt="黑神话悟空探索" class="gallery-photo-img" loading="lazy">
+        <picture><source srcset="assets/gallery/black-myth.webp" type="image/webp"><img src="assets/gallery/black-myth.jpg" alt="黑神话悟空探索" class="gallery-photo-img" loading="lazy" decoding="async"></picture>
         <div class="gallery-photo-caption">Black Myth · Wukong</div>
       </div>
       <div class="gallery-photo-frame">
-        <img src="assets/gallery/sci-fi.jpg" alt="科幻世界与小说" class="gallery-photo-img" loading="lazy">
+        <picture><source srcset="assets/gallery/sci-fi.webp" type="image/webp"><img src="assets/gallery/sci-fi.jpg" alt="科幻世界与小说" class="gallery-photo-img" loading="lazy" decoding="async"></picture>
         <div class="gallery-photo-caption">Sci-Fi Universe & Worldbuilding</div>
       </div>
       <div class="gallery-photo-frame">
-        <img src="assets/portrait/portrait-cafe.jpg" alt="咖啡馆灵感" class="gallery-photo-img" loading="lazy">
+        <picture><source srcset="assets/portrait/portrait-cafe.webp" type="image/webp"><img src="assets/portrait/portrait-cafe.jpg" alt="咖啡馆灵感" class="gallery-photo-img" loading="lazy" decoding="async"></picture>
         <div class="gallery-photo-caption">Cafe & Vibe Coding Session</div>
       </div>
     <div class="gallery-photo-frame">
-        <img src="assets/gallery/filmmaking.jpg" alt="视频制作与镜头" class="gallery-photo-img" loading="lazy">
+        <picture><source srcset="assets/gallery/filmmaking.webp" type="image/webp"><img src="assets/gallery/filmmaking.jpg" alt="视频制作与镜头" class="gallery-photo-img" loading="lazy" decoding="async"></picture>
         <div class="gallery-photo-caption">Filmmaking & Visual Storytelling</div>
       </div>
     </div>
@@ -1272,6 +1276,6 @@
 
   <!-- GSAP 物理动画引擎 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="app.js?v=20260902_matrix_03"></script>
+  <script src="app.js?v=20260902_matrix_05"></script>
 </body>
 </html>

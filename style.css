@@ -438,6 +438,17 @@ input {
   pointer-events: none;
 }
 
+/* picture 只负责格式协商，避免给绝对定位角色层引入额外布局盒。 */
+.hero-char-human > picture,
+.char-head-wrapper > picture {
+  display: contents;
+}
+
+.gallery-photo-frame > picture,
+.poster-cover-frame > picture {
+  display: contents;
+}
+
 /* 头部层容器 (独立 transform-origin 与 3D 视角变换) */
 .char-head-wrapper {
   position: absolute;

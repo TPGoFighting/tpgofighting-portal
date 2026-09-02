@@ -844,7 +844,7 @@ function renderPostersMarquee() {
   const doubled = [...POSTERS, ...POSTERS];
   elements.postersRail.innerHTML = doubled.map((img, i) => `
     <div class="poster-cover-frame" title="电影 / 音乐海报">
-      <img src="assets/posters/${img}" alt="收藏的电影海报或音乐专辑封面 ${(i % POSTERS.length) + 1}" class="poster-cover-img" loading="lazy">
+      <picture><source srcset="assets/posters/${img.replace(/\.(png|jpe?g)$/i, ".webp")}" type="image/webp"><img src="assets/posters/${img}" alt="收藏的电影海报或音乐专辑封面 ${(i % POSTERS.length) + 1}" class="poster-cover-img" loading="lazy" decoding="async"></picture>
     </div>
   `).join("");
 }
@@ -1279,6 +1279,8 @@ function initSectionReveals() {
   TRACKED.forEach(([sel, prop, mode]) => {
     document.querySelectorAll(sel).forEach(el => bindings.push({ el, prop, mode }));
   });
+  const bindingByElement = new Map(bindings.map(binding => [binding.el, binding]));
+  const activeBindings = new Set();
 
   // in-view 类（CSS keyframe 入场用）：section-heading-row / hero 插图 / callout
   const inViewTargets = document.querySelectorAll(
@@ -1293,8 +1295,7 @@ function initSectionReveals() {
     });
   }, { threshold: 0.2 });
 
-  const trackedEls = new Set();
-  inViewTargets.forEach(el => { inViewObserver.observe(el); trackedEls.add(el); });
+  inViewTargets.forEach(el => inViewObserver.observe(el));
   // 联系板块动态 rows 已在静态 HTML，无需 MutationObserver
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -1304,7 +1305,7 @@ function initSectionReveals() {
     rafId = 0;
     if (document.hidden) return;
     const vh = window.innerHeight || 1;
-    bindings.forEach(({ el, prop, mode }) => {
+    activeBindings.forEach(({ el, prop, mode }) => {
       // 隐藏的路由视图跳过（display:none 时 rect 为 0）
       const rect = el.getBoundingClientRect();
       if (rect.height === 0 && rect.width === 0) return;
@@ -1323,6 +1324,19 @@ function initSectionReveals() {
   const schedule = () => {
     if (!rafId && !reducedMotion.matches && !document.hidden) rafId = requestAnimationFrame(renderAll);
   };
+
+  // 只让视口附近的元素进入每帧测量集合，避免四个隐藏路由的节点一起触发回流。
+  const progressObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const binding = bindingByElement.get(entry.target);
+      if (!binding) return;
+      if (entry.isIntersecting) activeBindings.add(binding);
+      else activeBindings.delete(binding);
+    });
+    schedule();
+  }, { rootMargin: "22% 0px 22% 0px" });
+  bindings.forEach(({ el }) => progressObserver.observe(el));
+  window.__tpScheduleSectionReveal = schedule;
 
   window.addEventListener("scroll", schedule, { passive: true });
   window.addEventListener("resize", schedule, { passive: true });
@@ -1444,6 +1458,7 @@ function switchRoute(routeId) {
 
   // 4. 滚动到页面顶部
   window.scrollTo({ top: 0, behavior: "instant" });
+  if (window.__tpScheduleSectionReveal) window.__tpScheduleSectionReveal();
 }
 window.switchRoute = switchRoute;
 
