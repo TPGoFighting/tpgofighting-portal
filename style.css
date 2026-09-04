@@ -1439,59 +1439,670 @@ input {
 .reset-filter-btn { padding: 6px 14px; background: var(--border-main); color: var(--bg-canvas); border-radius: 6px; font-weight: 700; font-size: 0.82rem; }
 
 /* ==========================================================================
-   Section 03 · 电影海报与音乐专辑 (Posters Marquee)
+   Section 03 · 电影海报与音乐专辑 (03 Posters & Vinyl · 随机错落艺术画廊)
    ========================================================================== */
 
-.posters-showcase-box {
+.posters-heading-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.posters-controls-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* 随心洗牌按钮 */
+.posters-shuffle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 800;
+  font-family: inherit;
+  color: var(--text-title);
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-main);
+  border-radius: var(--radius-pill);
+  box-shadow: 2.5px 2.5px 0px var(--border-main);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.posters-shuffle-btn:hover {
+  background: #d9ef7f;
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0px var(--border-main);
+}
+
+.posters-shuffle-btn:active {
+  transform: translateY(1px);
+  box-shadow: 1.5px 1.5px 0px var(--border-main);
+}
+
+.shuffle-dice-icon {
+  font-size: 15px;
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.posters-shuffle-btn:hover .shuffle-dice-icon {
+  transform: rotate(180deg) scale(1.15);
+}
+
+/* 排版模式切换 Pill */
+.posters-view-toggle {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px;
+  background: var(--bg-subtle);
+  border: 1.5px solid var(--border-main);
+  border-radius: var(--radius-pill);
+  box-shadow: 2px 2px 0px var(--border-main);
+}
+
+.posters-toggle-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 750;
+  font-family: inherit;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.posters-toggle-pill.active {
+  color: var(--text-title);
+  background: var(--bg-card);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* 画板主容器 */
+.posters-art-board {
   background: var(--bg-card);
   border: 1.5px solid var(--border-main);
   border-radius: var(--radius-lg);
-  padding: 20px;
-  box-shadow: 4px 4px 0px var(--border-main);
+  padding: 28px 24px 20px;
+  box-shadow: var(--shadow-pop);
+  position: relative;
   overflow: hidden;
+  background-image:
+    radial-gradient(var(--grid-line) 1px, transparent 1px);
+  background-size: 20px 20px;
 }
 
-.posters-marquee-container {
+/* 模式 1：随机错落画廊 (Scatter Wall) */
+.posters-scatter-wall {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 36px 28px;
+  padding: 16px 8px 32px;
+  position: relative;
+}
+
+/* 单个海报卡片组件 */
+.poster-record-card {
+  position: relative;
+  cursor: pointer;
+  perspective: 800px;
+  transform-style: preserve-3d;
+  --rot: 0deg;
+  --y-off: 0px;
+  --rx: 0deg;
+  --ry: 0deg;
+  transform: translateY(var(--y-off)) rotate(var(--rot));
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), z-index 0.1s;
+  z-index: 2;
+}
+
+.poster-record-card.shuffling {
+  animation: posterShufflePop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes posterShufflePop {
+  0% { transform: scale(1) translateY(var(--y-off)) rotate(var(--rot)); opacity: 1; }
+  50% { transform: scale(0.88) translateY(0) rotate(0deg); opacity: 0.8; }
+  100% { transform: scale(1) translateY(var(--y-off)) rotate(var(--rot)); opacity: 1; }
+}
+
+.poster-record-card:hover {
+  transform: translateY(-8px) rotate(0deg) scale(1.08);
+  z-index: 25;
+}
+
+/* 顶部和纸胶带 (Washi Tape) */
+.poster-tape {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%) rotate(var(--tape-rot, -3deg));
+  width: 58px;
+  height: 18px;
+  background-color: var(--tape-color, rgba(217, 239, 127, 0.85));
+  opacity: 0.88;
+  border-left: 2px dashed rgba(24, 27, 34, 0.2);
+  border-right: 2px dashed rgba(24, 27, 34, 0.2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  z-index: 5;
+  pointer-events: none;
+  transition: transform 0.25s ease;
+}
+
+.poster-record-card:hover .poster-tape {
+  transform: translateX(-50%) rotate(0deg) scale(1.05);
+  opacity: 1;
+}
+
+/* 唱片封套 (Jacket) */
+.poster-jacket {
+  position: relative;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-main);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 3.5px 3.5px 0px var(--border-main);
+  aspect-ratio: 2 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-subtle);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  z-index: 3;
+}
+
+.poster-record-card:hover .poster-jacket {
+  box-shadow: 6px 7px 0px var(--border-main);
+  border-color: var(--border-main);
+}
+
+.poster-jacket picture {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.poster-jacket-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.poster-record-card:hover .poster-jacket-img {
+  transform: scale(1.03);
+}
+
+/* 封套光影图层 */
+.poster-jacket::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 40%, rgba(0,0,0,0.15) 100%);
+  pointer-events: none;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+/* 底部标签徽章 */
+.poster-caption-tag {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  right: 8px;
+  padding: 3px 8px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10.5px;
+  font-weight: 800;
+  color: #111318;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--border-main);
+  border-radius: 6px;
+  box-shadow: 1.5px 1.5px 0 var(--border-main);
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  z-index: 4;
+  opacity: 0.92;
+  transition: all 0.2s ease;
+}
+
+[data-theme="dark"] .poster-caption-tag {
+  background: rgba(22, 32, 50, 0.92);
+  color: #f3f4f6;
+  border-color: rgba(255, 255, 255, 0.24);
+  box-shadow: 1.5px 1.5px 0 #05070d;
+}
+
+.poster-record-card:hover .poster-caption-tag {
+  background: #d9ef7f;
+  color: #111318;
+  border-color: #181b22;
+  box-shadow: 2px 2px 0 #181b22;
+  opacity: 1;
+}
+
+/* 黑胶唱片 (Vinyl Disc) - 悬停优雅滑出 */
+.vinyl-disc {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #1a1e28 0%, #0d1017 18%, #202634 19%, #0d1017 32%, #222938 33%, #0d1017 48%, #1f2533 49%, #0d1017 65%, #1d2330 66%, #0b0d13 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.45);
+  transform: translateY(-50%) translateX(0);
+  transition: transform 0.42s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.poster-record-card:hover .vinyl-disc {
+  transform: translateY(-50%) translateX(52px);
+  opacity: 1;
+}
+
+/* 唱片中心标签 */
+.vinyl-disc-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--label-color, #ff6b57);
+  border: 2px solid #111318;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 8px;
+  font-weight: 900;
+  color: #111318;
+  text-align: center;
+  line-height: 1;
+}
+
+.vinyl-disc-label::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fbfaf6;
+  border: 1.5px solid #111318;
+}
+
+[data-theme="dark"] .vinyl-disc-label::after {
+  background: #0b0f19;
+}
+
+/* 唱片旋转动效 */
+.poster-record-card:hover .vinyl-disc {
+  animation: vinylSpinSlow 4s linear infinite;
+}
+
+@keyframes vinylSpinSlow {
+  from { transform: translateY(-50%) translateX(52px) rotate(0deg); }
+  to { transform: translateY(-50%) translateX(52px) rotate(360deg); }
+}
+
+/* 模式 2：放映流 (Cinema Stream) */
+.posters-stream-wrapper {
   position: relative;
   width: 100%;
   overflow: hidden;
-  mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+  padding: 16px 0;
+  mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
 }
 
-.posters-marquee-rail {
+.posters-stream-rail {
   display: flex;
-  gap: 12px;
+  gap: 20px;
   width: max-content;
   animation: posterScroll 45s linear infinite;
 }
 
-.posters-marquee-rail:hover {
+.posters-stream-rail:hover {
   animation-play-state: paused;
 }
 
-@keyframes posterScroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-.poster-cover-frame {
-  width: 96px;
-  height: 136px;
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-  border: 1px solid var(--border-subtle);
-  background: var(--bg-subtle);
+.posters-stream-item {
+  width: 140px;
   flex-shrink: 0;
-  box-shadow: var(--shadow-sm);
-  cursor: pointer;
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
 }
 
-.poster-cover-frame:hover {
-  transform: translateY(-4px) scale(1.06);
+/* 底部交互信息条 */
+.posters-board-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--border-subtle);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.posters-hint-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+}
+
+.hint-spark {
+  color: #f59e0b;
+}
+
+.posters-count-badge {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-weight: 750;
+  padding: 3px 10px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-pill);
+  color: var(--text-title);
+}
+
+/* ==========================================================================
+   海报与黑胶放映室弹窗 (Poster Spotlight Modal)
+   ========================================================================== */
+
+.poster-spotlight-box {
+  background: var(--bg-card);
+  border: 2px solid var(--border-main);
+  border-radius: var(--radius-lg);
+  box-shadow: 8px 8px 0px var(--border-main);
+  padding: 32px;
+  max-width: 760px;
+  width: 92vw;
+  position: relative;
+  animation: modalScaleIn 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: hidden;
+}
+
+[data-theme="dark"] .poster-spotlight-box {
+  box-shadow: 8px 8px 0px #05070d;
+}
+
+.spotlight-content-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 32px;
+  align-items: center;
+}
+
+.spotlight-sleeve-side {
+  position: relative;
+}
+
+.spotlight-poster-frame {
+  position: relative;
+  border: 2px solid var(--border-main);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 5px 5px 0px var(--border-main);
+  background: var(--bg-subtle);
+  aspect-ratio: 2 / 3;
+}
+
+.spotlight-poster-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.spotlight-tape-mark {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-4deg);
+  width: 70px;
+  height: 20px;
+  background: #d9ef7f;
+  opacity: 0.9;
+  border-left: 2px dashed rgba(24, 27, 34, 0.2);
+  border-right: 2px dashed rgba(24, 27, 34, 0.2);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  z-index: 5;
+}
+
+/* 右侧放映室唱机 */
+.spotlight-player-side {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.spotlight-turntable-card {
+  position: relative;
+  background: var(--bg-subtle);
+  border: 1.5px solid var(--border-main);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 180px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.spotlight-vinyl-disc {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #1a1e28 0%, #0d1017 18%, #202634 19%, #0d1017 32%, #222938 33%, #0d1017 48%, #1f2533 49%, #0d1017 65%, #1d2330 66%, #0b0d13 100%);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  position: relative;
+  animation: spotlightVinylSpin 5s linear infinite;
+}
+
+@keyframes spotlightVinylSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.vinyl-groove-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.vinyl-groove-ring.ring-1 { width: 130px; height: 130px; }
+.vinyl-groove-ring.ring-2 { width: 100px; height: 100px; }
+.vinyl-groove-ring.ring-3 { width: 70px; height: 70px; }
+
+.vinyl-center-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff6b57, #f59e0b);
+  border: 2px solid #111318;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #111318;
+}
+
+.vinyl-label-icon {
+  font-size: 11px;
+}
+
+.vinyl-label-brand {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 7.5px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+}
+
+.vinyl-center-hole {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fbfaf6;
+  border: 2px solid #111318;
+}
+
+[data-theme="dark"] .vinyl-center-hole {
+  background: #0b0f19;
+}
+
+/* 唱机唱臂 (Tone-arm) */
+.spotlight-tone-arm {
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  width: 70px;
+  height: 6px;
+  background: #8b92a5;
+  border-radius: 3px;
+  transform-origin: right center;
+  transform: rotate(-24deg);
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.25);
+}
+
+.spotlight-tone-arm::before {
+  content: "";
+  position: absolute;
+  right: -6px;
+  top: -6px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #475569;
+  border: 2px solid #1e293b;
+}
+
+.spotlight-tone-arm::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -3px;
+  width: 12px;
+  height: 12px;
+  background: #d9ef7f;
+  border: 1px solid #111318;
+  border-radius: 2px;
+}
+
+/* 放映室文案信息 */
+.spotlight-meta-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.spotlight-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.spotlight-kicker {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 850;
+  color: #111318;
+  background: #d9ef7f;
+  border: 1px solid var(--border-main);
+  padding: 2px 8px;
+  border-radius: 999px;
+  box-shadow: 1px 1px 0 var(--border-main);
+}
+
+.spotlight-serial {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 750;
+  color: var(--text-muted);
+}
+
+.spotlight-title {
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--text-title);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.spotlight-desc {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--text-body);
+  margin: 0;
+}
+
+/* 切换导航按钮 */
+.spotlight-nav-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.spotlight-nav-btn {
+  flex: 1;
+  padding: 9px 16px;
+  font-size: 13px;
+  font-weight: 800;
+  font-family: inherit;
+  color: var(--text-title);
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-main);
+  border-radius: 10px;
+  box-shadow: 2.5px 2.5px 0px var(--border-main);
+  cursor: pointer;
+  transition: all 0.18s ease;
+  text-align: center;
+}
+
+.spotlight-nav-btn:hover {
+  background: var(--bg-subtle);
+  transform: translateY(-2px);
   box-shadow: 4px 4px 0px var(--border-main);
-  border-color: var(--border-main);
+}
+
+.spotlight-nav-btn:active {
+  transform: translateY(1px);
+  box-shadow: 1px 1px 0px var(--border-main);
 }
 
 .poster-cover-img {
@@ -3129,15 +3740,43 @@ input {
     padding: 6px 10px;
   }
 
-  /* Posters Marquee Mobile */
-  .posters-showcase-box {
-    padding: 12px;
+  /* Posters Scatter Wall Mobile */
+  .posters-art-board {
+    padding: 16px 12px;
   }
 
-  .poster-cover-frame {
-    width: 76px;
-    height: 108px;
+  .posters-scatter-wall {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 14px;
+    padding: 12px 4px 24px;
   }
+
+  .poster-record-card:hover .vinyl-disc {
+    transform: translateY(-50%) translateX(32px);
+  }
+
+  .spotlight-content-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .poster-spotlight-box {
+    padding: 24px 16px 20px;
+  }
+
+  .spotlight-turntable-card {
+    min-height: 140px;
+    padding: 16px;
+  }
+
+  .spotlight-vinyl-disc {
+    width: 120px;
+    height: 120px;
+  }
+
+  .vinyl-groove-ring.ring-1 { width: 95px; height: 95px; }
+  .vinyl-groove-ring.ring-2 { width: 70px; height: 70px; }
+  .vinyl-groove-ring.ring-3 { width: 45px; height: 45px; }
 
   /* About & QR Mobile Cards */
   .creator-bio-card {

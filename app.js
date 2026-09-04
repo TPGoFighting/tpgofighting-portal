@@ -437,14 +437,37 @@ const SERVICES = [
   }
 ];
 
-// 24 张海报与唱片列表
-const POSTERS = [
-  "poster-0.png", "poster-4.png", "poster-5.png", "poster-6.png", "poster-7.png",
-  "poster-8.png", "poster-9.png", "poster-10.png", "poster-11.png", "poster-12.png",
-  "poster-13.png", "poster-14.png", "poster-15.png", "poster-16.png", "poster-17.png",
-  "poster-18.png", "poster-19.png", "poster-20.png", "poster-21.png", "poster-22.png",
-  "poster-23.png", "poster-24.png", "poster-25.png", "poster-26.png"
+// 24 张海报与唱片元数据（电影 / 音乐专辑）
+const POSTERS_DATA = [
+  { file: "poster-0.png", title: "霸王别姬", type: "经典电影", desc: "陈凯歌导演，张国荣主演。不疯魔不成活的中国影史巅峰。" },
+  { file: "poster-4.png", title: "平原上的摩西", type: "剧集 / 电影", desc: "双雪涛同名小说改编，凛冽冷峻的东北下岗时代叙事。" },
+  { file: "poster-5.png", title: "Call Me by Your Name", type: "电影原声", desc: "Luca Guadagnino 导演，Sufjan Stevens 纯澈盛夏之音。" },
+  { file: "poster-6.png", title: "蜘蛛侠：英雄无归", type: "漫威电影", desc: "三代同框的终极情怀时刻，英雄成长与代价的史诗注解。" },
+  { file: "poster-7.png", title: "哆啦A梦：伴我同行 2", type: "动画电影", desc: "大雄与静香的婚礼约定，献给长大后依然相信温柔的成年人。" },
+  { file: "poster-8.png", title: "花样年华", type: "王家卫电影", desc: "梁朝伟与张曼玉，昏黄街灯下的旗袍摇曳与欲言又止。" },
+  { file: "poster-9.png", title: "小丑 (Joker)", type: "电影原声", desc: "Joaquin Phoenix 炸裂演技与幽暗大提琴交响。" },
+  { file: "poster-10.png", title: "嘉年华", type: "现实主义电影", desc: "文晏执导，关注未成年女性成长困境的沉静之作。" },
+  { file: "poster-11.png", title: "爱乐之城 (La La Land)", type: "音乐电影", desc: "星空洛杉矶与爵士乐梦想，致敬所有执着的追梦人。" },
+  { file: "poster-12.png", title: "千与千寻", type: "吉卜力动画", desc: "宫崎骏与久石让，关于生命成长与不要回头的寓言。" },
+  { file: "poster-13.png", title: "海上钢琴师", type: "经典电影", desc: "1900 与一生未曾踏上陆地的传奇琴音。" },
+  { file: "poster-14.png", title: "星际穿越 (Interstellar)", type: "科幻巨制", desc: "爱是唯一可以超越时间与空间维度的引力。" },
+  { file: "poster-15.png", title: "楚门的世界", type: "哲学电影", desc: "倘若再也见不到你，祝你早安、午安、晚安。" },
+  { file: "poster-16.png", title: "低俗小说 (Pulp Fiction)", type: "黑色幽默", desc: "Quentin 环形叙事与后现代波普视听教科书。" },
+  { file: "poster-17.png", title: "布达佩斯大饭店", type: "美学电影", desc: "Wes Anderson 对称构图与马卡龙复古欧洲旧梦。" },
+  { file: "poster-18.png", title: "海边的小说家", type: "文艺光影", desc: "海风微咸、文字与时光沉淀的独立小众光影。" },
+  { file: "poster-19.png", title: "少年派的奇幻漂流", type: "奇幻史诗", desc: "李安导演，那只孟加拉虎与太平洋星空下的终极冥想。" },
+  { file: "poster-20.png", title: "爱在黎明破晓前", type: "浪漫三部曲", desc: "维也纳列车上的偶然相遇与整夜无休的长谈。" },
+  { file: "poster-21.png", title: "重庆森林", type: "王家卫电影", desc: "金城武、林青霞与罐头凤梨过期的保质期哲思。" },
+  { file: "poster-22.png", title: "教父 (The Godfather)", type: "影史丰碑", desc: "不可拒绝的条件与家族责任命运的沉重交锋。" },
+  { file: "poster-23.png", title: "盗梦空间 (Inception)", type: "科幻悬疑", desc: "梦境多层筑构与旋转未停的陀螺潜意识奇观。" },
+  { file: "poster-24.png", title: "深海大饭店", type: "视觉动画", desc: "粒子水墨奇观与心灵救赎的梦幻沉浸体验。" },
+  { file: "poster-25.png", title: "瞬息全宇宙", type: "前沿奇幻", desc: "多元宇宙贝果黑洞与母女和解的荒诞浪漫。" },
+  { file: "poster-26.png", title: "银翼杀手 2049", type: "赛博朋克", desc: "Denis Villeneuve 执导，霓虹雨幕与仿生人眼中的泪水微光。" }
 ];
+
+const POSTERS = POSTERS_DATA.map(p => p.file);
+let activePosters = [...POSTERS_DATA];
+let currentSpotlightIndex = 0;
 
 // 全局应用状态
 const state = {
@@ -468,6 +491,23 @@ function init() {
   elements = {
     servicesGrid: document.getElementById("services-grid"),
     postersRail: document.getElementById("posters-rail"),
+    postersScatterWall: document.getElementById("posters-scatter-wall"),
+    postersStreamWrapper: document.getElementById("posters-stream-wrapper"),
+    postersStreamRail: document.getElementById("posters-stream-rail"),
+    postersShuffleBtn: document.getElementById("posters-shuffle-btn"),
+    postersViewToggle: document.getElementById("posters-view-toggle"),
+    
+    // Poster Spotlight Modal
+    posterSpotlightModal: document.getElementById("poster-spotlight-modal"),
+    posterSpotlightClose: document.getElementById("poster-spotlight-close"),
+    spotlightImg: document.getElementById("spotlight-img"),
+    spotlightTitle: document.getElementById("spotlight-title"),
+    spotlightSerial: document.getElementById("spotlight-serial"),
+    spotlightKicker: document.getElementById("spotlight-kicker"),
+    spotlightDesc: document.getElementById("spotlight-desc"),
+    spotlightPrevBtn: document.getElementById("spotlight-prev-btn"),
+    spotlightNextBtn: document.getElementById("spotlight-next-btn"),
+
     searchInput: document.getElementById("global-search-input"),
     searchClearBtn: document.getElementById("search-clear-btn"),
     emptyState: document.getElementById("empty-search-state"),
@@ -513,9 +553,9 @@ function init() {
   applyTheme(state.theme);
   applyViewMode(state.viewMode);
 
-  // 渲染矩阵与海报
+  // 渲染矩阵与海报画廊
   renderMatrixServices();
-  renderPostersMarquee();
+  initPostersGallery();
   initFeaturedProductInteractions();
 
   // 事件绑定
@@ -839,14 +879,201 @@ function renderMatrixServices() {
   initMagneticButtons();
 }
 
-function renderPostersMarquee() {
-  // 复制双份实现无限无缝滚动
-  const doubled = [...POSTERS, ...POSTERS];
-  elements.postersRail.innerHTML = doubled.map((img, i) => `
-    <div class="poster-cover-frame" title="电影 / 音乐海报">
-      <picture><source srcset="assets/posters/${img.replace(/\.(png|jpe?g)$/i, ".webp")}" type="image/webp"><img src="assets/posters/${img}" alt="收藏的电影海报或音乐专辑封面 ${(i % POSTERS.length) + 1}" class="poster-cover-img" loading="lazy" decoding="async"></picture>
-    </div>
-  `).join("");
+/* ==========================================================================
+   Section 03 · 电影海报与音乐专辑 (03 Posters & Vinyl · 随机错落画廊与黑胶交互)
+   ========================================================================== */
+
+const TAPE_PALETTE = ["#d9ef7f", "#ff6b57", "#a8ddff", "#f59e0b", "#d8cbff", "#a5f3fc"];
+const VINYL_LABEL_PALETTE = ["#ff6b57", "#f59e0b", "#10b981", "#2563eb", "#d9ef7f", "#d8cbff"];
+
+function renderPostersScatter() {
+  if (!elements.postersScatterWall) return;
+
+  elements.postersScatterWall.innerHTML = activePosters.map((item, idx) => {
+    // 随机计算轻度倾斜度 (-4.5deg 到 +4.5deg) 与垂直错落 (-6px 到 +10px)
+    const rot = (Math.sin(idx * 3.7 + 1) * 4.2).toFixed(1);
+    const yOff = (Math.cos(idx * 2.3) * 8).toFixed(1);
+    const tapeRot = (Math.sin(idx * 5.1) * 7).toFixed(1);
+    const tapeColor = TAPE_PALETTE[idx % TAPE_PALETTE.length];
+    const vinylColor = VINYL_LABEL_PALETTE[(idx * 2) % VINYL_LABEL_PALETTE.length];
+    const webpSrc = `assets/posters/${item.file.replace(/\.(png|jpe?g)$/i, ".webp")}`;
+    const pngSrc = `assets/posters/${item.file}`;
+
+    return `
+      <div class="poster-record-card" data-idx="${idx}" style="--rot:${rot}deg; --y-off:${yOff}px; --tape-rot:${tapeRot}deg; --tape-color:${tapeColor};" title="${item.title} · 点击查看放映大图">
+        <div class="poster-tape"></div>
+        <div class="poster-jacket">
+          <picture>
+            <source srcset="${webpSrc}" type="image/webp">
+            <img src="${pngSrc}" alt="${item.title}" class="poster-jacket-img" loading="lazy" decoding="async">
+          </picture>
+          <div class="poster-caption-tag">${item.title}</div>
+        </div>
+        <div class="vinyl-disc">
+          <div class="vinyl-disc-label" style="--label-color:${vinylColor}">
+            <span>TP</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  bindPostersCardInteractions();
+}
+
+function renderPostersStream() {
+  if (!elements.postersStreamRail) return;
+  const doubled = [...activePosters, ...activePosters];
+  elements.postersStreamRail.innerHTML = doubled.map((item, idx) => {
+    const webpSrc = `assets/posters/${item.file.replace(/\.(png|jpe?g)$/i, ".webp")}`;
+    const pngSrc = `assets/posters/${item.file}`;
+    const origIdx = idx % activePosters.length;
+    return `
+      <div class="posters-stream-item poster-record-card" data-idx="${origIdx}" style="--rot:0deg; --y-off:0px;" title="${item.title} · 点击查看放映大图">
+        <div class="poster-jacket">
+          <picture>
+            <source srcset="${webpSrc}" type="image/webp">
+            <img src="${pngSrc}" alt="${item.title}" class="poster-jacket-img" loading="lazy" decoding="async">
+          </picture>
+          <div class="poster-caption-tag">${item.title}</div>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  bindPostersCardInteractions();
+}
+
+function bindPostersCardInteractions() {
+  // 3D 物理倾角 (Oil Motion) 与 点击进入放映室
+  const cards = document.querySelectorAll(".poster-record-card");
+  cards.forEach(card => {
+    card.addEventListener("mousemove", e => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      card.style.transform = `translateY(-8px) scale(1.08) perspective(800px) rotateX(${-y * 12}deg) rotateY(${x * 12}deg)`;
+    });
+
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = "";
+    });
+
+    card.addEventListener("click", () => {
+      const idx = parseInt(card.dataset.idx, 10);
+      if (!isNaN(idx)) openSpotlightModal(idx);
+    });
+  });
+}
+
+function shufflePosters() {
+  const dice = document.querySelector(".shuffle-dice-icon");
+  if (dice) {
+    dice.style.transform = "rotate(360deg) scale(1.2)";
+    setTimeout(() => dice.style.transform = "", 400);
+  }
+
+  // Fisher-Yates 洗牌
+  for (let i = activePosters.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [activePosters[i], activePosters[j]] = [activePosters[j], activePosters[i]];
+  }
+
+  // 触发翻转微动效
+  const cards = document.querySelectorAll(".poster-record-card");
+  cards.forEach(c => c.classList.add("shuffling"));
+
+  setTimeout(() => {
+    renderPostersScatter();
+    renderPostersStream();
+    showToast("🎲 已随心打乱 24 部海报与黑胶唱片排版");
+  }, 180);
+}
+
+function openSpotlightModal(idx) {
+  currentSpotlightIndex = idx;
+  const item = activePosters[idx];
+  if (!item || !elements.posterSpotlightModal) return;
+
+  const webpSrc = `assets/posters/${item.file.replace(/\.(png|jpe?g)$/i, ".webp")}`;
+  elements.spotlightImg.src = webpSrc;
+  elements.spotlightImg.onerror = () => { elements.spotlightImg.src = `assets/posters/${item.file}`; };
+  elements.spotlightTitle.textContent = item.title;
+  elements.spotlightKicker.textContent = item.type || "CINEMA // VINYL";
+  elements.spotlightSerial.textContent = `NO. ${String(idx + 1).padStart(2, "0")} / 24`;
+  elements.spotlightDesc.textContent = item.desc;
+
+  elements.posterSpotlightModal.classList.add("active");
+  document.body.style.overflow = "hidden";
+}
+
+function closeSpotlightModal() {
+  if (!elements.posterSpotlightModal) return;
+  elements.posterSpotlightModal.classList.remove("active");
+  document.body.style.overflow = "";
+}
+
+function nextSpotlight() {
+  currentSpotlightIndex = (currentSpotlightIndex + 1) % activePosters.length;
+  openSpotlightModal(currentSpotlightIndex);
+}
+
+function prevSpotlight() {
+  currentSpotlightIndex = (currentSpotlightIndex - 1 + activePosters.length) % activePosters.length;
+  openSpotlightModal(currentSpotlightIndex);
+}
+
+function initPostersGallery() {
+  renderPostersScatter();
+  renderPostersStream();
+
+  // 绑定洗牌按钮
+  if (elements.postersShuffleBtn) {
+    elements.postersShuffleBtn.addEventListener("click", shufflePosters);
+  }
+
+  // 绑定视图切换
+  if (elements.postersViewToggle) {
+    elements.postersViewToggle.querySelectorAll(".posters-toggle-pill").forEach(pill => {
+      pill.addEventListener("click", () => {
+        const mode = pill.dataset.mode;
+        elements.postersViewToggle.querySelectorAll(".posters-toggle-pill").forEach(p => p.classList.remove("active"));
+        pill.classList.add("active");
+
+        if (mode === "scatter") {
+          elements.postersScatterWall.style.display = "grid";
+          elements.postersStreamWrapper.style.display = "none";
+        } else {
+          elements.postersScatterWall.style.display = "none";
+          elements.postersStreamWrapper.style.display = "block";
+        }
+      });
+    });
+  }
+
+  // 绑定放映室关闭与前后导航
+  if (elements.posterSpotlightClose) {
+    elements.posterSpotlightClose.addEventListener("click", closeSpotlightModal);
+  }
+  if (elements.posterSpotlightModal) {
+    elements.posterSpotlightModal.addEventListener("click", e => {
+      if (e.target === elements.posterSpotlightModal) closeSpotlightModal();
+    });
+  }
+  if (elements.spotlightPrevBtn) {
+    elements.spotlightPrevBtn.addEventListener("click", prevSpotlight);
+  }
+  if (elements.spotlightNextBtn) {
+    elements.spotlightNextBtn.addEventListener("click", nextSpotlight);
+  }
+
+  // 全局键盘导航
+  document.addEventListener("keydown", e => {
+    if (!elements.posterSpotlightModal || !elements.posterSpotlightModal.classList.contains("active")) return;
+    if (e.key === "Escape") closeSpotlightModal();
+    if (e.key === "ArrowLeft") prevSpotlight();
+    if (e.key === "ArrowRight") nextSpotlight();
+  });
 }
 
 function setCategory(cat) {
