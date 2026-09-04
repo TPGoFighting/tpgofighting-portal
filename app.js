@@ -898,16 +898,16 @@ function renderPostersScatter() {
     const vinylColor = VINYL_LABEL_PALETTE[(idx * 2) % VINYL_LABEL_PALETTE.length];
     const webpSrc = `assets/posters/${item.file.replace(/\.(png|jpe?g)$/i, ".webp")}`;
     const pngSrc = `assets/posters/${item.file}`;
+    const isLandscape = (item.w / item.h) > 1.3;
 
     return `
-      <div class="poster-record-card" data-idx="${idx}" style="--rot:${rot}deg; --y-off:${yOff}px; --tape-rot:${tapeRot}deg; --tape-color:${tapeColor};" title="${item.title} · 点击查看放映大图">
+      <div class="poster-record-card${isLandscape ? ' is-landscape' : ''}" data-idx="${idx}" style="--rot:${rot}deg; --y-off:${yOff}px; --tape-rot:${tapeRot}deg; --tape-color:${tapeColor};" title="${item.title} · 点击查看放映大图">
         <div class="poster-tape"></div>
         <div class="poster-jacket">
           <picture>
             <source srcset="${webpSrc}" type="image/webp">
             <img src="${pngSrc}" alt="${item.title}" width="${item.w}" height="${item.h}" class="poster-jacket-img" loading="lazy" decoding="async" style="aspect-ratio: ${item.w} / ${item.h};">
           </picture>
-          <div class="poster-caption-tag">${item.title}</div>
         </div>
         <div class="vinyl-disc">
           <div class="vinyl-disc-label" style="--label-color:${vinylColor}">
@@ -928,14 +928,14 @@ function renderPostersStream() {
     const webpSrc = `assets/posters/${item.file.replace(/\.(png|jpe?g)$/i, ".webp")}`;
     const pngSrc = `assets/posters/${item.file}`;
     const origIdx = idx % activePosters.length;
+    const isLandscape = (item.w / item.h) > 1.3;
     return `
-      <div class="posters-stream-item poster-record-card" data-idx="${origIdx}" style="--rot:0deg; --y-off:0px;" title="${item.title} · 点击查看放映大图">
+      <div class="posters-stream-item poster-record-card${isLandscape ? ' is-landscape' : ''}" data-idx="${origIdx}" style="--rot:0deg; --y-off:0px;" title="${item.title} · 点击查看放映大图">
         <div class="poster-jacket">
           <picture>
             <source srcset="${webpSrc}" type="image/webp">
             <img src="${pngSrc}" alt="${item.title}" width="${item.w}" height="${item.h}" class="poster-jacket-img" loading="lazy" decoding="async" style="aspect-ratio: ${item.w} / ${item.h};">
           </picture>
-          <div class="poster-caption-tag">${item.title}</div>
         </div>
       </div>
     `;

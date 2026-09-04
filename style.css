@@ -1545,41 +1545,26 @@ input {
   background-size: 20px 20px;
 }
 
-/* 模式 1：随机错落画廊 (Scatter Wall · 多列瀑布流真实比例) */
+/* 模式 1：随机错落画廊 (Scatter Wall · 密集自适应网格 + 宽屏横幅放大) */
 .posters-scatter-wall {
-  column-count: 5;
-  column-gap: 28px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  grid-auto-flow: dense;
+  gap: 32px 24px;
   padding: 16px 8px 32px;
   position: relative;
-}
-
-@media (max-width: 1200px) {
-  .posters-scatter-wall {
-    column-count: 4;
-  }
-}
-
-@media (max-width: 900px) {
-  .posters-scatter-wall {
-    column-count: 3;
-    column-gap: 20px;
-  }
+  align-items: center;
 }
 
 @media (max-width: 600px) {
   .posters-scatter-wall {
-    column-count: 2;
-    column-gap: 16px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px 12px;
   }
 }
 
 /* 单个海报卡片组件 */
 .poster-record-card {
-  break-inside: avoid;
-  page-break-inside: avoid;
-  margin-bottom: 34px;
-  display: inline-block;
-  width: 100%;
   position: relative;
   cursor: pointer;
   perspective: 800px;
@@ -1591,6 +1576,20 @@ input {
   transform: translateY(var(--y-off)) rotate(var(--rot));
   transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), z-index 0.1s;
   z-index: 2;
+  width: 100%;
+}
+
+/* 横向海报大幅放大：跨占 2 列，体量与竖版相当 */
+.poster-record-card.is-landscape {
+  grid-column: span 2;
+}
+
+.poster-record-card.is-landscape .poster-tape {
+  width: 80px;
+}
+
+.poster-record-card.is-landscape .vinyl-disc {
+  width: min(140px, 45%);
 }
 
 .poster-record-card.shuffling {
@@ -1679,46 +1678,6 @@ input {
   pointer-events: none;
   opacity: 0.6;
   transition: opacity 0.2s ease;
-}
-
-/* 底部标签徽章 */
-.poster-caption-tag {
-  position: absolute;
-  bottom: 8px;
-  left: 8px;
-  right: 8px;
-  padding: 3px 8px;
-  font-family: var(--font-mono, ui-monospace, monospace);
-  font-size: 10.5px;
-  font-weight: 800;
-  color: #111318;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(6px);
-  border: 1px solid var(--border-main);
-  border-radius: 6px;
-  box-shadow: 1.5px 1.5px 0 var(--border-main);
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  z-index: 4;
-  opacity: 0.92;
-  transition: all 0.2s ease;
-}
-
-[data-theme="dark"] .poster-caption-tag {
-  background: rgba(22, 32, 50, 0.92);
-  color: #f3f4f6;
-  border-color: rgba(255, 255, 255, 0.24);
-  box-shadow: 1.5px 1.5px 0 #05070d;
-}
-
-.poster-record-card:hover .poster-caption-tag {
-  background: #d9ef7f;
-  color: #111318;
-  border-color: #181b22;
-  box-shadow: 2px 2px 0 #181b22;
-  opacity: 1;
 }
 
 /* 黑胶唱片 (Vinyl Disc) - 悬停优雅滑出 */
