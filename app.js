@@ -507,6 +507,9 @@ function init() {
     spotlightDesc: document.getElementById("spotlight-desc"),
     spotlightPrevBtn: document.getElementById("spotlight-prev-btn"),
     spotlightNextBtn: document.getElementById("spotlight-next-btn"),
+    spotlightVinylWrap: document.getElementById("spotlight-vinyl-wrap"),
+    spotlightVinyl: document.getElementById("spotlight-vinyl"),
+    spotlightToneArm: document.getElementById("spotlight-tone-arm"),
 
     searchInput: document.getElementById("global-search-input"),
     searchClearBtn: document.getElementById("search-clear-btn"),
@@ -945,10 +948,11 @@ function renderPostersStream() {
 }
 
 function bindPostersCardInteractions() {
-  // 3D 物理倾角 (Oil Motion) 与 点击进入放映室
+  // 3D 物理倾角 (Oil Motion) 与 点击放大微动效
   const cards = document.querySelectorAll(".poster-record-card");
   cards.forEach(card => {
     card.addEventListener("mousemove", e => {
+      if (card.classList.contains("card-tapped")) return;
       const rect = card.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width - 0.5;
       const y = (e.clientY - rect.top) / rect.height - 0.5;
@@ -956,12 +960,35 @@ function bindPostersCardInteractions() {
     });
 
     card.addEventListener("mouseleave", () => {
-      card.style.transform = "";
+      if (!card.classList.contains("card-tapped")) {
+        card.style.transform = "";
+      }
     });
 
-    card.addEventListener("click", () => {
+    card.addEventListener("click", e => {
+      e.stopPropagation();
       const idx = parseInt(card.dataset.idx, 10);
-      if (!isNaN(idx)) openSpotlightModal(idx);
+      if (isNaN(idx)) return;
+
+      // 触觉点击微动效
+      card.classList.add("card-tapped");
+      if (window.gsap) {
+        gsap.timeline()
+          .to(card, { scale: 0.94, duration: 0.08, ease: "power1.in" })
+          .to(card, { scale: 1.06, duration: 0.16, ease: "back.out(2)" })
+          .to(card, { scale: 1, duration: 0.12, onComplete: () => {
+            card.classList.remove("card-tapped");
+            card.style.transform = "";
+          }});
+      } else {
+        setTimeout(() => {
+          card.classList.remove("card-tapped");
+          card.style.transform = "";
+        }, 250);
+      }
+
+      // 打开聚光灯放大弹窗
+      setTimeout(() => openSpotlightModal(idx, 0), 60);
     });
   });
 }
@@ -990,7 +1017,7 @@ function shufflePosters() {
   }, 180);
 }
 
-function openSpotlightModal(idx) {
+function openSpotlightModal(idx, direction = 0) {
   currentSpotlightIndex = idx;
   const item = activePosters[idx];
   if (!item || !elements.posterSpotlightModal) return;
@@ -1004,24 +1031,118 @@ function openSpotlightModal(idx) {
   elements.spotlightSerial.textContent = `NO. ${String(idx + 1).padStart(2, "0")} / 24`;
   elements.spotlightDesc.textContent = item.desc;
 
+  // 显式保证弹窗可见与背景防滚动
+  elements.posterSpotlightModal.style.display = "flex";
   elements.posterSpotlightModal.classList.add("active");
   document.body.style.overflow = "hidden";
+
+  const box = elements.posterSpotlightModal.querySelector(".poster-spotlight-box");
+  const vinylWrap = elements.spotlightVinylWrap || document.getElementById("spotlight-vinyl-wrap");
+  const vinyl = elements.spotlightVinyl || document.getElementById("spotlight-vinyl");
+  const toneArm = elements.spotlightToneArm || document.getElementById("spotlight-tone-arm");
+  const frame = elements.posterSpotlightModal.querySelector(".spotlight-poster-frame");
+
+  if (window.gsap) {
+    if (direction === 0) {
+      // 首次点击打开：弹簧缩放进场
+      gsap.fromTo(elements.posterSpotlightModal,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.2, ease: "power2.out" }
+      );
+      gsap.fromTo(box,
+        { scale: 0.82, opacity: 0, y: 32, rotate: -2 },
+        { scale: 1, opacity: 1, y: 0, rotate: 0, duration: 0.4, ease: "back.out(1.7)" }
+      );
+
+      // 黑胶唱机滑入与落针
+      if (vinylWrap) {
+        gsap.fromTo(vinylWrap,
+          { x: -50, opacity: 0, scale: 0.88 },
+          { x: 0, opacity: 1, scale: 1, duration: 0.45, delay: 0.1, ease: "power3.out" }
+        );
+      }
+      if (toneArm) {
+        toneArm.classList.remove("arm-playing");
+        gsap.killTweensOf(toneArm);
+        gsap.fromTo(toneArm,
+          { rotation: -52 },
+          { rotation: -24, duration: 0.45, delay: 0.25, ease: "back.out(2)", onComplete: () => {
+            toneArm.classList.add("arm-playing");
+          }}
+        );
+      }
+      if (frame) {
+        gsap.fromTo(frame,
+          { scale: 0.94, opacity: 0.4 },
+          { scale: 1, opacity: 1, duration: 0.35, delay: 0.05, ease: "power2.out" }
+        );
+      }
+    } else {
+      // 切换上一部/下一部导航微动效 (direction: 1 或 -1)
+      if (frame) {
+        gsap.fromTo(frame,
+          { x: direction * 35, opacity: 0.3, scale: 0.95 },
+          { x: 0, opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }
+        );
+      }
+      if (vinyl) {
+        vinyl.classList.add("scratching");
+        setTimeout(() => vinyl.classList.remove("scratching"), 400);
+      }
+      if (toneArm) {
+        gsap.timeline()
+          .to(toneArm, { rotation: -42, duration: 0.12, ease: "power1.out" })
+          .to(toneArm, { rotation: -24, duration: 0.24, ease: "back.out(2)" });
+      }
+    }
+  } else {
+    if (toneArm) toneArm.classList.add("arm-playing");
+  }
 }
 
 function closeSpotlightModal() {
   if (!elements.posterSpotlightModal) return;
-  elements.posterSpotlightModal.classList.remove("active");
-  document.body.style.overflow = "";
+  const box = elements.posterSpotlightModal.querySelector(".poster-spotlight-box");
+  const toneArm = elements.spotlightToneArm || document.getElementById("spotlight-tone-arm");
+
+  if (toneArm) {
+    toneArm.classList.remove("arm-playing");
+    if (window.gsap) gsap.to(toneArm, { rotation: -52, duration: 0.18, ease: "power1.in" });
+  }
+
+  if (window.gsap && elements.posterSpotlightModal.classList.contains("active")) {
+    gsap.to(box, {
+      scale: 0.88,
+      opacity: 0,
+      y: 20,
+      duration: 0.2,
+      ease: "power2.in",
+      onComplete: () => {
+        elements.posterSpotlightModal.classList.remove("active");
+        elements.posterSpotlightModal.style.display = "none";
+        document.body.style.overflow = "";
+      }
+    });
+    gsap.to(elements.posterSpotlightModal, {
+      opacity: 0,
+      duration: 0.2,
+      ease: "power2.in"
+    });
+  } else {
+    elements.posterSpotlightModal.classList.remove("active");
+    elements.posterSpotlightModal.style.display = "none";
+    document.body.style.overflow = "";
+  }
 }
 
 function nextSpotlight() {
   currentSpotlightIndex = (currentSpotlightIndex + 1) % activePosters.length;
-  openSpotlightModal(currentSpotlightIndex);
+  openSpotlightModal(currentSpotlightIndex, 1);
 }
 
 function prevSpotlight() {
   currentSpotlightIndex = (currentSpotlightIndex - 1 + activePosters.length) % activePosters.length;
-  openSpotlightModal(currentSpotlightIndex);
+  openSpotlightModal(currentSpotlightIndex, -1);
 }
 
 function initPostersGallery() {
@@ -1066,6 +1187,16 @@ function initPostersGallery() {
   }
   if (elements.spotlightNextBtn) {
     elements.spotlightNextBtn.addEventListener("click", nextSpotlight);
+  }
+  if (elements.spotlightImg) {
+    elements.spotlightImg.style.cursor = "zoom-in";
+    elements.spotlightImg.addEventListener("click", () => {
+      if (window.gsap) {
+        gsap.timeline()
+          .to(elements.spotlightImg, { scale: 1.04, duration: 0.15, ease: "power1.out" })
+          .to(elements.spotlightImg, { scale: 1, duration: 0.25, ease: "back.out(2)" });
+      }
+    });
   }
 
   // 全局键盘导航

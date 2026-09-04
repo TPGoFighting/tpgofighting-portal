@@ -125,7 +125,7 @@
     .route-view.active { display: block; }
   </style>
 
-  <link rel="stylesheet" href="style.css?v=20260904_posters_clean_large_03">
+  <link rel="stylesheet" href="style.css?v=20260904_posters_zoom_anim_04">
 </head>
 <body data-theme="light">
   <!-- 无障碍：跳过导航直达主内容 -->
@@ -1182,17 +1182,19 @@
         <!-- 右侧：黑胶唱机与元数据导航 -->
         <div class="spotlight-player-side">
           <div class="spotlight-turntable-card">
-            <div class="spotlight-vinyl-disc" id="spotlight-vinyl">
-              <div class="vinyl-groove-ring ring-1"></div>
-              <div class="vinyl-groove-ring ring-2"></div>
-              <div class="vinyl-groove-ring ring-3"></div>
-              <div class="vinyl-center-label">
-                <span class="vinyl-label-icon">✦</span>
-                <span class="vinyl-label-brand">TP SPACE</span>
+            <div class="spotlight-vinyl-disc-wrap" id="spotlight-vinyl-wrap">
+              <div class="spotlight-vinyl-disc" id="spotlight-vinyl">
+                <div class="vinyl-groove-ring ring-1"></div>
+                <div class="vinyl-groove-ring ring-2"></div>
+                <div class="vinyl-groove-ring ring-3"></div>
+                <div class="vinyl-center-label">
+                  <span class="vinyl-label-icon">✦</span>
+                  <span class="vinyl-label-brand">TP SPACE</span>
+                </div>
+                <div class="vinyl-center-hole"></div>
               </div>
-              <div class="vinyl-center-hole"></div>
             </div>
-            <div class="spotlight-tone-arm"></div>
+            <div class="spotlight-tone-arm" id="spotlight-tone-arm"></div>
           </div>
 
           <div class="spotlight-meta-block">
@@ -1371,6 +1373,6 @@
 
   <!-- GSAP 物理动画引擎 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="app.js?v=20260904_posters_clean_large_03"></script>
+  <script src="app.js?v=20260904_posters_zoom_anim_04"></script>
 </body>
 </html>
