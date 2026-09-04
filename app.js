@@ -437,32 +437,32 @@ const SERVICES = [
   }
 ];
 
-// 24 张海报与唱片元数据（电影 / 音乐专辑）
+// 24 张海报与唱片元数据（电影 / 音乐专辑 · 保留原生原始宽高比例）
 const POSTERS_DATA = [
-  { file: "poster-0.png", title: "霸王别姬", type: "经典电影", desc: "陈凯歌导演，张国荣主演。不疯魔不成活的中国影史巅峰。" },
-  { file: "poster-4.png", title: "平原上的摩西", type: "剧集 / 电影", desc: "双雪涛同名小说改编，凛冽冷峻的东北下岗时代叙事。" },
-  { file: "poster-5.png", title: "Call Me by Your Name", type: "电影原声", desc: "Luca Guadagnino 导演，Sufjan Stevens 纯澈盛夏之音。" },
-  { file: "poster-6.png", title: "蜘蛛侠：英雄无归", type: "漫威电影", desc: "三代同框的终极情怀时刻，英雄成长与代价的史诗注解。" },
-  { file: "poster-7.png", title: "哆啦A梦：伴我同行 2", type: "动画电影", desc: "大雄与静香的婚礼约定，献给长大后依然相信温柔的成年人。" },
-  { file: "poster-8.png", title: "花样年华", type: "王家卫电影", desc: "梁朝伟与张曼玉，昏黄街灯下的旗袍摇曳与欲言又止。" },
-  { file: "poster-9.png", title: "小丑 (Joker)", type: "电影原声", desc: "Joaquin Phoenix 炸裂演技与幽暗大提琴交响。" },
-  { file: "poster-10.png", title: "嘉年华", type: "现实主义电影", desc: "文晏执导，关注未成年女性成长困境的沉静之作。" },
-  { file: "poster-11.png", title: "爱乐之城 (La La Land)", type: "音乐电影", desc: "星空洛杉矶与爵士乐梦想，致敬所有执着的追梦人。" },
-  { file: "poster-12.png", title: "千与千寻", type: "吉卜力动画", desc: "宫崎骏与久石让，关于生命成长与不要回头的寓言。" },
-  { file: "poster-13.png", title: "海上钢琴师", type: "经典电影", desc: "1900 与一生未曾踏上陆地的传奇琴音。" },
-  { file: "poster-14.png", title: "星际穿越 (Interstellar)", type: "科幻巨制", desc: "爱是唯一可以超越时间与空间维度的引力。" },
-  { file: "poster-15.png", title: "楚门的世界", type: "哲学电影", desc: "倘若再也见不到你，祝你早安、午安、晚安。" },
-  { file: "poster-16.png", title: "低俗小说 (Pulp Fiction)", type: "黑色幽默", desc: "Quentin 环形叙事与后现代波普视听教科书。" },
-  { file: "poster-17.png", title: "布达佩斯大饭店", type: "美学电影", desc: "Wes Anderson 对称构图与马卡龙复古欧洲旧梦。" },
-  { file: "poster-18.png", title: "海边的小说家", type: "文艺光影", desc: "海风微咸、文字与时光沉淀的独立小众光影。" },
-  { file: "poster-19.png", title: "少年派的奇幻漂流", type: "奇幻史诗", desc: "李安导演，那只孟加拉虎与太平洋星空下的终极冥想。" },
-  { file: "poster-20.png", title: "爱在黎明破晓前", type: "浪漫三部曲", desc: "维也纳列车上的偶然相遇与整夜无休的长谈。" },
-  { file: "poster-21.png", title: "重庆森林", type: "王家卫电影", desc: "金城武、林青霞与罐头凤梨过期的保质期哲思。" },
-  { file: "poster-22.png", title: "教父 (The Godfather)", type: "影史丰碑", desc: "不可拒绝的条件与家族责任命运的沉重交锋。" },
-  { file: "poster-23.png", title: "盗梦空间 (Inception)", type: "科幻悬疑", desc: "梦境多层筑构与旋转未停的陀螺潜意识奇观。" },
-  { file: "poster-24.png", title: "深海大饭店", type: "视觉动画", desc: "粒子水墨奇观与心灵救赎的梦幻沉浸体验。" },
-  { file: "poster-25.png", title: "瞬息全宇宙", type: "前沿奇幻", desc: "多元宇宙贝果黑洞与母女和解的荒诞浪漫。" },
-  { file: "poster-26.png", title: "银翼杀手 2049", type: "赛博朋克", desc: "Denis Villeneuve 执导，霓虹雨幕与仿生人眼中的泪水微光。" }
+  { file: "poster-0.png", w: 300, h: 300, title: "霸王别姬", type: "经典电影", desc: "陈凯歌导演，张国荣主演。不疯魔不成活的中国影史巅峰。" },
+  { file: "poster-4.png", w: 300, h: 344, title: "平原上的摩西", type: "剧集 / 电影", desc: "双雪涛同名小说改编，凛冽冷峻的东北下岗时代叙事。" },
+  { file: "poster-5.png", w: 300, h: 298, title: "Call Me by Your Name", type: "电影原声", desc: "Luca Guadagnino 导演，Sufjan Stevens 纯澈盛夏之音。" },
+  { file: "poster-6.png", w: 288, h: 420, title: "蜘蛛侠：英雄无归", type: "漫威电影", desc: "三代同框的终极情怀时刻，英雄成长与代价的史诗注解。" },
+  { file: "poster-7.png", w: 294, h: 420, title: "哆啦A梦：伴我同行 2", type: "动画电影", desc: "大雄与静香的婚礼约定，献给长大后依然相信温柔的成年人。" },
+  { file: "poster-8.png", w: 281, h: 420, title: "花样年华", type: "王家卫电影", desc: "梁朝伟与张曼玉，昏黄街灯下的旗袍摇曳与欲言又止。" },
+  { file: "poster-9.png", w: 294, h: 420, title: "小丑 (Joker)", type: "电影原声", desc: "Joaquin Phoenix 炸裂演技与幽暗大提琴交响。" },
+  { file: "poster-10.png", w: 283, h: 420, title: "嘉年华", type: "现实主义电影", desc: "文晏执导，关注未成年女性成长困境的沉静之作。" },
+  { file: "poster-11.png", w: 297, h: 420, title: "爱乐之城 (La La Land)", type: "音乐电影", desc: "星空洛杉矶与爵士乐梦想，致敬所有执着的追梦人。" },
+  { file: "poster-12.png", w: 300, h: 419, title: "千与千寻", type: "吉卜力动画", desc: "宫崎骏与久石让，关于生命成长与不要回头的寓言。" },
+  { file: "poster-13.png", w: 284, h: 420, title: "海上钢琴师", type: "经典电影", desc: "1900 与一生未曾踏上陆地的传奇琴音。" },
+  { file: "poster-14.png", w: 279, h: 420, title: "星际穿越 (Interstellar)", type: "科幻巨制", desc: "爱是唯一可以超越时间与空间维度的引力。" },
+  { file: "poster-15.png", w: 298, h: 420, title: "楚门的世界", type: "哲学电影", desc: "倘若再也见不到你，祝你早安、午安、晚安。" },
+  { file: "poster-16.png", w: 295, h: 420, title: "低俗小说 (Pulp Fiction)", type: "黑色幽默", desc: "Quentin 环形叙事与后现代波普视听教科书。" },
+  { file: "poster-17.png", w: 300, h: 419, title: "布达佩斯大饭店", type: "美学电影", desc: "Wes Anderson 对称构图与马卡龙复古欧洲旧梦。" },
+  { file: "poster-18.png", w: 300, h: 168, title: "海边的小说家", type: "文艺光影", desc: "海风微咸、文字与时光沉淀的独立小众光影。" },
+  { file: "poster-19.png", w: 237, h: 420, title: "少年派的奇幻漂流", type: "奇幻史诗", desc: "李安导演，那只孟加拉虎与太平洋星空下的终极冥想。" },
+  { file: "poster-20.png", w: 237, h: 420, title: "爱在黎明破晓前", type: "浪漫三部曲", desc: "维也纳列车上的偶然相遇与整夜无休的长谈。" },
+  { file: "poster-21.png", w: 217, h: 420, title: "重庆森林", type: "王家卫电影", desc: "金城武、林青霞与罐头凤梨过期的保质期哲思。" },
+  { file: "poster-22.png", w: 237, h: 420, title: "教父 (The Godfather)", type: "影史丰碑", desc: "不可拒绝的条件与家族责任命运的沉重交锋。" },
+  { file: "poster-23.png", w: 237, h: 420, title: "盗梦空间 (Inception)", type: "科幻悬疑", desc: "梦境多层筑构与旋转未停的陀螺潜意识奇观。" },
+  { file: "poster-24.png", w: 300, h: 168, title: "深海大饭店", type: "视觉动画", desc: "粒子水墨奇观与心灵救赎的梦幻沉浸体验。" },
+  { file: "poster-25.png", w: 300, h: 169, title: "瞬息全宇宙", type: "前沿奇幻", desc: "多元宇宙贝果黑洞与母女和解的荒诞浪漫。" },
+  { file: "poster-26.png", w: 300, h: 134, title: "银翼杀手 2049", type: "赛博朋克", desc: "Denis Villeneuve 执导，霓虹雨幕与仿生人眼中的泪水微光。" }
 ];
 
 const POSTERS = POSTERS_DATA.map(p => p.file);
@@ -905,7 +905,7 @@ function renderPostersScatter() {
         <div class="poster-jacket">
           <picture>
             <source srcset="${webpSrc}" type="image/webp">
-            <img src="${pngSrc}" alt="${item.title}" class="poster-jacket-img" loading="lazy" decoding="async">
+            <img src="${pngSrc}" alt="${item.title}" width="${item.w}" height="${item.h}" class="poster-jacket-img" loading="lazy" decoding="async" style="aspect-ratio: ${item.w} / ${item.h};">
           </picture>
           <div class="poster-caption-tag">${item.title}</div>
         </div>
@@ -933,7 +933,7 @@ function renderPostersStream() {
         <div class="poster-jacket">
           <picture>
             <source srcset="${webpSrc}" type="image/webp">
-            <img src="${pngSrc}" alt="${item.title}" class="poster-jacket-img" loading="lazy" decoding="async">
+            <img src="${pngSrc}" alt="${item.title}" width="${item.w}" height="${item.h}" class="poster-jacket-img" loading="lazy" decoding="async" style="aspect-ratio: ${item.w} / ${item.h};">
           </picture>
           <div class="poster-caption-tag">${item.title}</div>
         </div>
@@ -997,6 +997,7 @@ function openSpotlightModal(idx) {
 
   const webpSrc = `assets/posters/${item.file.replace(/\.(png|jpe?g)$/i, ".webp")}`;
   elements.spotlightImg.src = webpSrc;
+  elements.spotlightImg.style.aspectRatio = `${item.w} / ${item.h}`;
   elements.spotlightImg.onerror = () => { elements.spotlightImg.src = `assets/posters/${item.file}`; };
   elements.spotlightTitle.textContent = item.title;
   elements.spotlightKicker.textContent = item.type || "CINEMA // VINYL";
