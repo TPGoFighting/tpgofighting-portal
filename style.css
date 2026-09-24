@@ -2659,7 +2659,7 @@ input {
 .tp-contact-row {
   position: relative;
   display: grid;
-  grid-template-columns: 86px minmax(220px, .65fr) minmax(250px, 1fr) 28px;
+  grid-template-columns: 86px 70px minmax(220px, .65fr) minmax(250px, 1fr) 28px;
   align-items: center;
   width: 100%;
   min-height: 164px;
@@ -3004,7 +3004,7 @@ input {
   .tp-contact-heading-label { gap: 13px; font-size: .78rem; letter-spacing: .14em; }
   .tp-contact-rule { width: 34px; }
   .tp-contact-ghost { top: -38px; right: -6px; font-size: 10rem; }
-  .tp-contact-row { grid-template-columns: 58px minmax(0, 1fr) 24px; min-height: 116px; padding: 17px 0; }
+  .tp-contact-row { grid-template-columns: 58px 38px minmax(0, 1fr) 24px; min-height: 116px; padding: 17px 0; }
   .tp-contact-icon { width: 50px; height: 50px; border-radius: 13px; }
   .tp-contact-icon img { width: 30px; height: 30px; }
   .tp-contact-number { font-size: .75rem; }
@@ -5196,8 +5196,8 @@ input {
   transform: scale(calc(.9 + var(--contact-p) * .1));
 }
 .tp-contact-section .tp-contact-row {
-  opacity: clamp(0, calc(var(--contact-p) * 2.4 - var(--row-i, 0) * .3 - .15), 1);
-  transform: translateY(calc((1 - clamp(0, calc(var(--contact-p) * 2.4 - var(--row-i, 0) * .3 - .15), 1)) * 18px));
+  opacity: 1;
+  transform: none;
 }
 /* row 的 --row-i 由 JS 写入 */
 
