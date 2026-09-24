@@ -1326,6 +1326,18 @@ function initFeaturedProductInteractions() {
         openDetailModal(svc.id);
       }
     });
+
+    const visualCol = card.querySelector(".ref-visual-col");
+    const headerRow = card.querySelector(".ref-header-row");
+    if (visualCol) {
+      visualCol.setAttribute("title", "查看产品详情");
+      visualCol.addEventListener("click", () => openDetailModal(svc.id));
+    }
+    if (headerRow) {
+      headerRow.addEventListener("click", (e) => {
+        if (e.target !== titleEl) openDetailModal(svc.id);
+      });
+    }
   });
 }
 
@@ -2183,14 +2195,28 @@ class InteractiveHeroScene {
   }
 
   initEvents() {
+    const isTouchOnly = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+
     const onMove = (x, y) => {
       this.targetPointerX = x;
       this.targetPointerY = y;
       this.isPointerInside = true;
     };
 
-    // Pointer Events 已覆盖鼠标、触控笔和触摸，避免同一输入重复触发三条链路。
-    window.addEventListener("pointermove", (e) => onMove(e.clientX, e.clientY), { passive: true });
+    // 鼠标与触控笔保留精准跟随；触控屏滑动时避免眼球跳动，交由轻微视口滚动微动接管
+    window.addEventListener("pointermove", (e) => {
+      if (e.pointerType === "touch" || isTouchOnly) return;
+      onMove(e.clientX, e.clientY);
+    }, { passive: true });
+
+    if (isTouchOnly) {
+      window.addEventListener("scroll", () => {
+        const scrollRatio = Math.min(1, Math.max(0, window.scrollY / (window.innerHeight || 800)));
+        this.targetPointerX = window.innerWidth * (0.46 + scrollRatio * 0.08);
+        this.targetPointerY = window.innerHeight * (0.35 + scrollRatio * 0.22);
+        this.isPointerInside = true;
+      }, { passive: true });
+    }
 
     document.addEventListener("mouseleave", () => {
       this.isPointerInside = false;

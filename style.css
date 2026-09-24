@@ -140,7 +140,7 @@ body {
   min-height: 100dvh;
   background-color: var(--bg-canvas);
   color: var(--text-body);
-  font-family: 'Plus Jakarta Sans', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -680,21 +680,7 @@ input {
   order: 2;
 }
 
-/* Keep the visual index aligned with the flex-reordered card sequence. */
-.featured-products-list .featured-ref-card:nth-child(4) .ref-card-watermark::after { content: "14"; }
-.featured-products-list .featured-ref-card:nth-child(5) .ref-card-watermark::after { content: "15"; }
-.featured-products-list .featured-ref-card:nth-child(6) .ref-card-watermark::after { content: "04"; }
-.featured-products-list .featured-ref-card:nth-child(7) .ref-card-watermark::after { content: "05"; }
-.featured-products-list .featured-ref-card:nth-child(8) .ref-card-watermark::after { content: "06"; }
-.featured-products-list .featured-ref-card:nth-child(9) .ref-card-watermark::after { content: "07"; }
-.featured-products-list .featured-ref-card:nth-child(10) .ref-card-watermark::after { content: "08"; }
-.featured-products-list .featured-ref-card:nth-child(11) .ref-card-watermark::after { content: "09"; }
-.featured-products-list .featured-ref-card:nth-child(12) .ref-card-watermark::after { content: "10"; }
-.featured-products-list .featured-ref-card:nth-child(13) .ref-card-watermark::after { content: "11"; }
-.featured-products-list .featured-ref-card:nth-child(14) .ref-card-watermark::after { content: "12"; }
-.featured-products-list .featured-ref-card:nth-child(15) .ref-card-watermark::after { content: "13"; }
-.featured-products-list .ref-card-watermark { font-size: 0; }
-.featured-products-list .ref-card-watermark::after { font-size: 2.2rem; }
+/* Watermarks cleanly removed for editorial minimalism */
 
 .featured-ref-card {
   position: relative;
@@ -930,23 +916,9 @@ input {
   transform: translateX(4px);
 }
 
-.ref-card-watermark {
-  position: absolute;
-  bottom: 12px;
-  left: 20px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 2.2rem;
-  font-weight: 900;
-  color: var(--text-faint);
-  opacity: 0.2;
-  pointer-events: none;
-  user-select: none;
-}
 
-.featured-ref-card.layout-reverse .ref-card-watermark {
-  left: auto;
-  right: 20px;
-}
+
+.featured-ref-card.layout-reverse 
 
 @media (max-width: 860px) {
   .featured-ref-card {
@@ -960,9 +932,7 @@ input {
   .featured-ref-card.layout-reverse .ref-info-col {
     order: 2;
   }
-  .ref-card-watermark {
-    display: none;
-  }
+  
 
 }
 
@@ -1137,7 +1107,7 @@ input {
   background: var(--bg-subtle);
   border: 1px solid var(--border-subtle);
   color: var(--text-body);
-  transition: all 0.15s ease;
+  transition: background 0.15s ease, color 0.15s ease;
 }
 
 .card-btn-copy:hover {
@@ -1155,7 +1125,7 @@ input {
   border-radius: 6px;
   background: var(--border-main);
   color: var(--bg-canvas);
-  transition: all 0.15s ease;
+  transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .card-btn-launch:hover {
@@ -1192,7 +1162,7 @@ input {
   font-weight: 700;
   color: var(--text-muted);
   box-shadow: var(--shadow-sm);
-  transition: all 0.15s ease;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
 }
 
 .cat-tab-btn:hover {
@@ -1233,7 +1203,7 @@ input {
   align-items: center;
   justify-content: center;
   color: var(--text-muted);
-  transition: all 0.15s ease;
+  transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .view-btn.active {
@@ -1266,7 +1236,7 @@ input {
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .service-matrix-card:hover {
@@ -1402,7 +1372,7 @@ input {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  transition: all 0.15s ease;
+  transition: background 0.15s ease, color 0.15s ease;
 }
 
 .service-launch-link:hover {
@@ -1473,7 +1443,7 @@ input {
   border-radius: var(--radius-pill);
   box-shadow: 2.5px 2.5px 0px var(--border-main);
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, box-shadow 0.2s ease;
   user-select: none;
 }
 
@@ -1522,7 +1492,7 @@ input {
   border: none;
   border-radius: var(--radius-pill);
   cursor: pointer;
-  transition: all 0.18s ease;
+  transition: color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
 }
 
 .posters-toggle-pill.active {
@@ -2111,7 +2081,7 @@ input {
   border-radius: 10px;
   box-shadow: 2.5px 2.5px 0px var(--border-main);
   cursor: pointer;
-  transition: all 0.18s ease;
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), background 0.18s ease, box-shadow 0.18s ease;
   text-align: center;
 }
 
@@ -2384,7 +2354,7 @@ input {
   background: var(--bg-subtle);
   border: 1px solid var(--border-subtle);
   color: var(--text-muted);
-  transition: all 0.15s ease;
+  transition: background 0.15s ease, color 0.15s ease;
 }
 
 .modal-close-x:hover {
@@ -2532,7 +2502,7 @@ input {
   opacity: 0;
   pointer-events: none;
   box-shadow: 4px 4px 0px var(--accent-yellow);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
 }
 
 .tpspace-toast.show {
@@ -2689,7 +2659,7 @@ input {
 .tp-contact-row {
   position: relative;
   display: grid;
-  grid-template-columns: 86px 70px minmax(220px, .65fr) minmax(250px, 1fr) 28px;
+  grid-template-columns: 86px minmax(220px, .65fr) minmax(250px, 1fr) 28px;
   align-items: center;
   width: 100%;
   min-height: 164px;
@@ -3034,7 +3004,7 @@ input {
   .tp-contact-heading-label { gap: 13px; font-size: .78rem; letter-spacing: .14em; }
   .tp-contact-rule { width: 34px; }
   .tp-contact-ghost { top: -38px; right: -6px; font-size: 10rem; }
-  .tp-contact-row { grid-template-columns: 58px 38px minmax(0, 1fr) 24px; min-height: 116px; padding: 17px 0; }
+  .tp-contact-row { grid-template-columns: 58px minmax(0, 1fr) 24px; min-height: 116px; padding: 17px 0; }
   .tp-contact-icon { width: 50px; height: 50px; border-radius: 13px; }
   .tp-contact-icon img { width: 30px; height: 30px; }
   .tp-contact-number { font-size: .75rem; }
@@ -3084,10 +3054,7 @@ input {
 
 .featured-ref-card .ref-visual-col,
 .featured-ref-card .ref-info-col,
-.featured-ref-card .ref-card-watermark {
-  position: relative;
-  z-index: 1;
-}
+.featured-ref-card 
 
 .featured-ref-card .ref-title-text {
   position: relative;
@@ -3217,7 +3184,7 @@ input {
 .featured-ref-card .ref-visual-col { grid-area: visual; height: 220px; min-height: 0; max-height: none; }
 .featured-ref-card .ref-info-col { grid-area: info; min-width: 0; }
 .featured-ref-card .product-motion { min-height: 0; }
-.featured-ref-card .ref-card-watermark { position: absolute; }
+.featured-ref-card 
 .featured-ref-card.layout-reverse .ref-visual-col,
 .featured-ref-card.layout-reverse .ref-info-col { order: initial; }
 
@@ -3548,7 +3515,7 @@ input {
   font-size: 0.86rem;
   font-weight: 700;
   color: var(--text-title);
-  transition: all 0.15s ease;
+  transition: background 0.15s ease, color 0.15s ease;
 }
 
 .drawer-nav-item:active {
@@ -5233,3 +5200,7 @@ input {
   transform: translateY(calc((1 - clamp(0, calc(var(--contact-p) * 2.4 - var(--row-i, 0) * .3 - .15), 1)) * 18px));
 }
 /* row 的 --row-i 由 JS 写入 */
+
+
+/* Enhanced Featured Product Card Interaction */
+.ref-visual-col, .ref-header-row { cursor: pointer; }
