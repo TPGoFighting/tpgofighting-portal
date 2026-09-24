@@ -682,16 +682,19 @@ input {
 
 /* Watermarks cleanly removed for editorial minimalism */
 
+/* Featured Product Cards (Canonical Layout) */
 .featured-ref-card {
   position: relative;
   background: var(--bg-card);
   border: 1.5px solid var(--border-subtle);
   border-radius: 24px;
-  padding: 32px 36px;
+  padding: 24px 30px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "visual info";
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
   align-items: center;
-  gap: 40px;
+  gap: 30px;
+  min-height: 0;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   overflow: hidden;
@@ -703,13 +706,53 @@ input {
   border-color: var(--border-hover);
 }
 
-.featured-ref-card.layout-reverse .ref-visual-col {
-  order: 2;
+.featured-ref-card.layout-reverse {
+  grid-template-areas: "info visual";
 }
 
-.featured-ref-card.layout-reverse .ref-info-col {
-  order: 1;
+.featured-ref-card .ref-visual-col {
+  grid-area: visual;
+  height: 220px;
+  min-height: 0;
+  max-height: none;
 }
+
+.featured-ref-card .ref-info-col {
+  grid-area: info;
+  min-width: 0;
+}
+
+.featured-ref-card .product-motion {
+  min-height: 0;
+}
+
+.featured-ref-card.layout-reverse .ref-visual-col,
+.featured-ref-card.layout-reverse .ref-info-col {
+  order: initial;
+}
+
+@media (max-width: 860px) {
+  .featured-ref-card,
+  .featured-ref-card.layout-reverse {
+    grid-template-areas: "visual" "info";
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+    padding: 18px;
+  }
+  .featured-ref-card .ref-visual-col {
+    height: auto;
+    aspect-ratio: 16 / 10;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .featured-ref-card::before,
+  .featured-ref-card .ref-title-text,
+  .featured-ref-card .ref-title-text::after { transition: none; }
+  .featured-ref-card:hover .ref-title-text::before,
+  .featured-ref-card .ref-title-text:focus-visible::before { animation: none; }
+}
+
 
 .ref-visual-col {
   position: relative;
@@ -733,137 +776,6 @@ input {
   object-fit: contain;
   background: #ffffff;
   display: block;
-}
-
-/* TPrompts Pilot：让插画内部的输入关系承担主动画，卡片倾斜只做轻反馈 */
-.motion-pilot-card {
-  --pilot-progress: 0;
-  --pilot-flow-opacity: 0;
-  --pilot-focus-system-opacity: 0;
-  --pilot-focus-user-opacity: 0;
-  --pilot-focus-output-opacity: 0;
-  --pilot-cursor-opacity: 0;
-  --pilot-spark-opacity: 0;
-  --pilot-flow-offset: 1;
-  --pilot-drift-x: 0px;
-  --pilot-drift-y: 0px;
-  --pilot-scale: 1;
-}
-
-.motion-pilot-stage {
-  isolation: isolate;
-  touch-action: manipulation;
-  cursor: pointer;
-}
-
-.motion-pilot-stage:focus-visible {
-  outline: 2px solid var(--accent-blue);
-  outline-offset: 3px;
-}
-
-.motion-pilot-stage .ref-visual-img {
-  transform: translate3d(var(--pilot-drift-x), var(--pilot-drift-y), 0) scale(var(--pilot-scale));
-  transform-origin: center;
-  transition: filter 0.35s ease;
-  will-change: transform;
-}
-
-.motion-pilot-stage[data-motion-state="linking"] .ref-visual-img,
-.motion-pilot-stage[data-motion-state="prompt-ready"] .ref-visual-img {
-  filter: saturate(1.04) contrast(1.01);
-}
-
-.tprompts-motion-overlay {
-  position: absolute;
-  inset: 6px;
-  z-index: 2;
-  width: calc(100% - 12px);
-  height: calc(100% - 12px);
-  overflow: visible;
-  pointer-events: none;
-}
-
-/* 其他作品卡共用的 SVG 动画层：与方形原图保持 xMidYMid 对齐，避免拉伸线稿 */
-.motion-card-overlay {
-  position: absolute;
-  inset: 6px;
-  z-index: 2;
-  width: calc(100% - 12px);
-  height: calc(100% - 12px);
-  overflow: visible;
-  pointer-events: none;
-}
-
-.tprompts-motion-overlay path,
-.tprompts-motion-overlay rect,
-.tprompts-motion-overlay circle {
-  vector-effect: non-scaling-stroke;
-}
-
-.tprompts-flow-path,
-.tprompts-flow-arrow,
-.tprompts-focus,
-.tprompts-cursor-dot,
-.tprompts-output-spark {
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.tprompts-flow-path {
-  stroke: var(--accent-blue);
-  stroke-width: 4;
-  stroke-dasharray: 0.055 0.035;
-  stroke-dashoffset: var(--pilot-flow-offset);
-  opacity: var(--pilot-flow-opacity);
-}
-
-.tprompts-flow-arrow {
-  stroke: var(--accent-blue);
-  stroke-width: 4;
-  opacity: var(--pilot-flow-opacity);
-}
-
-.tprompts-focus {
-  stroke-width: 3;
-  stroke-dasharray: 7 7;
-  stroke-dashoffset: calc(var(--pilot-progress) * -24px);
-}
-
-.tprompts-focus-system {
-  stroke: var(--accent-yellow);
-  fill: rgba(245, 158, 11, 0.08);
-  opacity: var(--pilot-focus-system-opacity);
-}
-
-.tprompts-focus-user {
-  stroke: var(--accent-blue);
-  fill: rgba(37, 99, 235, 0.07);
-  opacity: var(--pilot-focus-user-opacity);
-}
-
-.tprompts-focus-output {
-  stroke: var(--accent-green);
-  fill: rgba(16, 185, 129, 0.07);
-  opacity: var(--pilot-focus-output-opacity);
-}
-
-.tprompts-cursor-dot {
-  fill: var(--accent-blue);
-  stroke: var(--bg-card);
-  stroke-width: 5;
-  opacity: var(--pilot-cursor-opacity);
-  transform-box: fill-box;
-  transform-origin: center;
-  transform: scale(calc(0.75 + var(--pilot-cursor-opacity) * 0.35));
-}
-
-.tprompts-output-spark {
-  stroke: var(--accent-yellow);
-  stroke-width: 4;
-  stroke-dasharray: 0.12 0.88;
-  stroke-dashoffset: calc(1 - var(--pilot-progress));
-  opacity: var(--pilot-spark-opacity);
 }
 
 .ref-info-col {
@@ -2104,189 +2016,6 @@ input {
 }
 
 /* ==========================================================================
-   Section 04 · 关于创作者与联系方式 (About & QR)
-   ========================================================================== */
-
-.about-connect-grid {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr;
-  gap: 20px;
-}
-
-.creator-bio-card {
-  background: var(--bg-card);
-  border: 1.5px solid var(--border-main);
-  border-radius: var(--radius-lg);
-  padding: 24px;
-  box-shadow: 4px 4px 0px var(--border-main);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.creator-bio-header {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 14px;
-}
-
-.creator-avatar-frame {
-  position: relative;
-  width: 58px;
-  height: 58px;
-  border-radius: 50%;
-  border: 1.5px solid var(--border-main);
-  padding: 2px;
-  background: var(--bg-canvas);
-  flex-shrink: 0;
-}
-
-.creator-avatar-img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.creator-status-dot {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: var(--accent-green);
-  border: 2px solid var(--bg-card);
-}
-
-.creator-name {
-  font-size: 1.25rem;
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  color: var(--text-title);
-}
-
-.creator-bio-subtitle {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  font-weight: 600;
-}
-
-.creator-bio-text {
-  font-size: 0.92rem;
-  color: var(--text-body);
-  line-height: 1.6;
-  margin-bottom: 18px;
-}
-
-.creator-social-links {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding-top: 14px;
-  border-top: 1px solid var(--border-subtle);
-}
-
-.social-link-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--text-body);
-  transition: color 0.15s ease;
-}
-
-.social-link-item:hover {
-  color: var(--accent-blue);
-}
-
-/* QR Code Cards */
-.qr-code-card {
-  background: var(--bg-card);
-  border: 1.5px solid var(--border-main);
-  border-radius: var(--radius-lg);
-  padding: 22px 18px 20px;
-  box-shadow: 4px 4px 0px var(--border-main);
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.qr-card-header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 0px;
-}
-
-.qr-platform-badge {
-  font-size: 0.72rem;
-  font-weight: 800;
-  padding: 3px 8px;
-  border-radius: 6px;
-  letter-spacing: 0.05em;
-}
-
-.qr-platform-badge.wechat {
-  background: rgba(16, 185, 129, 0.12);
-  color: var(--accent-green);
-  border: 1px solid rgba(16, 185, 129, 0.25);
-}
-
-.qr-platform-badge.douyin {
-  background: rgba(239, 68, 68, 0.12);
-  color: #ef4444;
-  border: 1px solid rgba(239, 68, 68, 0.25);
-}
-
-.qr-card-title {
-  font-size: 0.92rem;
-  font-weight: 800;
-  color: var(--text-title);
-}
-
-.qr-img-box {
-  width: 100%;
-  max-width: 185px;
-  aspect-ratio: 525 / 800;
-  background: #ffffff;
-  border: 1.5px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  padding: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
-}
-
-.qr-code-card:hover .qr-img-box {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-}
-
-.qr-scan-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 6px;
-  display: block;
-}
-
-.qr-card-hint {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  font-weight: 600;
-  letter-spacing: 0.02em;
-}
-
-/* ==========================================================================
    Modals & Toast
    ========================================================================== */
 
@@ -3112,160 +2841,6 @@ input {
   to { opacity: 1; transform: translate(0, 0); }
 }
 
-/* Tighten the screenshot-inspired contact block on desktop as requested. */
-.tp-contact-section { padding: 10px 0 52px; }
-.tp-contact-heading { min-height: 128px; padding: 16px 0 48px; }
-.tp-contact-row { grid-template-columns: 68px 56px minmax(190px, .65fr) minmax(220px, 1fr) 26px; min-height: 122px; padding: 18px 8px; }
-.tp-contact-icon { width: 56px; height: 56px; border-radius: 15px; }
-.tp-contact-icon img { width: 34px; height: 34px; }
-.tp-contact-name { font-size: clamp(1.75rem, 3.5vw, 2.75rem); }
-.tp-contact-detail { font-size: clamp(.72rem, 1.1vw, .95rem); }
-
-@media (max-width: 768px) {
-  .tp-contact-section { padding: 6px 0 42px; }
-  .tp-contact-heading { min-height: 112px; padding: 14px 0 42px; }
-  .tp-contact-row { grid-template-columns: 54px 34px minmax(0, 1fr) 24px; min-height: 100px; padding: 14px 0; }
-  .tp-contact-icon { width: 46px; height: 46px; border-radius: 12px; }
-  .tp-contact-icon img { width: 28px; height: 28px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .featured-ref-card::before,
-  .featured-ref-card .ref-title-text,
-  .featured-ref-card .ref-title-text::after { transition: none; }
-  .featured-ref-card:hover .ref-title-text::before,
-  .featured-ref-card .ref-title-text:focus-visible::before { animation: none; }
-}
-
-/* Matrix cards use the same title marker language as the featured products. */
-.service-title {
-  position: relative;
-  z-index: 0;
-  display: inline-block;
-  isolation: isolate;
-}
-
-.service-title::after {
-  content: '';
-  position: absolute;
-  right: -.03em;
-  bottom: .03em;
-  left: -.03em;
-  z-index: -1;
-  height: .3em;
-  background: var(--accent-yellow);
-  transform: scaleX(0) rotate(-1deg);
-  transform-origin: left center;
-  transition: transform .62s cubic-bezier(.19, 1, .22, 1);
-}
-
-.service-matrix-card:hover .service-title::after,
-.service-matrix-card:focus-within .service-title::after {
-  transform: scaleX(1) rotate(-1deg);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .service-title::after { transition: none; }
-}
-
-/* Product card layout correction: explicit areas keep image and copy on one row. */
-.featured-ref-card {
-  grid-template-areas: "visual info";
-  grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
-  gap: 30px;
-  min-height: 0;
-  padding: 24px 30px;
-}
-
-.featured-ref-card.layout-reverse {
-  grid-template-areas: "info visual";
-}
-
-.featured-ref-card .ref-visual-col { grid-area: visual; height: 220px; min-height: 0; max-height: none; }
-.featured-ref-card .ref-info-col { grid-area: info; min-width: 0; }
-.featured-ref-card .product-motion { min-height: 0; }
-.featured-ref-card 
-.featured-ref-card.layout-reverse .ref-visual-col,
-.featured-ref-card.layout-reverse .ref-info-col { order: initial; }
-
-@media (max-width: 860px) {
-  .featured-ref-card,
-  .featured-ref-card.layout-reverse {
-    grid-template-areas: "visual" "info";
-    grid-template-columns: minmax(0, 1fr);
-    gap: 18px;
-    padding: 18px;
-  }
-  .featured-ref-card .ref-visual-col { height: auto; aspect-ratio: 16 / 10; }
-}
-
-/* Matrix product cards get the same visible pointer spotlight as featured cards. */
-.service-matrix-card {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-}
-
-.service-matrix-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background: radial-gradient(circle 170px at var(--matrix-spot-x, 50%) var(--matrix-spot-y, 50%), color-mix(in srgb, var(--accent-yellow) 24%, transparent), color-mix(in srgb, var(--accent-yellow) 8%, transparent) 43%, transparent 75%);
-  opacity: 0;
-  transition: opacity .4s ease;
-}
-
-.service-matrix-card:hover::before,
-.service-matrix-card:focus-within::before { opacity: 1; }
-
-.service-matrix-card > * { position: relative; z-index: 1; }
-
-@media (prefers-reduced-motion: reduce) {
-  .service-matrix-card::before { transition: none; }
-}
-
-/* Xiaohongshu brand tile: the red field fills the complete rounded rectangle. */
-.tp-contact-row:nth-child(5) .tp-contact-icon {
-  overflow: hidden;
-  border-color: #ff2e4d;
-  background: #ff2e4d;
-}
-
-.tp-contact-row:nth-child(5) .tp-contact-icon img {
-  width: 100%;
-  height: 100%;
-}
-
-.tp-contact-modal-icon.is-xiaohongshu {
-  overflow: hidden;
-  border-color: #ff2e4d;
-  background: #ff2e4d;
-}
-
-.tp-contact-modal-icon.is-xiaohongshu img {
-  width: 100%;
-  height: 100%;
-}
-
-/* Second density pass for the contact block. */
-.tp-contact-section { padding-bottom: 36px; }
-.tp-contact-heading { min-height: 104px; padding: 12px 0 36px; }
-.tp-contact-row { grid-template-columns: 60px 48px minmax(170px, .65fr) minmax(200px, 1fr) 22px; min-height: 104px; padding: 14px 8px; }
-.tp-contact-icon { width: 48px; height: 48px; border-radius: 13px; }
-.tp-contact-icon img { width: 30px; height: 30px; }
-.tp-contact-name { font-size: clamp(1.6rem, 3.1vw, 2.45rem); }
-
-@media (max-width: 768px) {
-  .tp-contact-section { padding-bottom: 30px; }
-  .tp-contact-heading { min-height: 96px; padding: 12px 0 34px; }
-  .tp-contact-row { grid-template-columns: 48px 30px minmax(0, 1fr) 20px; min-height: 88px; padding: 12px 0; }
-  .tp-contact-icon { width: 42px; height: 42px; border-radius: 11px; }
-  .tp-contact-icon img { width: 26px; height: 26px; }
-  .tp-contact-name { font-size: clamp(1.4rem, 7.5vw, 2.1rem); }
-}
-
 /* Final contact-section alignment: preserve the page grid and keep the block compact. */
 .tp-contact-section {
   background-color: transparent;
@@ -3556,12 +3131,9 @@ input {
 
 /* Touch feedback for buttons on mobile */
 @media (hover: none) and (pointer: coarse) {
-  .card-btn-launch:active,
-  .card-btn-copy:active,
   .service-btn-mini:active,
   .service-launch-link:active,
   .cat-tab-btn:active,
-  .contact-pill-btn:active,
   .icon-action-btn:active {
     transform: scale(0.95) !important;
     opacity: 0.85;
@@ -3578,10 +3150,7 @@ input {
     gap: 32px;
   }
 
-  .about-connect-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
+
 }
 
 @media (max-width: 768px) {
@@ -3607,47 +3176,7 @@ input {
     font-size: 0.84rem;
   }
 
-  .hero-identity-tag {
-    font-size: 0.78rem;
-    padding: 3px 10px 3px 3px;
-    gap: 6px;
-    margin-bottom: 12px;
-  }
 
-  .identity-name {
-    font-size: 0.82rem;
-  }
-
-  .identity-role {
-    font-size: 0.68rem;
-  }
-
-  .hero-huge-title {
-    font-size: clamp(2.1rem, 7.8vw, 2.6rem);
-    line-height: 1.1;
-    margin-bottom: 14px;
-  }
-
-  .hero-lead {
-    font-size: 0.94rem;
-    line-height: 1.6;
-    margin-bottom: 18px;
-  }
-
-  /* Search Input (16px to prevent iOS Safari auto-zoom) */
-  .search-inner input {
-    font-size: 16px !important;
-  }
-
-  .kbd-badge {
-    display: none;
-  }
-
-  .hero-meta-strip {
-    flex-wrap: wrap;
-    gap: 8px;
-    padding: 6px 12px;
-  }
 
   .hero-art-wrapper {
     margin-top: 12px;
@@ -3659,43 +3188,7 @@ input {
     padding: 12px;
   }
 
-  /* Featured Cards (Single column & responsive image) */
-  .featured-products-grid {
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
 
-  .featured-card {
-    border-radius: var(--radius-md);
-  }
-
-  .featured-visual-box {
-    padding: 4px 12px;
-  }
-
-  .featured-ill-img {
-    height: 190px !important;
-  }
-
-  .featured-info-box {
-    padding: 16px;
-  }
-
-  .featured-title {
-    font-size: 1.12rem;
-  }
-
-  .featured-action-row {
-    padding-top: 12px;
-  }
-
-  .card-btn-launch,
-  .card-btn-copy {
-    min-height: 40px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
 
   /* Matrix Filters Mobile Rail (Horizontal Scrollable Tabs) */
   .matrix-filter-bar {
@@ -3784,19 +3277,7 @@ input {
   .vinyl-groove-ring.ring-2 { width: 70px; height: 70px; }
   .vinyl-groove-ring.ring-3 { width: 45px; height: 45px; }
 
-  /* About & QR Mobile Cards */
-  .creator-bio-card {
-    padding: 18px;
-  }
 
-  .qr-code-card {
-    padding: 18px 12px;
-  }
-
-  .qr-img-box {
-    width: 130px;
-    height: 130px;
-  }
 
   /* iOS Bottom Sheet Style Modal */
   .tpspace-modal-backdrop {
