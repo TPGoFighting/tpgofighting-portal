@@ -280,7 +280,21 @@ const SERVICES = [
     path: "/var/www/caipu"
   },
 
-  // 5. 校园特辑与生活 (7)
+  // 5. 校园特辑与生活 (8)
+  {
+    id: "life",
+    name: "TP Life · 高性价比人生指南",
+    subdomain: "life.tpgofighting.top",
+    url: "https://life.tpgofighting.top",
+    category: "life",
+    categoryName: "校园特辑与生活",
+    iconKey: "life",
+    desc: "按性价比排序的循证人生指南：650+ 条建议，覆盖长寿健康、意外急救、理财防骗与法律红线。",
+    tags: ["人生指南", "循证医学", "个人理财", "避坑防骗"],
+    tech: "Static Offline PWA / HTML5",
+    port: "80",
+    path: "/var/www/life"
+  },
   {
     id: "njupt",
     name: "南邮入学指南 · T小P版",

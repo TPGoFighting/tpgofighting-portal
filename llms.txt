@@ -19,6 +19,7 @@
 - TPbili：https://tpbili.tpgofighting.top —— B 站 UID 像素画像与 BV 视频评论讨论趋势分析工具。
 - CyberPulse：https://wx.tpgofighting.top —— 聚合服务器负载、访问热度与 GitHub 提交动态的数据看板。
 - TPVibe：https://tphub.tpgofighting.top/tpvibe/ —— Vibe Coding、AI 提示词工程与实操教程库。
+- TP Life：https://life.tpgofighting.top —— 按性价比排序的循证人生指南，覆盖长寿健康、意外急救、理财防骗与法律红线。
 
 ## 其他公开站点
 
