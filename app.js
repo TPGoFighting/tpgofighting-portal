@@ -817,6 +817,10 @@ function renderMatrixServices() {
     lanbo: {
       cls: "matrix-motion--archive",
       html: '<div class="mm-grid"></div><span class="mm-kicker">LOG / 13</span><div class="mm-archive"><div class="mm-log-row"><b>08:14</b><i></i></div><div class="mm-log-row"><b>08:15</b><i></i></div><div class="mm-log-row"><b>08:17</b><i></i></div><em class="mm-stamp">FACT-CHECKED</em></div>'
+    },
+    life: {
+      cls: "matrix-motion--life",
+      html: '<div class="mm-grid"></div><span class="mm-kicker">LIFE / 14</span><div class="mm-life-card"><div class="mm-life-pulse"><svg viewBox="0 0 100 24" preserveAspectRatio="none"><path d="M0,12 L28,12 L35,4 L42,20 L48,7 L55,16 L61,12 L100,12"/></svg></div><div class="mm-life-tags"><i class="mm-life-tag mm-life-tag--ev">GRADE A</i><i class="mm-life-tag mm-life-tag--roi">ROI 极高</i></div><div class="mm-life-bottom"><span class="mm-life-num">650+</span><b class="mm-life-badge">循证指南</b><em class="mm-life-check">✓</em></div></div><span class="mm-spark">✦</span>'
     }
   };
 
