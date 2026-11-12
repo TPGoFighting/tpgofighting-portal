@@ -448,6 +448,273 @@ const SERVICES = [
     tech: "Tailwind CSS / HTML5",
     port: "80",
     path: "/var/www/xuezhang"
+  },
+  // ===== 2026-10 新收录：原未在主站展示的独立站点（19 个） =====
+  {
+    id: "alan",
+    name: "Tyler meets Alan · 双城记始末",
+    subdomain: "alan.tpgofighting.top",
+    url: "https://alan.tpgofighting.top",
+    category: "personal",
+    categoryName: "个人与学术",
+    iconKey: "globe",
+    desc: "基于 1,483 条真实微信聊天记录，还原与 Alan 从大一认识至今的双城叙事与交往始末。",
+    tags: ["双城记", "聊天记录", "叙事还原"],
+    tech: "HTML5 / Oil Motion 交互",
+    port: "80",
+    path: "/var/www/alan"
+  },
+  {
+    id: "whoami",
+    name: "Who Am I? · 聊天研究报告",
+    subdomain: "whoami.tpgofighting.top",
+    url: "https://whoami.tpgofighting.top",
+    category: "personal",
+    categoryName: "个人与学术",
+    iconKey: "brain",
+    desc: "基于本地微信 Obsidian Markdown 档案整理的个人沟通风格与表达习惯研究报告。",
+    tags: ["自我研究", "沟通分析", "Obsidian"],
+    tech: "HTML5 / Markdown 档案",
+    port: "80",
+    path: "/var/www/whoami"
+  },
+  {
+    id: "knowledge",
+    name: "像素档案 · PLAYER ONE",
+    subdomain: "knowledge.tpgofighting.top",
+    url: "https://knowledge.tpgofighting.top",
+    category: "personal",
+    categoryName: "个人与学术",
+    iconKey: "pixel",
+    desc: "像素化个人档案与项目记录，用游戏机风格展示个人经历、技术兴趣与持续探索的方向。",
+    tags: ["像素风", "个人档案", "游戏化"],
+    tech: "HTML5 / 像素视觉",
+    port: "80",
+    path: "/var/www/knowledge"
+  },
+  {
+    id: "experience",
+    name: "求职真心话 · 27 个月复盘",
+    subdomain: "experience.tpgofighting.top",
+    url: "https://experience.tpgofighting.top",
+    category: "personal",
+    categoryName: "个人与学术",
+    iconKey: "flag",
+    desc: "双非学生的求职全程记录：从字节两次挂到鹅厂入职，27 个月里的 8 条实战方法复盘。",
+    tags: ["求职复盘", "前端实习", "面试经验"],
+    tech: "HTML5 / 长文叙事",
+    port: "80",
+    path: "/var/www/experience"
+  },
+  {
+    id: "phone",
+    name: "一部手机里的二十七个月",
+    subdomain: "phone.tpgofighting.top",
+    url: "https://phone.tpgofighting.top",
+    category: "personal",
+    categoryName: "个人与学术",
+    iconKey: "message",
+    desc: "404,490 条消息的时间线档案：以一部手机为切口，记录两年半里的沟通与成长轨迹。",
+    tags: ["消息档案", "时间线", "成长纪实"],
+    tech: "HTML5 / 数据叙事",
+    port: "80",
+    path: "/var/www/phone"
+  },
+  {
+    id: "tpnotes",
+    name: "TP Notes · 个体深描档案",
+    subdomain: "tpnotes.tpgofighting.top",
+    url: "https://tpnotes.tpgofighting.top",
+    category: "personal",
+    categoryName: "个人与学术",
+    iconKey: "doc",
+    desc: "基于 699 份微信聊天记录与 40.5 万条消息的个体深度观察报告，纪实成长全景档案。",
+    tags: ["个体深描", "聊天档案", "纪实"],
+    tech: "HTML5 / 静态档案",
+    port: "8089",
+    path: "/var/www/tpnotes"
+  },
+  {
+    id: "txiaop",
+    name: "加油T小P · 深度人物报告",
+    subdomain: "txiaop.tpgofighting.top",
+    url: "https://txiaop.tpgofighting.top",
+    category: "personal",
+    categoryName: "个人与学术",
+    iconKey: "newspaper",
+    desc: "基于微信聊天记录写成的 17 卷人物报告与 33 份深读档案，全景式个体纪实。",
+    tags: ["人物报告", "17 卷", "深读档案"],
+    tech: "HTML5 / 长篇报告",
+    port: "80",
+    path: "/var/www/txiaop"
+  },
+  {
+    id: "nine",
+    name: "本周复盘 · Weekly Review",
+    subdomain: "nine.tpgofighting.top/weekly-review",
+    url: "https://nine.tpgofighting.top/weekly-review.html",
+    category: "personal",
+    categoryName: "个人与学术",
+    iconKey: "timeline",
+    desc: "每周个人工作与项目的复盘记录页，沉淀阶段进展、问题与下周计划。",
+    tags: ["周报复盘", "工作记录", "沉淀"],
+    tech: "HTML5 / CSS3 / JavaScript",
+    port: "80",
+    path: "/var/www/nine"
+  },
+  {
+    id: "daily",
+    name: "TP · AI/数码关注日报",
+    subdomain: "daily.tpgofighting.top",
+    url: "https://daily.tpgofighting.top",
+    category: "analytics",
+    categoryName: "数据洞察与大屏",
+    iconKey: "newspaper",
+    desc: "聚合所关注 AI 与数码科技账号的公开时间线，每日自动生成摘要日报。",
+    tags: ["日报", "信息聚合", "自动化"],
+    tech: "Python / 自动化生成",
+    port: "80",
+    path: "/var/www/daily"
+  },
+  {
+    id: "radar",
+    name: "TP X RADAR · 技术情报雷达",
+    subdomain: "radar.tpgofighting.top",
+    url: "https://radar.tpgofighting.top",
+    category: "analytics",
+    categoryName: "数据洞察与大屏",
+    iconKey: "chart",
+    desc: "个人 AI 与前沿工程技术情报雷达，聚焦 Agent 编排范式、垂直技能与工程实践动态。",
+    tags: ["情报雷达", "技术动态", "AI 前沿"],
+    tech: "HTML5 / 数据看板",
+    port: "80",
+    path: "/var/www/radar"
+  },
+  {
+    id: "nf",
+    name: "NF · 自动发卡商店",
+    subdomain: "nf.tpgofighting.top",
+    url: "https://nf.tpgofighting.top",
+    category: "ai-tools",
+    categoryName: "AI 工具与平台",
+    iconKey: "box3d",
+    desc: "基于独角数卡搭建的数字商品自动发卡站，支持在线下单、支付与自动发货。",
+    tags: ["发卡系统", "Docker", "自动发货"],
+    tech: "Docker / dujiaoka / Redis",
+    port: "8102 / Docker",
+    path: "Docker · dujiaoka-web"
+  },
+  {
+    id: "design",
+    name: "AI Chat 组件归档",
+    subdomain: "design.tpgofighting.top",
+    url: "https://design.tpgofighting.top",
+    category: "ai-tools",
+    categoryName: "AI 工具与平台",
+    iconKey: "code",
+    desc: "21st AI Chat 社区组件的逆向归档：在线预览、组件元数据与 demo 源码收藏。",
+    tags: ["组件库", "前端归档", "源码"],
+    tech: "HTML5 / 组件 Demo",
+    port: "80",
+    path: "/var/www/design"
+  },
+  {
+    id: "hermes",
+    name: "Hermes 自己玩 · 实战教程",
+    subdomain: "hermes.tpgofighting.top",
+    url: "http://hermes.tpgofighting.top",
+    category: "ai-tools",
+    categoryName: "AI 工具与平台",
+    iconKey: "gear",
+    desc: "Hermes Agent 的安装、配置与实战教程，记录从零跑通到日常使用的完整路径。",
+    tags: ["Agent教程", "Hermes", "实战"],
+    tech: "HTML5 / 静态教程",
+    port: "8100",
+    path: "/var/www/hermes-tutorial"
+  },
+  {
+    id: "obsidian",
+    name: "Obsidian 知识库 · RAG 问答",
+    subdomain: "obsidian.tpgofighting.top",
+    url: "https://obsidian.tpgofighting.top",
+    category: "ai-tools",
+    categoryName: "AI 工具与平台",
+    iconKey: "brain",
+    desc: "本地向量检索 + RAG 问答的知识库应用，支持笔记语义搜索与配套 APK 下载。",
+    tags: ["RAG", "向量检索", "知识库"],
+    tech: "FastAPI / ONNX / CouchDB",
+    port: "3000 / 8000",
+    path: "/home/ubuntu/obsidian-agent"
+  },
+  {
+    id: "eightonefive",
+    name: "知识弹药库 · 飞书精读",
+    subdomain: "eightonefive.tpgofighting.top",
+    url: "https://eightonefive.tpgofighting.top",
+    category: "ai-tools",
+    categoryName: "AI 工具与平台",
+    iconKey: "school",
+    desc: "将飞书收藏的文章、研究资料与实践经验整理为可检索、可复用的精读内容库。",
+    tags: ["知识管理", "飞书收藏", "精读"],
+    tech: "HTML5 / 静态内容库",
+    port: "8091",
+    path: "/var/www/eightonefive"
+  },
+  {
+    id: "littleprince",
+    name: "小王子 · 星辰之旅",
+    subdomain: "littleprince.tpgofighting.top",
+    url: "https://littleprince.tpgofighting.top",
+    category: "life",
+    categoryName: "校园特辑与生活",
+    iconKey: "spark",
+    desc: "以《小王子》为主题的在线阅读页，星际旅程式的章节导航与双语呈现。",
+    tags: ["小王子", "在线阅读", "双语"],
+    tech: "HTML5 / 主题页",
+    port: "80",
+    path: "/var/www/littleprince"
+  },
+  {
+    id: "nswy",
+    name: "年少有为 · 在线观看",
+    subdomain: "nswy.tpgofighting.top",
+    url: "https://nswy.tpgofighting.top",
+    category: "life",
+    categoryName: "校园特辑与生活",
+    iconKey: "tv",
+    desc: "《年少有为》全 26 集在线播放页，剧集分集导航与播放列表。",
+    tags: ["影视剧集", "在线播放", "追剧"],
+    tech: "HTML5 / 播放页",
+    port: "80",
+    path: "/var/www/nswy"
+  },
+  {
+    id: "ny",
+    name: "南邮 · 华夏 IT 英才的摇篮",
+    subdomain: "ny.tpgofighting.top",
+    url: "https://ny.tpgofighting.top",
+    category: "life",
+    categoryName: "校园特辑与生活",
+    iconKey: "school",
+    desc: "南京邮电大学介绍页：校园概况与报考参考，与南邮入学指南配套。",
+    tags: ["南邮", "校园介绍", "报考"],
+    tech: "HTML5 / 主题页",
+    port: "80",
+    path: "/var/www/njupt-ny"
+  },
+  {
+    id: "wym",
+    name: "王语梦 · 文艺小测评",
+    subdomain: "wym.tpgofighting.top",
+    url: "https://wym.tpgofighting.top",
+    category: "life",
+    categoryName: "校园特辑与生活",
+    iconKey: "survey",
+    desc: "一个趣味向的小测评页面，用几个问题检测「是否是文艺女」，娱乐实验性质。",
+    tags: ["趣味测评", "问卷", "娱乐"],
+    tech: "HTML5 / 测评页",
+    port: "80",
+    path: "/var/www/wym"
   }
 ];
 
@@ -700,6 +967,13 @@ function bindEvents() {
   elements.contactModal?.addEventListener("click", (e) => {
     if (e.target === elements.contactModal) closeContactModal();
   });
+
+  // 初始化 Tab 流体滑块位置
+  setTimeout(() => {
+    if (typeof updateGiantTabSlider === "function") {
+      updateGiantTabSlider(state.currentRoute || "products");
+    }
+  }, 80);
 }
 
 function initMobileScrollNavigation() {
@@ -821,6 +1095,83 @@ function renderMatrixServices() {
     life: {
       cls: "matrix-motion--life",
       html: '<div class="mm-grid"></div><span class="mm-kicker">LIFE / 14</span><div class="mm-life-card"><div class="mm-life-pulse"><svg viewBox="0 0 100 24" preserveAspectRatio="none"><path d="M0,12 L28,12 L35,4 L42,20 L48,7 L55,16 L61,12 L100,12"/></svg></div><div class="mm-life-tags"><i class="mm-life-tag mm-life-tag--ev">GRADE A</i><i class="mm-life-tag mm-life-tag--roi">ROI 极高</i></div><div class="mm-life-bottom"><span class="mm-life-num">650+</span><b class="mm-life-badge">循证指南</b><em class="mm-life-check">✓</em></div></div><span class="mm-spark">✦</span>'
+    },
+    // ===== 2026-10 新收录站点的迷你场景（复用现有模板，编号顺延 15-33） =====
+    alan: {
+      cls: "matrix-motion--chat",
+      html: '<div class="mm-grid"></div><span class="mm-kicker">CHAT / 15</span><div class="mm-chat"><span class="mm-bubble mm-bubble--l">你好呀</span><span class="mm-bubble mm-bubble--r">双城记开始啦</span><span class="mm-bubble mm-bubble--l mm-bubble--accent">1,483 条记录 →</span></div><span class="mm-spark">💬</span>'
+    },
+    whoami: {
+      cls: "matrix-motion--archive",
+      html: '<div class="mm-grid"></div><span class="mm-kicker">LOG / 16</span><div class="mm-archive"><div class="mm-log-row"><b>08:14</b><i></i></div><div class="mm-log-row"><b>08:15</b><i></i></div><div class="mm-log-row"><b>08:17</b><i></i></div><em class="mm-stamp">WHO AM I</em></div>'
+    },
+    knowledge: {
+      cls: "matrix-motion--pixel",
+      html: '<div class="mm-grid"></div><span class="mm-kicker">8BIT / 17</span><div class="mm-pixel-scene"><div class="mm-pixel-hero"></div><div class="mm-pixel-ground"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="mm-pixel-flag"><i></i><i></i></div></div><span class="mm-spark">✦</span>'
+    },
+    experience: {
+      cls: "matrix-motion--timeline",
+      html: '<div class="mm-grid"></div><span class="mm-kicker">PATH / 18</span><div class="mm-rail"><i class="mm-rail-line"></i><span class="mm-node"></span><span class="mm-node"></span><span class="mm-node"></span><span class="mm-node"></span></div><div class="mm-card-stack"><i></i><i></i><i></i></div><span class="mm-spark">✓</span>'
+    },
+    phone: {
+      cls: "matrix-motion--chat",
+      html: '<div class="mm-grid"></div><span class="mm-kicker">MSG / 19</span><div class="mm-chat"><span class="mm-bubble mm-bubble--l">404,490 条</span><span class="mm-bubble mm-bubble--r">二十七个月</span><span class="mm-bubble mm-bubble--l mm-bubble--accent">一部手机 →</span></div><span class="mm-spark">📱</span>'
+    },
+    tpnotes: {
+      cls: "matrix-motion--reader",
+      html: '<div class="mm-grid"></div><span class="mm-kicker">READ / 20</span><div class="mm-reader"><div class="mm-reader-bar"><i></i><i></i><i></i><b>notes://699</b></div><div class="mm-article"><b></b><i></i><i></i><i></i><strong class="mm-ai-dot">档</strong></div><div class="mm-article mm-article--next"><b></b><i></i><i></i></div></div><span class="mm-spark">✦</span>'
+    },
+    txiaop: {
+      cls: "matrix-motion--academic",
+      html: '<div class="mm-grid"></div><span class="mm-kicker">REPORT / 21</span><div class="mm-paper"><b>人物报告</b><i></i><i></i><i></i><em>17卷</em><em>33份</em></div><div class="mm-quote-mark">"</div><span class="mm-spark">✦</span>'
+    },
+    nine: {
+      cls: "matrix-motion--admin",
+      html: '<div class="mm-grid"></div><span class="mm-kicker">PLAN / 22</span><div class="mm-admin-table"><div class="mm-th"><i></i><i></i><i></i></div><div class="mm-tr"><i></i><i></i><em class="mm-status mm-status--ok">●</em></div><div class="mm-tr"><i></i><i></i><em class="mm-status mm-status--ok">●</em></div><div class="mm-tr"><i></i><i></i><em class="mm-status mm-status--wait">●</em></div></div>'
+    },
+    daily: {
+      cls: "matrix-motion--dash",
+      html: '<div class="mm-grid"></div><span class="mm-kicker">DAILY / 23</span><div class="mm-panel"><div class="mm-panel-val">24<span>h</span></div><div class="mm-bars"><i></i><i></i><i></i><i></i><i></i></div><div class="mm-trend-line"><svg viewBox="0 0 120 24" preserveAspectRatio="none"><path d="M0,18 C12,18 14,7 26,10 S44,16 56,5 S76,15 90,8 S110,4 120,3"/></svg></div></div><span class="mm-node mm-node--a"></span><span class="mm-node mm-node--b"></span>'
+    },
+    radar: {
+      cls: "matrix-motion--dash",
+      html: '<div class="mm-grid"></div><span class="mm-kicker">SIGNAL / 24</span><div class="mm-panel"><div class="mm-panel-val">AI<span>×</span></div><div class="mm-bars"><i></i><i></i><i></i><i></i><i></i></div><div class="mm-trend-line"><svg viewBox="0 0 120 24" preserveAspectRatio="none"><path d="M0,16 C14,16 18,6 30,9 S48,14 60,7 S84,12 96,5 S112,3 120,2"/></svg></div></div><span class="mm-node mm-node--a"></span><span class="mm-node mm-node--b"></span>'
+    },
+    nf: {
+      cls: "matrix-motion--redwood",
+      html: '<div class="mm-grid"></div><span class="mm-kicker">SHOP / 25</span><div class="mm-3d-cube"><i class="mm-face mm-face--top"></i><i class="mm-face mm-face--left"></i><i class="mm-face mm-face--right"></i><span class="mm-3d-glow"></span></div><div class="mm-plinth"><i></i><i></i></div><span class="mm-spark">✦</span>'
+    },
+    design: {
+      cls: "matrix-motion--skillver",
+      html: '<div class="mm-grid"></div><span class="mm-kicker">CODE / 26</span><div class="mm-version"><b>v2.1</b><span class="mm-tag-row"><i class="mm-tag mm-tag--a">chat</i><i class="mm-tag mm-tag--b">ui</i><i class="mm-tag mm-tag--c">demo</i></span></div><div class="mm-graph"><i></i><i></i><i></i><i></i></div><span class="mm-spark">✦</span>'
+    },
+    hermes: {
+      cls: "matrix-motion--admin",
+      html: '<div class="mm-grid"></div><span class="mm-kicker">AGENT / 27</span><div class="mm-admin-table"><div class="mm-th"><i></i><i></i><i></i></div><div class="mm-tr"><i></i><i></i><em class="mm-status mm-status--ok">●</em></div><div class="mm-tr"><i></i><i></i><em class="mm-status mm-status--wait">●</em></div><div class="mm-tr"><i></i><i></i><em class="mm-status mm-status--ok">●</em></div></div>'
+    },
+    obsidian: {
+      cls: "matrix-motion--archive",
+      html: '<div class="mm-grid"></div><span class="mm-kicker">KB / 28</span><div class="mm-archive"><div class="mm-log-row"><b>笔记</b><i></i></div><div class="mm-log-row"><b>向量</b><i></i></div><div class="mm-log-row"><b>问答</b><i></i></div><em class="mm-stamp">RAG READY</em></div>'
+    },
+    eightonefive: {
+      cls: "matrix-motion--reader",
+      html: '<div class="mm-grid"></div><span class="mm-kicker">LIB / 29</span><div class="mm-reader"><div class="mm-reader-bar"><i></i><i></i><i></i><b>815://library</b></div><div class="mm-article"><b></b><i></i><i></i><i></i><strong class="mm-ai-dot">精</strong></div><div class="mm-article mm-article--next"><b></b><i></i><i></i></div></div><span class="mm-spark">✦</span>'
+    },
+    littleprince: {
+      cls: "matrix-motion--life",
+      html: '<div class="mm-grid"></div><span class="mm-kicker">STAR / 30</span><div class="mm-life-card"><div class="mm-life-pulse"><svg viewBox="0 0 100 24" preserveAspectRatio="none"><path d="M0,12 L28,12 L35,4 L42,20 L48,7 L55,16 L61,12 L100,12"/></svg></div><div class="mm-life-tags"><i class="mm-life-tag mm-life-tag--ev">B-612</i><i class="mm-life-tag mm-life-tag--roi">星球漫游</i></div><div class="mm-life-bottom"><span class="mm-life-num">Ch.01</span><b class="mm-life-badge">双语阅读</b><em class="mm-life-check">✦</em></div></div><span class="mm-spark">✦</span>'
+    },
+    nswy: {
+      cls: "matrix-motion--pixel",
+      html: '<div class="mm-grid"></div><span class="mm-kicker">TV / 31</span><div class="mm-pixel-scene"><div class="mm-pixel-hero"></div><div class="mm-pixel-ground"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="mm-pixel-flag"><i></i><i></i></div></div><span class="mm-spark">▶</span>'
+    },
+    ny: {
+      cls: "matrix-motion--campus",
+      html: '<div class="mm-grid"></div><span class="mm-kicker">CAMPUS / 32</span><div class="mm-campus"><div class="mm-teacher-desk"><i></i><i></i></div><div class="mm-blackboard"><b>华夏IT摇篮</b><i></i><i></i></div><span class="mm-flag-pole"></span></div><span class="mm-spark">✿</span>'
+    },
+    wym: {
+      cls: "matrix-motion--apply",
+      html: '<div class="mm-grid"></div><span class="mm-kicker">QUIZ / 33</span><div class="mm-form"><b class="mm-form-title">文艺测评</b><span class="mm-field"><i></i></span><span class="mm-field"><i></i></span><span class="mm-field mm-field--half"></span><em class="mm-check">✓</em></div><span class="mm-spark">+</span>'
     }
   };
 
@@ -1163,7 +1514,55 @@ function prevSpotlight() {
   openSpotlightModal(currentSpotlightIndex, -1);
 }
 
+function initPostersFilter() {
+  const filterBar = document.getElementById("posters-filter-bar");
+  if (!filterBar) return;
+
+  filterBar.addEventListener("click", e => {
+    const btn = e.target.closest(".poster-cat-pill");
+    if (!btn) return;
+    const cat = btn.dataset.posterCat;
+    if (!cat) return;
+
+    filterBar.querySelectorAll(".poster-cat-pill").forEach(p => p.classList.remove("active"));
+    btn.classList.add("active");
+
+    if (cat === "all") {
+      activePosters = [...POSTERS_DATA];
+    } else {
+      activePosters = POSTERS_DATA.filter(item => {
+        const text = (item.title + " " + item.type + " " + item.desc);
+        if (cat === "chinese") {
+          return /王家卫|霸王别姬|平原上的摩西|花样年华|嘉年华|风中有朵雨做的云|陈凯歌|张国荣|双雪涛|娄烨|姜文|梁朝伟/.test(text);
+        }
+        if (cat === "scifi") {
+          return /漫威|科幻|蜘蛛侠|银翼杀手|星际|盗梦/.test(text);
+        }
+        if (cat === "music") {
+          return /音乐|原声|唱片|爱乐之城|陶喆|Sufjan Stevens|大提琴|爵士/.test(text);
+        }
+        if (cat === "anime") {
+          return /动画|吉卜力|千与千寻|哆啦A梦|宫崎骏/.test(text);
+        }
+        if (cat === "world") {
+          return !/王家卫|霸王别姬|平原上的摩西|花样年华|嘉年华|吉卜力|千与千寻|哆啦A梦/.test(text);
+        }
+        return true;
+      });
+    }
+
+    const countBadge = document.getElementById("posters-active-count");
+    if (countBadge) {
+      countBadge.textContent = activePosters.length;
+    }
+
+    renderPostersScatter();
+    renderPostersStream();
+  });
+}
+
 function initPostersGallery() {
+  initPostersFilter();
   renderPostersScatter();
   renderPostersStream();
 
@@ -1516,8 +1915,13 @@ function initInkDoodleCanvas() {
     ctx.rotate(d.angle);
 
     const isDark = document.body.dataset.theme === "dark";
-    const strokeColor = isDark ? `rgba(226, 232, 240, ${d.opacity})` : `rgba(20, 22, 27, ${d.opacity})`;
-    const yellowColor = isDark ? `rgba(251, 191, 36, ${d.opacity * 1.5})` : `rgba(245, 158, 11, ${d.opacity * 1.5})`;
+    const strokeColor = isDark ? `rgba(56, 189, 248, ${(d.opacity * 1.25).toFixed(3)})` : `rgba(20, 22, 27, ${d.opacity.toFixed(3)})`;
+    const yellowColor = isDark ? `rgba(251, 191, 36, ${(d.opacity * 1.6).toFixed(3)})` : `rgba(245, 158, 11, ${(d.opacity * 1.5).toFixed(3)})`;
+
+    if (isDark && (d.hover || 0) > 0.05) {
+      ctx.shadowBlur = 8;
+      ctx.shadowColor = "rgba(56, 189, 248, 0.4)";
+    }
 
     if (d.type === "ai" && AI_ICONS[d.aiKey]) {
       const icon = AI_ICONS[d.aiKey];
@@ -1974,12 +2378,35 @@ function switchRoute(routeId) {
     history.replaceState(null, "", targetHash);
   }
 
-  // 4. 滚动到页面顶部
+  // 4. 流体滑动高亮指示器更新 (Fluid Sliding Tab Indicator)
+  updateGiantTabSlider(routeId);
+
+  // 5. 滚动到页面顶部
   window.scrollTo({ top: 0, behavior: "instant" });
   if (window.__tpScheduleSectionReveal) window.__tpScheduleSectionReveal();
   if (window._heroInteractiveScene) window._heroInteractiveScene.updateLoopState();
 }
 window.switchRoute = switchRoute;
+
+function updateGiantTabSlider(routeId) {
+  const bar = document.getElementById("giant-tabs-nav");
+  const slider = document.getElementById("giant-tabs-slider");
+  if (!bar || !slider) return;
+
+  const activeTab = bar.querySelector(`.giant-tab-item[data-route="${routeId}"]`);
+  if (!activeTab) return;
+
+  bar.classList.add("has-slider");
+  const tabLeft = activeTab.offsetLeft;
+  const tabWidth = activeTab.offsetWidth;
+  slider.style.transform = `translateX(${tabLeft}px)`;
+  slider.style.width = `${tabWidth}px`;
+}
+window.updateGiantTabSlider = updateGiantTabSlider;
+
+window.addEventListener("resize", () => {
+  if (state.currentRoute) updateGiantTabSlider(state.currentRoute);
+}, { passive: true });
 
 function handleHashRoute() {
   const hash = location.hash.replace(/^#\/?/, "");
@@ -2204,12 +2631,76 @@ class InteractiveHeroScene {
     this.debugMode = new URLSearchParams(window.location.search).get("characterDebug") === "true";
     this.debugHudEl = null;
 
+    // 缓存视差分层 DOM
+    this.titleEl = document.querySelector(".hero-statement-title");
+    this.charHumanEl = document.getElementById("char-human");
+    this.charMonsterEl = document.getElementById("char-monster");
+    this.groundShadowEl = document.getElementById("hero-ground-shadow");
+    this.speechBubbleEl = document.getElementById("monster-speech-bubble");
+    this.bubbleTextEl = document.getElementById("monster-bubble-text");
+    this.bubbleTimer = null;
+
     this.initEvents();
+    this.initMonsterEasterEgg();
     this.initVisibility();
     if (this.debugMode) {
       this.initDebugMode();
     }
     this.startLoop();
+  }
+
+  initMonsterEasterEgg() {
+    if (!this.charMonsterEl) return;
+    const quotes = [
+      "Bloop! 29 个系统正在全时运行 🚀",
+      "今天打算构建点什么新东西？💡",
+      "唐潘还在写代码，我负责盯梢 👀",
+      "别戳啦，脸都要被戳圆了 🟢✨",
+      "技术不是冰冷的机器，而是琴键 🎹",
+      "工程图纸已就绪，随时起飞 🛫"
+    ];
+
+    const triggerSquish = (e) => {
+      if (e) {
+        e.stopPropagation();
+        e.preventDefault();
+      }
+      const head = document.getElementById("monster-head-wrapper");
+      if (head) {
+        head.classList.remove("is-squishing");
+        void head.offsetWidth; // 触发回流重开动画
+        head.classList.add("is-squishing");
+        setTimeout(() => head.classList.remove("is-squishing"), 550);
+      }
+
+      // 瞳孔眯眼欢呼微动效
+      const pupils = document.querySelectorAll("#monster-pupil-left, #monster-pupil-right");
+      pupils.forEach(p => {
+        p.style.transformOrigin = "center";
+        const currentT = p.getAttribute("transform") || "";
+        p.setAttribute("transform", currentT + " scale(1.1, 0.2)");
+      });
+      setTimeout(() => {
+        pupils.forEach(p => {
+          const t = p.getAttribute("transform") || "";
+          p.setAttribute("transform", t.replace(/ scale\([^)]+\)/, ""));
+        });
+      }, 220);
+
+      // 显示手绘对话气泡彩蛋
+      if (this.speechBubbleEl && this.bubbleTextEl) {
+        const quote = quotes[Math.floor(Math.random() * quotes.length)];
+        this.bubbleTextEl.textContent = quote;
+        this.speechBubbleEl.classList.add("is-active");
+        if (this.bubbleTimer) clearTimeout(this.bubbleTimer);
+        this.bubbleTimer = setTimeout(() => {
+          this.speechBubbleEl.classList.remove("is-active");
+        }, 2400);
+      }
+    };
+
+    this.charMonsterEl.addEventListener("click", triggerSquish);
+    this.charMonsterEl.addEventListener("touchstart", triggerSquish, { passive: false });
   }
 
   initEvents() {
@@ -2221,11 +2712,24 @@ class InteractiveHeroScene {
       this.isPointerInside = true;
     };
 
-    // 鼠标与触控笔保留精准跟随；触控屏滑动时避免眼球跳动，交由轻微视口滚动微动接管
+    // 鼠标与触控笔保留精准跟随
     window.addEventListener("pointermove", (e) => {
       if (e.pointerType === "touch" || isTouchOnly) return;
       onMove(e.clientX, e.clientY);
     }, { passive: true });
+
+    // 移动端陀螺仪重力倾角联动 (Device Tilt Parallax)
+    if (window.DeviceOrientationEvent) {
+      window.addEventListener("deviceorientation", (e) => {
+        if (e.gamma !== null && e.beta !== null) {
+          const g = Math.max(-35, Math.min(35, e.gamma));
+          const b = Math.max(-20, Math.min(50, e.beta - 30));
+          this.targetPointerX = window.innerWidth * 0.5 + (g / 35) * (window.innerWidth * 0.35);
+          this.targetPointerY = window.innerHeight * 0.4 + (b / 50) * (window.innerHeight * 0.25);
+          this.isPointerInside = true;
+        }
+      }, { passive: true });
+    }
 
     if (isTouchOnly) {
       window.addEventListener("scroll", () => {
@@ -2337,9 +2841,27 @@ class InteractiveHeroScene {
       if (this.isPointerInside) {
         this.human.update(this.pointerX, this.pointerY, normX, normY, easing);
         this.monster.update(this.pointerX, this.pointerY, normX, normY, easing);
+
+        // 3D 舞台多层视差差动物理 (Multi-Layer Parallax Physics)
+        if (this.titleEl) {
+          this.titleEl.style.transform = `translate3d(${(normX * 3.2).toFixed(2)}px, ${(normY * 1.8).toFixed(2)}px, 0)`;
+        }
+        if (this.charHumanEl) {
+          this.charHumanEl.style.transform = `translate3d(${(normX * 6.5).toFixed(2)}px, ${(normY * 3.2).toFixed(2)}px, 0)`;
+        }
+        if (this.charMonsterEl) {
+          this.charMonsterEl.style.transform = `translate3d(${(normX * 10.0).toFixed(2)}px, ${(normY * 5.0).toFixed(2)}px, 0)`;
+        }
+        if (this.groundShadowEl) {
+          this.groundShadowEl.style.transform = `translate3d(${(normX * 4.5).toFixed(2)}px, 0, 0) scaleX(${(1 + Math.abs(normX) * 0.05).toFixed(3)})`;
+        }
       } else {
         this.human.reset(0.06);
         this.monster.reset(0.06);
+        if (this.titleEl) this.titleEl.style.transform = "";
+        if (this.charHumanEl) this.charHumanEl.style.transform = "";
+        if (this.charMonsterEl) this.charMonsterEl.style.transform = "";
+        if (this.groundShadowEl) this.groundShadowEl.style.transform = "";
       }
 
       if (this.debugMode) {
@@ -2479,3 +3001,34 @@ if (document.readyState === "loading") {
 } else {
   startApp();
 }
+
+/* Antigravity JS Enhancements */
+document.addEventListener('DOMContentLoaded', () => {
+  window.addEventListener('scroll', () => {
+    const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+    const bar = document.getElementById('reading-progress-bar');
+    if (bar) bar.style.width = scrolled + '%';
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      window.__pauseCanvasAnimation = true;
+    } else {
+      window.__pauseCanvasAnimation = false;
+    }
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      const searchInput = document.querySelector('input[type="search"], .search-input, #search-box');
+      if (searchInput) {
+        searchInput.focus();
+      } else {
+        alert('✨ TP Space 向量搜索框就绪：请输入您想要检索的项目或标签！');
+      }
+    }
+  });
+});

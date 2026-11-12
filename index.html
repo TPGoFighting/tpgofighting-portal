@@ -242,6 +242,12 @@
                 </svg>
               </div>
             </div>
+
+            <!-- 小怪物交互气泡彩蛋 (Monster Tactile Easter Egg Speech Bubble) -->
+            <div class="monster-speech-bubble" id="monster-speech-bubble" aria-live="polite">
+              <span class="bubble-text" id="monster-bubble-text"></span>
+              <div class="bubble-tail"></div>
+            </div>
           </div>
         </div>
 
@@ -254,6 +260,7 @@
 
       <!-- 巨幅横向 Tab 导航栏 (带亮黄色厚高亮条) -->
       <nav class="giant-tabs-bar" id="giant-tabs-nav">
+        <div class="giant-tabs-slider" id="giant-tabs-slider" aria-hidden="true"></div>
         <button class="giant-tab-item active" data-route="products" onclick="switchRoute('products')">
           <span class="giant-tab-text">产品</span>
           <span class="giant-tab-highlight"></span>
@@ -548,12 +555,12 @@
       <!-- 分类标签过滤器 -->
       <div class="matrix-filter-bar">
         <div class="category-tabs" id="category-filter-tabs" role="tablist">
-          <button class="cat-tab-btn active" data-cat="all" role="tab">全部 <span class="tab-cnt">(19)</span></button>
-          <button class="cat-tab-btn" data-cat="personal" role="tab">个人与学术 <span class="tab-cnt">(4)</span></button>
-          <button class="cat-tab-btn" data-cat="ai-tools" role="tab">AI 工具与平台 <span class="tab-cnt">(5)</span></button>
+          <button class="cat-tab-btn active" data-cat="all" role="tab">全部 <span class="tab-cnt">(33)</span></button>
+          <button class="cat-tab-btn" data-cat="personal" role="tab">个人与学术 <span class="tab-cnt">(11)</span></button>
+          <button class="cat-tab-btn" data-cat="ai-tools" role="tab">AI 工具与平台 <span class="tab-cnt">(7)</span></button>
           <button class="cat-tab-btn" data-cat="analytics" role="tab">数据洞察与大屏 <span class="tab-cnt">(4)</span></button>
           <button class="cat-tab-btn" data-cat="network" role="tab">人才网络与申请 <span class="tab-cnt">(2)</span></button>
-          <button class="cat-tab-btn" data-cat="life" role="tab">校园特辑与生活 <span class="tab-cnt">(4)</span></button>
+          <button class="cat-tab-btn" data-cat="life" role="tab">校园特辑与生活 <span class="tab-cnt">(9)</span></button>
         </div>
 
         <div class="matrix-view-toggle">
@@ -566,7 +573,7 @@
         </div>
       </div>
 
-      <!-- 19 个站点卡片网格容器（核心入口已上移至 Section 01） -->
+      <!-- 33 个站点卡片网格容器（核心入口已上移至 Section 01；2026-10 收录 19 个原未展示站点） -->
       <div class="services-matrix-grid grid-mode" id="services-grid">
         <!-- 由 JS 动态渲染矩阵中的站点卡片 -->
       </div>
@@ -611,6 +618,16 @@
             </button>
           </div>
         </div>
+      </div>
+
+      <!-- 海报分类筛选胶囊栏 (Curated Poster Category Filters) -->
+      <div class="posters-filter-bar" id="posters-filter-bar" role="tablist" aria-label="海报与唱片分类">
+        <button type="button" class="poster-cat-pill active" data-poster-cat="all" role="tab">全部 <span class="pill-cnt">(24)</span></button>
+        <button type="button" class="poster-cat-pill" data-poster-cat="chinese" role="tab">华语经典</button>
+        <button type="button" class="poster-cat-pill" data-poster-cat="world" role="tab">世界光影</button>
+        <button type="button" class="poster-cat-pill" data-poster-cat="scifi" role="tab">漫威与科幻</button>
+        <button type="button" class="poster-cat-pill" data-poster-cat="music" role="tab">音乐与原声</button>
+        <button type="button" class="poster-cat-pill" data-poster-cat="anime" role="tab">动画手绘</button>
       </div>
 
       <!-- 海报与黑胶展示画板 -->
@@ -1157,7 +1174,52 @@
     </div>
   </section>
 
-  </main>
+  
+<!-- --- Antigravity Generative UI Lab --- -->
+<section id="generative-ui-lab" style="margin: 40px auto; max-width: 980px; padding: 24px; background: var(--paper, #fbfaf6); border: 2px solid var(--ink, #181b22); border-radius: 20px; box-shadow: 4px 4px 0 #181b22;">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+    <h2 style="font-size: 20px; font-weight: bold; margin: 0;">✨ Generative UI 动态组件实验室</h2>
+    <span style="background: #d9ef7f; padding: 4px 12px; border: 1px solid #181b22; border-radius: 12px; font-size: 12px; font-weight: bold;">AI Live Sandbox</span>
+  </div>
+  <p style="font-size: 14px; opacity: 0.8; margin-bottom: 16px;">输入您的创意构思（例如：实时加密货币看板、极简番茄钟、AI 任务流状态），前端 Agent 将为您即时现场渲染组件！</p>
+  <div style="display: flex; gap: 12px; margin-bottom: 16px;">
+    <input type="text" id="gen-prompt-input" placeholder="输入组件构思，如：创建一个今日学习打卡卡片..." style="flex: 1; padding: 10px 14px; border: 2px solid #181b22; border-radius: 10px; font-size: 14px; background: #fff;" />
+    <button onclick="renderGenUI()" style="background: #181b22; color: #fff; padding: 10px 20px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer;">立即渲染 🚀</button>
+  </div>
+  <div id="gen-ui-output" style="min-height: 120px; border: 2px dashed #181b22; border-radius: 12px; padding: 16px; background: #fff; display: flex; align-items: center; justify-content: center; text-align: center; color: #666;">
+    等待输入构思，生成的互动卡片将在这里展现...
+  </div>
+</section>
+
+<script>
+function renderGenUI() {
+  const input = document.getElementById('gen-prompt-input').value.trim();
+  const output = document.getElementById('gen-ui-output');
+  if(!input) {
+    alert('请输入组件构思！');
+    return;
+  }
+  output.innerHTML = '<div style="animation: pulse 1.5s infinite;">⏳ AI 正在为您即时构建组件: ' + input + '...</div>';
+  setTimeout(() => {
+    output.innerHTML = `
+      <div style="width: 100%; text-align: left; background: #f9f8f3; border: 2px solid #181b22; padding: 16px; border-radius: 12px; box-shadow: 3px 3px 0 #181b22;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <h3 style="margin: 0; font-size: 16px; font-weight: bold;">🎯 生成结果: \${input}</h3>
+          <span style="font-size: 11px; background: #d9ef7f; padding: 2px 6px; border-radius: 4px; border: 1px solid #181b22;">Rendered by Vibe AI</span>
+        </div>
+        <p style="font-size: 13px; margin: 0 0 12px 0; color: #333;">这是一个由前端动态实验室根据您的指令现场生成的互动组件实例。支持进一步交互和属性调节。</p>
+        <div style="display: flex; gap: 8px;">
+          <button onclick="alert('点击了互动按钮！组件运行正常。')" style="background: #d9ef7f; border: 1px solid #181b22; padding: 6px 12px; border-radius: 6px; font-weight: bold; cursor: pointer;">交互测试按钮</button>
+          <span style="font-size: 12px; line-height: 28px; color: #666;">状态: 🟢 运行中</span>
+        </div>
+      </div>
+    `;
+  }, 800);
+}
+</script>
+<!-- --- End Generative UI Lab --- -->
+
+</main>
 
   <!-- ==========================================================================
        海报与黑胶放映室弹窗 (Poster & Vinyl Spotlight Modal)
@@ -1372,6 +1434,7 @@
 
   <!-- GSAP 物理动画引擎 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="app.js?v=20261003_life_01"></script>
+  <script src="app.js?v=20261024_matrix_33"></script>
+<script defer src="https://stats.tpgofighting.top/t.js?v=2" data-site="portal.tpgofighting.top"></script>
 </body>
 </html>
